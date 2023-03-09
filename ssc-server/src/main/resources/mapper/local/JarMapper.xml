@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.martvey.ssc.mapper.local.JarMapper">
+
+    <insert id="insertJar">
+        <bind name="jarId" value="@com.github.martvey.ssc.util.UuidUtil@getId()"/>
+        INSERT INTO ssc_jar(id, jar_name, jar_path, add_time, scope_type, scope_id)
+        VALUES (#{jarId},#{jarName}, #{jarPath}, NOW(),#{scopeType},#{scopeId})
+    </insert>
+    <delete id="deleteJar">
+        DELETE FROM ssc_jar
+        WHERE id = #{jarId}
+    </delete>
+
+    <resultMap id="JarDO_Map" type="com.github.martvey.ssc.entity.jar.JarDO">
+        <result column="jar_id" property="jarId" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="jar_name" property="jarName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="jar_path" property="jarPath" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="add_time" property="addTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="scope_type" property="scopeType" jdbcType="VARCHAR" javaType="com.github.martvey.ssc.constant.ScopeEnum"/>
+        <result column="scope_id" property="scopeId" jdbcType="VARCHAR" javaType="java.lang.String"/>
+    </resultMap>
+    <select id="getJarById" resultMap="JarDO_Map">
+        SELECT id, jar_name, jar_path, add_time, scope_type, scope_id
+        FROM ssc_jar
+        WHERE id = #{jarId}
+    </select>
+
+
+    <resultMap id="Path_Map" type="org.apache.flink.core.fs.Path">
+        <constructor>
+            <arg column="jar_path" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        </constructor>
+    </resultMap>
+    <select id="listJarPathCover" resultMap="Path_Map">
+        SELECT jar_path
+        FROM (
+                 SELECT  jar_path, ROW_NUMBER() OVER (PARTITION BY jar_name ORDER BY scope_type DESC) AS NUM
+                 FROM ssc_jar
+                 WHERE (scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@FLINK.ordinal()}
+                    OR scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@SYSTEM.ordinal()}
+                    OR (scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@PROJECT.ordinal()} AND scope_id = #{projectId, jdbcType=VARCHAR})
+                    OR (scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@SPACE.ordinal()} AND scope_id = #{spaceId, jdbcType=VARCHAR})
+                    OR (scope_Type = ${@com.github.martvey.ssc.constant.ScopeEnum@APPLICATION.ordinal()} AND scope_id = #{appId, jdbcType=VARCHAR}))
+                    <if test="scopeTypeList != null and scopeTypeList.size() > 0">
+                        AND scope_type IN
+                        <foreach collection="scopeTypeList" item="scopeType" open="(" separator="," close=")">
+                            #{scopeType}
+                        </foreach>
+                    </if>
+        ) t1
+        WHERE NUM = 1
+    </select>
+
+    <resultMap id="JarVO_Map" type="com.github.martvey.ssc.entity.jar.JarVO">
+        <result column="id" property="id" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="jar_name" property="jarName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="add_time" property="addTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="scope_type" property="scopeType" jdbcType="INTEGER" javaType="com.github.martvey.ssc.constant.ScopeEnum"/>
+    </resultMap>
+    <select id="listJar" resultMap="JarVO_Map">
+        SELECT id, jar_name, add_time, scope_type
+        FROM ssc_jar
+        WHERE ((scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@PROJECT.ordinal()} AND scope_id = #{projectId, jdbcType=VARCHAR})
+           OR (scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@SPACE.ordinal()} AND scope_id = #{spaceId, jdbcType=VARCHAR})
+        OR (scope_Type = ${@com.github.martvey.ssc.constant.ScopeEnum@APPLICATION.ordinal()} AND scope_id = #{appId, jdbcType=VARCHAR}))
+        <if test="scopeTypeList != null and scopeTypeList.size() > 0">
+            AND scope_type IN
+            <foreach collection="scopeTypeList" item="scopeType" open="(" separator="," close=")">
+                #{scopeType}
+            </foreach>
+        </if>
+        ORDER BY scope_type
+    </select>
+</mapper>

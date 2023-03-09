@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.github.martvey.ssc.mapper.local.UserMapper">
+    <resultMap id="User_Map" type="com.github.martvey.ssc.entity.security.User">
+        <id column="id" property="id" jdbcType="BIGINT" javaType="long"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR" javaType="string"/>
+        <result column="nick_name" property="nickName" jdbcType="VARCHAR" javaType="string"/>
+        <result column="password" property="password" jdbcType="VARCHAR" javaType="string"/>
+        <result column="status" property="status" jdbcType="VARCHAR" javaType="string"/>
+        <result column="email" property="email" jdbcType="VARCHAR" javaType="string"/>
+        <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" javaType="string"/>
+        <result column="gender" property="gender" jdbcType="VARCHAR" javaType="string"/>
+        <result column="avatar" property="avatar" jdbcType="VARCHAR" javaType="string"/>
+        <result column="user_type" property="userType" jdbcType="VARCHAR" javaType="string"/>
+        <result column="create_by" property="createBy" jdbcType="BIGINT" javaType="long"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="update_by" property="updateBy" jdbcType="BIGINT" javaType="long"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="del_flag" property="delFlag" jdbcType="INTEGER" javaType="integer"/>
+    </resultMap>
+
+    <select id="getUserByName" resultMap="User_Map">
+        SELECT id, user_name, nick_name, password, status, email, phone_number,
+               gender, avatar, user_type, create_by, create_time, update_by, update_time, del_flag
+        FROM ssc_user
+        WHERE user_name = #{name}
+    </select>
+
+    <select id="getUserById" resultMap="User_Map">
+        SELECT id, user_name, nick_name, password, status, email, phone_number,
+               gender, avatar, user_type, create_by, create_time, update_by, update_time, del_flag
+        FROM ssc_user
+        WHERE id = #{userId}
+    </select>
+</mapper>

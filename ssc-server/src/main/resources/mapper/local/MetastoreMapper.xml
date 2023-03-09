@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.martvey.ssc.mapper.local.MetastoreMapper">
+    <insert id="insertTable">
+        <bind name="id" value="@com.github.martvey.ssc.util.UuidUtil@getId()"/>
+        INSERT INTO ssc_table(id, name, create_time, define, scope_type, scope_id)
+        VALUES (#{id},#{upsert.name},NOW(),#{upsert.ymlDefine},#{upsert.scopeType},#{upsert.scopeId})
+    </insert>
+
+    <insert id="insertFunction">
+        <bind name="id" value="@com.github.martvey.ssc.util.UuidUtil@getId()"/>
+        INSERT INTO ssc_function(id, name, create_time, define, scope_type, scope_id)
+        VALUES (#{id},#{upsert.name},NOW(),#{upsert.ymlDefine},#{upsert.scopeType},#{upsert.scopeId})
+    </insert>
+
+    <insert id="insertCatalog">
+        <bind name="id" value="@com.github.martvey.ssc.util.UuidUtil@getId()"/>
+        INSERT INTO ssc_catalog(id, name, create_time, define, scope_type, scope_id)
+        VALUES (#{id},#{upsert.name},NOW(),#{upsert.ymlDefine},#{upsert.scopeType},#{upsert.scopeId})
+    </insert>
+
+    <insert id="insertModule">
+        <bind name="id" value="@com.github.martvey.ssc.util.UuidUtil@getId()"/>
+        INSERT INTO ssc_module(id, name, create_time, define, scope_type, scope_id)
+        VALUES  (#{id},#{upsert.name},NOW(),#{upsert.ymlDefine},#{upsert.scopeType},#{upsert.scopeId})
+    </insert>
+
+    <insert id="insertExecution">
+        <bind name="id" value="@com.github.martvey.ssc.util.UuidUtil@getId()"/>
+        INSERT INTO ssc_execution(id, create_time, define, scope_type, scope_id)
+        VALUES (#{id}, NOW(), #{upsert.ymlDefine}, #{upsert.scopeType}, #{upsert.scopeId})
+    </insert>
+
+    <insert id="insertConfiguration">
+        <bind name="id" value="@com.github.martvey.ssc.util.UuidUtil@getId()"/>
+        INSERT INTO ssc_configuration(id, create_time, define, scope_type, scope_id)
+        VALUES (#{id}, NOW(),#{upsert.ymlDefine},#{upsert.scopeType},#{upsert.scopeId})
+    </insert>
+
+    <insert id="insertDeployment">
+        <bind name="id" value="@com.github.martvey.ssc.util.UuidUtil@getId()"/>
+        INSERT INTO ssc_deployment(id, create_time, define, scope_type, scope_id)
+        VALUES (#{id}, NOW(),#{upsert.ymlDefine},#{upsert.scopeType},#{upsert.scopeId})
+    </insert>
+    <update id="updateTable">
+        UPDATE ssc_table
+        SET define = #{define.upsert.ymlDefine},
+            scope_type = #{define.upsert.scopeType},
+            scope_id = #{define.upsert.scopeId},
+            name = #{define.upsert.name}
+        WHERE id = #{id}
+    </update>
+    <update id="updateFunction">
+        UPDATE ssc_function
+        SET define = #{define.upsert.ymlDefine},
+            scope_type = #{define.upsert.scopeType},
+            scope_id = #{define.upsert.scopeId},
+            name = #{define.upsert.name}
+        WHERE id = #{id}
+    </update>
+    <update id="updateCatalog">
+        UPDATE ssc_catalog
+        SET define = #{define.upsert.ymlDefine},
+            scope_type = #{define.upsert.scopeType},
+            scope_id = #{define.upsert.scopeId},
+            name = #{define.upsert.name}
+        WHERE id = #{id}
+    </update>
+    <update id="updateModule">
+        UPDATE ssc_module
+        SET define = #{define.upsert.ymlDefine},
+            scope_type = #{define.upsert.scopeType},
+            scope_id = #{define.upsert.scopeId},
+            name = #{define.upsert.name}
+        WHERE id = #{id}
+    </update>
+    <update id="updateExecution">
+        UPDATE ssc_execution
+        SET define = #{define.upsert.ymlDefine},
+            scope_type = #{define.upsert.scopeType},
+            scope_id = #{define.upsert.scopeId}
+        WHERE id = #{id}
+    </update>
+    <update id="updateConfiguration">
+        UPDATE ssc_configuration
+        SET define = #{define.upsert.ymlDefine},
+            scope_type = #{define.upsert.scopeType},
+            scope_id = #{define.upsert.scopeId}
+        WHERE id = #{id}
+    </update>
+    <update id="updateDeployment">
+        UPDATE ssc_deployment
+        SET define = #{define.upsert.ymlDefine},
+            scope_type = #{define.upsert.scopeType},
+            scope_id = #{define.upsert.scopeId}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteTable">
+        DELETE FROM ssc_table WHERE id = #{id}
+    </delete>
+
+    <delete id="deleteFunction">
+        DELETE FROM ssc_function WHERE id = #{id}
+    </delete>
+
+    <delete id="deleteCatalog">
+        DELETE FROM ssc_table WHERE id = #{id}
+    </delete>
+
+    <delete id="deleteModule">
+        DELETE FROM ssc_module WHERE id = #{id}
+    </delete>
+
+    <delete id="deleteExecution">
+        DELETE FROM ssc_execution WHERE id = #{id}
+    </delete>
+
+    <delete id="deleteConfiguration">
+        DELETE FROM ssc_configuration WHERE id = #{id}
+    </delete>
+
+    <delete id="deleteDeployment">
+        DELETE FROM ssc_table WHERE id = #{id}
+    </delete>
+
+    <resultMap id="MetastoreDO_Map" type="com.github.martvey.ssc.entity.metastore.MetastoreVO">
+        <result column="id" property="id" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="metastore_type" property="metastoreType" jdbcType="VARCHAR" javaType="com.github.martvey.ssc.constant.MetastoreEnum"/>
+        <result column="scope_type" property="scopeType" jdbcType="VARCHAR" javaType="com.github.martvey.ssc.constant.ScopeEnum"/>
+        <result column="scope_id" property="scopeId" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="define" property="sourceYaml" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+    </resultMap>
+
+    <resultMap id="TableVO_Map" type="com.github.martvey.ssc.entity.metastore.TableVO" extends="MetastoreDO_Map">
+        <result column="id" property="id" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="name" property="name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+    </resultMap>
+    <select id="queryTable" resultMap="TableVO_Map">
+        SELECT metastore_type, scope_type, scope_id, define, id, name, create_time
+        FROM (
+            SELECT ${@com.github.martvey.ssc.constant.MetastoreEnum@TABLE.ordinal()} AS metastore_type,
+                   scope_type, scope_id, define,id, name, create_time,
+                   ROW_NUMBER() OVER (PARTITION BY name ORDER BY scope_type DESC) AS NUM
+            FROM ssc_table
+            WHERE (scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@FLINK.ordinal()}
+                OR scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@SYSTEM.ordinal()}
+                OR (scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@PROJECT.ordinal()} AND scope_id = #{projectId})
+                OR (scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@SPACE.ordinal()} AND scope_id = #{spaceId})
+                OR (scope_Type = ${@com.github.martvey.ssc.constant.ScopeEnum@APPLICATION.ordinal()} AND scope_id = #{appId, jdbcType=VARCHAR}))
+                <if test="scopeTypeList != null and scopeTypeList.size() > 0">
+                    AND scope_type IN
+                    <foreach collection="scopeTypeList" item="scopeType" open="(" separator="," close=")">
+                        #{scopeType}
+                    </foreach>
+                </if>
+        ) t1
+        WHERE NUM = 1
+    </select>
+
+    <resultMap id="FunctionVO_Map" type="com.github.martvey.ssc.entity.metastore.FunctionVO" extends="MetastoreDO_Map">
+        <result column="id" property="id" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="name" property="name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+    </resultMap>
+    <select id="queryFunction" resultMap="FunctionVO_Map">
+        SELECT metastore_type, scope_type, scope_id,define, id, name, create_time
+        FROM (
+            SELECT ${@com.github.martvey.ssc.constant.MetastoreEnum@FUNCTION.ordinal()} AS metastore_type,
+                   scope_type, scope_id, define, ROW_NUMBER() OVER (PARTITION BY name ORDER BY scope_type DESC) AS NUM,
+                   id, name, create_time
+            FROM ssc_function
+            WHERE (scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@FLINK.ordinal()}
+                OR scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@SYSTEM.ordinal()}
+                OR (scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@PROJECT.ordinal()} AND scope_id = #{projectId})
+                OR (scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@SPACE.ordinal()} AND scope_id = #{spaceId})
+                OR (scope_Type = ${@com.github.martvey.ssc.constant.ScopeEnum@APPLICATION.ordinal()} AND scope_id = #{appId, jdbcType=VARCHAR}))
+                <if test="scopeTypeList != null and scopeTypeList.size() > 0">
+                    AND scope_type IN
+                    <foreach collection="scopeTypeList" item="scopeType" open="(" separator="," close=")">
+                        #{scopeType}
+                    </foreach>
+                </if>
+        ) t1
+        WHERE NUM = 1
+    </select>
+
+    <resultMap id="CatalogVO_Map" type="com.github.martvey.ssc.entity.metastore.CatalogVO" extends="MetastoreDO_Map">
+        <result column="id" property="id" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="name" property="name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+    </resultMap>
+    <select id="queryCatalog" resultMap="CatalogVO_Map">
+        SELECT metastore_type, scope_type, scope_id, define,id, name, create_time
+        FROM (
+            SELECT ${@com.github.martvey.ssc.constant.MetastoreEnum@CATALOG.ordinal()} AS metastore_type,
+                   scope_type, scope_id, define, id, name, create_time,
+                   ROW_NUMBER() OVER (PARTITION BY name ORDER BY scope_type DESC) AS NUM
+            FROM ssc_catalog
+            WHERE (scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@FLINK.ordinal()}
+                OR scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@SYSTEM.ordinal()}
+                OR (scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@PROJECT.ordinal()} AND scope_id = #{projectId})
+                OR (scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@SPACE.ordinal()} AND scope_id = #{spaceId})
+                OR (scope_Type = ${@com.github.martvey.ssc.constant.ScopeEnum@APPLICATION.ordinal()} AND scope_id = #{appId, jdbcType=VARCHAR}))
+                <if test="scopeTypeList != null and scopeTypeList.size() > 0">
+                    AND scope_type IN
+                    <foreach collection="scopeTypeList" item="scopeType" open="(" separator="," close=")">
+                        #{scopeType}
+                    </foreach>
+                </if>
+        ) t1
+        WHERE NUM = 1
+
+    </select>
+
+    <resultMap id="ModuleVO_Map" type="com.github.martvey.ssc.entity.metastore.ModuleVO" extends="MetastoreDO_Map">
+        <result column="id" property="id" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="name" property="name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+    </resultMap>
+    <select id="queryModule" resultMap="ModuleVO_Map">
+        SELECT metastore_type, scope_type, scope_id,define,id, name, create_time
+        FROM (
+            SELECT ${@com.github.martvey.ssc.constant.MetastoreEnum@MODULE.ordinal()} AS metastore_type,
+                   scope_type, scope_id, define, id, name, create_time,
+                   ROW_NUMBER() OVER (PARTITION BY name ORDER BY scope_type DESC) AS NUM
+            FROM ssc_module
+            WHERE (scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@FLINK.ordinal()}
+                OR scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@SYSTEM.ordinal()}
+                OR (scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@PROJECT.ordinal()} AND scope_id = #{projectId})
+                OR (scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@SPACE.ordinal()} AND scope_id = #{spaceId})
+                OR (scope_Type = ${@com.github.martvey.ssc.constant.ScopeEnum@APPLICATION.ordinal()} AND scope_id = #{appId, jdbcType=VARCHAR}))
+                <if test="scopeTypeList != null and scopeTypeList.size() > 0">
+                    AND scope_type IN
+                    <foreach collection="scopeTypeList" item="scopeType" open="(" separator="," close=")">
+                        #{scopeType}
+                    </foreach>
+                </if>
+        ) t1
+        WHERE NUM = 1
+    </select>
+
+    <select id="queryExecution" resultMap="MetastoreDO_Map">
+        SELECT ${@com.github.martvey.ssc.constant.MetastoreEnum@EXECUTION.ordinal()} AS metastore_type,
+               scope_type, scope_id, define, id, create_time
+        FROM ssc_execution
+        WHERE (scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@FLINK.ordinal()}
+                OR scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@SYSTEM.ordinal()}
+                OR (scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@PROJECT.ordinal()} AND scope_id = #{projectId})
+                OR (scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@SPACE.ordinal()} AND scope_id = #{spaceId})
+                OR (scope_Type = ${@com.github.martvey.ssc.constant.ScopeEnum@APPLICATION.ordinal()} AND scope_id = #{appId, jdbcType=VARCHAR}))
+                <if test="scopeTypeList != null and scopeTypeList.size() > 0">
+                    AND scope_type IN
+                    <foreach collection="scopeTypeList" item="scopeType" open="(" separator="," close=")">
+                        #{scopeType}
+                    </foreach>
+                </if>
+    </select>
+
+    <select id="queryConfiguration" resultMap="MetastoreDO_Map">
+        SELECT ${@com.github.martvey.ssc.constant.MetastoreEnum@CONFIGURATION.ordinal()} AS metastore_type,
+               scope_type, scope_id, define, id, create_time
+        FROM ssc_configuration
+        WHERE (scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@FLINK.ordinal()}
+                OR scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@SYSTEM.ordinal()}
+                OR (scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@PROJECT.ordinal()} AND scope_id = #{projectId})
+                OR (scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@SPACE.ordinal()} AND scope_id = #{spaceId})
+                OR (scope_Type = ${@com.github.martvey.ssc.constant.ScopeEnum@APPLICATION.ordinal()} AND scope_id = #{appId, jdbcType=VARCHAR}))
+                <if test="scopeTypeList != null and scopeTypeList.size() > 0">
+                    AND scope_type IN
+                    <foreach collection="scopeTypeList" item="scopeType" open="(" separator="," close=")">
+                        #{scopeType}
+                    </foreach>
+                </if>
+        ORDER BY scope_type
+    </select>
+
+    <select id="queryDeployment" resultMap="MetastoreDO_Map">
+        SELECT ${@com.github.martvey.ssc.constant.MetastoreEnum@DEPLOYMENT.ordinal()} AS metastore_type,
+               scope_type, scope_id, define, id, create_time
+        FROM ssc_deployment
+        WHERE (scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@FLINK.ordinal()}
+                OR scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@SYSTEM.ordinal()}
+                OR (scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@PROJECT.ordinal()} AND scope_id = #{projectId})
+                OR (scope_type = ${@com.github.martvey.ssc.constant.ScopeEnum@SPACE.ordinal()} AND scope_id = #{spaceId})
+                OR (scope_Type = ${@com.github.martvey.ssc.constant.ScopeEnum@APPLICATION.ordinal()} AND scope_id = #{appId, jdbcType=VARCHAR}))
+                <if test="scopeTypeList != null and scopeTypeList.size() > 0">
+                    AND scope_type IN
+                    <foreach collection="scopeTypeList" item="scopeType" open="(" separator="," close=")">
+                        #{scopeType}
+                    </foreach>
+                </if>
+    </select>
+
+    <select id="getTable" resultMap="TableVO_Map">
+        SELECT ${@com.github.martvey.ssc.constant.MetastoreEnum@TABLE.ordinal()} AS metastore_type, scope_type, scope_id,define, id, name, create_time
+        FROM ssc_table
+        WHERE id = #{id}
+    </select>
+
+    <select id="getFunction" resultMap="FunctionVO_Map">
+        SELECT ${@com.github.martvey.ssc.constant.MetastoreEnum@FUNCTION.ordinal()} AS metastore_type, scope_type, scope_id,define, id, name, create_time
+        FROM ssc_function
+        WHERE id = #{id}
+    </select>
+
+    <select id="getCatalog" resultMap="CatalogVO_Map">
+        SELECT ${@com.github.martvey.ssc.constant.MetastoreEnum@CATALOG.ordinal()} AS metastore_type, scope_type, scope_id,define, id, name, create_time
+        FROM ssc_catalog
+        WHERE id = #{id}
+    </select>
+
+    <select id="getModule" resultMap="ModuleVO_Map">
+        SELECT ${@com.github.martvey.ssc.constant.MetastoreEnum@MODULE.ordinal()} AS metastore_type, scope_type, scope_id,define, id, name, create_time
+        FROM ssc_module
+        WHERE id = #{id}
+    </select>
+
+    <select id="getExecution" resultMap="MetastoreDO_Map">
+        SELECT ${@com.github.martvey.ssc.constant.MetastoreEnum@EXECUTION.ordinal()} AS metastore_type, scope_type, scope_id,define, id, create_time
+        FROM ssc_execution
+        WHERE id = #{id}
+    </select>
+
+    <select id="getConfiguration" resultMap="MetastoreDO_Map">
+        SELECT ${@com.github.martvey.ssc.constant.MetastoreEnum@CONFIGURATION.ordinal()} AS metastore_type, scope_type, scope_id,define, id, create_time
+        FROM ssc_configuration
+        WHERE id = #{id}
+    </select>
+
+    <select id="getDeployment" resultMap="MetastoreDO_Map">
+        SELECT ${@com.github.martvey.ssc.constant.MetastoreEnum@DEPLOYMENT.ordinal()} AS metastore_type, scope_type, scope_id,define, id, create_time
+        FROM ssc_deployment
+        WHERE id = #{id}
+    </select>
+</mapper>

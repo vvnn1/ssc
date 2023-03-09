@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.github.martvey.ssc.mapper.local.ClusterMapper">
+    <insert id="insertCluster">
+        INSERT INTO ssc_cluster (id, cluster_name, source_flink_config, create_time, status)
+        VALUES ('${@com.github.martvey.ssc.util.UuidUtil@getId()}',
+                #{clusterName, jdbcType=VARCHAR},
+                #{configuration, jdbcType=VARCHAR, typeHandler=com.github.martvey.ssc.convertor.handler.ConfigurationTypeHandler},
+                NOW(), #{clusterStatus, typeHandler=org.apache.ibatis.type.EnumTypeHandler})
+    </insert>
+
+    <update id="updateClusterStatus">
+        UPDATE ssc_cluster
+        SET application_id = #{projectId},
+            status = #{clusterStatus, typeHandler=org.apache.ibatis.type.EnumTypeHandler},
+            flink_config = #{configuration, jdbcType=VARCHAR, typeHandler=com.github.martvey.ssc.convertor.handler.ConfigurationTypeHandler},
+            url = #{url}
+        WHERE id = #{id}
+    </update>
+    <delete id="deleteCluster">
+        DELETE FROM ssc_cluster WHERE id = #{id}
+    </delete>
+
+    <select id="getClusterConfiguration" resultType="java.lang.String">
+        SELECT flink_config
+        FROM ssc_cluster
+        WHERE id = #{id}
+    </select>
+
+    <select id="getSourceClusterConfiguration" resultType="java.lang.String">
+        SELECT source_flink_config
+        FROM ssc_cluster
+        WHERE id = #{id}
+    </select>
+
+    <resultMap id="ClusterDO_Map" type="com.github.martvey.ssc.entity.cluster.ClusterDetail">
+        <result column="id" property="id" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="application_id" property="applicationId" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="cluster_name" property="clusterName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="source_flink_config" property="sourceConfiguration" jdbcType="VARCHAR" typeHandler="com.github.martvey.ssc.convertor.handler.ConfigurationTypeHandler"/>
+        <result column="flink_config" property="configuration" jdbcType="VARCHAR" typeHandler="com.github.martvey.ssc.convertor.handler.ConfigurationTypeHandler"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="status" property="clusterStatus" jdbcType="VARCHAR" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
+        <result column="url" property="url" jdbcType="VARCHAR" javaType="java.lang.String"/>
+    </resultMap>
+    <select id="getClusterDetailById" resultMap="ClusterDO_Map">
+        SELECT id, application_id, cluster_name, source_flink_config, flink_config, create_time, status, url
+        FROM ssc_cluster
+        WHERE id = #{clusterId}
+    </select>
+
+    <resultMap id="ClusterVO_Map" type="com.github.martvey.ssc.entity.cluster.ClusterVO">
+        <result column="id" property="id" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="cluster_name" property="clusterName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="status" property="clusterStatus" jdbcType="VARCHAR" javaType="com.github.martvey.ssc.constant.ClusterStatusEnum" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
+    </resultMap>
+    <select id="listCluster" resultMap="ClusterVO_Map">
+        SELECT id, cluster_name, create_time, status
+        FROM ssc_cluster
+        ORDER BY create_time DESC
+    </select>
+</mapper>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.martvey.ssc.mapper.local.AppMapper">
+    <insert id="insertSql">
+        INSERT INTO ssc_app(id, project_id, app_name, content, create_time, type)
+        VALUES (#{id}, #{projectId},#{appName},#{content},NOW(), #{appType, typeHandler=org.apache.ibatis.type.EnumTypeHandler})
+    </insert>
+    <update id="updateSql">
+        UPDATE ssc_app
+        SET app_name = #{appName}, content = #{content},
+            type = #{appType, typeHandler=org.apache.ibatis.type.EnumTypeHandler}
+        WHERE id = #{id}
+    </update>
+    <delete id="deleteSqlById">
+        DELETE FROM ssc_app WHERE id = #{id}
+    </delete>
+
+
+    <resultMap id="SqlDetail_Map" type="com.github.martvey.ssc.entity.sql.AppDetail">
+        <result column="space_id" property="spaceId" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="space_name" property="spaceName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="project_id" property="projectId" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="project_name" property="projectName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="app_id" property="appId" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="app_name" property="appName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="content" property="content" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="type" property="appType" jdbcType="VARCHAR" javaType="com.github.martvey.ssc.constant.AppEnum" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
+    </resultMap>
+    <select id="getSqlDetail" resultMap="SqlDetail_Map">
+        SELECT app_id, app_name, content, project_id, project_name, space_id, name AS space_name, type
+        FROM (
+            SELECT app_id, app_name, content, project_id, name AS project_name, space_id, type
+            FROM (
+                SELECT id AS app_id, app_name, content, project_id, type
+                FROM ssc_app
+                WHERE id = #{sqlId}
+            ) t1
+            INNER JOIN ssc_project t2
+            ON t1.project_id = t2.id
+        ) t3
+        INNER JOIN ssc_space t4
+        ON t3.space_id = t4.id
+    </select>
+
+
+    <resultMap id="SqlVO_Map" type="com.github.martvey.ssc.entity.sql.AppVO">
+        <result column="id" property="id" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="project_id" property="projectId" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="app_name" property="appName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="content" property="content" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="type" property="appType" jdbcType="VARCHAR" javaType="com.github.martvey.ssc.constant.AppEnum" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
+    </resultMap>
+    <select id="listSqlVO" resultMap="SqlVO_Map">
+        SELECT id, project_id, app_name, content, type, create_time
+        FROM ssc_app
+        WHERE project_id = #{projectId}
+        ORDER BY app_name
+    </select>
+    <select id="getSqlVO" resultMap="SqlVO_Map">
+        SELECT id, project_id, app_name, content, type, create_time
+        FROM ssc_app
+        WHERE id = #{sqlId}
+    </select>
+</mapper>

@@ -1,0 +1,18 @@
+retrofit:
+  global-call-adapter-factories: com.github.martvey.cli.retrofit.factory.SscResultCallAdapterFactory
+spring:
+  application:
+    name: ssc-cli
+  shell:
+    config:
+      location: log/
+    history:
+      name: shell-history.log
+ssc:
+  ip: localhost
+  port: 9704
+  username: wangml
+  password: 318and118
+logging:
+  level:
+    root: info

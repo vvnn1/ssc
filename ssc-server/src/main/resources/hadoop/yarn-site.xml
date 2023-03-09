@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<configuration>
+    <!-- 指定YARN的ResourceManager的地址 -->
+    <property>
+        <name>yarn.resourcemanager.hostname</name>
+        <value>local199</value>
+    </property>
+
+    <!--输入'$ hadoop classpath'的Hadoop classpath路径-->
+    <property>
+        <name>yarn.application.classpath</name>
+        <value>
+            /etc/hadoop/conf,
+            /opt/cloudera/parcels/CDH-6.3.2-1.cdh6.3.2.p0.1605554/lib/hadoop/libexec/../../hadoop/lib/*,
+            /opt/cloudera/parcels/CDH-6.3.2-1.cdh6.3.2.p0.1605554/lib/hadoop/libexec/../../hadoop/.//*,
+            /opt/cloudera/parcels/CDH-6.3.2-1.cdh6.3.2.p0.1605554/lib/hadoop/libexec/../../hadoop-hdfs/./,
+            /opt/cloudera/parcels/CDH-6.3.2-1.cdh6.3.2.p0.1605554/lib/hadoop/libexec/../../hadoop-hdfs/lib/*,
+            /opt/cloudera/parcels/CDH-6.3.2-1.cdh6.3.2.p0.1605554/lib/hadoop/libexec/../../hadoop-hdfs/.//*,
+            /opt/cloudera/parcels/CDH/lib/hadoop-mapreduce/.//*,
+            /opt/cloudera/parcels/CDH-6.3.2-1.cdh6.3.2.p0.1605554/lib/hadoop/libexec/../../hadoop-yarn/lib/*,
+            /opt/cloudera/parcels/CDH-6.3.2-1.cdh6.3.2.p0.1605554/lib/hadoop/libexec/../../hadoop-yarn/.//*,
+        </value>
+    </property>
+</configuration>

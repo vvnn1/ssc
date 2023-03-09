@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.github.martvey.ssc.mapper.local.VersionMapper">
+    <insert id="insertVersion">
+        INSERt INTO ssc_version(id, app_id, app_name, content, metastore_config, flink_config,
+                                    create_time, version)
+        VALUES (#{id, jdbcType=VARCHAR}, #{appId, jdbcType=VARCHAR}, #{appName, jdbcType=VARCHAR},
+                #{content, jdbcType=VARCHAR},#{metastoreConfig, jdbcType=VARCHAR},
+                #{configuration, jdbcType=VARCHAR, typeHandler=com.github.martvey.ssc.convertor.handler.ConfigurationTypeHandler},
+                NOW(), #{version, jdbcType=VARCHAR})
+    </insert>
+    <delete id="deleteVersionById">
+        DELETE FROM ssc_version WHERE id = #{id, jdbcType=VARCHAR}
+    </delete>
+
+    <resultMap id="VersionDO_Map" type="com.github.martvey.ssc.entity.version.VersionDO">
+        <result column="id" property="id" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="app_id" property="appId" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="app_name" property="appName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="content" property="content" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="metastore_config" property="metastoreConfig" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="flink_config" property="configuration" jdbcType="VARCHAR" typeHandler="com.github.martvey.ssc.convertor.handler.ConfigurationTypeHandler"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="version" property="version" jdbcType="VARCHAR" javaType="java.lang.String"/>
+    </resultMap>
+    <select id="listVersionDO" resultMap="VersionDO_Map">
+        SELECT id, app_id, app_name, content, metastore_config, flink_config, create_time, version
+        FROM ssc_version
+        WHERE 1=1
+            <if test="appId !=null and appId != ''">
+                AND app_id = #{appId}
+            </if>
+            <if test="version !=null and version != ''">
+                AND version = #{version}
+            </if>
+    </select>
+
+    <select id="getVersionDOById" resultMap="VersionDO_Map">
+        SELECT id, app_id, app_name, content, metastore_config, flink_config, create_time, version
+        FROM ssc_version
+        WHERE id = #{id}
+    </select>
+
+    <resultMap id="VersionVO_Map" type="com.github.martvey.ssc.entity.version.VersionVO">
+        <result column="id" property="id" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="app_name" property="appName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="version" property="version" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+    </resultMap>
+    <select id="listVersionVO" resultMap="VersionVO_Map">
+        SELECT id, app_name, version, create_time
+        FROM ssc_version
+        WHERE app_id = #{appId}
+    </select>
+</mapper>

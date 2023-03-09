@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.martvey.ssc.mapper.local.ProjectMapper">
+
+    <insert id="insertProject">
+        INSERT INTO ssc_project(id, name, space_id, create_time)
+        VALUES (#{id, jdbcType=VARCHAR},#{projectName},#{spaceId},NOW())
+    </insert>
+    <update id="updateProject">
+        UPDATE ssc_project SET name = #{projectName} WHERE id = #{id}
+    </update>
+
+    <delete id="deleteProject">
+        DELETE FROM ssc_project WHERE id = #{id}
+    </delete>
+
+    <resultMap id="JobVO_Map" type="com.github.martvey.ssc.entity.project.ProjectVO">
+        <result column="id" property="id" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="name" property="projectName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+    </resultMap>
+    <select id="listProjectDO" resultMap="JobVO_Map">
+        SELECT id, name, create_time
+        FROM ssc_project
+        WHERE 1=1
+        <if test="spaceId != null and spaceId != ''">
+            AND space_id = #{spaceId}
+        </if>
+    </select>
+
+    <select id="getProjectVO" resultMap="JobVO_Map">
+        SELECT id, name, create_time
+        FROM ssc_project
+        WHERE id = #{id}
+    </select>
+</mapper>

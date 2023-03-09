@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.martvey.ssc.mapper.local.SpaceMapper">
+
+    <insert id="insertSpace">
+        INSERT INTO ssc_space VALUES (#{id},#{spaceName},NOW())
+    </insert>
+    <update id="updateSpace">
+        UPDATE ssc_space SET name = #{spaceName} WHERE id = #{id}
+    </update>
+    <delete id="deleteSpace">
+        DELETE FROM ssc_space WHERE id = #{spaceId}
+    </delete>
+
+    <resultMap id="SpaceVO_Map" type="com.github.martvey.ssc.entity.space.SpaceVO">
+        <result column="id" property="id" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="name" property="spaceName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+    </resultMap>
+    <select id="listSpaceVO" resultMap="SpaceVO_Map">
+        SELECT id, name,create_time
+        FROM ssc_space
+        ORDER BY create_time DESC
+    </select>
+    <select id="getSpaceVO" resultMap="SpaceVO_Map">
+        SELECT id, name,create_time
+        FROM ssc_space
+        WHERE id = #{id}
+    </select>
+</mapper>
