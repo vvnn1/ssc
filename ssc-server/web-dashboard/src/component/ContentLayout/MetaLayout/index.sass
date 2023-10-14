@@ -1,0 +1,68 @@
+.meta-layout
+    display: flex
+    flex-direction: row
+    height: 100%
+    width: 100%
+    .side
+        flex: 0 0 280px
+        border-right: 1px solid #ebebeb
+        flex-direction: column
+        .header
+            display: flex
+            align-items: center
+            justify-content: space-between
+            font-size: 14px
+            font-weight: 500
+            padding: 4px 16px 0
+            .actions
+                flex: 0 1 auto
+                margin-right: -6px
+                .ant-btn-icon-only
+                    span
+                        font-size: 12px
+        .searchbar
+            margin: 8px
+            .ant-input-affix-wrapper,
+            .ant-input
+                font-size: 12px
+        .tree
+            display: flex
+            flex: 1
+            flex-direction: column
+            overflow: auto
+            height: 100%
+            border-top-width: 1px
+            background-color: #fafafa
+    .main
+        flex: 1
+        display: flex
+        flex-direction: column
+        padding: 0 0 24px
+        overflow: hidden
+        .header
+            padding: 16px 24px
+            .title
+                display: flex
+                align-items: center
+                font-size: 28px
+                height: 40px
+                line-height: 40px
+                span
+                    height: 40px
+                    font-weight: 400
+                    font-size: 28px
+                    line-height: 40px
+                    white-space: nowrap
+            .actions
+                height: 32px
+                margin-top: 16px
+                line-height: 32px
+                .ant-input-affix-wrapper
+                    width: 240px
+        .content
+            padding: 0 24px
+            overflow: auto
+            background-color: #fff
+            .ant-table.ant-table-small,
+            .ant-btn-sm
+                font-size: 12px

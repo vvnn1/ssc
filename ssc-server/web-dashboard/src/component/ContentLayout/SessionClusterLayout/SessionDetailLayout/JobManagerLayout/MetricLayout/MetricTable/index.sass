@@ -1,0 +1,70 @@
+.metrics-table.ant-table-wrapper
+    .ant-table
+        th,tr
+            font-size: 12px
+        tr
+            td.table-header
+                font-weight: 500
+.jobmanager-metric-graph
+    position: relative
+    display: flex
+    flex-direction: column
+    justify-content: center
+    font-size: 12px
+    border: 1px solid #dedede
+    .graph-title
+        margin: 4px 0
+        text-align: center
+        font-weight: 500
+    .graph-bar
+        position: relative
+        display: block
+        height: 20px
+        text-align: center
+        font-weight: 400
+        margin: 0 16px 12px
+        border: 1px solid #dedede
+        z-index: 1
+        span
+            display: inline
+        code
+            display: none
+    .graph-bar:hover
+        span
+            display: none
+        code
+            display: inline
+    .inner-graph
+        position: relative
+        display: flex
+        flex-direction: column
+        justify-content: center
+        border: 1px solid #dedede
+        margin: 0 16px 12px
+    .group
+        position: absolute
+        left: 4%
+        top: 25px
+        border: 1px dashed #dedede
+        width: 92%
+        height: 125px
+    .blue
+        background-color: #e6f7ff
+        .progress
+            background-color: #1890ff33
+    .green
+        background-color: #f6ffed
+        .progress
+            background-color: #52c41a33
+    .yellow
+        background-color: #feffe6
+    .orange
+        background-color: #fff7e6
+    .progress
+        position: absolute
+        top: 0
+        bottom: 0
+        left: 0
+        max-width: 100%
+        z-index: 0
+        transition: all .4s

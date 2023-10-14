@@ -1,0 +1,74 @@
+.ant-tree.draft-tree.editing
+    .ant-tree-list
+        .ant-tree-treenode:not(.edit-node)
+            opacity: .5
+            .ant-tree-node-content-wrapper
+                .ant-tree-title
+                    .actions
+                        display: none
+        .ant-tree-treenode
+            .ant-tree-switcher
+                pointer-events: none
+    
+.ant-tree.draft-tree
+    width: 1400px
+    height: 100%
+    .ant-tree-list
+        .ant-tree-treenode-selected
+            background-color: #2281d4
+            color: rgba(255,255,255,.85)
+        .ant-tree-treenode:hover:not(.ant-tree-treenode-selected)
+            background-color: #f7f9fa
+        .ant-tree-treenode.drop-target
+            background-color: #dedede
+        .ant-tree-treenode:hover
+            .ant-tree-node-content-wrapper
+                .ant-tree-title
+                    .actions
+                        display: block
+        .ant-tree-treenode
+            padding: initial
+            margin: 2px 0
+            width: 100%
+            .ant-tree-switcher
+                width: 32px
+            .ant-tree-node-content-wrapper
+                padding: initial
+                width: 100%
+                transition: initial
+                .ant-tree-title
+                    font-size: 12px
+                    display: flex
+                    height: 24px
+                    align-items: center
+                    .title
+                        flex: 1
+                    .actions
+                        position: sticky
+                        right: 0
+                        display: none
+                        .action
+                            font-size: inherit
+                            padding: initial
+                            color: inherit
+                            width: 18px
+                            >span
+                                vertical-align: -.1em
+                    .rename-input
+                        display: none
+                        font-size: 12px
+        .ant-tree-treenode.edit-node
+            .ant-tree-node-content-wrapper
+                .ant-tree-title
+                    .title,
+                    .actions
+                        display: none
+                    .rename-input
+                        display: inline-block
+                        width: 150px
+                        height: 20px
+        .ant-tree-treenode-selected
+            .action
+                background-color: #0064c8
+                color: rgba(255,255,255,.85)
+                border-radius: 0

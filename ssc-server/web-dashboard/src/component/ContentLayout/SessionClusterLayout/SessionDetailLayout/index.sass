@@ -1,0 +1,43 @@
+.session-detail-layout
+    height: 100%
+    .header
+        display: flex
+        height: 72px
+        padding: 16px 24px
+        align-items: center
+        .title
+            height: 40px
+            font-weight: 400
+            font-size: 28px
+            line-height: 40px
+            white-space: nowrap
+            transform: translateY(-2px)
+            .left-arrow
+                margin-right: 8px
+                color: inherit
+                cursor: pointer
+        .extra
+            margin-left: 16px
+            display: flex
+            align-items: center
+            width: 100%
+            .status
+                .anticon-check-circle
+                    color: #00a700
+            .actions
+                margin-left: auto
+
+    .content
+        padding: 0 24px
+        height: calc( 100% - 72px )
+        .session-cluster-detail-navigator
+            flex: 0 0 39px
+            overflow: hidden
+            height: 39px
+        .content-container
+            overflow-x: hidden
+            overflow-y: auto
+            height: calc( 100% - 39px )
+            .ant-table-small
+                th,td
+                    font-size: 12px
