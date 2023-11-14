@@ -1,0 +1,61 @@
+.ant-modal.draft-compare-modal
+    .content-container
+        display: flex
+        .side-container
+            display: flex
+            flex-direction: column
+            width: 200px
+            margin-right: 16px
+            border: 1px solid #ebebeb
+            transition: all .3s ease-in-out
+            .side-title
+                    display: flex
+                    flex-direction: row
+                    justify-content: center
+                    padding: 12px 0
+                    border-bottom: 1px solid #ebebeb
+                    background-color: #fff
+            
+            .side-options
+                overflow: auto
+                height: 400px
+                .side-option
+                    padding: 8px 12px
+                .side-option.selected
+                    background-color: #ebebeb
+                .option-title
+                    position: relative
+                    display: flex
+                    flex-direction: row
+                    align-items: center
+                    white-space: nowrap
+                    .sub-title
+                        margin-left: 8px
+                        color: #666
+                        font-size: 12px
+                .comment
+                    color: #666
+                    font-size: 12px
+        .middle-container
+            display: flex
+            flex-direction: column
+            justify-content: center
+            height: 450px
+            margin-right: 16px
+        .diff-container
+            display: flex
+            flex: 1
+            flex-direction: column
+            border: 1px solid #ebebeb
+            .title-container
+                display: flex
+                flex-direction: row
+                align-items: center
+                justify-content: flex-start
+                margin: 12px 16px
+                .left-wrapper
+                    width: 50%
+                .right-wrapper
+                    margin-left: auto
+            .editor-container
+                flex: 1

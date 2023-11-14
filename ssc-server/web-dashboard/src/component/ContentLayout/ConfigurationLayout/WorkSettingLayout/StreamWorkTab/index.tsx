@@ -13,6 +13,7 @@ const StreamWorkTab = () => {
                 <Form
                     className="stream-work-setting-form ant-typography"
                     layout="vertical"
+                    size="small"
                 >
                     <RuntimeSettingModule />
                     <FlinkSettingModule />

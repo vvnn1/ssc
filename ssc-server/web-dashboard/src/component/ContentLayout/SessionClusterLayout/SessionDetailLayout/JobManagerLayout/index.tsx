@@ -1,6 +1,5 @@
 import { Menu, MenuProps, } from 'antd';
 import './index.sass'
-import { useEffect, useState } from 'react';
 import MetricLayout from './MetricLayout';
 import ConfigurationLayout from './ConfigurationLayout';
 import LogLayout from './LogLayout';
@@ -36,7 +35,7 @@ const items: MenuProps['items'] = [
 
 const JobManagerLayout = () => {
     let { pathname } = useLocation();
-    const pathMatch = matchPath("/workspace/:workspace/namespace/:namespace/session-clusters/:sessionName/jobmanager/:key", pathname);
+    const pathMatch = matchPath("/workspace/:workspaceId/namespace/:namespaceId/session-clusters/:sessionName/jobmanager/:key", pathname);
     
     return (
         <div className="session-jobmanager-layout">

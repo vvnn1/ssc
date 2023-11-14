@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ConfigProvider, MenuProps } from 'antd';
 import { Menu } from 'antd';
 import Sider from 'antd/es/layout/Sider';
@@ -30,22 +30,22 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-    getItem(<MyLink to="/workspace/:workspace/namespace/:namespace/dashboard">系统概览</MyLink>, 'dashboard', <HomeOutlined />),
-    getItem(<MyLink to="/workspace/:workspace/namespace/:namespace/draft">SQL开发</MyLink>, 'draft', <ConsoleSqlOutlined />),
-    getItem(<MyLink to="/workspace/:workspace/namespace/:namespace/operations/stream">作业运维</MyLink>, 'operations', <BuildOutlined />),
-    getItem(<MyLink to="/workspace/:workspace/namespace/:namespace/resource">资源管理</MyLink>, 'resource', <FileZipOutlined />),
-    getItem(<MyLink to="/workspace/:workspace/namespace/:namespace/connectors/connector">数据连接</MyLink>, 'connectors', <ShareAltOutlined />),
-    getItem(<MyLink to="/workspace/:workspace/namespace/:namespace/metadata">元数据管理</MyLink>, 'metadata', <DatabaseOutlined />),
-    getItem(<MyLink to="/workspace/:workspace/namespace/:namespace/session-clusters/list">Session 集群</MyLink>, 'session-clusters', <ClusterOutlined />),
-    getItem(<MyLink to="/workspace/:workspace/namespace/:namespace/security/member">安全中心</MyLink>, 'security', <SafetyOutlined />),
-    getItem(<MyLink to="/workspace/:workspace/namespace/:namespace/configurations/deployment-defaults">配置管理</MyLink>, 'configurations', <ControlOutlined />),
-    // getItem(<MyLink to="/workspace/:workspace/namespace/:namespace/migration">作业归档</MyLink>, 'migration', <FileDoneOutlined />),
+    getItem(<MyLink to="/workspace/:workspaceId/namespace/:namespaceId/dashboard">系统概览</MyLink>, 'dashboard', <HomeOutlined />),
+    getItem(<MyLink to="/workspace/:workspaceId/namespace/:namespaceId/draft">SQL开发</MyLink>, 'draft', <ConsoleSqlOutlined />),
+    getItem(<MyLink to="/workspace/:workspaceId/namespace/:namespaceId/operations/stream">作业运维</MyLink>, 'operations', <BuildOutlined />),
+    getItem(<MyLink to="/workspace/:workspaceId/namespace/:namespaceId/resource">资源管理</MyLink>, 'resource', <FileZipOutlined />),
+    getItem(<MyLink to="/workspace/:workspaceId/namespace/:namespaceId/connectors/connector">数据连接</MyLink>, 'connectors', <ShareAltOutlined />),
+    getItem(<MyLink to="/workspace/:workspaceId/namespace/:namespaceId/metadata/list">元数据管理</MyLink>, 'metadata', <DatabaseOutlined />),
+    getItem(<MyLink to="/workspace/:workspaceId/namespace/:namespaceId/session-clusters/list">Session 集群</MyLink>, 'session-clusters', <ClusterOutlined />),
+    getItem(<MyLink to="/workspace/:workspaceId/namespace/:namespaceId/security/member">安全中心</MyLink>, 'security', <SafetyOutlined />),
+    getItem(<MyLink to="/workspace/:workspaceId/namespace/:namespaceId/configurations/deployment-defaults">配置管理</MyLink>, 'configurations', <ControlOutlined />),
+    // getItem(<MyLink to="/workspace/:workspaceId/namespace/:namespaceId/migration">作业归档</MyLink>, 'migration', <FileDoneOutlined />),
 ];
 
 const MenuSider = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     let { pathname } = useLocation();
-    const pathMatch = matchPath("/workspace/:workspace/namespace/:namespace/:key/*", pathname);
+    const pathMatch = matchPath("/workspace/:workspaceId/namespace/:namespaceId/:key/*", pathname);
 
     return (
         <Sider
@@ -69,7 +69,7 @@ const MenuSider = () => {
                     mode="inline"
                     items={items}
                     inlineIndent={12}
-                    defaultSelectedKeys={[pathMatch?.params.key!]}
+                    selectedKeys={[pathMatch?.params.key!]}
                 />
             </ConfigProvider>
             {

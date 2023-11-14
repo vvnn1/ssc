@@ -1,8 +1,6 @@
-import { Button, Input, Space, Table } from "antd";
+import { Button, Space, Table } from "antd";
 import './index.sass'
 import { PlusOutlined } from "../../Icon";
-
-const { Search } = Input;
 
 
 interface DataType {

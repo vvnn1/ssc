@@ -9,8 +9,6 @@ import NavTab, { Draft } from '../NavTab';
 import { EditorDidMount } from 'react-monaco-editor';
 
 
-
-
 interface MainContentProps {
 }
 
@@ -19,6 +17,7 @@ const MainContent = (props: MainContentProps) => {
     const [rightPanel, setRightPanel] = useState<React.ReactNode>();
     const [bottomPanel, setBottomPanel] = useState<React.ReactNode>();
     const [curDraft, setCurDraft] = useState<Draft>();
+
     const monacoEditor = useRef<Parameters<EditorDidMount>[0]>();
     const openedDraft = useRef<Map<string, any>>(new Map());
     
@@ -37,10 +36,10 @@ const MainContent = (props: MainContentProps) => {
     return (
         <>
             <div className="panel-bar panel panel-ltr panel-border-bottom">
-                <ToolBar isOpenFile={true} />
+                <ToolBar isOpenFile={true} onPanelChange={setBottomPanel}/>
             </div>
             <div className="panel-bar navigation-bar panel panel-ltr panel-border-bottom">
-                <NavTab onDraftChange={onDraftChange} />
+                <NavTab onDraftChange={onDraftChange}/>
             </div>
             <div className="editor-main-content panel panel-ttb">
                 <div className="panel main-top-panel panel-ltr">
@@ -91,6 +90,7 @@ const MainContent = (props: MainContentProps) => {
                     <BottomTabBar onPanelChange={setBottomPanel} />
                 </div>
             </div>
+
         </>
     )
 };

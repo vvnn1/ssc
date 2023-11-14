@@ -91,7 +91,7 @@ const RuntimeLogLayout = () => {
                             label: <MyLink to="taskmanagers">Task Managers</MyLink>
                         }
                     ]}
-                    keyPath='/workspace/:workspace/namespace/:namespace/operations/:jobType/:jobId/:detailTab/:subTab/:runId/archives/:key/*'
+                    keyPath='/workspace/:workspaceId/namespace/:namespaceId/operations/:jobType/:jobId/:detailTab/:subTab/:runId/archives/:key/*'
                 />
                 <div className="tab-content">
                     <Routes>

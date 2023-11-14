@@ -36,7 +36,7 @@ const menuItems: TabsProps['items'] = [
     {
         label: '状态集管理',
         key: 'states',
-        children: 'states',
+        children: 'states/overview',
     },
     {
         label: '作业探查',
@@ -62,7 +62,7 @@ const menuItems: TabsProps['items'] = [
 
 const JobDetailLayout = () => {
     let { pathname } = useLocation();
-    const pathMatch = matchPath("/workspace/:workspace/namespace/:namespace/operations/:jobType/:jobId/:key/*", pathname);
+    const pathMatch = matchPath("/workspace/:workspaceId/namespace/:namespaceId/operations/:jobType/:jobId/:key/*", pathname);
     const navigate = useNavigate();
 
     const onTabClick: TabsProps['onTabClick'] = (activeKey) => {
@@ -94,7 +94,9 @@ const JobDetailLayout = () => {
                         <Route path="overview" element={<OverviewLayout />} />
                         <Route path="charts" element={<ChartLayout />} />
                         <Route path="events" element={<EventLayout />} />
-                        <Route path="states" element={<StateLayout />} />
+                        <Route path="states">
+                            <Route path='*' element={<StateLayout />} />
+                        </Route>
                         <Route path="exploration">
                             <Route path='*' element={<ExplorationLayout />} />
                         </Route>

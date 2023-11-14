@@ -25,7 +25,7 @@ const ConfigurationLayout = () => {
                 <div className="title">配置管理</div>
             </div>
             <div className="content">
-                <TabMenu menuItems={menuItems} keyPath={"/workspace/:workspaceId/namespace/:namespace/configurations/:key"}/>
+                <TabMenu menuItems={menuItems} keyPath={"/workspace/:workspaceId/namespace/:namespaceId/configurations/:key"}/>
                 <div className="content-container">
                     <Routes>
                         <Route path="deployment-defaults" element={<WorkSettingLayout />} />

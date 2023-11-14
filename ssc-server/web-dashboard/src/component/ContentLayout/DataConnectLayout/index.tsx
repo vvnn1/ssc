@@ -28,7 +28,7 @@ const DataConnectLayout = () => {
                 <div className="title">数据连接</div>
             </div>
             <div className="content">
-                <TabMenu menuItems={menuItems} keyPath="/workspace/:workspace/namespace/:namespace/connectors/:key" />
+                <TabMenu menuItems={menuItems} keyPath="/workspace/:workspaceId/namespace/:namespaceId/connectors/:key" />
                 <ScrollPin containerRef={containerRef} />
                 <div className="content-container" ref={containerRef}>
                     <Routes>

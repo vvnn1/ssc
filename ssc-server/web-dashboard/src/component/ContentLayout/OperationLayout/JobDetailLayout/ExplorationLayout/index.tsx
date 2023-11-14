@@ -23,7 +23,7 @@ const items: MenuProps['items'] = [
 ]
 const ExplorationLayout = () => {
     let { pathname } = useLocation();
-    const pathMatch = matchPath("/workspace/:workspace/namespace/:namespace/operations/:jobType/:jobId/:detailTab/:key/*", pathname);
+    const pathMatch = matchPath("/workspace/:workspaceId/namespace/:namespaceId/operations/:jobType/:jobId/:detailTab/:key/*", pathname);
 
     return (
         <div className="development-exploration-layout">

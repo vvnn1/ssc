@@ -1,0 +1,27 @@
+.development-charts-layout
+    .time-picker
+        position: sticky
+        top: 0
+        z-index: 3
+        padding: 16px 0
+        margin: 0 16px
+        border-bottom: 1px solid #ebebeb
+        background-color: #fff
+    .charts
+        padding: 0 16px
+        .ant-collapse
+            border-top: 0
+            background-color: #fff
+            .ant-collapse-content-box
+                padding: 0
+                .ant-row
+                    .ant-col
+                        .chart-wrap
+                            border-left: 0
+                            border-top: 0
+                    .ant-col:nth-child(2n)
+                        .chart-wrap
+                            border-right: 0
+                    .ant-col:nth-last-child(1),.ant-col:nth-last-child(2):nth-child(odd)
+                        .chart-wrap
+                            border-bottom: 0

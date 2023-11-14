@@ -35,13 +35,14 @@ const EditorSettingsModal = (props: ModalProps) => {
             onCheckedChange(checked);
         }
     }
+    
     return (
         <Modal
             {...props}
             title="设置"
             width={800}
             className="editor-settings-modal"
-            rootClassName='ant-modal-wrap-rtl'
+            footer={(_, { CancelBtn, OkBtn }) => <><OkBtn/><CancelBtn /></>}
             okText="应用"
             cancelText="关闭"
         >

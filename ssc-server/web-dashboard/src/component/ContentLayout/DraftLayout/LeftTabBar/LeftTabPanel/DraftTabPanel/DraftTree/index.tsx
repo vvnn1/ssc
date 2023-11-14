@@ -3,7 +3,7 @@ import { FloderClosedColorOutlined, FloderOpenColorOutlined, StreamDraftOutlined
 import './index.sass'
 import TreeTitle from "./TreeTitle";
 import { Item, Menu, Separator, useContextMenu } from "react-contexify";
-import CreateDraftModal from "./CreateDraftModal";
+import CreateDraftModal from "../../../../ToolBar/CreateDraftModal";
 import { Tree, TreeDataNode, TreeProps } from "antd";
 import { useNavigate } from "react-router-dom";
 
@@ -34,7 +34,6 @@ const demoData: TreeDataNode[] = [
                     }
                 ]
             },
-            { title: 'leaf 0-1', key: '0-1', isLeaf: true, switcherIcon: <span className="type offline"><StreamDraftOutlined /></span> },
         ],
         switcherIcon: (node) => (node.expanded ? <FloderOpenColorOutlined /> : <FloderClosedColorOutlined />),
     },

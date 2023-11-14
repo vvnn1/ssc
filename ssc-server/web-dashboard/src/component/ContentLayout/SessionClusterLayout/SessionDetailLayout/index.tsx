@@ -1,59 +1,17 @@
-import { Link, Route, Routes, useParams, parsePath, useHref } from "react-router-dom";
-import { ArrowLeftOutlined, CheckCircleFilled, ExclamationCircleOutlined } from "../../../Icon";
+import { Route, Routes, useParams, useHref } from "react-router-dom";
+import { ArrowLeftOutlined, CheckCircleFilled } from "../../../Icon";
 import TabMenu from "../../../TabMenu";
-import { Button, Checkbox, CheckboxProps, Divider, MenuProps, Modal, ModalFuncProps, ModalProps, Popconfirm, Space } from "antd";
+import { Button, Divider, MenuProps, Popconfirm, Space } from "antd";
 import MyLink from "../../../MyLink";
 import './index.sass'
 import OverviewLayout from "./OverviewLayout";
 import ScrollPin from "../../../ScrollPin";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import EventLayout from "./EventLayout";
 import JobManagerLayout from "./JobManagerLayout";
 import TaskManagerLayout from "./TaskManagerLayout";
 import TaskManagerDetailLayout from "./TaskManagerLayout/TaskManagerDetailLayout";
-
-const StopModal = (props: ModalProps) => {
-
-    const [checked, setChecked] = useState<boolean>(false);
-
-    useEffect(() => {
-        if (props.open) {
-            setChecked(false);
-        }
-    }, [props.open])
-
-    const onCheckedChange: CheckboxProps["onChange"] = ({ target: { checked } }) => {
-        setChecked(checked);
-    }
-
-    return (
-        <Modal
-            open={props.open}
-            footer={false}
-            onCancel={props.onCancel}
-            className="ant-modal-confirm ant-modal-confirm-warning"
-            width={450}
-            destroyOnClose
-        >
-            <div className="ant-modal-confirm-body-wrapper">
-                <div className="ant-modal-confirm-body">
-                    <ExclamationCircleOutlined />
-                    <span className="ant-modal-confirm-title">确认停止该集群？</span>
-                    <div className="ant-modal-confirm-content">
-                        注意：停止 session 集群将导致在此集群上运行的所有作业停止，是否确认？
-                        <br />
-                        <br />
-                        <Checkbox checked={checked} onChange={onCheckedChange}>我已知晓</Checkbox>
-                    </div>
-                </div>
-                <div className="ant-modal-confirm-btns">
-                    <Button type="primary" disabled={!checked} onClick={props.onCancel}>确定</Button>
-                </div>
-            </div>
-        </Modal>
-    )
-};
-
+import StopModal from "../StopModal";
 
 const menuItems: MenuProps['items'] = [
     {
@@ -89,7 +47,7 @@ const SessionDetailLayout = () => {
         <div className="session-detail-layout">
             <div className="header">
                 <div className="title">
-                    <MyLink className="left-arrow" to={`list`}>
+                    <MyLink className="left-arrow" to={'../../list'}>
                         <ArrowLeftOutlined />
                     </MyLink>
 
@@ -124,7 +82,7 @@ const SessionDetailLayout = () => {
             </div>
             <div className="content">
                 <div className="session-cluster-detail-navigator">
-                    <TabMenu menuItems={menuItems} keyPath={`/workspace/:workspace/namespace/:namespace/session-clusters/${sessionName}/:key/*`} />
+                    <TabMenu menuItems={menuItems} keyPath={`/workspace/:workspaceId/namespace/:namespaceId/session-clusters/${sessionName}/:key/*`} />
                 </div>
                 <ScrollPin containerRef={contentRef} />
                 <div className="content-container" ref={contentRef}>

@@ -30,7 +30,7 @@ const SecurityLayout = () => {
                 <div className="title">安全中心</div>
             </div>
             <div className="content">
-                <TabMenu menuItems={menuItems} keyPath="/workspace/:workspace/namespace/:namespace/security/:key" />
+                <TabMenu menuItems={menuItems} keyPath="/workspace/:workspaceId/namespace/:namespaceId/security/:key" />
                 <div className="content-container">
                     <Routes>
                         <Route path="member" element={<MemberLayout />} />

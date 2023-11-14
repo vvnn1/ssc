@@ -1,12 +1,13 @@
 import { Button, Form, Space, Tag } from "antd";
-import { ArrowLeftOutlined } from "../../../Icon";
 import './index.sass'
 import BasicSetting from "../SettingForm/BasicSetting";
 import NormalSetting from "../SettingForm/NormalSetting";
 import ResourceSetting from "../SettingForm/ResourceSetting";
 import LogSetting from "../SettingForm/LogSetting";
 import CustomSetting from "../SettingForm/CustomSetting";
-import { Link, useHref } from "react-router-dom";
+import { useHref } from "react-router-dom";
+import MyLink from "../../../MyLink";
+import { ArrowLeftOutlined } from "../../../Icon";
 
 const SessionCreateLayout = () => {
 
@@ -14,10 +15,9 @@ const SessionCreateLayout = () => {
         <div className="session-create-layout">
             <div className="header">
                 <div className="title">
-                    <Link className="left-arrow" to={'../list'}>
+                    <MyLink className="left-arrow" to={'../list'}>
                         <ArrowLeftOutlined />
-                    </Link>
-
+                    </MyLink>
                     创建 Session 集群
                 </div>
                 <div className="extra">
@@ -31,7 +31,6 @@ const SessionCreateLayout = () => {
                         <Form
                             layout="vertical"
                             size="small"
-                            className="ant-typography"
                         >
                             <BasicSetting />
                             <NormalSetting />
@@ -42,7 +41,7 @@ const SessionCreateLayout = () => {
                     </div>
                     <div className="form-footer">
                         <Space>
-                            <Button type="primary">创建 Session 集群</Button>
+                            <Button type="primary" href={useHref('../ssc-session/overview')}>创建 Session 集群</Button>
                             <Button href={useHref('../list')}>取消</Button>
                         </Space>
 

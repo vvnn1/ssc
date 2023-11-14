@@ -1,54 +1,64 @@
-import { Modal, ModalProps, ProgressProps, Steps } from 'antd';
+import { Modal, ModalProps, ProgressProps, StepProps, Steps, StepsProps } from 'antd';
 import './index.sass'
 import Step1 from './Step1';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Step2 from './Step2';
 
 const PublishModal = (props: ModalProps) => {
     const [currentStep, setCurrentStep] = useState<number>(0);
     const [publishStatus, setPublishStatus] = useState<ProgressProps['status']>();
     
+
+    useEffect(() => {
+        if(publishStatus === 'success') {
+            props.onOk?.(undefined as any);
+        }
+    }, [publishStatus]);
+
     const next = () => {
         setCurrentStep(currentStep + 1);
     }
 
-    const prev = () => {
-        setCurrentStep(currentStep - 1);
-    }
-
-    const steps = [
+    const stepProps: StepProps[] = [
         {
             title: '部署确认',
-            content: <Step1 />,
-            onOk: next,
-            
         },
         {
             title: '最终检查',
+        }
+    ];
+
+
+    const steps = [
+        {
+            content: <Step1 />,
+            onOk: next,
+        },
+        {
             content: <Step2 onStatusChange={setPublishStatus} status={publishStatus}/>,
             onOk: props.onCancel,
         }
-    ]
+    ];
 
     return (
         <Modal
             {...props}
+            destroyOnClose
             title="部署新版本"
             width={600}
             className="publish-draft-modal"
-            rootClassName='ant-modal-wrap-rtl'
+            footer={(_, { CancelBtn, OkBtn }) => <><OkBtn/><CancelBtn /></>}
             onOk={steps[currentStep].onOk}
             confirmLoading={publishStatus === 'active'}
             cancelButtonProps={{
                 style: {
                     display: currentStep > 0 ? 'none' : 'inline-block'
-                }
+                },
             }}
-            destroyOnClose
         >
 
             <Steps
-                items={steps}
+                items={stepProps}
                 size='small'
                 current={currentStep}
             />

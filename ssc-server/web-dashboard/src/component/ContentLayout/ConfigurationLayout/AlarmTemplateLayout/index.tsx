@@ -1,79 +1,29 @@
-import { Button, Divider, Drawer, Form, Space, Table } from "antd"
+import { Button, Divider, Popconfirm, Table } from "antd"
 import './index.sass'
 import { DeleteOutlined, EditOutlined } from "../../../Icon";
 import { useState } from "react";
-import AlarmRuleItem from "./AlarmDrawer/AlarmRuleItem";
-import NotifiAvenueItem from "./AlarmDrawer/NotifiAvenueItem";
 import AlarmDrawer from "./AlarmDrawer";
 
-type TableProps = Parameters<typeof Table<DataType>>[0];
+type TableProps = Parameters<typeof Table<AlarmTemplate>>[0];
 type ColumnTypes = Exclude<TableProps['columns'], undefined>;
 
-interface DataType {
+interface AlarmTemplate {
     key: React.Key;
     name: string;
-    age: number;
-    address: string;
+    indicator: string;
+    description: string;
+    createTime: string;
 }
+//规则模板已创建
 
-const columns: ColumnTypes = [
-    {
-        title: '名称',
-        dataIndex: 'name',
-        width: '26.5%',
-    },
-    {
-        title: '指标',
-        dataIndex: 'age',
-        width: '26.5%',
-    },
-    {
-        title: '描述',
-        dataIndex: 'age',
-    },
-    {
-        title: '创建时间',
-        dataIndex: 'age',
-        width: '180px',
-    },
-    {
-        title: '操作',
-        dataIndex: 'age',
-        width:'160px',
-        render: () => (
-            <>
-                <Button type="link" icon={<EditOutlined />} size="small">编辑</Button>
-                <Divider type="vertical" />
-                <Button type="link" icon={<DeleteOutlined />} size="small" danger>删除</Button>
-            </>
-        )
-    },
-];
 
-const data: DataType[] = [
+const data: AlarmTemplate[] = [
     {
         key: '1',
         name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sydney No. 1 Lake Park',
-    },
-    {
-        key: '4',
-        name: 'Jim Red',
-        age: 32,
-        address: 'London No. 2 Lake Park',
+        indicator: "Restart Count in 1 Minute",
+        description: 'New York No. 1 Lake Park',
+        createTime: "2023-11-10 17:08:25"
     },
 ];
 
@@ -84,7 +34,47 @@ const WarnTemplateLayout = () => {
             setDrawerOpen(open);
         }
     }
-    
+
+    const columns: ColumnTypes = [
+        {
+            title: '名称',
+            dataIndex: 'name',
+        },
+        {
+            title: '指标',
+            dataIndex: 'indicator',
+        },
+        {
+            title: '描述',
+            dataIndex: 'description',
+        },
+        {
+            title: '创建时间',
+            dataIndex: 'createTime',
+            width: 180,
+        },
+        {
+            title: '操作',
+            dataIndex: 'age',
+            width: 160,
+            render: () => (
+                <>
+                    <Button type="link" icon={<EditOutlined />} size="small" onClick={changeDrawerOpen(true)}>编辑</Button>
+                    <Divider type="vertical" />
+                    <Popconfirm
+                        okText="确认"
+                        cancelText="取消"
+                        title="确定删除当前告警规则模板吗？"
+                        overlayClassName="ant-popover-rtl"
+                        placement="left"
+                    >
+                        <Button type="link" icon={<DeleteOutlined />} size="small" danger>删除</Button>
+                    </Popconfirm>
+                </>
+            )
+        },
+    ];
+
     return (
         <div className="warn-template-container">
             <div className="actions">
@@ -104,8 +94,8 @@ const WarnTemplateLayout = () => {
                     size='small'
                 />
             </div>
-            
-            <AlarmDrawer open={drawerOpen} onClose={changeDrawerOpen(false)} title="创建告警规则模板"/>
+
+            <AlarmDrawer open={drawerOpen} onClose={changeDrawerOpen(false)} title="创建告警规则模板" />
         </div>
     )
 };

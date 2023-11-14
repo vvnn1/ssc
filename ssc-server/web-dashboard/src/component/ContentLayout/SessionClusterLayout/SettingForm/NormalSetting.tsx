@@ -3,6 +3,7 @@ import SettingCard from "../../../SettingCard"
 import { NumberOutlined } from "../../../Icon";
 import { useState } from "react";
 import TimeUnitSelect from "../../../Select/TimeUnitSelect";
+import EngineSelect from "../../../Select/EngineSelect";
 
 const restartStrategyOptions = [
     {
@@ -142,9 +143,9 @@ const NormalSetting = () => {
         >
             <Form.Item
                 label="引擎版本"
-
+                name="engineVersion"
             >
-                <Select placeholder="请选择引擎版本" />
+                <EngineSelect placeholder="请选择引擎版本" />
             </Form.Item>
             <Form.Item
                 label="Flink 重启策略配置"

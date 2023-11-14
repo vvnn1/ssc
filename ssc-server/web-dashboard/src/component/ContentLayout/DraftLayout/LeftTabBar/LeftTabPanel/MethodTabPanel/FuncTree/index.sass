@@ -1,0 +1,63 @@
+.func-tree
+    height: 100%
+    background-color: transparent
+    .ant-tree-list
+        .ant-tree-treenode.function
+            .ant-tree-switcher
+                display: none
+        .ant-tree-treenode
+            font-size: 12px
+            width: 100%
+            padding: 0
+            margin-bottom: 4px
+            .ant-tree-switcher
+                span
+                    transform: translate(2px)
+            .ant-tree-node-content-wrapper
+                padding: 0 4px
+                flex: 1
+                overflow: hidden
+                .ant-tree-icon__customize
+                    width: 12px
+                    margin-right: 4px
+                .ant-tree-title
+                    .tree-title
+                        width: calc(100% - 16px)
+                        display: inline-flex
+                        align-items: center
+                        .actions
+                            margin-left: auto
+                            display: none
+                            text-align: end
+                            margin-right: 4px
+        .ant-tree-treenode:hover:not(.ant-tree-treenode-selected)
+            background-color: #ebebeb
+            .ant-tree-node-content-wrapper
+                .ant-tree-title
+                    .actions
+                        display: block
+        .ant-tree-treenode:not(.ant-tree-treenode-selected)
+            .anticon-container
+                color: #004ba1
+            .anticon-function
+                color: #fac800
+        .function.unregister-function.ant-tree-treenode:not(.ant-tree-treenode-selected)
+            .anticon-function
+                color: #666
+        .function.unregister-function.ant-tree-treenode
+            .anticon-function
+                position: relative
+            .anticon-function:after
+                content: "*"
+                position: absolute
+                right: -3px
+                bottom: 0
+                font-size: 12px
+        .ant-tree-treenode-selected
+            background-color: #0064c8 !important
+            color: #fff
+            .ant-tree-node-content-wrapper
+                .ant-tree-title
+                    .tree-title
+                        .actions
+                            display: block

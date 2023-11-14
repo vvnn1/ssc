@@ -1,8 +1,9 @@
-import { Popover, Tree, TreeNodeProps } from "antd";
+import { Tree, TreeProps } from "antd";
 import { ContainerOutlined, DatabaseOutlined, MinusSquareOutlined, PlusSquareOutlined, TableOutlined } from "../../../../../../Icon";
 import { DataNode } from "antd/es/tree";
 import './index.sass'
 import TreeTitle from "./TreeTitle";
+import { Key, useState } from "react";
 
 const treeData: DataNode[] = [
     {
@@ -26,18 +27,21 @@ const treeData: DataNode[] = [
                 icon: <DatabaseOutlined />,
                 switcherIcon: (node) => (node.expanded ? <MinusSquareOutlined /> : <PlusSquareOutlined />),
                 className: 'database',
+                isLeaf: false,
                 children: [
                     {
                         title: 'test-table',
                         key: '0-0-0-1',
                         icon: <TableOutlined />,
                         className: 'table',
+                        isLeaf: true
                     },
-                ]
+                ],
             }
         ],
         switcherIcon: (node) => (node.expanded ? <MinusSquareOutlined /> : <PlusSquareOutlined />),
         className: 'catalog',
+        isLeaf: false
     },
 ];
 
@@ -45,9 +49,21 @@ const titleRender = (node: DataNode) => {
     return <TreeTitle dataNode={node} />
 }
 
-export default () => {
+const MetaTree = (props: TreeProps) => {
+    const [selectedKeys, setSelectedKeys] = useState<Key[]>([]);
+
+    const atLastOneSelected = (keys: Key[]) => {
+        if (keys.length === 0) {
+            return;
+        }
+        setSelectedKeys(keys);
+    }
+    
     return (
         <Tree
+            {...props}
+            selectedKeys={selectedKeys}
+            onSelect={atLastOneSelected}
             className="meta-tree"
             showLine={false}
             showIcon={true}
@@ -58,3 +74,5 @@ export default () => {
         />
     )
 }
+
+export default MetaTree;

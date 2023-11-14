@@ -1,0 +1,37 @@
+.table-detail-layout
+    display: flex
+    flex-direction: column
+    padding: 16px 24px
+    height: 100%
+    .ant-breadcrumb
+        font-size: 12px
+    >.header
+        padding: 16px 0
+        .title
+            display: flex
+            align-items: center
+            font-size: 28px
+            height: 40px
+            line-height: 40px
+            .anticon-arrow-left
+                margin-right: 12px
+                cursor: pointer
+            .text
+                height: 44px
+                line-height: 40px
+        .actions
+            height: 32px
+            margin-top: 16px
+            line-height: 32px
+            .ant-input-affix-wrapper
+                width: 240px
+    >.content
+        flex: 1
+        overflow: hidden
+        .ant-tabs
+            height: 100%
+            .ant-tabs-content-holder
+                flex: 1
+                .ant-tabs-content
+                    height: 100%
+                    overflow: hidden auto

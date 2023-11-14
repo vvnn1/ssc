@@ -1,7 +1,7 @@
 import { Col, Form, InputNumber, Row } from "antd"
 import SettingCard from "../../../SettingCard"
 import { NumberOutlined } from "../../../Icon"
-import MemoryUnitSelect from "../../../Select/MemoryUnitSelect"
+import MemoryInputNumber from "../../../InputNumber/MemoryInputNumber";
 
 const ResourceSetting = () => {
     return (
@@ -13,6 +13,7 @@ const ResourceSetting = () => {
                     <Form.Item
                         label="Task Managers 数量"
                         extra="默认与并行度一致"
+                        name="tmNum"
                     >
                         <InputNumber
                             size="small"
@@ -26,6 +27,7 @@ const ResourceSetting = () => {
                         required
                         label="JobManager CPU Cores"
                         extra="最小值：1"
+                        name="jmCpu"
                     >
                         <InputNumber
                             size="small"
@@ -39,17 +41,15 @@ const ResourceSetting = () => {
                         required
                         label="JobManager Memory"
                         extra={<>推荐值:<code>4GiB</code>最小值：1GiB。建议使用 GiB/MiB 单位，例如：1024MiB，1.5GiB</>}
+                        name="jmMemory"
                     >
-                        <InputNumber
-                            size="small"
-                            placeholder="请输入 Job Manager 内存"
-                            addonAfter={
-                                <MemoryUnitSelect
-                                    defaultValue="MiB"
-                                    size="small"
-                                    popupMatchSelectWidth={52}
-                                    popupClassName="no-padding-select" />
-                            }
+                        <MemoryInputNumber
+                            inputProps={{
+                                placeholder: "请输入 Job Manager 内存"
+                            }}
+                            selectProps={{
+                                defaultValue: "GiB"
+                            }}
                         />
                     </Form.Item>
                 </Col>
@@ -58,6 +58,7 @@ const ResourceSetting = () => {
                         required
                         label="TaskManager CPU Cores"
                         extra="最小值：1"
+                        name="tmCpu"
                     >
                         <InputNumber
                             size="small"
@@ -71,17 +72,16 @@ const ResourceSetting = () => {
                         required
                         label="TaskManager Memory"
                         extra={<>推荐值:<code>8GiB</code>最小值：1GiB。建议使用 GiB/MiB 单位，例如：1024MiB，1.5GiB</>}
+                        name="tmMemory"
                     >
-                        <InputNumber
-                            size="small"
-                            placeholder="请输入 Task Manager 内存"
-                            addonAfter={
-                                <MemoryUnitSelect
-                                    defaultValue="MiB"
-                                    size="small"
-                                    popupMatchSelectWidth={52}
-                                    popupClassName="no-padding-select" />
-                            }
+
+                        <MemoryInputNumber
+                            inputProps={{
+                                placeholder: "请输入 Task Manager 内存"
+                            }}
+                            selectProps={{
+                                defaultValue: "GiB"
+                            }}
                         />
                     </Form.Item>
                 </Col>

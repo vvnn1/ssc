@@ -1,6 +1,6 @@
 import { Button, Divider, Form, Input, Modal, ModalProps, Popconfirm, Select, Space, Table, Tabs, TabsProps, Tag, Tooltip, Typography, message } from "antd";
 import './index.sass'
-import { PlusOutlined, SearchOutlined } from "../../../../../Icon";
+import { CheckCircleOutlined, PlusOutlined, SearchOutlined } from "../../../../../Icon";
 import { useState } from "react";
 import MonacoEditor from "../../../../../MonacoEditor";
 import EditableTable from "./EditableTable";
@@ -53,7 +53,7 @@ const ContactGroupTable = () => {
                 okText="提交"
                 cancelText="重置"
                 onCancel={changeModalOpen(false)}
-                rootClassName='ant-modal-wrap-rtl'
+                footer={(_, { CancelBtn, OkBtn }) => <><OkBtn/><CancelBtn /></>}
                 className="add-contact-modal"
             >
                 <Form
@@ -167,7 +167,7 @@ const ContactsTable = () => {
                 okText="提交"
                 cancelText="重置"
                 onCancel={changeModalOpen(false)}
-                rootClassName='ant-modal-wrap-rtl'
+                footer={(_, { CancelBtn, OkBtn }) => <><OkBtn/><CancelBtn /></>}
                 className="add-contact-modal"
             >
                 <Form
@@ -215,7 +215,7 @@ const WebhookModal = (props: ModalProps
             width={600}
             okText="确认"
             cancelText="取消"
-            rootClassName='ant-modal-wrap-rtl'
+            footer={(_, { CancelBtn, OkBtn }) => <><OkBtn/><CancelBtn /></>}
             className="add-contact-modal"
         >
             <Form
@@ -296,6 +296,7 @@ const WebhookTable = () => {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     const [editModalOpen, setEditModalOpen] = useState<boolean>(false);
     const [modalValue, setModalValue] = useState<any>();
+    const [messageApi, contextHolder] = message.useMessage();
 
     const changeModalOpen = (open: boolean) => {
         return () => {
@@ -304,7 +305,10 @@ const WebhookTable = () => {
     }
 
     const onCopy = () => {
-        message.success('已复制到剪切板');
+        messageApi.success({
+            icon: <></>,
+            content: <><CheckCircleOutlined color="#00a700" />已复制到剪切板</>
+        });
     }
 
     const changeEditModalOpen = (open: boolean, value: any) => {
@@ -389,6 +393,7 @@ const WebhookTable = () => {
                 initValue={modalValue}
                 title="编辑 Webhook"
             />
+            {contextHolder}
         </div>
     )
 };
@@ -442,7 +447,7 @@ const DingdingTable = () => {
                 okText="提交"
                 cancelText="重置"
                 onCancel={changeModalOpen(false)}
-                rootClassName='ant-modal-wrap-rtl'
+                footer={(_, { CancelBtn, OkBtn }) => <><OkBtn/><CancelBtn /></>}
                 className="add-contact-modal"
             >
                 <Form

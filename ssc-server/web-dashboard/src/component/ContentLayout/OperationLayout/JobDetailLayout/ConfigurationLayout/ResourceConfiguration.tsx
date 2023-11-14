@@ -79,7 +79,6 @@ const ResourceConfiguration = (props: { editing: boolean, form: FormInstance }) 
                             initialValue='4MiB'
                         >
                             <MemoryInputNumber
-                                defaultValue="1GiB"
                                 inputProps={{
                                     placeholder: '请输入内存'
                                 }}
@@ -108,7 +107,6 @@ const ResourceConfiguration = (props: { editing: boolean, form: FormInstance }) 
                             initialValue='6GiB'
                         >
                             <MemoryInputNumber
-                                defaultValue="1GiB"
                                 inputProps={{
                                     placeholder: '请输入内存'
                                 }}

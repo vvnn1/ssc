@@ -1,4 +1,4 @@
-import { Empty, Tabs, TabsProps } from "antd";
+import { Tabs, TabsProps } from "antd";
 import './index.sass'
 import StreamWorkTab from "./StreamWorkTab";
 import BatchWorkTab from "./BatchWorkTab";

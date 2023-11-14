@@ -1,5 +1,5 @@
-import { Button, Tabs, TabsProps } from 'antd';
-import { DashboardFilled, FullscreenOutlined, MinusOutlined, PauseOutlined, ResumeOutlined, Stop2Outlined, TableOutlined } from '../../../../../Icon';
+import { Button, Tabs, TabsProps, message } from 'antd';
+import { CheckCircleOutlined, DashboardFilled, ExclamationCircleOutlined, FullscreenOutlined, MinusOutlined, PauseOutlined, ResumeOutlined, Stop2Outlined, TableOutlined } from '../../../../../Icon';
 import './index.sass'
 import StreamResultTable from './StreamResultTable';
 import { useEffect, useState } from 'react';
@@ -19,11 +19,22 @@ interface DebugResultPanelProps {
 
 const DebugResultPanel = (props: DebugResultPanelProps) => {
     const [showResult, setShowResult] = useState<boolean>(false);
+    const [messageApi, contextHolder] = message.useMessage();
+
     useEffect(() => {
+        messageApi.info({
+            icon: <></>,
+            content: <><ExclamationCircleOutlined color='#0064c8'/>SQL 任务开始执行调试</>,
+        });
         const id = setInterval(() => {
+            messageApi.success({
+                icon: <></>,
+                content: <><CheckCircleOutlined color="#00a700" />SQL 任务调试执行结束</>,
+                
+            });
             setShowResult(true);
+            clearInterval(id);
         }, 5000);
-        return () => clearInterval(id);
     }, []);
 
     return (
@@ -74,6 +85,7 @@ const DebugResultPanel = (props: DebugResultPanelProps) => {
                 }
 
             </div>
+            {contextHolder}
         </div>
     )
 };

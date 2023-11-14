@@ -1,4 +1,4 @@
-import { Card, Row, Col, InputNumber, Select, Form, SelectProps } from "antd"
+import { Row, Col, InputNumber, Select, Form } from "antd"
 import { NumberOutlined } from "../../../../Icon";
 import { useState } from "react";
 import SettingCard from "../../../../SettingCard";

@@ -30,7 +30,6 @@ const BottomTabBar = () => {
                     <Button type="text" icon={<SettingOutlined />} size="small" onClick={changeModalOpen(true)}/>
                 </div>
             </div>
-
             <EditorSettingsModal open={modalOpen} onCancel={changeModalOpen(false)}/>
         </div>
     )

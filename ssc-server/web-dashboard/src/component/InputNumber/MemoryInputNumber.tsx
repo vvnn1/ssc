@@ -15,10 +15,8 @@ const pattern = /(?<number>\d+)(?<unit>MiB|GiB)/
 const MemoryInputNumber: React.FC<MemoryInputNumberProps> = ({ value, defaultValue, onChange, inputProps, selectProps }) => {
     const defaultGroups = pattern.exec(defaultValue ?? '')?.groups;
     const valueGroups = pattern.exec(value ?? '')?.groups;
-
-    const [number, setNumber] = useState<string | null | undefined>(valueGroups?.number);
-    const [unit, setUnit] = useState<MemoryUnit | undefined>(valueGroups?.unit as MemoryUnit);
-
+    const [number, setNumber] = useState<string | null | undefined>();
+    const [unit, setUnit] = useState<MemoryUnit | undefined>();
     const onNumberChange = (number: string | null) => {
         setNumber(number);
         if ((number !== null) && unit) {
@@ -27,7 +25,7 @@ const MemoryInputNumber: React.FC<MemoryInputNumberProps> = ({ value, defaultVal
             onChange?.(null);
         }
     }
-
+    console.log(number)
     const onUnitChange = (unit: any) => {
         setUnit(unit);
         if (number && unit) {
@@ -40,13 +38,13 @@ const MemoryInputNumber: React.FC<MemoryInputNumberProps> = ({ value, defaultVal
     return (
         <InputNumber
             {...inputProps}
-            value={number}
+            value={number ?? valueGroups?.number}
             defaultValue={defaultGroups?.number}
             onChange={onNumberChange}
             addonAfter={
                 <MemoryUnitSelect
                     {...selectProps}
-                    value={unit}
+                    value={unit ?? valueGroups?.unit as MemoryUnit}
                     defaultValue={defaultGroups?.unit}
                     onChange={onUnitChange}
                 />

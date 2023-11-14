@@ -12,6 +12,7 @@ const BatchWorkTab = () => {
                 <Form
                     className="batch-work-setting-form ant-typography"
                     layout="vertical"
+                    size="small"
                 >
                     <RuntimeSettingModule onlyStrategy />
                     <FlinkSettingModule />

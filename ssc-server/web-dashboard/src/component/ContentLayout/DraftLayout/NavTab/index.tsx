@@ -1,8 +1,9 @@
 import { Tabs, TabsProps } from "antd";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import './index.sass'
 import { StreamDraftOutlined } from "../../../Icon";
 import { useNavigate, useParams } from "react-router-dom";
+import CreateDraftModal from "../ToolBar/CreateDraftModal";
 
 type TargetKey = React.MouseEvent | React.KeyboardEvent | string;
 
@@ -12,7 +13,6 @@ export interface Draft {
     name: string;
     content: string;
     type: 'sql',
-
 }
 
 const sql1 = `CREATE TEMPORARY TABLE orders_dataset (
@@ -159,36 +159,38 @@ interface NavTabProps {
 
 const NavTab: React.FC<NavTabProps> = ({ onDraftChange }) => {
     const [activeItem, setActiveItem] = useState<string>();
-    const [items, setItems] = useState<TabsProps['items']>([]);
-    const newTabIndex = useRef(0);
+    const [items, setItems] = useState<Draft[]>([]);
+    const [modalOpen, setModalOpen] = useState<boolean>(false);
+
     const navigate = useNavigate();
     const { draftId: activeDraftId } = useParams();
 
     useEffect(() => {
-
-        const openedItem = items?.filter(item => item.id === activeDraftId)
-            .pop();
-
-        if (openedItem) {
-            setActiveItem(openedItem.id);
-        } else {
-            const activeItem = draftList.filter(item => item.id === activeDraftId)
-                .map(item => {
-                    return {
-                        id: item.id,
-                        key: item.id,
-                        label: <><span className="draft-type type offline"><StreamDraftOutlined /></span><span className="draft-name">{item.name}</span></>,
-                    }
-                })
+        setItems((items) => {
+            const openedItem = items?.filter(item => item.id === activeDraftId)
                 .pop();
-            if (!activeItem) {
-                navigate('../../.');
-                return;
+            if (openedItem) {
+                return items;
             }
-            setItems(items ? [...items, activeItem] : [activeItem]);
-            setActiveItem(activeDraftId);
-        }
+            const activeItems = draftList.filter(item => item.id === activeDraftId);
+            if (!activeItems || activeItems.length === 0) {
+                navigate('../../.');
+                return items;
+            }
+            return [...items!, ...activeItems];
+        })
+        setActiveItem(activeDraftId);
     }, [activeDraftId]);
+
+    const transTabs = (items: Draft[]): TabsProps['items'] => {
+        return items.map(item => {
+            return {
+                id: item.id,
+                key: item.id,
+                label: <><span className="draft-type type offline"><StreamDraftOutlined /></span><span className="draft-name">{item.name}</span></>,
+            }
+        })
+    }
 
 
     useEffect(() => {
@@ -202,28 +204,38 @@ const NavTab: React.FC<NavTabProps> = ({ onDraftChange }) => {
         setActiveItem(newActiveKey);
     };
 
+
+    const changeModalOpen = (open: boolean) => {
+        return () => {
+            setModalOpen(open);
+        }
+    }
+
     const add = () => {
-        const newActiveKey = `newTab${newTabIndex.current++}`;
-        const newPanes = [...items!];
-        newPanes.push({ label: 'New Tab', key: newActiveKey });
-        setItems(newPanes);
-        setActiveItem(newActiveKey);
+        setModalOpen(true);
+        // const newActiveKey = `newTab${newTabIndex.current++}`;
+        // const newPanes = [...items!];
+        // newPanes.push({ label: 'New Tab', key: newActiveKey });
+        // setItems(newPanes);
+        // setActiveItem(newActiveKey);
     };
 
-    const remove = (targetKey: TargetKey) => {
+    const remove = (targetId: TargetKey) => {
         let newActiveKey = activeItem;
         let lastIndex = -1;
         items!.forEach((item, i) => {
-            if (item.key === targetKey) {
+            if (item.id === targetId) {
                 lastIndex = i - 1;
             }
         });
-        const newPanes = items!.filter((item) => item.key !== targetKey);
-        if (newPanes.length && newActiveKey === targetKey) {
+        const newPanes = items!.filter((item) => item.id !== targetId);
+        if (newPanes.length && newActiveKey === targetId) {
             if (lastIndex >= 0) {
-                newActiveKey = newPanes[lastIndex].key;
+                newActiveKey = newPanes[lastIndex].id;
+                navigate(`../../${newPanes[lastIndex].id}/${newPanes[lastIndex].type}`, { replace: true })
             } else {
-                newActiveKey = newPanes[0].key;
+                newActiveKey = newPanes[0].id;
+                navigate(`../../${newPanes[0].id}/${newPanes[0].type}`, { replace: true })
             }
         }
 
@@ -248,15 +260,19 @@ const NavTab: React.FC<NavTabProps> = ({ onDraftChange }) => {
     };
 
     return (
-        <Tabs
-            className="editor-nav-tab"
-            type="editable-card"
-            onChange={onChange}
-            activeKey={activeItem}
-            onEdit={onEdit}
-            items={items}
-            size="small"
-        />
+        <>
+            <Tabs
+                className="editor-nav-tab"
+                type="editable-card"
+                onChange={onChange}
+                activeKey={activeItem}
+                onEdit={onEdit}
+                items={transTabs(items)}
+                size="small"
+            />
+            <CreateDraftModal open={modalOpen} onCancel={changeModalOpen(false)} />
+        </>
+
     )
 };
 

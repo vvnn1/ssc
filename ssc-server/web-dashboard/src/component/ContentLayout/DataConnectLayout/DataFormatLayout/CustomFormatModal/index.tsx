@@ -1,8 +1,9 @@
-import { Button, Modal, ModalProps, Steps } from "antd";
+import { Button, ModalProps } from "antd";
 import { useState } from "react";
 import Step1Form from "./Step1Form";
 import Step2Form from "./Step2Form";
 import "./index.sass"
+import StepModal from "../../../../StepModal";
 
 const CustomFormatModal = (props: ModalProps) => {
     const [currentStep, setCurrentStep] = useState<number>(0);
@@ -39,35 +40,38 @@ const CustomFormatModal = (props: ModalProps) => {
     ];
 
     return (
-        <Modal
-            open={props.open}
-            onCancel={props.onCancel}
-            maskClosable={false}
-            title="创建自定义数据格式"
-            width={800}
-            rootClassName="custom-format-modal"
-            footer={stepItems[currentStep]}
-            destroyOnClose
-        >
-            <Steps
-                size="small"
-                current={currentStep}
-                items={[
+        <StepModal
+            modalProps={{
+                ...props,
+                maskClosable: false,
+                title: "创建自定义数据格式",
+                width: 800,
+                rootClassName: "custom-format-modal",
+                destroyOnClose: true
+            }}
+            stepsProps={{
+                size: "small",
+                items: [
                     {
                         title: '上传 JAR',
                     },
                     {
                         title: '查看 Format',
                     },
-                ]}
-            />
-
-            <div className="steps-body">
-                <Step1Form hidden={currentStep !== 0} />
-                <Step2Form hidden={currentStep !== 1} />
-            </div>
-
-        </Modal>
+                ]
+            }}
+        >
+            {
+                (currentStep: number) => {
+                    return (
+                        <div className="steps-body">
+                            <Step1Form hidden={currentStep !== 0} />
+                            <Step2Form hidden={currentStep !== 1} />
+                        </div>
+                    )
+                }
+            }
+        </StepModal>
     );
 };
 

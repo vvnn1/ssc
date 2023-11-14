@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { Resizable as ReactResizable, ResizeCallbackData } from 'react-resizable';
 import './index.sass'
-import { processSize } from "react-monaco-editor/lib/utils";
-import { cursorTo } from "readline";
 
 type ResizableProps = {
     children: React.ReactNode;

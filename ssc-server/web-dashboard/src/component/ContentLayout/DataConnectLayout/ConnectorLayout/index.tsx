@@ -4,6 +4,7 @@ import { Button, Empty, Input, List, Select, Space, Tabs, TabsProps } from "antd
 import './index.sass'
 import CustomConnectorModal from "./CustomConnectorModal";
 import { useState } from "react";
+import EngineSelect from "../../../Select/EngineSelect";
 
 const connectorItems: CardProps[] = [
     {
@@ -152,12 +153,24 @@ const ConnectorLayout = () => {
                 >
                     <Space.Compact className="ant-input-group">
                         <span className="ant-input-group-addon">引擎版本</span>
-                        <Select />
+                        <EngineSelect />
                     </Space.Compact>
 
                     <Space.Compact className="ant-input-group">
                         <span className="ant-input-group-addon">连接方式</span>
-                        <Select />
+                        <Select
+                            options={[
+                                {
+                                    label: "全部"
+                                },
+                                {
+                                    label: "源表"
+                                },
+                                {
+                                    label: "结果表"
+                                }
+                            ]}
+                        />
                     </Space.Compact>
 
                     <Input

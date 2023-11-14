@@ -1,235 +1,265 @@
-import { Button, Checkbox, Divider, Form, Input, Modal, Radio, RadioChangeEvent, Select, Space, Switch, Table } from 'antd'
+import { Button, ButtonProps, Divider, Select, Space, Table, message } from 'antd'
 import './index.sass'
-import { PlayCircleFilled, UploadOutlined } from '../../Icon'
+import { CancelCircleFilled, CheckCircleFilled, CheckCircleOutlined, ExclamationCircleOutlined, LoadingOutlined, PlayCircleFilled, SettingOutlined } from '../../Icon'
 import { useState } from 'react';
 import Search from 'antd/es/input/Search';
-import FormItem from 'antd/es/form/FormItem';
 import { useNavigate, useParams } from 'react-router-dom';
+import { changeModalOpen } from '../../../util';
+import DeployModal from './DeployModal';
+import SettingModal from './SettingModal';
+import LaunchModal from './LaunchModal';
+import StopModal from './StopModal';
+import dayjs from 'dayjs';
 
-const { TextArea } = Input;
+type Status = 'starting' | 'running' | 'stoping' | 'stoped' | 'finished' | 'fail';
 
-interface DataType {
+interface Job {
     id: string;
     key: React.Key;
     name: string;
-    status: string;
+    status: Status;
     healthSorce: number;
-    bizDelay:string;
-    cpu:number;
+    bizDelay: string;
+    cpu: number;
     memory: number;
     updateUser: string;
     updateTime: number;
 }
 
-type TableProps = Parameters<typeof Table<DataType>>[0];
+type TableProps = Parameters<typeof Table<Job>>[0];
 type ColumnTypes = Exclude<TableProps['columns'], undefined>;
 
-const columns: ColumnTypes = [
-    {
-        title: '名称',
-        dataIndex: 'name',
-        render: (value) => <><div className="type">SQL</div> <a>{value}</a></>
-    },
-    {
-        title: '状态',
-        dataIndex: 'status',
-        filters: [
-            {
-                text: '启动中',
-                value: 'Joe',
-            },
-            {
-                text: '运行中',
-                value: 'Category 1',
-            },
-            {
-                text: '停止中',
-                value: 'Category 2',
-            },
-            {
-                text: '已停止',
-                value: 'Joe',
-            },
-            {
-                text: '已完成',
-                value: 'Category 1',
-            },
-            {
-                text: '已失败',
-                value: 'Category 2',
-            },
-        ],
-        onFilter: (value: string | number | boolean, record) => record.name.startsWith(value as string),
-        width: '12.15%',
-        render: (value) => <><PlayCircleFilled style={{color: '#00a700'}}/> 运行中</>
-    },
-    {
-        title: '健康分',
-        dataIndex: 'healthSorce',
-        sorter: (a, b) => a.healthSorce - b.healthSorce,
-        width: '10.2%',
-        render: (value) => <><span className="HIGH">100</span></>
-    },
-    {
-        title: '业务延时',
-        dataIndex: 'bizDelay',
-        width: '7.3%',
-    },
-    {
-        title: 'CPU',
-        dataIndex: 'cpu',
-        sorter: (a, b) => a.cpu - b.cpu,
-        width: '7.5%',
-    },
-    {
-        title: '内存',
-        dataIndex: 'memory',
-        sorter: (a, b) => a.memory - b.memory,
-        width: '8.25%',
-        render: (value) => <>{value} Gib</>
-    },
-    {
-        title: '修改人',
-        dataIndex: 'updateUser',
-        width: '12.2%',
-        
-    },
-    {
-        title: '修改时间',
-        dataIndex: 'updateTime',
-        sorter: (a, b) => a.updateTime - b.updateTime,
-        width: '12%',
-        render: (value) => <>09-26 17:46</>
-    },
-    {
-        title: '操作',
-        dataIndex: 'age',
-        render: () => {
-            return (
-                <>
-                    <Button size="small" type="link">启动</Button>
-                    <Divider type="vertical"/>
-                    <Button size="small" type="link">停止</Button>
-                    <Divider type="vertical"/>
-                    <Button size="small" type="link" danger>删除</Button>
-                </>
-            )
-        },
-    },
-];
-
-const data: DataType[] = [
-    {
-        id: '9ddc3745-7453-4d4b-96ee-965d8b2d5f05',
-        key: '1',
-        name: 'Untitled-stream-sql',
-        status: '已停止',// 已停止 启动中 运行中 停止中
-        healthSorce: 75,
-        bizDelay: '',
-        cpu: 6,
-        memory: 1024,
-        updateUser: 'vvnnl',
-        updateTime: 1695720687,
-    },
-];
-
-
-const jarModule = (
-    <div className="jar-module">
-        <Form.Item
-            label="JAR URI"
-            required
-        >
-            <Input placeholder="请输入 Jar URI" suffix={<UploadOutlined />} />
-        </Form.Item>
-        <Form.Item
-            label="Entry Point Class"
-        >
-            <Input placeholder="如果您的 Jar 未指定主类，请在此处输入指向您的 Entrypoint Class 的标准路径" />
-        </Form.Item>
-        <Form.Item
-            label="Entry Point Main Arguments"
-        >
-            <TextArea rows={3} />
-        </Form.Item>
-    </div>
-);
-
-const pythonModule = (
-    <div className="python-module">
-        <Form.Item
-            label="Python 文件地址"
-            required
-        >
-            <Input placeholder="请输入或选择一个 python 文件地址" suffix={<UploadOutlined />} />
-        </Form.Item>
-        <Form.Item
-            label="Entry Module"
-        >
-            <Input placeholder="请输入 entry module" />
-        </Form.Item>
-        <Form.Item
-            label="Entry Point Main Arguments"
-        >
-            <TextArea rows={3} />
-        </Form.Item>
-        <Form.Item
-            label="Python Libraries"
-        >
-            <Input placeholder="请输入或选择任意 python libraries" suffix={<UploadOutlined />} />
-        </Form.Item>
-        <Form.Item
-            label="Python Archives"
-        >
-            <Input placeholder="请输入或选择任意 python archives" suffix={<UploadOutlined />} />
-        </Form.Item>
-
-    </div>
-);
-
-
-const kerberosModule = (
-    <div className="kerberos-module">
-        <FormItem
-            label="Kerberos 集群"
-            labelCol={{ offset: 7, span: 5 }}
-            wrapperCol={{ span: 10 }}
-            required
-        >
-            <Select />
-        </FormItem>
-        <FormItem
-            label="principal"
-            labelCol={{ offset: 7, span: 5 }}
-            wrapperCol={{ span: 10 }}
-            required
-        >
-            <Input />
-        </FormItem>
-    </div>
-);
-
-
 const OperationLayout = () => {
-    const [modalOpen, setModalOpen] = useState<boolean>(false);
-    const [formModule, setFormModule] = useState<React.ReactElement>(jarModule);
-    const [showMore, setShowMore] = useState<boolean>(false);
-    const navigate = useNavigate();
-    const {jobType} = useParams();
-
-    const changeModalOpen = (visible: boolean) => {
-        return () => {
-            setModalOpen(visible);
+    const [deployModalOpen, setDeployModalOpen] = useState<boolean>(false);
+    const [settingModalOpen, setSettingModalOpen] = useState<boolean>(false);
+    const [launchModalOpen, setLaunchModalOpen] = useState<boolean>(false);
+    const [stopModalOpen, setStopModalOpen] = useState<boolean>(false);
+    const [messageApi, contextHolder] = message.useMessage();
+    const [data, setData] = useState<Job[]>([
+        {
+            id: '9ddc3745-7453-4d4b-96ee-965d8b2d5f05',
+            key: '1',
+            name: 'Untitled-stream-sql',
+            status: 'running',// 已停止 启动中 运行中 停止中
+            healthSorce: 75,
+            bizDelay: '',
+            cpu: 6,
+            memory: 1024,
+            updateUser: 'vvnnl',
+            updateTime: 1695720687,
         }
+    ]);
+    const navigate = useNavigate();
+    const { jobType } = useParams();
+
+    const columns: ColumnTypes = [
+        {
+            title: '名称',
+            dataIndex: 'name',
+            render: (value) => <><div className="type">SQL</div> <a>{value}</a></>
+        },
+        {
+            title: '状态',
+            dataIndex: 'status',
+            filters: [
+                {
+                    text: '启动中',
+                    value: 'starting',
+                },
+                {
+                    text: '运行中',
+                    value: 'running',
+                },
+                {
+                    text: '停止中',
+                    value: 'stoping',
+                },
+                {
+                    text: '已停止',
+                    value: 'stoped',
+                },
+                {
+                    text: '已完成',
+                    value: 'finished',
+                },
+                {
+                    text: '已失败',
+                    value: 'fail',
+                },
+            ],
+            onFilter: (value: React.Key | boolean, record) => record.status === value,
+            width: '12.15%',
+            render: (value) => {
+                if (value === 'starting') {
+                    return <><LoadingOutlined /> 启动中</>
+                }
+                if (value === 'running') {
+                    return <><PlayCircleFilled /> 运行中</>
+                }
+                if (value === 'stoping') {
+                    return <><LoadingOutlined /> 停止中</>
+                }
+                if (value === 'stoped') {
+                    return <><CancelCircleFilled /> 已停止</>
+                }
+                if (value === 'finished') {
+                    return <><CheckCircleFilled/> 已完成</>
+                }
+                if (value === 'fail') {
+                    return <></>
+                }
+                return <></>
+            } 
+        },
+        {
+            title: '健康分',
+            dataIndex: 'healthSorce',
+            sorter: (a, b) => a.healthSorce - b.healthSorce,
+            width: '10.2%',
+            render: (value, {status}) => {
+                if (value > 0) {
+                    if(status === "finished"){
+                        return <span className="source-circle high disabled">{value}</span>
+                    }
+                    return <span className="source-circle high">{value}</span>
+                }
+                return <span className="source-circle unknown">-</span>
+            }
+        },
+        {
+            title: '业务延时',
+            dataIndex: 'bizDelay',
+            width: '7.3%',
+        },
+        {
+            title: 'CPU',
+            dataIndex: 'cpu',
+            sorter: (a, b) => a.cpu - b.cpu,
+            width: '7.5%',
+            render: (value) => {
+                if (value > 0) {
+                    return value;
+                }
+                return "-";
+            }
+        },
+        {
+            title: '内存',
+            dataIndex: 'memory',
+            sorter: (a, b) => a.memory - b.memory,
+            width: '8.25%',
+            render: (value) => {
+                if (value > 0) {
+                    return <>{value} Gib</>;
+                }
+                return "-";
+            }
+        },
+        {
+            title: '修改人',
+            dataIndex: 'updateUser',
+            width: '12.2%',
+
+        },
+        {
+            title: '修改时间',
+            dataIndex: 'updateTime',
+            sorter: (a, b) => a.updateTime - b.updateTime,
+            width: '12%',
+            render: (value) => <>{dayjs.unix(value).format('MM/DD HH:mm:ss')}</>
+        },
+        {
+            title: '操作',
+            dataIndex: 'age',
+            render: (_, { id, status }) => {
+                return (
+                    <>
+                        <Button size="small" type="link" disabled={['running', 'starting', 'stoping'].includes(status)} onClick={onLaunchButtonClick}>启动</Button>
+                        <Divider type="vertical" />
+                        <Button size="small" type="link" disabled={['stoped', 'stoping', 'finished'].includes(status)} onClick={onStopButtonClick}>停止</Button>
+                        <Divider type="vertical" />
+                        <Button size="small" type="link" danger disabled={['running', 'starting', 'stoping'].includes(status)} onClick={onDeleteClick}>删除</Button>
+                    </>
+                )
+            },
+        },
+    ];
+
+    const onLaunchButtonClick: ButtonProps['onClick'] = (e) => {
+        e.stopPropagation();
+        setLaunchModalOpen(true);
     }
 
-    const onModuleRadioChange = ({ target: { value } }: RadioChangeEvent) => {
-        if (value === "JAR") {
-            setFormModule(jarModule);
-            console.log(value);
-        } else if (value === "PYTHON") {
-            setFormModule(pythonModule);
-        }
+    const onStopButtonClick: ButtonProps['onClick'] = (e) => {
+        e.stopPropagation();
+        setStopModalOpen(true);
+    }
+
+    const onStopModalOkClick = () => {
+        messageApi.info({
+            icon: <></>,
+            content: <><ExclamationCircleOutlined color="#0064c8" />作业 Untitled-stream-sql 停止中…</>
+        });
+        setStopModalOpen(false);
+        setData(data => {
+            return [
+                ...data.filter(item => item.id === '9ddc3745-7453-4d4b-96ee-965d8b2d5f05')
+                    .map(item => {
+                        item.status = 'stoping';
+                        return item;
+                    })
+            ];
+        });
+
+        setTimeout(() => {
+            setData(data => {
+                return [
+                    ...data.filter(item => item.id === '9ddc3745-7453-4d4b-96ee-965d8b2d5f05')
+                        .map(item => {
+                            item.status = 'stoped';
+                            return item;
+                        })
+                ];
+            })
+        }, 4000);
+    }
+
+    const onLaunchModalOkClick = () => {
+        messageApi.info({
+            icon: <></>,
+            content: <><ExclamationCircleOutlined color="#0064c8" />作业 Untitled-stream-sql 启动中…</>
+        });
+        setLaunchModalOpen(false);
+
+        setData(data => {
+            return [
+                ...data.filter(item => item.id === '9ddc3745-7453-4d4b-96ee-965d8b2d5f05')
+                    .map(item => {
+                        item.status = 'starting';
+                        return item;
+                    })
+            ];
+        });
+
+        setTimeout(() => {
+            setData(data => {
+                return [
+                    ...data.filter(item => item.id === '9ddc3745-7453-4d4b-96ee-965d8b2d5f05')
+                        .map(item => {
+                            item.status = 'running';
+                            return item;
+                        })
+                ];
+            })
+        }, 4000);
+    }
+
+    const onDeleteClick: ButtonProps['onClick'] = (e) => {
+        e.stopPropagation();
+        messageApi.success({
+            icon: <></>,
+            content: <><CheckCircleOutlined color="#00a700" /> Session 集群 "kk-test" 已删除</>
+        });
     }
 
     return (
@@ -238,7 +268,7 @@ const OperationLayout = () => {
                 <div className="title">作业运维</div>
                 <div className="actions">
                     <Space>
-                        <Button type='primary' onClick={changeModalOpen(true)}>部署作业</Button>
+                        <Button type='primary' onClick={changeModalOpen(true, setDeployModalOpen)}>部署作业</Button>
                         <Select
                             defaultValue={jobType}
                             options={[
@@ -250,7 +280,10 @@ const OperationLayout = () => {
                             placeholder="搜索…"
                         />
                     </Space>
+
+                    <Button icon={<SettingOutlined />} onClick={changeModalOpen(true, setSettingModalOpen)} />
                 </div>
+
             </div>
             <div className="content">
                 <Table
@@ -266,93 +299,11 @@ const OperationLayout = () => {
                 />
             </div>
 
-            <Modal
-                title="部署作业"
-                open={modalOpen}
-                width={800}
-                centered
-                rootClassName='deploy-modal ant-modal-wrap-rtl'
-                okText="部署"
-                onOk={changeModalOpen(false)}
-                cancelText="取消"
-                onCancel={changeModalOpen(false)}
-            >
-                <div className="deploy-form-container ">
-                    <Form
-                        labelCol={{ span: 7 }}
-                        wrapperCol={{ span: 15 }}
-                        labelAlign='left'
-                    >
-                        <Form.Item
-                            label="部署作业类型"
-                            required
-                        >
-                            <Radio.Group
-                                defaultValue='JAR'
-                                buttonStyle='solid'
-                                onChange={onModuleRadioChange}
-                            >
-                                <Radio value='JAR'>JAR</Radio>
-                                <Radio value='PYTHON'>PYTHON</Radio>
-                            </Radio.Group>
-                        </Form.Item>
-                        <Form.Item
-                            label="部署模式"
-                            required
-                        >
-                            <Select
-                                defaultValue="stream"
-                                options={[
-                                    { value: 'stream', label: '流模式' },
-                                    { value: 'batch', label: '批模式' },
-                                ]}
-                            />
-                        </Form.Item>
-                        <Form.Item
-                            label="部署名称"
-                            required
-                        >
-                            <Input placeholder="请输入部署名称" />
-                        </Form.Item>
-                        <Form.Item
-                            label="引擎版本"
-                            required
-                        >
-                            <Select
-                                defaultValue="v1"
-                                options={[
-                                    { value: 'v1', label: 'vvr-6.0.7-flink-1.15' },
-                                ]}
-                            />
-                        </Form.Item>
-
-                        {formModule}
-
-                        <Form.Item
-                            label="附加依赖文件"
-                        >
-                            <Input placeholder="如果你需要添加更多依赖文件， 请选择或输入任意合法的文件地址" suffix={<UploadOutlined />} />
-                        </Form.Item>
-                        <Form.Item
-                            wrapperCol={{ offset: 7 }}
-                        >
-                            <Checkbox>提交到 Session 集群 （不推荐生产环境使用）</Checkbox>
-                        </Form.Item>
-                        <Form.Item
-                            label="备注"
-                        >
-                            <TextArea placeholder="输入部署备注（可选）" rows={3} />
-                        </Form.Item>
-                        <Form.Item
-                            label="更多设置"
-                        >
-                            <Switch defaultChecked={showMore} onChange={setShowMore} />
-                        </Form.Item>
-
-                        {showMore ? kerberosModule : null}
-                    </Form>
-                </div>
-            </Modal>
+            <DeployModal open={deployModalOpen} onCancel={changeModalOpen(false, setDeployModalOpen)} />
+            <SettingModal open={settingModalOpen} onCancel={changeModalOpen(false, setSettingModalOpen)} />
+            <LaunchModal open={launchModalOpen} onCancel={changeModalOpen(false, setLaunchModalOpen)} onOk={onLaunchModalOkClick}/>
+            <StopModal open={stopModalOpen} onCancel={changeModalOpen(false, setStopModalOpen)} onOk={onStopModalOkClick} />
+            {contextHolder}
         </div>
     )
 };

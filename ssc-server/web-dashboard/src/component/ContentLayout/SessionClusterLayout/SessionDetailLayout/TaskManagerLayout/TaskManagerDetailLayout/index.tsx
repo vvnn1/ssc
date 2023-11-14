@@ -90,7 +90,7 @@ const TaskManagerDetailLayout = () => {
 
     useEffect(() => {
         const defaultSelectedKey: string[] = [];
-        const pathMatch = matchPath("/workspace/:workspace/namespace/:namespace/session-clusters/debug-session/taskmanager/:taskmanager/:key", pathname);
+        const pathMatch = matchPath("/workspace/:workspaceId/namespace/:namespaceId/session-clusters/debug-session/taskmanager/:taskmanager/:key", pathname);
         if (pathMatch?.params.key) {
             defaultSelectedKey.push(pathMatch.params.key);
         }

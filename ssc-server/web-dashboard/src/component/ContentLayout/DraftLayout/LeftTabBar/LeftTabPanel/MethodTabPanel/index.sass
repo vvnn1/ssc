@@ -4,7 +4,6 @@
         display: flex
         flex: none
         flex-direction: column
-        height: 200px
         .title
             position: sticky
             top: 0
@@ -18,9 +17,50 @@
             background: #fff
             font-size: 12px
             line-height: 16px
-            span
+            >span
                 flex: 2
                 overflow: hidden
                 text-overflow: ellipsis
                 white-space: nowrap
                 cursor: default
+            >span.function.unregister-function
+                .anticon-function
+                    position: relative
+                .anticon-function:after
+                    content: "*"
+                    position: absolute
+                    right: -3px
+                    bottom: 0
+                    font-size: 12px
+        .detail
+            flex: 1
+            overflow: auto
+            .no-selected
+                padding: 8px
+                font-size: 12px
+            .ant-descriptions.ant-descriptions-bordered 
+                >.ant-descriptions-view
+                    border: none
+            .ant-descriptions-small 
+                .ant-descriptions-row
+                    >th
+                        padding: 0 8px
+                        font-weight: 500
+                        font-size: 12px
+                        line-height: 24px
+                    >td
+                        padding: 0 8px 0 24px
+                        font-size: 12px
+                        line-height: 24px
+    .tree
+        background-color: #fafafa
+        .ant-empty
+            margin: 0 8px
+            .ant-empty-image
+                height: 100px
+            .ant-empty-footer
+                margin-top: 0
+                .ant-btn-sm
+                    font-size: 12px
+        .ant-spin
+            margin: auto

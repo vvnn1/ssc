@@ -1,9 +1,10 @@
 import Card, { CardProps } from "../Card";
 import { CsvOutlined, JsonOutlined, RawOutlined, SearchOutlined } from '../../../Icon';
-import { Button, Empty, Input, List, Select, Space, Tabs, TabsProps } from "antd";
+import { Button, Empty, Input, List, Space, Tabs, TabsProps } from "antd";
 import './index.sass'
 import CustomFormatModal from "./CustomFormatModal";
 import { useState } from "react";
+import EngineSelect from "../../../Select/EngineSelect";
 
 const connectorItems: CardProps[] = [
     {
@@ -68,7 +69,7 @@ const DataFormatLayout = () => {
                 >
                     <Space.Compact className="ant-input-group">
                         <span className="ant-input-group-addon">引擎版本</span>
-                        <Select />
+                        <EngineSelect />
                     </Space.Compact>
 
                     <Input
@@ -86,7 +87,7 @@ const DataFormatLayout = () => {
                 items={tabItems}
             />
 
-            <CustomFormatModal 
+            <CustomFormatModal
                 open={modalOpen}
                 onCancel={changeModalOpen(false)}
             />

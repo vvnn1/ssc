@@ -1,81 +1,22 @@
-import { Button, ConfigProvider, Input, Space, Table } from 'antd'
+import { Button, Input } from 'antd'
 import './index.sass'
 import { PlusOutlined, ReloadOutlined, SearchOutlined } from '../../Icon'
 import MetaTree from '../DraftLayout/LeftTabBar/LeftTabPanel/MetaTabPanel/MetaTree'
 import ScrollPin from '../../ScrollPin'
-import { useRef, useState } from 'react'
-import CreateCatalogModal from './CreateCatalogModal'
+import { useRef } from 'react'
+import MetaDetailLayout from './MetaDetailLayout'
+import { Route, Routes } from 'react-router-dom'
+import CatalogDetailLayout from './CatalogDetailLayout'
+import DatabaseDetailLayout from './DatabaseDetailLayout'
+import TableDetailLayout from './TableDetailLayout'
 
 
-interface DataType {
-    key: React.Key;
-    name: string;
-    age: number;
-    address: string;
-}
 
-type TableProps = Parameters<typeof Table<DataType>>[0];
-type ColumnTypes = Exclude<TableProps['columns'], undefined>;
-
-const columns: ColumnTypes = [
-    {
-        title: 'Catalog 名称',
-        dataIndex: 'name',
-        width: '35%',
-    },
-    {
-        title: '类型',
-        dataIndex: 'age',
-        width: '35%',
-    },
-    {
-        title: '操作',
-        dataIndex: 'age',
-        render: () => (
-            <>
-                <Button type="link" size="small">查看</Button>
-                <Button type="link" size="small">删除</Button>
-            </>
-        )
-    },
-];
-
-const data: DataType[] = [
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sydney No. 1 Lake Park',
-    },
-    {
-        key: '4',
-        name: 'Jim Red',
-        age: 32,
-        address: 'London No. 2 Lake Park',
-    },
-];
 
 const MetaLayout = () => {
     const treeContainerRef = useRef<HTMLDivElement>(null);
-    const [modalOpen, setModalOpen] = useState<boolean>(false);
 
-    const changeModalOpen = (open: boolean) => {
-        return () => {
-            setModalOpen(open);
-        }
-    }
+
 
     return (
         <div className="meta-layout">
@@ -109,29 +50,19 @@ const MetaLayout = () => {
                 </div>
             </div>
             <div className="panel main panel-ttb">
-                <div className="header">
-                    <div className="title">
-                        <span>Catalog 列表</span>
-                    </div>
-                    <div className="actions">
-                        <Space>
-                            <Button type='primary' onClick={changeModalOpen(true)}>创建 Catalog</Button>
-                            <Input suffix={<SearchOutlined />} placeholder="搜索…" />
-                        </Space>
-                    </div>
-                </div>
-                <div className="content">
-                    <Table
-                        className="meta-table"
-                        columns={columns}
-                        dataSource={data}
-                        showSorterTooltip={false}
-                        size='small'
-                    />
-                </div>
+                <Routes>
+                    <Route path="list" element={<MetaDetailLayout />} />
+                    <Route path=":catalogName">
+                        <Route path='list' element={<CatalogDetailLayout />} />
+                        <Route path=':databseName'>
+                            <Route path="list" element={<DatabaseDetailLayout />} />
+                            <Route path=":tableName" element={<TableDetailLayout />} />
+                        </Route>
+                    </Route>
+                </Routes>
+
             </div>
 
-            <CreateCatalogModal open={modalOpen} onCancel={changeModalOpen(false)} />
         </div>
     )
 };

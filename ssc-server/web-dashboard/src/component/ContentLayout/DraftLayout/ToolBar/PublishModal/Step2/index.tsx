@@ -10,16 +10,22 @@ const Step2 = (props: Step2Props & ProgressProps) => {
 
     useEffect(() => {
         props.onStatusChange?.('active');
-        const timer = setInterval(() => {
+        const id = setInterval(() => {
             setPercent((percent) => {
                 if (percent > 100) {
-                    clearInterval(timer);
-                    props.onStatusChange?.('success');
+                    clearInterval(id);
+                    return 100;
                 }
                 return percent + 15
             });
         }, 1000);
     }, []);
+
+    useEffect(() => {
+        if (percent === 100) {
+            props.onStatusChange?.('success');
+        }
+    }, [percent]);
 
     return (
         <div className="content-container">

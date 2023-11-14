@@ -3688,7 +3688,7 @@ nz-breadcrumb-item:last-child .ant-breadcrumb-separator {
     content: ""
 }
 
-.ant-btn-dangerous.ant-btn-primary:hover,.ant-btn-dangerous.ant-btn-primary:focus {
+.ant-btn-dangerous.ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover,.ant-btn-dangerous.ant-btn-primary:not(:disabled):not(.ant-btn-disabled):focus {
     color: #fff;
     border-color: #e65b4e;
     background: #e65b4e
@@ -5385,7 +5385,7 @@ nz-carousel {
     line-height: 1;
     white-space: nowrap;
     outline: none;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .ant-checkbox-wrapper:hover .ant-checkbox-inner,.ant-checkbox:hover .ant-checkbox-inner,.ant-checkbox-input:focus+.ant-checkbox-inner {
@@ -5410,7 +5410,7 @@ nz-carousel {
     visibility: visible
 }
 
-.ant-checkbox-inner {
+.ant-checkbox .ant-checkbox-inner {
     position: relative;
     top: 0;
     left: 0;
@@ -5425,7 +5425,7 @@ nz-carousel {
     transition: all .3s
 }
 
-.ant-checkbox-inner:after {
+.ant-checkbox .ant-checkbox-inner:after {
     position: absolute;
     top: 50%;
     left: 21.5%;
@@ -5533,7 +5533,7 @@ nz-carousel {
 }
 
 .ant-checkbox-wrapper+.ant-checkbox-wrapper {
-    margin-left: 8px
+    /* margin-left: 8px */
 }
 
 .ant-checkbox+span {
@@ -5674,6 +5674,11 @@ nz-carousel {
 
 .ant-collapse>.ant-collapse-item.ant-collapse-no-arrow>.ant-collapse-header {
     padding-left: 12px
+}
+
+.ant-collapse-small >.ant-collapse-item >.ant-collapse-header {
+    padding: 8px 12px;
+    padding-inline-start: 8px;
 }
 
 .ant-collapse-icon-position-right>.ant-collapse-item>.ant-collapse-header {
@@ -16782,7 +16787,7 @@ nz-header {
 }
 
 .ant-form-item-has-feedback .ant-input-affix-wrapper .ant-input-suffix {
-    padding-right: 18px
+    /* padding-right: 18px */
 }
 
 .ant-form-item-has-feedback .ant-input-search:not(.ant-input-search-enter-button) .ant-input-suffix {
@@ -19012,7 +19017,11 @@ textarea.ant-mention-wrapper .ant-mention-editor {
     position: relative;
     top: 1px;
     margin-right: 8px;
-    font-size: 16px
+    font-size: 16px;
+}
+
+.ant-message .ant-message-notice .ant-message-custom-content>.anticon {
+    vertical-align: baseline;
 }
 
 .ant-message-notice.ant-move-up-leave.ant-move-up-leave-active {
@@ -19260,7 +19269,7 @@ textarea.ant-mention-wrapper .ant-mention-editor {
     font-size: 22px
 }
 
-.ant-modal-confirm-body>.anticon+.ant-modal-confirm-title+.ant-modal-confirm-content {
+.ant-modal-confirm-body>.ant-modal-confirm-paragraph .ant-modal-confirm-title+.ant-modal-confirm-content {
     margin-left: 38px
 }
 
@@ -19290,14 +19299,14 @@ textarea.ant-mention-wrapper .ant-mention-editor {
     color: #1e8e3e
 }
 
-/* .ant-modal-wrap-rtl {
+.ant-modal-wrap-rtl {
     direction: rtl
 }
 
 .ant-modal-wrap-rtl .ant-modal-close {
     right: initial;
     left: 0
-} */
+}
 
 .ant-modal-wrap-rtl .ant-modal-footer {
     direction: rtl;
@@ -24570,11 +24579,11 @@ tr.ant-table-expanded-row .ant-descriptions-view table {
     border-top-right-radius: 0
 }
 
-.ant-table-container table>thead>tr:first-child th:first-child {
+.ant-table-wrapper .ant-table-container table>thead>tr:first-child th:first-child {
     border-top-left-radius: 0
 }
 
-.ant-table-container table>thead>tr:first-child th:last-child {
+.ant-table-wrapper .ant-table-container table>thead>tr:first-child th:last-child {
     border-top-right-radius: 0
 }
 
@@ -25347,7 +25356,7 @@ nz-tabset,nz-tab-nav-operation,nz-tabs-nav {
     display: block
 }
 
-.nz-tabs-dropdown.ant-dropdown .ant-dropdown-menu {
+.ant-dropdown .ant-dropdown-menu {
     max-height: 200px;
     margin: 0;
     padding: 4px 0;
@@ -25362,8 +25371,7 @@ nz-tabset,nz-tab-nav-operation,nz-tabs-nav {
     box-shadow: 0 3px 6px -4px rgba(0,0,0,.12),0 6px 16px rgba(0,0,0,.08),0 9px 28px 8px rgba(0,0,0,.05)
 }
 
-.nz-tabs-dropdown.ant-dropdown .ant-dropdown-menu-item {
-    min-width: 120px;
+.ant-dropdown .ant-dropdown-menu .ant-dropdown-menu-item {
     margin: 0;
     padding: 5px 12px;
     overflow: hidden;
@@ -25374,20 +25382,21 @@ nz-tabset,nz-tab-nav-operation,nz-tabs-nav {
     white-space: nowrap;
     text-overflow: ellipsis;
     cursor: pointer;
-    transition: all .3s
+    transition: all .3s;
+    border-radius: 0;
 }
 
-.nz-tabs-dropdown.ant-dropdown .ant-dropdown-menu-item:hover {
+.ant-dropdown .ant-dropdown-menu-item:hover {
     background: #ebebeb
 }
 
-.nz-tabs-dropdown.ant-dropdown .ant-dropdown-menu-item-disabled,.nz-tabs-dropdown.ant-dropdown .ant-dropdown-menu-item-disabled:hover {
+.ant-dropdown .ant-dropdown-menu-item-disabled,.ant-dropdown .ant-dropdown-menu-item-disabled:hover {
     color: rgba(0,0,0,.25);
     background: transparent;
     cursor: not-allowed
 }
 
-.nz-tabs-dropdown.ant-dropdown .ant-dropdown-menu-item-disabled a,.nz-tabs-dropdown.ant-dropdown .ant-dropdown-menu-item-disabled:hover a {
+.ant-dropdown .ant-dropdown-menu-item-disabled a,.ant-dropdown .ant-dropdown-menu-item-disabled:hover a {
     pointer-events: none;
     color: rgba(0,0,0,.25)
 }
@@ -29841,6 +29850,10 @@ nz-space-item {
 .ant-spin.ant-spin-show-text .ant-spin-text {
     display: block
 }
+.ant-float-btn-primary .ant-float-btn-body {
+    background-color: #0070cc;
+    transition: background-color 0.2s;
+}
 
 @media all and (-ms-high-contrast: none),(-ms-high-contrast: active) {
     .ant-spin-blur {
@@ -30948,6 +30961,12 @@ button[data-spm-click="gostr=/aliyun;locaid=dproduct-current"]+button {
     display: none
 }
 
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 ::-webkit-scrollbar {
     border-radius: 0
 }
@@ -31324,4 +31343,73 @@ perspective-date-column-style,perspective-datetime-column-style,perspective-numb
 .contexify_willLeave-slide {
   transform-origin: top center;
   animation: contexify_slideOut 0.3s;
+}
+
+.react-resizable .react-resizable-handle {
+    position: absolute;
+    z-index: 1;
+}
+
+.react-resizable .react-resizable-handle.react-resizable-handle-e {
+    height: 100%;
+    width: 11px;
+    bottom: 0;
+    right: -6px;
+    cursor: e-resize;
+}
+
+.react-resizable .react-resizable-handle.react-resizable-handle-w {
+    height: 100%;
+    width: 11px;
+    bottom: 0;
+    left: -6px;
+    cursor: w-resize;
+}
+
+.react-resizable .react-resizable-handle.react-resizable-handle-s {
+    height: 11px;
+    width: 100%;
+    bottom: -6px;
+    left: 0;
+    cursor: s-resize;
+}
+
+.react-resizable .react-resizable-handle.react-resizable-handle-n {
+    height: 11px;
+    width: 100%;
+    top: -6px;
+    left: 0;
+    cursor: n-resize;
+}
+
+.react-resizable .react-resizable-handle.react-resizable-handle-sw {
+    bottom: 0;
+    left: 0;
+    cursor: sw-resize;
+    height: 10px;
+    width: 10px;
+}
+
+.react-resizable .react-resizable-handle.react-resizable-handle-nw {
+    top: 0;
+    left: 0;
+    cursor: nw-resize;
+    height: 10px;
+    width: 10px;
+}
+
+.react-resizable .react-resizable-handle.react-resizable-handle-se {
+    bottom: 0;
+    right: 0;
+    cursor: se-resize;
+    height: 10px;
+    width: 10px;
+}
+
+.react-resizable .react-resizable-handle.react-resizable-handle-ne {
+    top: 0;
+    right: 0;
+    cursor: ne-resize;
+    height: 10px;
+    width: 10px;
 }

@@ -1,0 +1,33 @@
+.development-state-layout
+    padding: 16px
+    height: 100%
+    .ant-menu
+        flex: 0 0 39px
+        border: 1px solid #ebebeb
+        line-height: 37px
+        transition: none
+    .detail-container
+        height: calc( 100% - 38px )
+        overflow: auto
+        padding: 16px
+        border: 1px solid #ebebeb
+        border-top: none
+        .ant-descriptions
+            .ant-descriptions-header
+                margin-bottom: 1em
+                .ant-descriptions-title
+                    font-size: 14px
+                    span
+                        margin-left: 8px
+                        color: #666
+                        font-weight: 400
+                        font-size: 12px
+            .ant-descriptions-item-content
+                display: block
+            .ant-descriptions-row
+                display: flex
+                .ant-descriptions-item,.ant-descriptions-item-label,.ant-descriptions-item-content
+                    flex: 1
+            tbody
+                th:last-of-type
+                    border-right: 0

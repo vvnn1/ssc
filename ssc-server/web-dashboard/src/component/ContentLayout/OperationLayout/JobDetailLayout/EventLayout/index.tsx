@@ -1,54 +1,28 @@
 import { Divider, Dropdown, Input, MenuProps, Select, Space, Table } from 'antd';
 import './index.sass'
 import { DownOutlined, SearchOutlined } from '../../../../Icon';
+import DetailModal from '../DetailModal';
+import { useState } from 'react';
+import { changeModalOpen } from '../../../../../util';
 
-const Operator = () => {
+const EventLayout = () => {
+    const [detailModalOpen, setDetailModalOpen] = useState<boolean>(false);
+
     const items: MenuProps['items'] = [
         {
             key: '1',
-            label: <span style={{color: '#0064c8'}}>作业详情</span>
+            label: <span style={{ color: '#0064c8' }}>作业详情</span>,
+            onClick: changeModalOpen(true, setDetailModalOpen)
         },
         {
             key: '2',
-            label: <span style={{color: '#0064c8'}}>搜索该作业事件</span>
+            label: <span style={{ color: '#0064c8' }}>搜索该作业事件</span>
         }
     ];
 
     return (
-        <>
-            <a>复制信息</a><Divider type="vertical" />
-            <Dropdown
-                menu={{ items }}
-            >
-                <a>更多<DownOutlined /></a>
-            </Dropdown>
-        </>
-    )
-};
-
-
-const EventLayout = () => {
-    return (
         <div className="development-event-layout">
-            <Space.Compact className="search">
-                <Select
-                    popupMatchSelectWidth={80}
-                    placeholder="搜索"
-                    allowClear
-                    options={[
-                        {
-                            label: '自动调优',
-                            value: 'auto_adjust'
-                        },
-                        {
-                            label: '其他',
-                            value: 'other'
-                        }
-                    ]}
-
-                />
-                <Input suffix={<SearchOutlined />} placeholder='输入信息内容或作业 ID' />
-            </Space.Compact>
+            <Input className="search-input" suffix={<SearchOutlined />} placeholder='输入信息内容或作业 ID' />
 
             <Table
                 size='small'
@@ -68,7 +42,16 @@ const EventLayout = () => {
                     {
                         title: '操作',
                         className: 'operator',
-                        render: () => <Operator />
+                        render: () => (
+                            <>
+                                <a>复制信息</a><Divider type="vertical" />
+                                <Dropdown
+                                    menu={{ items }}
+                                >
+                                    <a>更多<DownOutlined /></a>
+                                </Dropdown>
+                            </>
+                        )
                     }
                 ]}
                 dataSource={[
@@ -84,6 +67,7 @@ const EventLayout = () => {
                     }
                 ]}
             />
+            <DetailModal open={detailModalOpen} onCancel={changeModalOpen(false, setDetailModalOpen)} />
         </div>
     )
 };

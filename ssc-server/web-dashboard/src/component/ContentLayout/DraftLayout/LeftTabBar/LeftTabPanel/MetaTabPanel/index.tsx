@@ -1,10 +1,10 @@
-import { Button, Input, Tooltip } from "antd"
+import { Button, Input, Tooltip, TreeProps } from "antd"
 import { AimOutlined, DeleteOutlined, ReloadOutlined, SearchOutlined } from "../../../../../Icon"
 import './index.sass'
 import MetaTree from "./MetaTree"
 import TableDescriptionPanel from "./TableDescriptionPanel"
 import Resizable from "../../../../../Resizable"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 export default () => {
     const [fieldPanel, setFieldPanel] = useState<React.ReactNode>();
@@ -14,9 +14,11 @@ export default () => {
         }
     }
 
-    useEffect(() => {
-        changeFieldPanel(true)();
-    }, []);
+    const onDoubleClick: TreeProps['onDoubleClick'] = (_, node) => {
+        if(node.isLeaf){
+            setFieldPanel(<TableDescriptionPanel onCancel={changeFieldPanel(false)} />);
+        }
+    }
 
     return (
         <div className="mata-tab-panel tab-panel">
@@ -40,7 +42,9 @@ export default () => {
                 <Input suffix={<SearchOutlined />} placeholder="搜索名称…" />
             </div>
             <div className="panel meta-list panel-ttb">
-                <MetaTree />
+                <MetaTree 
+                    onDoubleClick={onDoubleClick}
+                />
             </div>
             {
                 fieldPanel

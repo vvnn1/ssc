@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ExclamationCircleOutlined, ProfileOutlined } from "../../../../Icon";
 import './index.sass';
 import DebugResultPanel from "./DebugResultPanel";
@@ -11,26 +11,35 @@ interface BottomTabBarProps {
 
 const BottomTabBar = (props: BottomTabBarProps) => {
 
-    const [activeLabel, setActiveLabel] = useState<string>();
+    const [activeLabel, setActiveLabel] = useState<'debug' | 'problem' | undefined>();
 
-    const changeActiveLabel = (label: string | undefined, activePanel?: React.ReactNode) => {
+    useEffect(() => {
+        const handle:EventListenerOrEventListenerObject = (e:any) => {
+            setActiveLabel(e.detail?.label);
+        } 
+        document.addEventListener('bottom-label-change', handle);
+        return () => document.removeEventListener('bottom-label-change', handle);
+    }, []);
+
+    useEffect(() => {
+        if (activeLabel === 'debug') {
+            props.onPanelChange(<DebugResultPanel onMinusClick={changeActiveLabel(activeLabel)} />);
+        } else if (activeLabel === 'problem') {
+            props.onPanelChange(<ProblemPanel onMinusClick={changeActiveLabel(activeLabel)} />);
+        } else {
+            props.onPanelChange(undefined);
+        }
+    }, [activeLabel]);
+
+    const changeActiveLabel = (label: 'debug' | 'problem' | undefined) => {
         return () => {
-            if (activeLabel === label) {
-                setActiveLabel(undefined);
-                props.onPanelChange(undefined);
-            } else {
-                setActiveLabel(label);
-                props.onPanelChange(activePanel);
-            }
+            setActiveLabel(activeLabel => activeLabel === label ? undefined : label);
         }
     }
 
-    const panel1 = <DebugResultPanel onMinusClick={changeActiveLabel(activeLabel)} />;
-    const panel2 = <ProblemPanel onMinusClick={changeActiveLabel(activeLabel)} />;
-
     return (
         <div className="tabs-bar-bottom">
-            <div className={`tabs-bar-bottom-label run ${activeLabel === 'run' ? 'tabs-bar-tab-label-activated' : ''}`} onClick={changeActiveLabel('run', panel1)}>
+            <div className={`tabs-bar-bottom-label debug ${activeLabel === 'debug' ? 'tabs-bar-tab-label-activated' : ''}`} onClick={changeActiveLabel('debug')}>
                 <span className="tabs-bar-tab-icon">
                     <ProfileOutlined />
                 </span>
@@ -38,7 +47,7 @@ const BottomTabBar = (props: BottomTabBarProps) => {
                     结果
                 </span>
             </div>
-            <div className={`tabs-bar-bottom-label problem ${activeLabel === 'problem' ? 'tabs-bar-tab-label-activated' : ''}`} onClick={changeActiveLabel('problem', panel2)}>
+            <div className={`tabs-bar-bottom-label problem ${activeLabel === 'problem' ? 'tabs-bar-tab-label-activated' : ''}`} onClick={changeActiveLabel('problem')}>
                 <span className="tabs-bar-tab-icon">
                     <ExclamationCircleOutlined />
                 </span>
