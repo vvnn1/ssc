@@ -1,7 +1,7 @@
 import ConnectorCard, { CardProps } from "../Card";
-import { ClickHouseOutlined, DataHubOutlined, DatagenOutlined, ElasticsearchOutlined, FakerOutlined, HbaseOutlined, HudiOutlined, IcebergOutlined, InfluxDBOutlined, JdbcOutlined, KafkaOutlined, MongoDBOutlined, MySqlOutlined, OssOutlined, PaimonOutlined, PostgreSqlOutlined, RedisOutlined, RocketMQOutlined, SearchOutlined, StarRocksOutlined, UploadOutlined } from '../../../Icon';
+import { ClickHouseOutlined, DataHubOutlined, DatagenOutlined, ElasticsearchOutlined, FakerOutlined, HbaseOutlined, HudiOutlined, IcebergOutlined, InfluxDBOutlined, JdbcOutlined, KafkaOutlined, MongoDBOutlined, MySqlOutlined, OssOutlined, PaimonOutlined, PostgreSqlOutlined, RedisOutlined, RocketMQOutlined, SearchOutlined, StarRocksOutlined } from "../../../Icon";
 import { Button, Empty, Input, List, Select, Space, Tabs, TabsProps } from "antd";
-import './index.sass'
+import "./index.sass";
 import CustomConnectorModal from "./CustomConnectorModal";
 import { useState } from "react";
 import EngineSelect from "../../../Select/EngineSelect";
@@ -102,12 +102,12 @@ const connectorItems: CardProps[] = [
         desc: "StarRocks",
         type: ["结果表", "维表"]
     },
-]
+];
 
-const tabItems: TabsProps['items'] = [
+const tabItems: TabsProps["items"] = [
     {
-        key: '1',
-        label: `内置连接器`,
+        key: "1",
+        label: "内置连接器",
         children: (
             <div className="connector-list-wrapper">
                 <List
@@ -128,8 +128,8 @@ const tabItems: TabsProps['items'] = [
         ),
     },
     {
-        key: '2',
-        label: `自定义连接器`,
+        key: "2",
+        label: "自定义连接器",
         children: <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />,
     },
 ];
@@ -141,8 +141,8 @@ const ConnectorLayout = () => {
     const changeModalOpen = (open: boolean) => {
         return () => {
             setModalOpen(open);
-        }
-    }
+        };
+    };
 
     return (
         <div className="connector-page">
@@ -190,7 +190,7 @@ const ConnectorLayout = () => {
 
             <CustomConnectorModal open={modalOpen} onCancel={changeModalOpen(false)} />
         </div>
-    )
+    );
 };
 
 export default ConnectorLayout;

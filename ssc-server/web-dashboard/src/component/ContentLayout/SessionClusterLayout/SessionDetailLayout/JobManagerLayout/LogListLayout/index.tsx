@@ -1,9 +1,9 @@
 import { Table } from "antd";
-import './index.sass'
+import "./index.sass";
 import MyLink from "../../../../../MyLink";
 
 type TableProps = Parameters<typeof Table>[0];
-type ColumnTypes = Exclude<TableProps['columns'], undefined>;
+type ColumnTypes = Exclude<TableProps["columns"], undefined>;
 
 const columns: ColumnTypes = [
     {
@@ -24,7 +24,7 @@ const columns: ColumnTypes = [
         dataIndex: "size",
         sorter: () => 1
     }
-]
+];
 
 const LogListLayout = () => {
     return (
@@ -50,7 +50,7 @@ const LogListLayout = () => {
                 rowKey='name'
             />
         </div>
-    )
+    );
 };
 
 

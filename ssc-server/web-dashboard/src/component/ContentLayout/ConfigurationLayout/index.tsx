@@ -1,19 +1,19 @@
-import { MenuProps } from "antd"
-import './index.sass'
+import { MenuProps } from "antd";
+import "./index.sass";
 import WorkSettingLayout from "./WorkSettingLayout";
 import AlarmTemplateLayout from "./AlarmTemplateLayout";
 import MyLink from "../../MyLink";
 import { Route, Routes } from "react-router-dom";
 import TabMenu from "../../TabMenu";
 
-const menuItems: MenuProps['items'] = [
+const menuItems: MenuProps["items"] = [
     {
         label: <MyLink to="deployment-defaults">作业默认配置</MyLink>,
-        key: 'deployment-defaults',
+        key: "deployment-defaults",
     },
     {
         label: <MyLink to="alarm-rules">告警规则模板</MyLink>,
-        key: 'alarm-rules',
+        key: "alarm-rules",
     },
 ];
 
@@ -34,7 +34,7 @@ const ConfigurationLayout = () => {
                 </div>
             </div>
         </div>
-    )
+    );
 };
 
 export default ConfigurationLayout;

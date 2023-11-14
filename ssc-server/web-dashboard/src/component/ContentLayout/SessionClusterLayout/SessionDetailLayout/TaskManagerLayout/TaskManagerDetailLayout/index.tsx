@@ -1,6 +1,6 @@
 import { Breadcrumb, Descriptions, DescriptionsProps, Menu, MenuProps } from "antd";
 import { DownOutlined, LeftSquareFilled, UpOutlined } from "../../../../../Icon";
-import './index.sass'
+import "./index.sass";
 import MyLink from "../../../../../MyLink";
 import MetricLayout from "./MetricLayout";
 import { useEffect, useState } from "react";
@@ -12,72 +12,72 @@ import LogListLayout from "./LogListLayout";
 import LogDetailLayout from "./LogListLayout/LogDetailLayout";
 
 
-const items: DescriptionsProps['items'] = [
+const items: DescriptionsProps["items"] = [
     {
-        key: '1',
-        label: 'Path',
-        children: 'akka.tcp://flink@192.168.12.8:36357/user/rpc/taskmanager_0',
+        key: "1",
+        label: "Path",
+        children: "akka.tcp://flink@192.168.12.8:36357/user/rpc/taskmanager_0",
         span: 2
     },
     {
-        key: '2',
-        label: 'Free/All Slots',
-        children: '1 / 1',
+        key: "2",
+        label: "Free/All Slots",
+        children: "1 / 1",
     },
     {
-        key: '3',
-        label: 'Last Heartbeat',
-        children: '09-12 16:39:19',
+        key: "3",
+        label: "Last Heartbeat",
+        children: "09-12 16:39:19",
     },
     {
-        key: '4',
-        label: 'Data Port',
-        children: '44535',
+        key: "4",
+        label: "Data Port",
+        children: "44535",
     },
     {
-        key: '5',
-        label: 'CPU Cores',
-        children: '2',
+        key: "5",
+        label: "CPU Cores",
+        children: "2",
     },
     {
-        key: '6',
-        label: 'Physical Memory',
-        children: '8.25 GB',
+        key: "6",
+        label: "Physical Memory",
+        children: "8.25 GB",
     },
     {
-        key: '7',
-        label: 'JVM Heap Size',
-        children: '3.34 GB',
+        key: "7",
+        label: "JVM Heap Size",
+        children: "3.34 GB",
     },
     {
-        key: '8',
-        label: 'Flink Managed Memory',
-        children: '2.78 GB',
+        key: "8",
+        label: "Flink Managed Memory",
+        children: "2.78 GB",
     },
-]
+];
 
-const items2: MenuProps['items'] = [
+const items2: MenuProps["items"] = [
     {
         label: <MyLink to='metrics'>Metrics</MyLink>,
-        key: 'metrics',
+        key: "metrics",
     },
     {
         label: <MyLink to='logs'>日志</MyLink>,
-        key: 'logs',
+        key: "logs",
 
     },
     {
         label: <MyLink to='thread-dump'>Thread Dump</MyLink>,
-        key: 'thread-dump',
+        key: "thread-dump",
     },
 
     {
         label: <MyLink to='stdout'>Stdout</MyLink>,
-        key: 'stdout',
+        key: "stdout",
     },
     {
         label: <MyLink to='log-list'>日志列表</MyLink>,
-        key: 'log-list'
+        key: "log-list"
     }
 ];
 
@@ -86,7 +86,7 @@ const TaskManagerDetailLayout = () => {
 
     const [selectedKeys, setSelectKeys] = useState<string[]>([]);
     const [showDescription, setShowDescription] = useState<boolean>(true);
-    let { pathname } = useLocation();
+    const { pathname } = useLocation();
 
     useEffect(() => {
         const defaultSelectedKey: string[] = [];
@@ -98,13 +98,13 @@ const TaskManagerDetailLayout = () => {
         setSelectKeys(defaultSelectedKey);
     }, [pathname]);
 
-    const onClick: MenuProps['onClick'] = (e) => {
+    const onClick: MenuProps["onClick"] = (e) => {
         setSelectKeys([e.key]);
     };
 
     const switchDescription = () => {
         setShowDescription(!showDescription);
-    }
+    };
 
 
     return (
@@ -146,7 +146,7 @@ const TaskManagerDetailLayout = () => {
                 </div>
             </div>
         </div>
-    )
+    );
 };
 
 export default TaskManagerDetailLayout;

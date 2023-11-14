@@ -1,11 +1,10 @@
 import { Col, Modal, ModalProps, Row } from "antd";
-import './index.sass'
+import "./index.sass";
 import { MinusCircleOutlined, PlusCircleOutlined } from "../../../Icon";
-import { CollisionDetection, DndContext, DragEndEvent, MeasuringStrategy, PointerSensor, UniqueIdentifier, useDraggable, useDroppable, useSensor, useSensors } from "@dnd-kit/core";
-import { AnimateLayoutChanges, SortableContext, arrayMove, defaultAnimateLayoutChanges, horizontalListSortingStrategy, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
-import { useCallback, useRef, useState } from "react";
-import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
-import { CSS } from '@dnd-kit/utilities';
+import { DndContext, DragEndEvent, MeasuringStrategy, PointerSensor, UniqueIdentifier, useSensor, useSensors } from "@dnd-kit/core";
+import { SortableContext, arrayMove, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import { useState } from "react";
+import { CSS } from "@dnd-kit/utilities";
 
 
 interface DroppableProps {
@@ -15,7 +14,7 @@ interface DroppableProps {
 }
 
 const Droppable = (props: DroppableProps) => {
-    const { isOver, setNodeRef } = useSortable({
+    const { /* isOver,  */setNodeRef } = useSortable({
         id: props.id,
     });
     const style: React.CSSProperties = {
@@ -27,7 +26,7 @@ const Droppable = (props: DroppableProps) => {
             {props.children}
         </div>
     );
-}
+};
 
 interface DraggableProps {
     children: React.ReactNode;
@@ -42,22 +41,17 @@ const Draggable = (props: DraggableProps) => {
 
     const style: React.CSSProperties = {
         transform: CSS.Transform.toString(transform && { ...transform, scaleY: 1 }),
-        cursor: 'move',
+        cursor: "move",
         transition,
-        ...(isDragging ? { position: 'relative', zIndex: 9999 } : {}),
+        ...(isDragging ? { position: "relative", zIndex: 9999 } : {}),
     };
 
     return (
         <div className={props.className} ref={setNodeRef} style={style} {...listeners} {...attributes}>
             {props.children}
         </div>
-    )
-}
-
-interface Column {
-    id: string;
-    label: string;
-}
+    );
+};
 
 interface ColSet {
     [K: string]: {
@@ -70,14 +64,14 @@ const SettingModal = (props: ModalProps) => {
     const [colSets, setColSets] = useState<ColSet>(
         {
             showList: {
-                healthSorce: '健康分',
-                businessDelay: '业务延时',
-                cpu: 'CPU',
-                memory: '内存',
-                editor: '修改人',
+                healthSorce: "健康分",
+                businessDelay: "业务延时",
+                cpu: "CPU",
+                memory: "内存",
+                editor: "修改人",
             },
             hiddenList: {
-                updateTime: '修改时间'
+                updateTime: "修改时间"
             }
         },
     );
@@ -104,7 +98,7 @@ const SettingModal = (props: ModalProps) => {
             result[keyArr[i]] = obj[keyArr[i]];
         }
         return result;
-    }
+    };
 
     const onDragEnd = ({ active, over }: DragEndEvent) => {
         const activeId = active.id;
@@ -114,14 +108,12 @@ const SettingModal = (props: ModalProps) => {
         }
 
 
-        const activeContainer = findContainer(activeId)!;
+        const activeContainer = findContainer(activeId);
         const overContainer = findContainer(overId);
 
         if (!overContainer || !activeContainer) {
             return;
         }
-
-        console.log(activeId, overId);
 
         setColSets(sets => {
             const activeCols = sets[activeContainer];
@@ -180,8 +172,8 @@ const SettingModal = (props: ModalProps) => {
     const onMinusClick = (curKey: string) => {
         return () => {
             setColSets(sets => {
-                const showKeyAry = Object.keys(sets['showList']);
-                const hiddenKeyAry = Object.keys(sets['hiddenList']);
+                const showKeyAry = Object.keys(sets["showList"]);
+                const hiddenKeyAry = Object.keys(sets["hiddenList"]);
 
                 const newShowKeyArr = showKeyAry.filter(key => key !== curKey);
                 const newHiddenKeyArr = [
@@ -190,24 +182,24 @@ const SettingModal = (props: ModalProps) => {
                 ];
 
                 return {
-                    showList: cloneByKey(sets['showList'], newShowKeyArr),
+                    showList: cloneByKey(sets["showList"], newShowKeyArr),
                     hiddenList: cloneByKey(
                         {
-                            ...sets['showList'],
-                            ...sets['hiddenList']
+                            ...sets["showList"],
+                            ...sets["hiddenList"]
                         },
                         newHiddenKeyArr
                     )
-                }
+                };
             });
-        }
+        };
     };
 
     const onPlusClick = (curKey: string) => {
         return () => {
             setColSets(sets => {
-                const showKeyAry = Object.keys(sets['showList']);
-                const hiddenKeyAry = Object.keys(sets['hiddenList']);
+                const showKeyAry = Object.keys(sets["showList"]);
+                const hiddenKeyAry = Object.keys(sets["hiddenList"]);
 
                 const newShowKeyArr = [
                     ...showKeyAry,
@@ -218,16 +210,16 @@ const SettingModal = (props: ModalProps) => {
                 return {
                     showList: cloneByKey(
                         {
-                            ...sets['showList'],
-                            ...sets['hiddenList']
+                            ...sets["showList"],
+                            ...sets["hiddenList"]
                         },
                         newShowKeyArr
                     ),
-                    hiddenList: cloneByKey(sets['hiddenList'], newHiddenKeyArr)
-                }
+                    hiddenList: cloneByKey(sets["hiddenList"], newHiddenKeyArr)
+                };
             });
-        }
-    }
+        };
+    };
 
     return (
         <Modal
@@ -253,12 +245,12 @@ const SettingModal = (props: ModalProps) => {
                             <div className="example-box"> 名称 </div>
                             <div className="example-box"> 状态 </div>
                             <SortableContext
-                                items={Object.keys(colSets['showList'])}
+                                items={Object.keys(colSets["showList"])}
                                 strategy={verticalListSortingStrategy}
                             >
                                 <Droppable className="example-list" key="showList" id={"showList"} >
                                     {
-                                        Object.keys(colSets['showList']).map(item => <Draggable key={item} id={item} className="example-box">{colSets['showList'][item]}<MinusCircleOutlined onClick={onMinusClick(item)} /></Draggable>)
+                                        Object.keys(colSets["showList"]).map(item => <Draggable key={item} id={item} className="example-box">{colSets["showList"][item]}<MinusCircleOutlined onClick={onMinusClick(item)} /></Draggable>)
                                     }
                                 </Droppable>
                             </SortableContext>
@@ -269,12 +261,12 @@ const SettingModal = (props: ModalProps) => {
                         <div className="example-container">
                             <p>未显示</p>
                             <SortableContext
-                                items={Object.keys(colSets['hiddenList'])}
+                                items={Object.keys(colSets["hiddenList"])}
                                 strategy={verticalListSortingStrategy}
                             >
                                 <Droppable className="example-list" key="hiddenList" id={"hiddenList"}>
                                     {
-                                        Object.keys(colSets['hiddenList']).map(item => <Draggable key={item} id={item} className="example-box">{colSets['hiddenList'][item]}<PlusCircleOutlined onClick={onPlusClick(item)} /></Draggable>)
+                                        Object.keys(colSets["hiddenList"]).map(item => <Draggable key={item} id={item} className="example-box">{colSets["hiddenList"][item]}<PlusCircleOutlined onClick={onPlusClick(item)} /></Draggable>)
                                     }
                                 </Droppable>
                             </SortableContext>
@@ -286,7 +278,7 @@ const SettingModal = (props: ModalProps) => {
             </DndContext>
 
         </Modal>
-    )
+    );
 };
 
 export default SettingModal;

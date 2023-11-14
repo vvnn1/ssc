@@ -1,6 +1,6 @@
 import { Key, useState } from "react";
 import { FloderClosedColorOutlined, FloderOpenColorOutlined, StreamDraftOutlined } from "../../../../../../Icon";
-import './index.sass'
+import "./index.sass";
 import TreeTitle from "./TreeTitle";
 import { Item, Menu, Separator, useContextMenu } from "react-contexify";
 import CreateDraftModal from "../../../../ToolBar/CreateDraftModal";
@@ -9,28 +9,28 @@ import { useNavigate } from "react-router-dom";
 
 const demoData: TreeDataNode[] = [
     {
-        title: '作业草稿',
-        key: '0',
+        title: "作业草稿",
+        key: "0",
         children: [
             {
-                title: '母婴订单实时查询',
-                key: '0-0',
+                title: "母婴订单实时查询",
+                key: "0-0",
                 isLeaf: false,
                 switcherIcon: (node) => (node.expanded ? <FloderOpenColorOutlined /> : <FloderClosedColorOutlined />),
                 children: [
                     {
-                        title: '实时查询',
-                        key: '2ca189d0-e96c-4389-8422-24ad910a6dc1',
+                        title: "实时查询",
+                        key: "2ca189d0-e96c-4389-8422-24ad910a6dc1",
                         isLeaf: true,
                         switcherIcon: <span className="type offline"><StreamDraftOutlined /></span>,
-                        className: 'sql'
+                        className: "sql"
                     },
                     {
-                        title: '实时大屏',
-                        key: '96b2af76-27a3-46f2-a1c9-b7a7e7df73d4',
+                        title: "实时大屏",
+                        key: "96b2af76-27a3-46f2-a1c9-b7a7e7df73d4",
                         isLeaf: true,
                         switcherIcon: <span className="type offline"><StreamDraftOutlined /></span>,
-                        className: 'sql'
+                        className: "sql"
                     }
                 ]
             },
@@ -58,11 +58,11 @@ const DraftTree = () => {
             if (!expandedKeys.includes(dataNode.key)) {
                 setExpandedKeys([...expandedKeys, dataNode.key]);
             }
-        }
+        };
 
         const changedCallback = () => {
             setTreeData([...treeData]);
-        }
+        };
 
         return (
             <TreeTitle
@@ -71,13 +71,13 @@ const DraftTree = () => {
                 changedCallback={changedCallback}
                 editingCallback={setEditing}
             />
-        )
+        );
     };
 
 
     const onExpand = (expandedKeys: Key[]) => {
         setExpandedKeys(expandedKeys);
-    }
+    };
 
 
     const atLastOneSelected = (keys: Key[]) => {
@@ -85,17 +85,17 @@ const DraftTree = () => {
             return;
         }
         setSelectedKeys(keys);
-    }
+    };
 
     const nodeDraggable = (node: TreeDataNode) => {
-        return node.key !== '0';
-    }
+        return node.key !== "0";
+    };
 
     const allowDrop = (p: any) => {
         return !p.dropNode.isLeaf;
-    }
+    };
 
-    const onDrop: TreeProps['onDrop'] = (info) => {
+    const onDrop: TreeProps["onDrop"] = (info) => {
         const dropKey = info.node.key;
         const dragKey = info.dragNode.key;
 
@@ -128,28 +128,28 @@ const DraftTree = () => {
         setTreeData(data);
     };
 
-    const onRightClick: TreeProps['onRightClick'] = ({ event, node }) => {
+    const onRightClick: TreeProps["onRightClick"] = ({ event, node }) => {
         if (node.isLeaf) {
             showFileMenu({ event, props:node });
         } else {
             showDirMenu({ event, props:node });
         }
-    }
+    };
 
-    const onDoubleClick: TreeProps['onDoubleClick'] = (e, node) => {
+    const onDoubleClick: TreeProps["onDoubleClick"] = (e, node) => {
         if (!node.isLeaf){
             return;
         }
         
         navigate(`${node.key}/${node.className}`);
-    }
+    };
 
 
     const changeModalOpen = (open: boolean) => {
         return () => {
             setModalOpen(open);
-        }
-    }
+        };
+    };
 
     return (
         <>
@@ -213,7 +213,7 @@ const DraftTree = () => {
 
             <CreateDraftModal open={modalOpen} onCancel={changeModalOpen(false)} />
         </>
-    )
+    );
 };
 
 export default DraftTree;

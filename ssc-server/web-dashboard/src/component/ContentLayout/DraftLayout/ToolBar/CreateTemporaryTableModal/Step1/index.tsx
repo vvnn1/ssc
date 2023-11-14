@@ -3,7 +3,7 @@ import { ClickHouseOutlined, DataHubOutlined, DatagenOutlined, ElasticsearchOutl
 import ConnectorCard, { CardProps } from "./ConnectorCard";
 import ScrollPin from "../../../../../ScrollPin";
 import { useRef, useState } from "react";
-import './index.sass';
+import "./index.sass";
 
 
 interface CardExtra {
@@ -19,7 +19,7 @@ const connectorItems: CardDetail[] = [
         icon: <MySqlOutlined />,
         desc: "云原生数据仓库 AnalyticDB MySQL 版 3.0",
         type: ["结果表", "维表"],
-        classification: 'adb3.0',
+        classification: "adb3.0",
         version: "无版本限制",
         template: 
 `CREATE TEMPORARY TABLE <your_table_name> (
@@ -597,7 +597,7 @@ WITH (
     'value.format' = '<value.format>'
 );`
     }
-]
+];
 
 interface Step1Props {
     onCardChange: (card: CardDetail) => void;
@@ -611,20 +611,20 @@ const Step1 = (props: Step1Props) => {
         return () => {
             props.onCardChange(connectorItems[index]);
             setActiveIndex(index);
-        }
-    }
+        };
+    };
 
     return (
         <div className="create-temporary-table-modal-step-1">
             <Tabs
                 items={[
                     {
-                        key: 'inner',
-                        label: '使用内置连接器连接',
+                        key: "inner",
+                        label: "使用内置连接器连接",
                     },
                     {
-                        key: 'custom',
-                        label: '使用自定义连接器连接'
+                        key: "custom",
+                        label: "使用自定义连接器连接"
                     }
                 ]}
                 tabBarExtraContent={<>没有想要的连接器? <a>前往创建连接器</a></>}
@@ -639,16 +639,16 @@ const Step1 = (props: Step1Props) => {
                             defaultValue='all'
                             options={[
                                 {
-                                    label: '全部',
-                                    value: 'all'
+                                    label: "全部",
+                                    value: "all"
                                 },
                                 {
-                                    label: '源表',
-                                    value: 'source'
+                                    label: "源表",
+                                    value: "source"
                                 },
                                 {
-                                    label: '结果表',
-                                    value: 'result'
+                                    label: "结果表",
+                                    value: "result"
                                 }
                             ]}
                         />
@@ -667,7 +667,7 @@ const Step1 = (props: Step1Props) => {
                     renderItem={(item, index) => (
                         <List.Item
                             onClick={onItemClick(index)}
-                            className={activeIndex === index ? 'active' : undefined}
+                            className={activeIndex === index ? "active" : undefined}
                         >
                             <ConnectorCard
                                 icon={item.icon}
@@ -681,7 +681,7 @@ const Step1 = (props: Step1Props) => {
                 </List>
             </div>
         </div>
-    )
+    );
 };
 
 export default Step1;

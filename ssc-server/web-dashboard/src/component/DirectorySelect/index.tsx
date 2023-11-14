@@ -1,8 +1,8 @@
-import { Input, TreeDataNode } from 'antd';
-import './index.sass'
-import DirectoryTree from './DirectoryTree';
-import { Key, useState } from 'react';
-import { FloderClosedColorOutlined, FloderOpenColorOutlined } from '../Icon';
+import { Input, TreeDataNode } from "antd";
+import "./index.sass";
+import DirectoryTree from "./DirectoryTree";
+import { Key, useState } from "react";
+import { FloderClosedColorOutlined, FloderOpenColorOutlined } from "../Icon";
 
 interface DirectorySelectProps {
     selectedKey?: Key;
@@ -11,12 +11,12 @@ interface DirectorySelectProps {
 
 const demoData: TreeDataNode =
 {
-    title: '作业草稿',
-    key: '0',
+    title: "作业草稿",
+    key: "0",
     children: [
         {
-            title: '母婴订单实时查询',
-            key: '0-0',
+            title: "母婴订单实时查询",
+            key: "0-0",
             isLeaf: false,
             switcherIcon: (node) => (node.expanded ? <FloderOpenColorOutlined /> : <FloderClosedColorOutlined />),
         },
@@ -30,7 +30,7 @@ const tracePath = (targetKey: React.Key | undefined, node: TreeDataNode, selecte
     }
 
     if (node.key === targetKey) {
-        selectedPath.push(node.title as string)
+        selectedPath.push(node.title as string);
         return;
     }
 
@@ -47,17 +47,17 @@ const tracePath = (targetKey: React.Key | undefined, node: TreeDataNode, selecte
         }
     }
     selectedPath.pop();
-}
+};
 
 const inputPath = (key: Key | undefined): string => {
     if (key) {
         const selectedPath: string[] = [];
         tracePath(key, demoData, selectedPath);
-        return selectedPath.join('/');
+        return selectedPath.join("/");
     }
 
     return "";
-}
+};
 
 const DirectorySelect = (props: DirectorySelectProps) => {
     const [selectedKey, setSelectedKey] = useState<Key | undefined>(props.selectedKey);
@@ -70,7 +70,7 @@ const DirectorySelect = (props: DirectorySelectProps) => {
         const key = keys?.[0];
         setSelectedKey(key);
         props.onChange?.(key);
-    }
+    };
 
     return (
         <div className="directory-select">
@@ -83,7 +83,7 @@ const DirectorySelect = (props: DirectorySelectProps) => {
                 />
             </div>
         </div>
-    )
+    );
 };
 
 export default DirectorySelect;

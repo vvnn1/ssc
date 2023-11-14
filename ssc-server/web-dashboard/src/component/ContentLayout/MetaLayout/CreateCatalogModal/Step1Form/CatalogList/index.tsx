@@ -1,7 +1,7 @@
 import { List } from "antd";
-import CatalogCard, { CardProps } from './CatalogCard';
-import { MouseEventHandler, useEffect, useState } from "react";
-import './index.sass'
+import CatalogCard, { CardProps } from "./CatalogCard";
+import { useEffect, useState } from "react";
+import "./index.sass";
 
 export type Card = CardProps & { nextStep: React.ReactNode };
 
@@ -20,8 +20,8 @@ const CatalogList = (props: ListProps) => {
     const onListItemClick = (index:number) => {
         return () => {
             setActiveItemIndex(index);
-        }
-    }
+        };
+    };
 
 
     return (
@@ -32,7 +32,7 @@ const CatalogList = (props: ListProps) => {
             renderItem={(item, index) => (
                 <List.Item
                     onClick={onListItemClick(index)}
-                    className={activeItemIndex === index ? 'active' : undefined}
+                    className={activeItemIndex === index ? "active" : undefined}
                 >
                     <CatalogCard
                         icon={item.icon}
@@ -43,7 +43,7 @@ const CatalogList = (props: ListProps) => {
                 </List.Item>
             )}
         />
-    )
+    );
 };
 
 

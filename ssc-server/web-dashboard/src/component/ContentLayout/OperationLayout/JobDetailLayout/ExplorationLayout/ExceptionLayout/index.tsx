@@ -1,18 +1,18 @@
-import { Button, DatePicker, Form, Input, Table, Tooltip } from 'antd';
-import MonacoEditor from '../../../../../MonacoEditor';
-import dayjs from 'dayjs';
-import './index.sass';
-import { InfoCircleOutlined, InfoOutlined } from '../../../../../Icon';
+import { Button, DatePicker, Form, Input, Table, Tooltip } from "antd";
+import MonacoEditor from "../../../../../MonacoEditor";
+import dayjs from "dayjs";
+import "./index.sass";
+import { InfoCircleOutlined } from "../../../../../Icon";
 
 const ExceptionLayout = () => {
     const renderExtraFooter = () => {
         return (
-            <div style={{ padding: '0 10px' }}>
+            <div style={{ padding: "0 10px" }}>
                 <a>最近 1 小时</a>
-                <a style={{ float: 'right' }}>最近 3 小时</a>
+                <a style={{ float: "right" }}>最近 3 小时</a>
             </div>
-        )
-    }
+        );
+    };
     return (
         <div className="job-detail-exploration-exceptions">
             <div className="card-header">
@@ -25,7 +25,7 @@ const ExceptionLayout = () => {
                             enabled: false
                         },
                         lineDecorationsWidth: 0,
-                        wordWrap: 'on',
+                        wordWrap: "on",
                     }}
                     value='没有异常信息'
                 />
@@ -52,8 +52,8 @@ const ExceptionLayout = () => {
                             renderExtraFooter={renderExtraFooter}
                             disabledDate={(current) => {
                                 return current
-                                    && (current < dayjs().subtract(7, 'day').endOf('day')
-                                        || current > dayjs().endOf('day'));
+                                    && (current < dayjs().subtract(7, "day").endOf("day")
+                                        || current > dayjs().endOf("day"));
                             }}
                         />
                     </Form.Item>
@@ -68,55 +68,55 @@ const ExceptionLayout = () => {
                     bordered
                     columns={[
                         {
-                            title: '首次发生时间'
+                            title: "首次发生时间"
                         },
                         {
-                            title: '名称',
+                            title: "名称",
                             sorter: (a, b) => a.name - b.name
                         },
                         {
-                            title: '异常类型',
+                            title: "异常类型",
                             sorter: (a, b) => a.type - b.type,
                             filters: [
                                 {
-                                    text: 'SQL_OPERATOR',
-                                    value: 'SQL_OPERATOR'
+                                    text: "SQL_OPERATOR",
+                                    value: "SQL_OPERATOR"
                                 },
                                 {
-                                    text: 'CONNECTOR',
-                                    value: 'CONNECTOR'
+                                    text: "CONNECTOR",
+                                    value: "CONNECTOR"
                                 },
                                 {
-                                    text: 'STATE',
-                                    value: 'STATE'
+                                    text: "STATE",
+                                    value: "STATE"
                                 },
                                 {
-                                    text: 'RUNTIME',
-                                    value: 'RUNTIME'
+                                    text: "RUNTIME",
+                                    value: "RUNTIME"
                                 },
                                 {
-                                    text: 'USER_CODE',
-                                    value: 'USER_CODE'
+                                    text: "USER_CODE",
+                                    value: "USER_CODE"
                                 },
                                 {
-                                    text: 'OTHER',
-                                    value: 'OTHER'
+                                    text: "OTHER",
+                                    value: "OTHER"
                                 }
                             ]
                         },
                         {
-                            title: '异常发生次数',
+                            title: "异常发生次数",
                             sorter: (a, b) => a.n - b.n
                         },
                         {
-                            title: '操作',
+                            title: "操作",
                             width: 100
                         }
                     ]}
                 />
             </div>
         </div>
-    )
+    );
 };
 
 export default ExceptionLayout;

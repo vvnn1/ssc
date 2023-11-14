@@ -1,16 +1,16 @@
-import { Checkbox, DatePicker, Form, Modal, ModalProps, Radio, RadioChangeEvent, Select, Space, Tag, Tooltip } from 'antd';
-import './index.sass'
-import { useState } from 'react';
-import { checkedChangeWrapper, radioChangeWrapper } from '../../../../util';
+import { Checkbox, DatePicker, Form, Modal, ModalProps, Radio, Select, Space, Tag, Tooltip } from "antd";
+import "./index.sass";
+import { useState } from "react";
+import { checkedChangeWrapper, radioChangeWrapper } from "../../../../util";
 
 const LaunchModal = (props: ModalProps) => {
     const [disablePicker, setDisablePicker] = useState<boolean>(true);
-    const [statusRadio, setStatusRadio] = useState<string>('noStatus');
-    const [restoreRadio, setRestoreRadio] = useState<string>('');
+    const [statusRadio, setStatusRadio] = useState<string>("noStatus");
+    const [restoreRadio, setRestoreRadio] = useState<string>("");
 
     const onCheckedChange = (checked: boolean) => {
         setDisablePicker(!checked);
-    }
+    };
 
     return (
         <Modal
@@ -34,7 +34,7 @@ const LaunchModal = (props: ModalProps) => {
                 </Form.Item>
 
                 {
-                    statusRadio === 'noStatus' ? (
+                    statusRadio === "noStatus" ? (
                         <Form.Item label={<></>} className='picker-date-form-item'>
 
                             <Checkbox onChange={checkedChangeWrapper(onCheckedChange)}>
@@ -48,7 +48,7 @@ const LaunchModal = (props: ModalProps) => {
                 }
 
                 {
-                    statusRadio === 'onStatus' ? (
+                    statusRadio === "onStatus" ? (
                         <Form.Item name="restoreFrom" label={<></>} className='restore-radio-form-item'>
                             <Radio.Group onChange={radioChangeWrapper(setRestoreRadio)}>
                                 <div className='line'>
@@ -100,7 +100,7 @@ const LaunchModal = (props: ModalProps) => {
                 }
             </Form>
         </Modal>
-    )
+    );
 };
 
 export default LaunchModal;

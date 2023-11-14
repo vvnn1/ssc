@@ -1,21 +1,21 @@
-import { MenuProps } from 'antd';
-import './index.sass'
-import { useRef } from 'react';
-import ConnectorLayout from './ConnectorLayout';
-import DataFormatLayout from './DataFormatLayout';
-import ScrollPin from '../../ScrollPin';
-import { Route, Routes } from 'react-router-dom';
-import MyLink from '../../MyLink';
-import TabMenu from '../../TabMenu';
+import { MenuProps } from "antd";
+import "./index.sass";
+import { useRef } from "react";
+import ConnectorLayout from "./ConnectorLayout";
+import DataFormatLayout from "./DataFormatLayout";
+import ScrollPin from "../../ScrollPin";
+import { Route, Routes } from "react-router-dom";
+import MyLink from "../../MyLink";
+import TabMenu from "../../TabMenu";
 
-const menuItems: MenuProps['items'] = [
+const menuItems: MenuProps["items"] = [
     {
         label: <MyLink to='connector'>连接器</MyLink>,
-        key: 'connector',
+        key: "connector",
     },
     {
         label: <MyLink to='format'>数据格式</MyLink>,
-        key: 'format',
+        key: "format",
     },
 ];
 
@@ -38,7 +38,7 @@ const DataConnectLayout = () => {
                 </div>
             </div>
         </div>
-    )
+    );
 };
 
 export default DataConnectLayout;

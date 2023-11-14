@@ -1,5 +1,5 @@
 import { Form, Input, Modal, ModalProps, Select, Space, Tooltip, Upload } from "antd";
-import { CheckOutlined, DeleteOutlined, DownloadOutlined, UploadOutlined } from "../../../Icon";
+import { DeleteOutlined, DownloadOutlined, UploadOutlined } from "../../../Icon";
 
 const EditModal = (props: ModalProps) => {
     return (
@@ -72,7 +72,7 @@ const EditModal = (props: ModalProps) => {
                 </Form.Item>
             </Form>
         </Modal>
-    )
-}
+    );
+};
 
 export default EditModal;

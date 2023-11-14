@@ -2,8 +2,8 @@ import { Input, TabsProps } from "antd";
 import { FileFilled, SearchOutlined } from "../../../../../Icon";
 import DraftList, { Card } from "../DraftList";
 import ScrollTab from "../../../../../ScrollTab";
-import './index.sass'
-import dayjs from 'dayjs';
+import "./index.sass";
+import dayjs from "dayjs";
 
 interface Template {
     desc: string;
@@ -22,7 +22,7 @@ const basicTemplateItems: CardTemplate[] = [
         templateContent:
             `--****************************************************--
 -- Author:         Write your name here
--- Created Time:   ${dayjs().format('YYYY-MM-DD HH:mm:ss')}
+-- Created Time:   ${dayjs().format("YYYY-MM-DD HH:mm:ss")}
 -- Description:    Write your description here
 -- Hints:          You can use SET statements to modify the configuration
 --****************************************************--`,
@@ -38,7 +38,7 @@ const basicTemplateItems: CardTemplate[] = [
         templateContent:
             `--****************************************************--
 -- Author:         Write your name here
--- Created Time:   ${dayjs().format('YYYY-MM-DD HH:mm:ss')}
+-- Created Time:   ${dayjs().format("YYYY-MM-DD HH:mm:ss")}
 -- Description:    Write your description here
 -- Hints:          You can use SET statements to modify the configuration
 --****************************************************--`,
@@ -99,7 +99,7 @@ CREATE TEMPORARY TABLE server_logs (
   'fields.userid.expression' =  '-',
   'fields.user_agent.expression' = '#{Internet.userAgentAny}',
   'fields.log_time.expression' =  '#{date.past ''15'',''5'',''SECONDS''}',
-  'fields.request_line.expression' = '#{regexify ''(GET|POST|PUT|PATCH){1}''} #{regexify ''(/search\.html|/login\.html|/prod\.html|cart\.html|/order\.html){1}''} #{regexify ''(HTTP/1\.1|HTTP/2|/HTTP/1\.0){1}''}',
+  'fields.request_line.expression' = '#{regexify ''(GET|POST|PUT|PATCH){1}''} #{regexify ''(/search.html|/login.html|/prod.html|cart.html|/order.html){1}''} #{regexify ''(HTTP/1.1|HTTP/2|/HTTP/1.0){1}''}',
   'fields.status_code.expression' = '#{regexify ''(200|201|204|400|401|403|301){1}''}',
   'fields.size.expression' = '#{number.numberBetween ''100'',''10000000''}'
 );
@@ -157,7 +157,7 @@ CREATE TEMPORARY TABLE server_logs (
   	'fields.userid.expression' =  '-',
   	'fields.user_agent.expression' = '#{Internet.userAgentAny}',
   	'fields.log_time.expression' =  '#{date.past ''15'',''5'',''SECONDS''}',
-  	'fields.request_line.expression' = '#{regexify ''(GET|POST|PUT|PATCH){1}''} #{regexify ''(/search\.html|/login\.html|/prod\.html|cart\.html|/order\.html){1}''} #{regexify ''(HTTP/1\.1|HTTP/2|/HTTP/1\.0){1}''}',
+  	'fields.request_line.expression' = '#{regexify ''(GET|POST|PUT|PATCH){1}''} #{regexify ''(/search.html|/login.html|/prod.html|cart.html|/order.html){1}''} #{regexify ''(HTTP/1.1|HTTP/2|/HTTP/1.0){1}''}',
   	'fields.status_code.expression' = '#{regexify ''(200|201|204|400|401|403|301){1}''}',
   	'fields.size.expression' = '#{number.numberBetween ''100'',''10000000''}'
 );
@@ -200,7 +200,7 @@ CREATE TEMPORARY TABLE server_logs (
     'fields.userid.expression' =  '-',
     'fields.user_agent.expression' = '#{Internet.userAgentAny}',
     'fields.log_time.expression' =  '#{date.past ''15'',''5'',''SECONDS''}',
-    'fields.request_line.expression' = '#{regexify ''(GET|POST|PUT|PATCH){1}''} #{regexify ''(/search\.html|/login\.html|/prod\.html|cart\.html|/order\.html){1}''} #{regexify ''(HTTP/1\.1|HTTP/2|/HTTP/1\.0){1}''}',
+    'fields.request_line.expression' = '#{regexify ''(GET|POST|PUT|PATCH){1}''} #{regexify ''(/search.html|/login.html|/prod.html|cart.html|/order.html){1}''} #{regexify ''(HTTP/1.1|HTTP/2|/HTTP/1.0){1}''}',
     'fields.status_code.expression' = '#{regexify ''(200|201|204|400|401|403|301){1}''}',
     'fields.size.expression' = '#{number.numberBetween ''100'',''10000000''}'
 );
@@ -255,7 +255,7 @@ CREATE TEMPORARY TABLE server_logs (
     'fields.userid.expression' =  '-',
     'fields.user_agent.expression' = '#{Internet.userAgentAny}',
     'fields.log_time.expression' =  '#{date.past ''15'',''5'',''SECONDS''}',
-    'fields.request_line.expression' = '#{regexify ''(GET|POST|PUT|PATCH){1}''} #{regexify ''(/search\.html|/login\.html|/prod\.html|cart\.html|/order\.html){1}''} #{regexify ''(HTTP/1\.1|HTTP/2|/HTTP/1\.0){1}''}',
+    'fields.request_line.expression' = '#{regexify ''(GET|POST|PUT|PATCH){1}''} #{regexify ''(/search.html|/login.html|/prod.html|cart.html|/order.html){1}''} #{regexify ''(HTTP/1.1|HTTP/2|/HTTP/1.0){1}''}',
     'fields.status_code.expression' = '#{regexify ''(200|201|204|400|401|403|301){1}''}',
     'fields.size.expression' = '#{number.numberBetween ''100'',''10000000''}'
 );
@@ -282,7 +282,7 @@ CREATE TEMPORARY TABLE aggregations2 (
 -- This is a shared view that will be used by both insert into statements
 CREATE TEMPORARY VIEW browsers AS  
     SELECT 
-    REGEXP_EXTRACT(user_agent,'[^\/]+') AS browser,
+    REGEXP_EXTRACT(user_agent,'[^/]+') AS browser,
     status_code,
     log_time
 FROM server_logs;
@@ -382,21 +382,21 @@ CREATE TEMPORARY TABLE server_logs (
   'fields.userid.expression' =  '-',
   'fields.user_agent.expression' = '#{Internet.userAgentAny}',
   'fields.log_time.expression' =  '#{date.past ''15'',''5'',''SECONDS''}',
-  'fields.request_line.expression' = '#{regexify ''(GET|POST|PUT|PATCH){1}''} #{regexify ''(/search\.html|/login\.html|/prod\.html|cart\.html|/order\.html){1}''} #{regexify ''(HTTP/1\.1|HTTP/2|/HTTP/1\.0){1}''}',
+  'fields.request_line.expression' = '#{regexify ''(GET|POST|PUT|PATCH){1}''} #{regexify ''(/search.html|/login.html|/prod.html|cart.html|/order.html){1}''} #{regexify ''(HTTP/1.1|HTTP/2|/HTTP/1.0){1}''}',
   'fields.status_code.expression' = '#{regexify ''(200|201|204|400|401|403|301){1}''}',
   'fields.size.expression' = '#{number.numberBetween ''100'',''10000000''}'
 );
 
 -- 采样user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A
--- 正则表达式: '[^\/]+' (匹配 '/' 之前的所有字符)
+-- 正则表达式: '[^/]+' (匹配 '/' 之前的所有字符)
 SELECT 
-  REGEXP_EXTRACT(user_agent,'[^\/]+') AS browser,
+  REGEXP_EXTRACT(user_agent,'[^/]+') AS browser,
   status_code, 
   COUNT(*) AS cnt_status
 FROM server_logs
 -- 按浏览器和状态码两个维度统计日志数量
 GROUP BY 
-  REGEXP_EXTRACT(user_agent,'[^\/]+'),
+  REGEXP_EXTRACT(user_agent,'[^/]+'),
   status_code;`,
         classification: "STREAM",
         type: "SQL"
@@ -426,7 +426,7 @@ CREATE TEMPORARY TABLE server_logs (
     'fields.client_identity.expression' =  '-',
     'fields.userid.expression' =  '-',
     'fields.log_time.expression' =  '#{date.past ''15'',''5'',''SECONDS''}',
-    'fields.request_line.expression' = '#{regexify ''(GET|POST|PUT|PATCH){1}''} #{regexify ''(/search\.html|/login\.html|/prod\.html|cart\.html|/order\.html){1}''} #{regexify ''(HTTP/1\.1|HTTP/2|/HTTP/1\.0){1}''}',
+    'fields.request_line.expression' = '#{regexify ''(GET|POST|PUT|PATCH){1}''} #{regexify ''(/search.html|/login.html|/prod.html|cart.html|/order.html){1}''} #{regexify ''(HTTP/1.1|HTTP/2|/HTTP/1.0){1}''}',
     'fields.status_code.expression' = '#{regexify ''(200|201|204|400|401|403|301){1}''}'
 );
 
@@ -545,7 +545,7 @@ CREATE TEMPORARY TABLE server_logs (
     'fields.client_identity.expression' =  '-',
     'fields.userid.expression' =  '#{regexify ''(morsapaes|knauf|sjwiesman){1}''}',
     'fields.log_time.expression' =  '#{date.past ''5'',''SECONDS''}',
-    'fields.request_line.expression' = '#{regexify ''(GET|POST|PUT|PATCH){1}''} #{regexify ''(/search\.html|/login\.html|/prod\.html|cart\.html|/order\.html){1}''} #{regexify ''(HTTP/1\.1|HTTP/2|/HTTP/1\.0){1}''}',
+    'fields.request_line.expression' = '#{regexify ''(GET|POST|PUT|PATCH){1}''} #{regexify ''(/search.html|/login.html|/prod.html|cart.html|/order.html){1}''} #{regexify ''(HTTP/1.1|HTTP/2|/HTTP/1.0){1}''}',
     'fields.status_code.expression' = '#{regexify ''(200|201|204|400|401|403|301){1}''}'
 );
 
@@ -629,7 +629,7 @@ CREATE TEMPORARY TABLE server_logs (
     'fields.client_ip.expression' = '#{Internet.publicIpV4Address}',
     'fields.client_identity.expression' =  '-',
     'fields.userid.expression' =  '-',
-    'fields.request_line.expression' = '#{regexify ''(GET|POST|PUT|PATCH){1}''} #{regexify ''(/search\.html|/login\.html|/prod\.html|cart\.html|/order\.html){1}''} #{regexify ''(HTTP/1\.1|HTTP/2|/HTTP/1\.0){1}''}',
+    'fields.request_line.expression' = '#{regexify ''(GET|POST|PUT|PATCH){1}''} #{regexify ''(/search.html|/login.html|/prod.html|cart.html|/order.html){1}''} #{regexify ''(HTTP/1.1|HTTP/2|/HTTP/1.0){1}''}',
     'fields.status_code.expression' = '#{regexify ''(200|201|204|400|401|403|301){1}''}',
     'fields.size.expression' = '#{number.numberBetween ''100'',''10000000''}'
 );
@@ -1085,19 +1085,19 @@ const Step1 = (props: Step1Props) => {
             return {
                 ...item,
                 onClick: () => props.onTemplateSelected(item)
-            }
-        })
-    }
+            };
+        });
+    };
 
-    const items: TabsProps['items'] = [
+    const items: TabsProps["items"] = [
         {
-            key: '1',
-            label: `SQL 基础模板`,
+            key: "1",
+            label: "SQL 基础模板",
             children: <DraftList items={wrapSelectedClick(basicTemplateItems)} />,
         },
         {
-            key: '2',
-            label: `数据同步模板`,
+            key: "2",
+            label: "数据同步模板",
             children: <DraftList items={synTemplateItems} />
         },
     ];
@@ -1109,7 +1109,7 @@ const Step1 = (props: Step1Props) => {
             items={items}
             tabBarExtraContent={<Input placeholder="输入搜索内容" suffix={<SearchOutlined />} />}
         />
-    )
+    );
 };
 
 export default Step1;

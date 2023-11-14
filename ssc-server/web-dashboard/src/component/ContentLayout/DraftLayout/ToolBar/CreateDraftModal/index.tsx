@@ -1,5 +1,5 @@
 import { Button, Form, Modal, ModalProps } from "antd";
-import './index.sass'
+import "./index.sass";
 import { useState } from "react";
 import Step2 from "./Step2";
 import Step1, { CardTemplate } from "./Step1";
@@ -13,18 +13,18 @@ const CreateDraftModal = (props: ModalProps) => {
         if (currentStep < 1) {
             setCurrentStep(currentStep + 1);
         }
-    }
+    };
 
     const prevClick = () => {
         if (currentStep > 0) {
             setCurrentStep(currentStep - 1);
         }
-    }
+    };
 
     const onConfirm = (e: React.MouseEvent<HTMLButtonElement>) => {
         console.log(form.getFieldsValue());
         props.onCancel?.(e);
-    }
+    };
 
     const step1Footer = (
         <>
@@ -55,7 +55,7 @@ const CreateDraftModal = (props: ModalProps) => {
             {currentStep === 0 ? <Step1 onTemplateSelected={setSelectedCardTemplate} /> : <Step2 form={form} onBackwardClick={prevClick} template={selectedCardTemplate} />}
 
         </Modal>
-    )
+    );
 };
 
 export default CreateDraftModal;

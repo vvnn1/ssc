@@ -1,6 +1,6 @@
-import { Card } from "antd"
+import { Card } from "antd";
 
-import './index.sass'
+import "./index.sass";
 
 interface SettingCardProps {
     title: string;
@@ -18,7 +18,7 @@ const SettingCard = (props: SettingCardProps) => {
         >
             {props.children}
         </Card>
-    )
+    );
 };
 
 export default SettingCard;

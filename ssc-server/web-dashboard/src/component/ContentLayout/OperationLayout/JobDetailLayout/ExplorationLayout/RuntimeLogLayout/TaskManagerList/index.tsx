@@ -1,8 +1,8 @@
-import { Select } from 'antd';
-import './index.sass'
-import TaskManagerTable from './TaskManagerTable';
-import { Route, Routes, useParams } from 'react-router-dom';
-import LogDetailLayout from '../LogDetailLayout';
+import { Select } from "antd";
+import "./index.sass";
+import TaskManagerTable from "./TaskManagerTable";
+import { Route, Routes, useParams } from "react-router-dom";
+import LogDetailLayout from "../LogDetailLayout";
 
 const TaskManagerList = () => {
     const {tmId} = useParams();
@@ -17,8 +17,8 @@ const TaskManagerList = () => {
                     popupClassName='small'
                     options={[
                         {
-                            label: 'job-0e4eb4ec-61d8-4ae9-bf0e-dcaee4b7db5f-taskmanager-1-1',
-                            value: 'job-0e4eb4ec-61d8-4ae9-bf0e-dcaee4b7db5f-taskmanager-1-1'
+                            label: "job-0e4eb4ec-61d8-4ae9-bf0e-dcaee4b7db5f-taskmanager-1-1",
+                            value: "job-0e4eb4ec-61d8-4ae9-bf0e-dcaee4b7db5f-taskmanager-1-1"
                         }
                     ]}
                     popupMatchSelectWidth={370}
@@ -32,7 +32,7 @@ const TaskManagerList = () => {
                 </Routes>
             </div>
         </div>
-    )
+    );
 };
 
 export default TaskManagerList;

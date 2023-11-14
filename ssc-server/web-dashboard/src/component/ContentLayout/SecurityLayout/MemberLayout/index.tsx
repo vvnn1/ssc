@@ -1,5 +1,5 @@
 import { Button, Divider, Input, Popconfirm, Space, Table, Tag, Tooltip } from "antd";
-import './index.sass'
+import "./index.sass";
 import { DeleteOutlined, EditOutlined, TeamOutlined } from "../../../Icon";
 import { useState } from "react";
 import AddModal from "./AddModal";
@@ -17,16 +17,16 @@ interface Member {
 }
 
 type TableProps = Parameters<typeof Table<Member>>[0];
-type ColumnTypes = Exclude<TableProps['columns'], undefined>;
+type ColumnTypes = Exclude<TableProps["columns"], undefined>;
 
 
 
 const data: Member[] = [
     {
-        key: '1',
-        role: 'owner',
+        key: "1",
+        role: "owner",
         memberId: "1840755998634838",
-        memberName: '1840755998634838',
+        memberName: "1840755998634838",
     },
 ];
 
@@ -38,8 +38,8 @@ const MemberLayout = () => {
 
     const columns: ColumnTypes = [
         {
-            title: '角色',
-            dataIndex: 'role',
+            title: "角色",
+            dataIndex: "role",
             width: 200,
             render: (name) => (
                 <>
@@ -48,17 +48,17 @@ const MemberLayout = () => {
             )
         },
         {
-            title: '成员 ID',
-            dataIndex: 'memberId',
+            title: "成员 ID",
+            dataIndex: "memberId",
             render: (memberId) => <Tooltip title={memberId}><Tag>{memberId}</Tag></Tooltip>
         },
         {
-            title: '成员名',
-            dataIndex: 'memberName',
+            title: "成员名",
+            dataIndex: "memberName",
             render: (memberName) => <Tooltip title={memberName}><Tag>{memberName}</Tag></Tooltip>
         },
         {
-            title: '操作',
+            title: "操作",
             width: 200,
             render: () => (
                 <>
@@ -98,7 +98,7 @@ const MemberLayout = () => {
             <EditorModal open={editModalOpen} onCancel={changeModalOpen(false, setEditModalOpen)} />
             <AddModal open={addModalOpen} onCancel={changeModalOpen(false, setAddModalOpen)} />
         </div>
-    )
+    );
 };
 
 export default MemberLayout;

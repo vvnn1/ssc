@@ -2,50 +2,50 @@ import { Button, List, Modal, ModalProps, Popconfirm, message } from "antd";
 import { useState } from "react";
 import { MonacoDiffEditor } from "react-monaco-editor";
 import { CheckCircleOutlined, DeleteOutlined, DoubleLeftOutlined, RollbackOutlined } from "../../../../../../Icon";
-import './index.sass';
+import "./index.sass";
 
 const itemList = [
     {
-        version: '10',
-        dateTime: '10-20 10:38',
-        submitor: '1142765884572712',
-        remark: '-'
+        version: "10",
+        dateTime: "10-20 10:38",
+        submitor: "1142765884572712",
+        remark: "-"
     },
     {
-        version: '10',
-        dateTime: '10-20 10:38',
-        submitor: '1142765884572712',
-        remark: '-'
+        version: "10",
+        dateTime: "10-20 10:38",
+        submitor: "1142765884572712",
+        remark: "-"
     },
     {
-        version: '10',
-        dateTime: '10-20 10:38',
-        submitor: '1142765884572712',
-        remark: '-'
+        version: "10",
+        dateTime: "10-20 10:38",
+        submitor: "1142765884572712",
+        remark: "-"
     },
     {
-        version: '10',
-        dateTime: '10-20 10:38',
-        submitor: '1142765884572712',
-        remark: '-'
+        version: "10",
+        dateTime: "10-20 10:38",
+        submitor: "1142765884572712",
+        remark: "-"
     },
     {
-        version: '10',
-        dateTime: '10-20 10:38',
-        submitor: '1142765884572712',
-        remark: '-'
+        version: "10",
+        dateTime: "10-20 10:38",
+        submitor: "1142765884572712",
+        remark: "-"
     },
     {
-        version: '10',
-        dateTime: '10-20 10:38',
-        submitor: '1142765884572712',
-        remark: '-'
+        version: "10",
+        dateTime: "10-20 10:38",
+        submitor: "1142765884572712",
+        remark: "-"
     },
     {
-        version: '10',
-        dateTime: '10-20 10:38',
-        submitor: '1142765884572712',
-        remark: '-'
+        version: "10",
+        dateTime: "10-20 10:38",
+        submitor: "1142765884572712",
+        remark: "-"
     }
 ];
 
@@ -55,8 +55,8 @@ const CompareModal = (props: ModalProps) => {
     const onItemClick = (index: number) => {
         return () => {
             setSelectedItemIndex(index);
-        }
-    }
+        };
+    };
 
     const onRollBackClick = () => {
         messageApi.success(
@@ -66,7 +66,7 @@ const CompareModal = (props: ModalProps) => {
             }
         );
         props.onCancel?.(undefined as any);
-    }
+    };
 
     const onDeleteClick = () => {
         messageApi.success(
@@ -76,7 +76,7 @@ const CompareModal = (props: ModalProps) => {
             }
         );
         props.onCancel?.(undefined as any);
-    }
+    };
 
     return (
         <Modal
@@ -97,7 +97,7 @@ const CompareModal = (props: ModalProps) => {
                             dataSource={itemList}
                             itemLayout="vertical"
                             renderItem={(item, index) => (
-                                <List.Item className={selectedItemIndex === index ? 'selected side-option' : 'side-option'} onClick={onItemClick(index)}>
+                                <List.Item className={selectedItemIndex === index ? "selected side-option" : "side-option"} onClick={onItemClick(index)}>
                                     <div className="option-title">
                                         <span className="ellipsis">版本 {item.version}</span>
                                         <span className="sub-title">{item.dateTime}</span>
@@ -185,13 +185,13 @@ CREATE TEMPORARY TABLE print_table(
 INSERT INTO print_table
 SELECT SUBSTRING(randstr,0,8) from datagen_source;`
                             }
-                            height={'100%'}
+                            height={"100%"}
                         />
                     </div>
                 </div>
             </div>
         </Modal>
-    )
+    );
 };
 
 export default CompareModal;

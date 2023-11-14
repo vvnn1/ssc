@@ -1,45 +1,10 @@
-import { Button, Modal, ModalProps, Steps } from "antd";
-import { useState } from "react";
+import { ModalProps } from "antd";
 import Step2Form from "./Step2Form";
 import Step1Form from "./Step1Form";
-import './index.sass'
+import "./index.sass";
 import StepModal from "../../../../../StepModal";
 
 const CustomCatalogModal = (props: ModalProps) => {
-    const [currentStep, setCurrentStep] = useState<number>(0);
-
-
-    const nextStep = () => {
-        if (currentStep > 1) {
-            return;
-        }
-        setCurrentStep(currentStep + 1);
-    }
-
-    const prevStep = () => {
-        if (currentStep < 0) {
-            return;
-        }
-        setCurrentStep(currentStep - 1);
-    }
-
-    const stepItems: React.ReactElement[] = [
-        (
-            <>
-                <Button key="next" type="primary" onClick={nextStep}>下一步</Button>
-                <Button key="cancel" onClick={props.onCancel}>取消</Button>
-
-            </>
-        ),
-        (
-            <>
-                <Button key="prev" onClick={prevStep}>上一步</Button>
-                <Button key="finish" type="primary" onClick={props.onCancel}>完成</Button>
-                <Button key="cancel" onClick={props.onCancel}>取消</Button>
-            </>
-        )
-    ];
-
     return (
         <StepModal
             modalProps={{
@@ -53,10 +18,10 @@ const CustomCatalogModal = (props: ModalProps) => {
             stepsProps={{
                 items: [
                     {
-                        title: '上传文件',
+                        title: "上传文件",
                     },
                     {
-                        title: '参数配置',
+                        title: "参数配置",
                     },
                 ]
             }}
@@ -68,11 +33,11 @@ const CustomCatalogModal = (props: ModalProps) => {
                             <Step1Form hidden={currentStep !== 0} />
                             <Step2Form hidden={currentStep !== 1} />
                         </div>
-                    )
+                    );
                 }
             }
         </StepModal>
-    )
+    );
 };
 
 export default CustomCatalogModal;

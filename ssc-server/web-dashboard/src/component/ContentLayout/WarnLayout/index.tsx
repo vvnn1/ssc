@@ -1,5 +1,5 @@
-import { Button, Space, Table } from 'antd'
-import './index.sass'
+import { Button, Space, Table } from "antd";
+import "./index.sass";
 
 interface DataType {
     key: React.Key;
@@ -9,59 +9,59 @@ interface DataType {
 }
 
 type TableProps = Parameters<typeof Table<DataType>>[0];
-type ColumnTypes = Exclude<TableProps['columns'], undefined>;
+type ColumnTypes = Exclude<TableProps["columns"], undefined>;
 
 const columns: ColumnTypes = [
     {
-        title: '名称',
-        dataIndex: 'name',
-        width: '26.5%',
+        title: "名称",
+        dataIndex: "name",
+        width: "26.5%",
     },
     {
-        title: '指标',
-        dataIndex: 'age',
-        width: '26.5%',
+        title: "指标",
+        dataIndex: "age",
+        width: "26.5%",
     },
     {
-        title: '描述',
-        dataIndex: 'age',
-        width: '26.75%',
+        title: "描述",
+        dataIndex: "age",
+        width: "26.75%",
     },
     {
-        title: '创建时间',
-        dataIndex: 'age',
-        width: '10.75%',
+        title: "创建时间",
+        dataIndex: "age",
+        width: "10.75%",
     },
     {
-        title: '操作',
-        dataIndex: 'age',
+        title: "操作",
+        dataIndex: "age",
     },
 ];
 
 const data: DataType[] = [
     {
-        key: '1',
-        name: 'John Brown',
+        key: "1",
+        name: "John Brown",
         age: 32,
-        address: 'New York No. 1 Lake Park',
+        address: "New York No. 1 Lake Park",
     },
     {
-        key: '2',
-        name: 'Jim Green',
+        key: "2",
+        name: "Jim Green",
         age: 42,
-        address: 'London No. 1 Lake Park',
+        address: "London No. 1 Lake Park",
     },
     {
-        key: '3',
-        name: 'Joe Black',
+        key: "3",
+        name: "Joe Black",
         age: 32,
-        address: 'Sydney No. 1 Lake Park',
+        address: "Sydney No. 1 Lake Park",
     },
     {
-        key: '4',
-        name: 'Jim Red',
+        key: "4",
+        name: "Jim Red",
         age: 32,
-        address: 'London No. 2 Lake Park',
+        address: "London No. 2 Lake Park",
     },
 ];
 
@@ -85,7 +85,7 @@ const WarnLayout = () => {
                 />
             </div>
         </div>
-    )
+    );
 };
 
 export default WarnLayout;

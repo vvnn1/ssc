@@ -1,6 +1,6 @@
-import { Empty, Input, Radio, Space, Switch } from 'antd';
-import './index.sass'
-import { SearchOutlined } from '../../../../Icon';
+import { Empty, Input, Radio, Space, Switch } from "antd";
+import "./index.sass";
+import { SearchOutlined } from "../../../../Icon";
 
 const RelationLayout = () => {
     return (
@@ -19,7 +19,7 @@ const RelationLayout = () => {
             </div>
             <Empty />
         </div>
-    )
-}
+    );
+};
 
 export default RelationLayout;

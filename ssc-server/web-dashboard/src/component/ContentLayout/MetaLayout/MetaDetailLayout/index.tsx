@@ -1,10 +1,10 @@
-import { Button, Input, Space, Table } from 'antd';
-import './index.sass'
-import { SearchOutlined } from '../../../Icon';
-import { changeModalOpen } from '../../../../util';
-import CreateCatalogModal from '../CreateCatalogModal';
-import { useState } from 'react';
-import MyLink from '../../../MyLink';
+import { Button, Input, Space, Table } from "antd";
+import "./index.sass";
+import { SearchOutlined } from "../../../Icon";
+import { changeModalOpen } from "../../../../util";
+import CreateCatalogModal from "../CreateCatalogModal";
+import { useState } from "react";
+import MyLink from "../../../MyLink";
 
 interface Catalog {
     key: React.Key;
@@ -13,21 +13,21 @@ interface Catalog {
 }
 
 type TableProps = Parameters<typeof Table<Catalog>>[0];
-type ColumnTypes = Exclude<TableProps['columns'], undefined>;
+type ColumnTypes = Exclude<TableProps["columns"], undefined>;
 
 const columns: ColumnTypes = [
     {
-        title: 'Catalog 名称',
-        dataIndex: 'name',
-        width: '35%',
+        title: "Catalog 名称",
+        dataIndex: "name",
+        width: "35%",
     },
     {
-        title: '类型',
-        dataIndex: 'type',
-        width: '35%',
+        title: "类型",
+        dataIndex: "type",
+        width: "35%",
     },
     {
-        title: '操作',
+        title: "操作",
         render: (_,{name}) => (
             <>
                 <MyLink to={`../${name}/list`}>查看</MyLink>
@@ -39,9 +39,9 @@ const columns: ColumnTypes = [
 
 const data: Catalog[] = [
     {
-        key: '1',
-        name: 'vvp',
-        type: 'vvp',
+        key: "1",
+        name: "vvp",
+        type: "vvp",
     },
 ];
 
@@ -71,7 +71,7 @@ const MetaDetailLayout = () => {
             </div>
             <CreateCatalogModal open={modalOpen} onCancel={changeModalOpen(false, setModalOpen)} />
         </div>
-    )
-}
+    );
+};
 
 export default MetaDetailLayout;

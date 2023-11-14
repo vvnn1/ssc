@@ -1,7 +1,7 @@
-import { Button, Divider, Table } from "antd";
-import './index.sass'
-import { DeleteOutlined, EditOutlined, LockOutlined, PlusOutlined } from "../../../Icon";
-import { useEffect, useState } from "react";
+import { Button, Table } from "antd";
+import "./index.sass";
+import { DeleteOutlined, LockOutlined, PlusOutlined } from "../../../Icon";
+import { useState } from "react";
 import AddModal from "./AddModal";
 import { changeModalOpen } from "../../../../util";
 import DeleteModal from "./DeleteModal";
@@ -13,15 +13,15 @@ interface Secret {
 }
 
 type TableProps = Parameters<typeof Table<Secret>>[0];
-type ColumnTypes = Exclude<TableProps['columns'], undefined>;
+type ColumnTypes = Exclude<TableProps["columns"], undefined>;
 
 
 
 const data: Secret[] = [
     {
-        key: '1',
-        name: 'wml-pc',
-        createTime: '2023-11-10 15:21:08',
+        key: "1",
+        name: "wml-pc",
+        createTime: "2023-11-10 15:21:08",
     },
 ];
 
@@ -31,17 +31,17 @@ const SecretLayout = () => {
 
     const columns: ColumnTypes = [
         {
-            title: '密钥名称',
-            dataIndex: 'name',
+            title: "密钥名称",
+            dataIndex: "name",
             render: (value) => <><LockOutlined style={{ color: "#666" }} /> {value}</>
         },
         {
-            title: '创建时间',
-            dataIndex: 'createTime',
+            title: "创建时间",
+            dataIndex: "createTime",
             width: 300,
         },
         {
-            title: '操作',
+            title: "操作",
             width: 200,
             render: () => (<Button type="link" icon={<DeleteOutlined />} size="small" danger onClick={changeModalOpen(true, setDeleteModalOpen)}>删除</Button>)
         },
@@ -63,7 +63,7 @@ const SecretLayout = () => {
             <DeleteModal open={deleteModalOpen} onCancel={changeModalOpen(false, setDeleteModalOpen)} />
             <AddModal open={addModalOpen} onCancel={changeModalOpen(false, setAddModalOpen)} />
         </div>
-    )
+    );
 };
 
 export default SecretLayout;

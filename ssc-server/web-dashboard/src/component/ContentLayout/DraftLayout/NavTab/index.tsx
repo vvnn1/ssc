@@ -1,6 +1,6 @@
 import { Tabs, TabsProps } from "antd";
 import { useEffect, useState } from "react";
-import './index.sass'
+import "./index.sass";
 import { StreamDraftOutlined } from "../../../Icon";
 import { useNavigate, useParams } from "react-router-dom";
 import CreateDraftModal from "../ToolBar/CreateDraftModal";
@@ -12,7 +12,7 @@ export interface Draft {
     id: string;
     name: string;
     content: string;
-    type: 'sql',
+    type: "sql",
 }
 
 const sql1 = `CREATE TEMPORARY TABLE orders_dataset (
@@ -140,16 +140,16 @@ GROUP BY SUBSTRING(tmp1.\`day\` FROM 1 FOR 6)`;
 
 const draftList: Draft[] = [
     {
-        id: '2ca189d0-e96c-4389-8422-24ad910a6dc1',
-        name: '实时查询',
+        id: "2ca189d0-e96c-4389-8422-24ad910a6dc1",
+        name: "实时查询",
         content: sql1,
-        type: 'sql',
+        type: "sql",
     },
     {
-        id: '96b2af76-27a3-46f2-a1c9-b7a7e7df73d4',
-        name: '实时大屏',
+        id: "96b2af76-27a3-46f2-a1c9-b7a7e7df73d4",
+        name: "实时大屏",
         content: sql2,
-        type: 'sql',
+        type: "sql",
     }
 ];
 
@@ -174,23 +174,23 @@ const NavTab: React.FC<NavTabProps> = ({ onDraftChange }) => {
             }
             const activeItems = draftList.filter(item => item.id === activeDraftId);
             if (!activeItems || activeItems.length === 0) {
-                navigate('../../.');
+                navigate("../../.");
                 return items;
             }
-            return [...items!, ...activeItems];
-        })
+            return [...items, ...activeItems];
+        });
         setActiveItem(activeDraftId);
     }, [activeDraftId]);
 
-    const transTabs = (items: Draft[]): TabsProps['items'] => {
+    const transTabs = (items: Draft[]): TabsProps["items"] => {
         return items.map(item => {
             return {
                 id: item.id,
                 key: item.id,
                 label: <><span className="draft-type type offline"><StreamDraftOutlined /></span><span className="draft-name">{item.name}</span></>,
-            }
-        })
-    }
+            };
+        });
+    };
 
 
     useEffect(() => {
@@ -208,8 +208,8 @@ const NavTab: React.FC<NavTabProps> = ({ onDraftChange }) => {
     const changeModalOpen = (open: boolean) => {
         return () => {
             setModalOpen(open);
-        }
-    }
+        };
+    };
 
     const add = () => {
         setModalOpen(true);
@@ -223,24 +223,24 @@ const NavTab: React.FC<NavTabProps> = ({ onDraftChange }) => {
     const remove = (targetId: TargetKey) => {
         let newActiveKey = activeItem;
         let lastIndex = -1;
-        items!.forEach((item, i) => {
+        items.forEach((item, i) => {
             if (item.id === targetId) {
                 lastIndex = i - 1;
             }
         });
-        const newPanes = items!.filter((item) => item.id !== targetId);
+        const newPanes = items.filter((item) => item.id !== targetId);
         if (newPanes.length && newActiveKey === targetId) {
             if (lastIndex >= 0) {
                 newActiveKey = newPanes[lastIndex].id;
-                navigate(`../../${newPanes[lastIndex].id}/${newPanes[lastIndex].type}`, { replace: true })
+                navigate(`../../${newPanes[lastIndex].id}/${newPanes[lastIndex].type}`, { replace: true });
             } else {
                 newActiveKey = newPanes[0].id;
-                navigate(`../../${newPanes[0].id}/${newPanes[0].type}`, { replace: true })
+                navigate(`../../${newPanes[0].id}/${newPanes[0].type}`, { replace: true });
             }
         }
 
         if (newPanes.length === 0) {
-            navigate('../../.');
+            navigate("../../.");
             return;
         }
 
@@ -250,9 +250,9 @@ const NavTab: React.FC<NavTabProps> = ({ onDraftChange }) => {
 
     const onEdit = (
         targetKey: React.MouseEvent | React.KeyboardEvent | string,
-        action: 'add' | 'remove',
+        action: "add" | "remove",
     ) => {
-        if (action === 'add') {
+        if (action === "add") {
             add();
         } else {
             remove(targetKey);
@@ -273,7 +273,7 @@ const NavTab: React.FC<NavTabProps> = ({ onDraftChange }) => {
             <CreateDraftModal open={modalOpen} onCancel={changeModalOpen(false)} />
         </>
 
-    )
+    );
 };
 
 export default NavTab;

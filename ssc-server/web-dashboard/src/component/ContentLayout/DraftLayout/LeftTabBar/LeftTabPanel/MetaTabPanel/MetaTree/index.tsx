@@ -1,7 +1,7 @@
 import { Tree, TreeProps } from "antd";
 import { ContainerOutlined, DatabaseOutlined, MinusSquareOutlined, PlusSquareOutlined, TableOutlined } from "../../../../../../Icon";
 import { DataNode } from "antd/es/tree";
-import './index.sass'
+import "./index.sass";
 import TreeTitle from "./TreeTitle";
 import { Key, useState } from "react";
 
@@ -13,7 +13,7 @@ const treeData: DataNode[] = [
                 <span className="extra">数据更新于 06-24 13:46</span>
             </>
         ),
-        key: '0-0',
+        key: "0-0",
         icon: <ContainerOutlined />,
         children: [
             {
@@ -23,31 +23,31 @@ const treeData: DataNode[] = [
                         <span className="tag">默认</span>
                     </>
                 ),
-                key: '0-0-0',
+                key: "0-0-0",
                 icon: <DatabaseOutlined />,
                 switcherIcon: (node) => (node.expanded ? <MinusSquareOutlined /> : <PlusSquareOutlined />),
-                className: 'database',
+                className: "database",
                 isLeaf: false,
                 children: [
                     {
-                        title: 'test-table',
-                        key: '0-0-0-1',
+                        title: "test-table",
+                        key: "0-0-0-1",
                         icon: <TableOutlined />,
-                        className: 'table',
+                        className: "table",
                         isLeaf: true
                     },
                 ],
             }
         ],
         switcherIcon: (node) => (node.expanded ? <MinusSquareOutlined /> : <PlusSquareOutlined />),
-        className: 'catalog',
+        className: "catalog",
         isLeaf: false
     },
 ];
 
 const titleRender = (node: DataNode) => {
-    return <TreeTitle dataNode={node} />
-}
+    return <TreeTitle dataNode={node} />;
+};
 
 const MetaTree = (props: TreeProps) => {
     const [selectedKeys, setSelectedKeys] = useState<Key[]>([]);
@@ -57,7 +57,7 @@ const MetaTree = (props: TreeProps) => {
             return;
         }
         setSelectedKeys(keys);
-    }
+    };
     
     return (
         <Tree
@@ -67,12 +67,12 @@ const MetaTree = (props: TreeProps) => {
             className="meta-tree"
             showLine={false}
             showIcon={true}
-            defaultExpandedKeys={['0-0-0']}
+            defaultExpandedKeys={["0-0-0"]}
             treeData={treeData}
             titleRender={titleRender}
             blockNode
         />
-    )
-}
+    );
+};
 
 export default MetaTree;

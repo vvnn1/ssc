@@ -1,7 +1,7 @@
-import { Col, Divider, Row, Typography } from 'antd';
-import './index.sass'
-import { NewTabOutlined } from '../../../../../Icon';
-import MonacoEditor from '../../../../../MonacoEditor';
+import { Col, Divider, Row, Typography } from "antd";
+import "./index.sass";
+import { NewTabOutlined } from "../../../../../Icon";
+import MonacoEditor from "../../../../../MonacoEditor";
 
 const { Paragraph, Text } = Typography;
 
@@ -33,14 +33,14 @@ const Step2 = (props: Step2Props) => {
                         <span className="key">文档:</span>
                         <span className="value">
                             {
-                                props.type?.map((t) => (<a>{t} <NewTabOutlined /></a>))
-                                .reduce((accu, elem) => {
-                                    return <>
-                                        {accu}
-                                        <Divider type="vertical" />
-                                        {elem}
-                                    </>
-                                })
+                                props.type?.map((t, index) => (<a key={index}>{t} <NewTabOutlined /></a>))
+                                    .reduce((accu, elem) => {
+                                        return <>
+                                            {accu}
+                                            <Divider type="vertical" />
+                                            {elem}
+                                        </>;
+                                    })
                             }
                         </span>
                     </div>
@@ -71,7 +71,7 @@ WITH (
                 </Col>
             </Row>
         </div>
-    )
+    );
 };
 
 export default Step2;

@@ -1,5 +1,5 @@
-import { Button, ButtonProps, Modal, ModalProps, Steps } from "antd";
-import './index.sass'
+import { Button, Modal, ModalProps, Steps } from "antd";
+import "./index.sass";
 import { useState } from "react";
 import Step2Form from "./Step2Form";
 import Step1Form from "./Step1Form";
@@ -13,27 +13,27 @@ const DebugModal = (props: ModalProps) => {
             return;
         }
         setCurrentStep(currentStep + 1);
-    }
+    };
 
     const prevStep = () => {
         if (currentStep < 0) {
             return;
         }
         setCurrentStep(currentStep - 1);
-    }
+    };
 
     const onConfirm = (e: React.MouseEvent<HTMLButtonElement>) => {
         props.onCancel?.(e);
         const id = setInterval(() => {
-            document.dispatchEvent(new CustomEvent('bottom-label-change', {
+            document.dispatchEvent(new CustomEvent("bottom-label-change", {
                 detail: {
-                    label: 'debug'
+                    label: "debug"
                 },
             }));
             clearInterval(id);
         }, 1000);
         
-    }
+    };
 
 
     const stepItems: React.ReactElement[] = [
@@ -77,7 +77,7 @@ const DebugModal = (props: ModalProps) => {
             <Step1Form hidden={currentStep !== 0} />
             <Step2Form hidden={currentStep !== 1} />
         </Modal>
-    )
+    );
 };
 
 export default DebugModal;

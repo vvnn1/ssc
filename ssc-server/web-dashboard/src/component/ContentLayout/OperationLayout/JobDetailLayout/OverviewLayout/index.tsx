@@ -1,40 +1,40 @@
-import { Button, Card, Descriptions, DescriptionsProps, Divider, Table, Tag, message } from "antd";
-import './index.sass';
+import { Card, Descriptions, DescriptionsProps, Divider, Table, message } from "antd";
+import "./index.sass";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { CheckCircleOutlined, ScheduleOutlined } from "../../../../Icon";
 import SorceBadge from "../../../../SorceBadge";
 import StateBadge from "../../../../StateBadge";
 
-const items: DescriptionsProps['items'] = [
+const items: DescriptionsProps["items"] = [
     {
-        key: '1',
-        label: '健康分',
+        key: "1",
+        label: "健康分",
         children: <SorceBadge sorce={0} model="disabled" />
     },
     {
-        key: '2',
-        label: '重启次数',
-        children: '-',
+        key: "2",
+        label: "重启次数",
+        children: "-",
     },
     {
-        key: '3',
-        label: '操作',
+        key: "3",
+        label: "操作",
         children: <><a>作业详情</a><Divider type="vertical"/><a>Flink UI</a></>
     },
     {
-        key: '4',
-        label: 'Used / Total Slots',
-        children: '-',
+        key: "4",
+        label: "Used / Total Slots",
+        children: "-",
     },
     {
-        key: '5',
-        label: '启动时间',
-        children: '11-03 15:39:59',
+        key: "5",
+        label: "启动时间",
+        children: "11-03 15:39:59",
     },
     {
-        key: '6',
-        label: '结束时间',
-        children: '11-03 15:41:22',
+        key: "6",
+        label: "结束时间",
+        children: "11-03 15:41:22",
     },
 ];
 
@@ -46,7 +46,7 @@ const OverviewLayout = () => {
             icon: <></>,
             content: <><CheckCircleOutlined color="#00a700" />作业 ID 已复制</>
         });
-    }
+    };
 
     return (
         <div className="development-overview-layout">
@@ -83,7 +83,7 @@ const OverviewLayout = () => {
                         {
                             title: "状态",
                             dataIndex: "status",
-                            render: (value) => (<StateBadge state="FINISHED"/>)
+                            render: () => (<StateBadge state="FINISHED"/>)
                         },
                         {
                             title: "操作",
@@ -109,7 +109,7 @@ const OverviewLayout = () => {
             </Card>
             {contextHolder}
         </div>
-    )
+    );
 };
 
 export default OverviewLayout;

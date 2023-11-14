@@ -10,11 +10,11 @@ interface MemoryInputNumberProps {
     selectProps?: SelectProps;
 }
 
-const pattern = /(?<number>\d+)(?<unit>MiB|GiB)/
+const pattern = /(?<number>\d+)(?<unit>MiB|GiB)/;
 
 const MemoryInputNumber: React.FC<MemoryInputNumberProps> = ({ value, defaultValue, onChange, inputProps, selectProps }) => {
-    const defaultGroups = pattern.exec(defaultValue ?? '')?.groups;
-    const valueGroups = pattern.exec(value ?? '')?.groups;
+    const defaultGroups = pattern.exec(defaultValue ?? "")?.groups;
+    const valueGroups = pattern.exec(value ?? "")?.groups;
     const [number, setNumber] = useState<string | null | undefined>();
     const [unit, setUnit] = useState<MemoryUnit | undefined>();
     const onNumberChange = (number: string | null) => {
@@ -24,16 +24,16 @@ const MemoryInputNumber: React.FC<MemoryInputNumberProps> = ({ value, defaultVal
         } else {
             onChange?.(null);
         }
-    }
-    console.log(number)
-    const onUnitChange = (unit: any) => {
+    };
+    console.log(number);
+    const onUnitChange:SelectProps["onChange"] = (unit) => {
         setUnit(unit);
         if (number && unit) {
             onChange?.(number + unit);
         } else {
             onChange?.(null);
         }
-    }
+    };
 
     return (
         <InputNumber

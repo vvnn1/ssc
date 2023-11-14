@@ -1,8 +1,8 @@
-import { Divider, Dropdown, Popconfirm, Table, Tag, Typography } from 'antd';
-import './index.sass'
-import { DownOutlined, PlusOutlined } from '../../../../../Icon';
-import AlarmDrawer from '../../../../ConfigurationLayout/AlarmTemplateLayout/AlarmDrawer';
-import { useState } from 'react';
+import { Divider, Dropdown, Popconfirm, Table, Tag, Typography } from "antd";
+import "./index.sass";
+import { DownOutlined, PlusOutlined } from "../../../../../Icon";
+import AlarmDrawer from "../../../../ConfigurationLayout/AlarmTemplateLayout/AlarmDrawer";
+import { useState } from "react";
 
 const AlarmRule = () => {
     const [templateDrawerOpen, setTemplateDrawerOpen] = useState<boolean>(false);
@@ -12,14 +12,14 @@ const AlarmRule = () => {
     const changeTemplateDrawerOpen = (open: boolean) => {
         return () => {
             setTemplateDrawerOpen(open);
-        }
+        };
     };
 
     const changeRuleDrawerOpen = (open: boolean) => {
         return () => {
             setRuleDrawerOpen(open);
-        }
-    }
+        };
+    };
 
     return (
         <div className="alarm-rule-layout">
@@ -29,23 +29,23 @@ const AlarmRule = () => {
                         items: [
                             {
                                 label: <><PlusOutlined /> 自定义规则</>,
-                                key: '1',
+                                key: "1",
                                 onClick: changeRuleDrawerOpen(true)
                             },
                             {
-                                type: 'divider',
+                                type: "divider",
                             },
                             {
                                 label: <><PlusOutlined /> 自定义模板</>,
-                                key: '2',
+                                key: "2",
                                 children: [
                                     {
-                                        key: '2-1',
-                                        label: <span style={{ color: '#0070cc' }}><PlusOutlined /> 添加规则模板</span>,
+                                        key: "2-1",
+                                        label: <span style={{ color: "#0070cc" }}><PlusOutlined /> 添加规则模板</span>,
                                         onClick: changeTemplateDrawerOpen(true)
                                     },
                                     {
-                                        key: '2-2',
+                                        key: "2-2",
                                         label: <><PlusOutlined /> test</>,
                                         onClick: changeRuleDrawerOpen(true)
                                     }
@@ -65,30 +65,30 @@ const AlarmRule = () => {
                 size='middle'
                 columns={[
                     {
-                        title: '规则名称',
-                        dataIndex: 'name'
+                        title: "规则名称",
+                        dataIndex: "name"
                     },
                     {
-                        title: '指标',
-                        dataIndex: 'criteria'
+                        title: "指标",
+                        dataIndex: "criteria"
                     },
                     {
-                        title: '规则状态',
+                        title: "规则状态",
                         width: 100,
-                        dataIndex: 'status',
+                        dataIndex: "status",
                         render: (value) => <Tag color='blue'>{value}</Tag>
                     },
                     {
-                        title: '描述',
-                        dataIndex: 'desc'
+                        title: "描述",
+                        dataIndex: "desc"
                     },
                     {
-                        title: '创建时间',
+                        title: "创建时间",
                         width: 180,
-                        dataIndex: 'createTime'
+                        dataIndex: "createTime"
                     },
                     {
-                        title: '操作',
+                        title: "操作",
                         width: 200,
                         render: () => (
                             <div>
@@ -120,11 +120,11 @@ const AlarmRule = () => {
                 ]}
                 dataSource={[
                     {
-                        name: 'wss',
-                        criteria: 'Restart Count in 1 Minute',
-                        status: '已启用',
-                        desc: '大苏打阿斯顿阿斯顿',
-                        createTime: '2023-10-07 14:55:03'
+                        name: "wss",
+                        criteria: "Restart Count in 1 Minute",
+                        status: "已启用",
+                        desc: "大苏打阿斯顿阿斯顿",
+                        createTime: "2023-10-07 14:55:03"
                     }
                 ]}
             />
@@ -133,7 +133,7 @@ const AlarmRule = () => {
             <AlarmDrawer open={templateDrawerOpen} onClose={changeTemplateDrawerOpen(false)} model='create-template' title="创建告警规则模板" />
         </div>
 
-    )
+    );
 };
 
 export default AlarmRule;

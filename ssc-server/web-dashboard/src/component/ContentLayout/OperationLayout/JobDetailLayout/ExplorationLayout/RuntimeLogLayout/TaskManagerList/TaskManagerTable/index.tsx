@@ -1,6 +1,6 @@
-import { Select, Table, Tooltip } from 'antd';
-import './index.sass'
-import MyLink from '../../../../../../../MyLink';
+import { Table, Tooltip } from "antd";
+import "./index.sass";
+import MyLink from "../../../../../../../MyLink";
 
 const TaskManagerTable = () => {
     return (
@@ -10,9 +10,9 @@ const TaskManagerTable = () => {
                 pagination={false}
                 columns={[
                     {
-                        title: '日志名称',
-                        width: '50%',
-                        dataIndex: 'name',
+                        title: "日志名称",
+                        width: "50%",
+                        dataIndex: "name",
                         sorter: (a, b) => a.name.localeCompare(b.name),
                         render: (value) => (
                             <MyLink to={value}>
@@ -23,32 +23,32 @@ const TaskManagerTable = () => {
                         )
                     },
                     {
-                        title: '大小 (KB)',
-                        width: '50%',
-                        dataIndex: 'size',
+                        title: "大小 (KB)",
+                        width: "50%",
+                        dataIndex: "size",
                         sorter: (a, b) => a.size.localeCompare(b.size),
                     }
                 ]}
                 dataSource={[
                     {
-                        key: '1',
-                        name: '20230927_095224-0',
-                        size: '131.4'
+                        key: "1",
+                        name: "20230927_095224-0",
+                        size: "131.4"
                     },
                     {
-                        key: '2',
-                        name: '20230927_095236-1',
-                        size: '4.41'
+                        key: "2",
+                        name: "20230927_095236-1",
+                        size: "4.41"
                     },
                     {
-                        key: '3',
-                        name: '20230927_095238-2',
-                        size: '0.21'
+                        key: "3",
+                        name: "20230927_095238-2",
+                        size: "0.21"
                     }
                 ]}
             />
         </div>
-    )
+    );
 };
 
 export default TaskManagerTable;

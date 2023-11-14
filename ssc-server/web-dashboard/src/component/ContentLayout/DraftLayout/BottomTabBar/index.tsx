@@ -1,6 +1,6 @@
 import { Button, Space } from "antd";
 import { InfoCircleOutlined, SettingOutlined } from "../../../Icon";
-import './index.sass'
+import "./index.sass";
 import EditorSettingsModal from "./EditorSettingsModal";
 import { useState } from "react";
 
@@ -10,8 +10,8 @@ const BottomTabBar = () => {
     const changeModalOpen = (open: boolean) => {
         return () => {
             setModalOpen(open);
-        }
-    }
+        };
+    };
 
     return (
         <div className="draft-bottom-tab-bar">
@@ -32,7 +32,7 @@ const BottomTabBar = () => {
             </div>
             <EditorSettingsModal open={modalOpen} onCancel={changeModalOpen(false)}/>
         </div>
-    )
+    );
 };
 
 export default BottomTabBar;

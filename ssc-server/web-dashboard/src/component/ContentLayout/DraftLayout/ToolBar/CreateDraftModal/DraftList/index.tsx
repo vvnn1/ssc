@@ -1,7 +1,7 @@
 import { List } from "antd";
 import DraftCard, {CardProps} from "./DraftCard";
 import { useEffect, useState } from "react";
-import './index.sass'
+import "./index.sass";
 
 export type Card = CardProps;
 
@@ -20,8 +20,8 @@ const DraftList = (props: ListProps) => {
     const onItemClick = (index:number) => {
         return () => {
             setActiveItemIndex(index);
-        }
-    }
+        };
+    };
     return (
         <List 
             grid={{ gutter: 16, column: 4 }}
@@ -29,7 +29,7 @@ const DraftList = (props: ListProps) => {
             className="draft-template-list"
             renderItem={(item, index) => (
                 <List.Item
-                    className={activeItemIndex === index ? 'active' : undefined}
+                    className={activeItemIndex === index ? "active" : undefined}
                     onClick={onItemClick(index)}
                 >
                     <DraftCard 
@@ -38,7 +38,7 @@ const DraftList = (props: ListProps) => {
                 </List.Item>
             )}
         />
-    )
+    );
 };
 
 export default DraftList;

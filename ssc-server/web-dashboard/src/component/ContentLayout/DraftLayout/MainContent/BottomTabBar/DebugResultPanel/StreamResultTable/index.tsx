@@ -6,9 +6,9 @@ import {
     PerspectiveViewerConfig,
     HTMLPerspectiveViewerElement,
 } from "@finos/perspective-viewer";
-import { useEffect, useRef, useState } from 'react';
-import './index.sass'
-import '@finos/perspective-viewer/dist/css/themes.css'
+import { useEffect, useRef } from "react";
+import "./index.sass";
+import "@finos/perspective-viewer/dist/css/themes.css";
 
 const data = `Row ID,Order ID,Order Date,Ship Date,Ship Mode,Customer ID,Segment,Country,City,State,Postal Code,Region,Product ID,Category,Sub-Category,Sales,Quantity,Discount,Profit
 1,CA-2013-152156,11/9/2013,11/12/2013,Second Class,CG-12520,Consumer,United States,Henderson,Kentucky,42420,South,FUR-BO-10001798,Furniture,Bookcases,261.96,2,0.0,41.9136
@@ -20,12 +20,12 @@ const data = `Row ID,Order ID,Order Date,Ship Date,Ship Mode,Customer ID,Segment
 7,CA-2011-115812,6/9/2011,6/14/2011,Standard Class,BH-11710,Consumer,United States,Los Angeles,California,90032,West,OFF-AR-10002833,Office Supplies,Art,7.28,4,0.0,1.9656
 8,CA-2011-115812,6/9/2011,6/14/2011,Standard Class,BH-11710,Consumer,United States,Los Angeles,California,90032,West,TEC-PH-10002275,Technology,Phones,907.152,6,0.2,90.7152
 9,CA-2011-115812,6/9/2011,6/14/2011,Standard Class,BH-11710,Consumer,United States,Los Angeles,California,90032,West,OFF-BI-10003910,Office Supplies,Binders,18.504,3,0.2,5.7825
-`
+`;
 
 const worker = perspective.default.shared_worker();
 
 const config: PerspectiveViewerConfig = {
-    sort: [['Row ID', 'asc']],
+    sort: [["Row ID", "asc"]],
 };
 
 const StreamResultTable = () => {
@@ -42,7 +42,7 @@ const StreamResultTable = () => {
 
     return (
         <perspective-viewer ref={viewer}></perspective-viewer>
-    )
+    );
 };
 
 export default StreamResultTable;

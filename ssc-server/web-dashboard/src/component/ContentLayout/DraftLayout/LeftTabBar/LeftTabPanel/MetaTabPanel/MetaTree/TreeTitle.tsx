@@ -4,7 +4,7 @@ import { DataNode } from "antd/es/tree";
 
 interface TreeTitleProps {
     dataNode: DataNode;
-};
+}
 
 interface MetaDescriptionProps {
     metaItems: { key: string, value: string }[];
@@ -38,7 +38,7 @@ const MetaPopOverpContent = (props: MetaDescriptionProps) => {
             }
 
         </div>
-    )
+    );
 };
 
 const createPopoverContent = (props: TreeTitleProps) => {
@@ -47,22 +47,22 @@ const createPopoverContent = (props: TreeTitleProps) => {
             <MetaPopOverpContent
                 metaItems={[
                     {
-                        key: 'Catalog名称',
-                        value: 'vvp',
+                        key: "Catalog名称",
+                        value: "vvp",
 
                     },
                     {
-                        key: 'defaultDatabase',
-                        value: 'default'
+                        key: "defaultDatabase",
+                        value: "default"
                     },
                     {
-                        key: 'type',
-                        value: 'vvp'
+                        key: "type",
+                        value: "vvp"
                     }
                 ]}
                 updateTime="2023/09/25 09:48"
             />
-        )
+        );
     }
 
     if (props.dataNode.className === "database") {
@@ -70,16 +70,16 @@ const createPopoverContent = (props: TreeTitleProps) => {
             <MetaPopOverpContent
                 metaItems={[
                     {
-                        key: '数据库名称',
-                        value: 'default'
+                        key: "数据库名称",
+                        value: "default"
                     },
                     {
-                        key: '备注',
-                        value: 'the default database'
+                        key: "备注",
+                        value: "the default database"
                     }
                 ]}
             />
-        )
+        );
     }
 
     if (props.dataNode.className === "table") {
@@ -87,22 +87,22 @@ const createPopoverContent = (props: TreeTitleProps) => {
             <MetaPopOverpContent
                 metaItems={[
                     {
-                        key: '表名称',
-                        value: 'test_table'
+                        key: "表名称",
+                        value: "test_table"
                     },
                     {
-                        key: '备注',
-                        value: 'comment'
+                        key: "备注",
+                        value: "comment"
                     },
                     {
-                        key: 'connector',
-                        value: 'datagen'
+                        key: "connector",
+                        value: "datagen"
                     }
                 ]}
             />
-        )
+        );
     }
-}
+};
 
 const TreeTitle = (props: TreeTitleProps) => {
     return (
@@ -123,7 +123,7 @@ const TreeTitle = (props: TreeTitleProps) => {
             </div>
         </Popover>
 
-    )
+    );
 };
 
 export default TreeTitle;

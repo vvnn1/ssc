@@ -46,7 +46,7 @@ const HologresForm = () => {
                 <Input />
             </Form.Item>
         </Form>
-    )
+    );
 };
 
 export default HologresForm;

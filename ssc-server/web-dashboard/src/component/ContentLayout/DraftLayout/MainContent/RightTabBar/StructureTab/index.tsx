@@ -3,18 +3,18 @@ import SqlStructureGraph from "./SqlStructureGraph";
 import { Radio, RadioChangeEvent, Tooltip } from "antd";
 import SqlStructureTree from "./SqlStructureTree";
 import { BlockOutlined, RotateRightOutlined } from "../../../../../Icon";
-import './index.sass'
+import "./index.sass";
 
 const StructureTab = () => {
     const [structureNode, setStructureNode] = useState<React.ReactNode>(<SqlStructureGraph />);
 
     const onRadioChange = ({ target: { value } }: RadioChangeEvent) => {
-        if (value === 'graph') {
+        if (value === "graph") {
             setStructureNode(<SqlStructureGraph />);
-        } else if (value === 'tree') {
+        } else if (value === "tree") {
             setStructureNode(<SqlStructureTree />);
         }
-    }
+    };
 
     return (
         <div className="draft-struct">
@@ -37,7 +37,7 @@ const StructureTab = () => {
                 </div>
             </div>
         </div>
-    )
+    );
 };
 
 export default StructureTab;

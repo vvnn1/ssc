@@ -1,17 +1,17 @@
 import { Tree, TreeDataNode } from "antd";
 import { Key, useEffect, useState } from "react";
 import { FloderClosedColorOutlined, FloderOpenColorOutlined } from "../../../../../../Icon";
-import './index.sass'
+import "./index.sass";
 import TreeTitle from "./TreeTitle";
 
 const demoData: TreeDataNode = 
     {
-        title: '作业草稿',
-        key: '0',
+        title: "作业草稿",
+        key: "0",
         children: [
             {
-                title: '母婴订单实时查询',
-                key: '0-0',
+                title: "母婴订单实时查询",
+                key: "0-0",
                 isLeaf: false,
                 switcherIcon: (node) => (node.expanded ? <FloderOpenColorOutlined /> : <FloderClosedColorOutlined />),
             },
@@ -25,13 +25,13 @@ interface StoreTreeProps {
 }
 
 const StoreTree = (props: StoreTreeProps) => {
-    const [treeData, setTreeData] = useState<TreeDataNode[]>([demoData]);
+    const [treeData] = useState<TreeDataNode[]>([demoData]);
     const [expandedKeys, setExpandedKeys] = useState<Key[]>([]);
-    const [selectedKeys, setSelectedKeys] = useState<Key[]>(['0']);
+    const [selectedKeys, setSelectedKeys] = useState<Key[]>(["0"]);
 
     const onExpand = (expandedKeys: Key[]) => {
         setExpandedKeys(expandedKeys);
-    }
+    };
 
     useEffect(() => {
         props.onSelectedPathChange(demoData.title as string);
@@ -45,16 +45,16 @@ const StoreTree = (props: StoreTreeProps) => {
         const key = keys[0];
         const selectedPath:string[] = [];
 
-        tracePath(key, demoData, selectedPath)
+        tracePath(key, demoData, selectedPath);
 
-        props.onSelectedPathChange(selectedPath.join('/'));
+        props.onSelectedPathChange(selectedPath.join("/"));
 
         setSelectedKeys(keys);
-    }
+    };
 
     const tracePath = (targetKey: React.Key, node: TreeDataNode, selectedPath: string[]) => {
         if (node.key === targetKey) {
-            selectedPath.push(node.title as string)
+            selectedPath.push(node.title as string);
             return;
         }
 
@@ -71,11 +71,11 @@ const StoreTree = (props: StoreTreeProps) => {
             }
         }
         selectedPath.pop();
-    }
+    };
 
     const titleRender = (dataNode: TreeDataNode) => {
-        return (<TreeTitle dataNode={dataNode}/>)
-    }
+        return (<TreeTitle dataNode={dataNode}/>);
+    };
 
     return (
         <Tree
@@ -87,7 +87,7 @@ const StoreTree = (props: StoreTreeProps) => {
             onSelect={atLastOneSelected}
             titleRender={titleRender}
         />
-    )
+    );
 };
 
 export default StoreTree;

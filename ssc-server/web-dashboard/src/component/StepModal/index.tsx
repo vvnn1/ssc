@@ -15,25 +15,25 @@ const StepModal = (props: StepModalProps) => {
             return;
         }
         setCurrentStep(currentStep + 1);
-    }
+    };
 
     const prevStep = () => {
         if (currentStep < 0) {
             return;
         }
         setCurrentStep(currentStep - 1);
-    }
+    };
 
 
     return (
         <Modal
             {...props.modalProps}
-            okText={currentStep === 0 ? '下一步' : '确定'}
+            okText={currentStep === 0 ? "下一步" : "确定"}
             footer={(_, { OkBtn, CancelBtn }) => {
                 if (currentStep === 0) {
-                    return (<><OkBtn /><CancelBtn /></>)
+                    return (<><OkBtn /><CancelBtn /></>);
                 }
-                return <><Button onClick={prevStep}>上一步</Button><OkBtn /><CancelBtn /></>
+                return <><Button onClick={prevStep}>上一步</Button><OkBtn /><CancelBtn /></>;
             }}
             onOk={currentStep === 0 ? nextStep : props.modalProps?.onOk}
         >
@@ -43,7 +43,7 @@ const StepModal = (props: StepModalProps) => {
             />
             {props.children(currentStep)}
         </Modal>
-    )
+    );
 };
 
 export default StepModal;

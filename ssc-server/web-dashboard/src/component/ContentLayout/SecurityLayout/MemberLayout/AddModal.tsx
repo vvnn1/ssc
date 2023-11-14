@@ -33,7 +33,7 @@ const AddModal = (props: ModalProps) => {
                 </Form.Item>
             </Form>
         </Modal>
-    )
+    );
 };
 
 export default AddModal;

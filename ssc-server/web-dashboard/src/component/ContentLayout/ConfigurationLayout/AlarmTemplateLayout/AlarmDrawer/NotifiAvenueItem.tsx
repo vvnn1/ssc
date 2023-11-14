@@ -6,11 +6,11 @@ import ConcatManageModal from "./ContactManagerModal";
 
 
 const options = [
-    { label: 'DingTalk', value: 'DingTalk' },
-    { label: 'Email', value: 'Email' },
-    { label: 'SMS', value: 'SMS' },
-    { label: 'Webhook', value: 'Webhook' },
-    { label: 'Phone', value: 'Phone' },
+    { label: "DingTalk", value: "DingTalk" },
+    { label: "Email", value: "Email" },
+    { label: "SMS", value: "SMS" },
+    { label: "Webhook", value: "Webhook" },
+    { label: "Phone", value: "Phone" },
 ];
 
 interface NotifiAvenueItemProps {
@@ -29,8 +29,8 @@ const NotifiAvenueItem = (props: NotifiAvenueItemProps) => {
     const changeModalOpen = (open: boolean) => {
         return () => {
             setModalOpen(open);
-        }
-    }
+        };
+    };
     return (
         <AlarmCard
             title="通知方式"
@@ -41,7 +41,7 @@ const NotifiAvenueItem = (props: NotifiAvenueItemProps) => {
                 rules={[
                     {
                         required: true,
-                        message: '请选择通知方式'
+                        message: "请选择通知方式"
                     }
                 ]}
             >
@@ -59,42 +59,42 @@ const NotifiAvenueItem = (props: NotifiAvenueItemProps) => {
                         mode="multiple"
                         options={[
                             {
-                                label: '联系人',
+                                label: "联系人",
                                 options: [
                                     {
-                                        label: '王',
-                                        value: 'a'
+                                        label: "王",
+                                        value: "a"
                                     },
                                     {
-                                        label: '李',
-                                        value: 'b'
+                                        label: "李",
+                                        value: "b"
                                     }
                                 ]
                             },
                             {
-                                label: '联系人组',
+                                label: "联系人组",
                                 options: [
                                     {
-                                        label: 'tt',
-                                        value: 't'
+                                        label: "tt",
+                                        value: "t"
                                     }
                                 ]
                             },
                             {
-                                label: 'WebHook',
+                                label: "WebHook",
                                 options: [
                                     {
-                                        label: 'test',
-                                        value: 'e'
+                                        label: "test",
+                                        value: "e"
                                     }
                                 ]
                             },
                             {
-                                label: '钉钉机器人',
+                                label: "钉钉机器人",
                                 options: [
                                     {
-                                        label: 'aaa',
-                                        value: 'f'
+                                        label: "aaa",
+                                        value: "f"
                                     }
                                 ]
                             }
@@ -150,7 +150,7 @@ const NotifiAvenueItem = (props: NotifiAvenueItemProps) => {
             </Form.Item>
             <ConcatManageModal open={modalOpen} onCancel={changeModalOpen(false)} />
         </AlarmCard>
-    )
-}
+    );
+};
 
 export default NotifiAvenueItem;

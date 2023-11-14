@@ -1,10 +1,10 @@
-import { Button, Divider, Form, Input, Modal, ModalProps, Popconfirm, Select, Space, Table, Tabs, TabsProps, Tag, Tooltip, Typography, message } from "antd";
-import './index.sass'
+import { Button, Divider, Form, Input, Modal, ModalProps, Popconfirm, Select, Table, Tabs, Tag, Tooltip, message } from "antd";
+import "./index.sass";
 import { CheckCircleOutlined, PlusOutlined, SearchOutlined } from "../../../../../Icon";
 import { useState } from "react";
 import MonacoEditor from "../../../../../MonacoEditor";
 import EditableTable from "./EditableTable";
-import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const ContactGroupTable = () => {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -12,8 +12,8 @@ const ContactGroupTable = () => {
     const changeModalOpen = (open: boolean) => {
         return () => {
             setModalOpen(open);
-        }
-    }
+        };
+    };
 
     return (
         <div className="table-container">
@@ -28,19 +28,19 @@ const ContactGroupTable = () => {
                 columns={[
                     {
                         title: <div className="td-text">联系人组名</div>,
-                        dataIndex: 'name',
+                        dataIndex: "name",
                         render: (value) => <div className="td-item td-text" style={{width: 180}}>{value}</div>,
                     },
                     {
                         title: <div className="td-text">联系人</div>,
-                        dataIndex: 'contacts',
+                        dataIndex: "contacts",
                         render: (value) => <div className="td-item td-text" style={{width: 550}}>{value}</div>,
                     },
                 ]}
                 dataSource={[
                     {
-                        name: 'test',
-                        contacts: '王，李'
+                        name: "test",
+                        contacts: "王，李"
                     }
                 ]}
                 deleteTitle="确定删除当前联系人组吗?"
@@ -77,10 +77,10 @@ const ContactGroupTable = () => {
                             mode="multiple"
                             options={[
                                 {
-                                    label: '联系人',
+                                    label: "联系人",
                                     options: [
-                                        { label: '王', value: 'wang' },
-                                        { label: '李', value: 'li' }
+                                        { label: "王", value: "wang" },
+                                        { label: "李", value: "li" }
                                     ]
                                 }
                             ]}
@@ -89,7 +89,7 @@ const ContactGroupTable = () => {
                 </Form>
             </Modal>
         </div>
-    )
+    );
 };
 
 
@@ -99,8 +99,8 @@ const ContactsTable = () => {
     const changeModalOpen = (open: boolean) => {
         return () => {
             setModalOpen(open);
-        }
-    }
+        };
+    };
 
     return (
         <div className="table-container">
@@ -115,36 +115,36 @@ const ContactsTable = () => {
                 size="small"
                 dataSource={[
                     {
-                        key: '1',
-                        name: '王梦龙',
-                        phone: '15888276203',
-                        email: '-',
+                        key: "1",
+                        name: "王梦龙",
+                        phone: "15888276203",
+                        email: "-",
                         verify: false
                     },
                     {
-                        key: '2',
-                        name: '王梦龙',
-                        phone: '15888276203',
-                        email: '-',
+                        key: "2",
+                        name: "王梦龙",
+                        phone: "15888276203",
+                        email: "-",
                         verify: true
                     },
                     {
-                        key: '3',
-                        name: '王梦龙',
-                        phone: '-',
-                        email: '137418235@qq.com',
+                        key: "3",
+                        name: "王梦龙",
+                        phone: "-",
+                        email: "137418235@qq.com",
                         verify: true
                     }
                 ]}
                 columns={[
                     {
                         title: <div className="td-text">联系人</div>,
-                        dataIndex: 'name',
+                        dataIndex: "name",
                         render: (value) => <div className="td-item td-text" style={{ width: 125 }}>{value}</div>,
                     },
                     {
                         title: <div className="td-text">电话</div>,
-                        dataIndex: 'phone',
+                        dataIndex: "phone",
                         render: (value, record) => (
                             <div className="td-content">
                                 <div className="td-item td-text" style={{ width: 125 }}>{value}</div>
@@ -154,7 +154,7 @@ const ContactsTable = () => {
                     },
                     {
                         title: <div className="td-text">邮箱</div>,
-                        dataIndex: 'email',
+                        dataIndex: "email",
                         render: (value) => (<div className="td-item td-text" style={{ width: 200 }}>{value}</div>)
                     },
                 ]}
@@ -194,7 +194,7 @@ const ContactsTable = () => {
                 </Form>
             </Modal>
         </div>
-    )
+    );
 };
 
 
@@ -236,15 +236,15 @@ const WebhookModal = (props: ModalProps
                     <Input
                         placeholder="请输入 webhook url"
                         addonBefore={<Select
-                            defaultValue={props.initValue?.method ?? 'POST'}
+                            defaultValue={props.initValue?.method ?? "POST"}
                             options={[
                                 {
-                                    label: 'POST',
-                                    value: 'post'
+                                    label: "POST",
+                                    value: "post"
                                 },
                                 {
-                                    label: 'GET',
-                                    value: 'get'
+                                    label: "GET",
+                                    value: "get"
                                 }
                             ]}
                         />}
@@ -289,8 +289,8 @@ const WebhookModal = (props: ModalProps
                 </Form.Item>
             </Form>
         </Modal>
-    )
-}
+    );
+};
 
 const WebhookTable = () => {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -301,22 +301,22 @@ const WebhookTable = () => {
     const changeModalOpen = (open: boolean) => {
         return () => {
             setModalOpen(open);
-        }
-    }
+        };
+    };
 
     const onCopy = () => {
         messageApi.success({
             icon: <></>,
             content: <><CheckCircleOutlined color="#00a700" />已复制到剪切板</>
         });
-    }
+    };
 
     const changeEditModalOpen = (open: boolean, value: any) => {
         return () => {
             setModalValue(value);
             setEditModalOpen(open);
-        }
-    }
+        };
+    };
 
     return (
         <div className="table-container">
@@ -331,28 +331,28 @@ const WebhookTable = () => {
                 scroll={{ x: 1000 }}
                 columns={[
                     {
-                        title: '名称',
+                        title: "名称",
                         width: 200,
-                        fixed: 'left',
-                        dataIndex: 'name'
+                        fixed: "left",
+                        dataIndex: "name"
                     },
                     {
-                        title: 'Method',
+                        title: "Method",
                         width: 80,
-                        dataIndex: 'method',
+                        dataIndex: "method",
                         render: (value) => (
                             <Tag color="blue">{value}</Tag>
                         )
                     },
                     {
-                        title: 'URL',
-                        dataIndex: 'url',
+                        title: "URL",
+                        dataIndex: "url",
                         render: (value) => (<CopyToClipboard text={value} onCopy={onCopy}><span>{value}</span></CopyToClipboard>)
                     },
                     {
-                        title: '操作',
+                        title: "操作",
                         width: 150,
-                        fixed: 'right',
+                        fixed: "right",
                         render: (_, record) => (
                             <span>
                                 <a onClick={changeEditModalOpen(true, record)}>编辑</a>
@@ -371,12 +371,12 @@ const WebhookTable = () => {
                 ]}
                 dataSource={[
                     {
-                        name: 'test',
-                        method: 'POST',
-                        url: 'http://www.baodu.com',
-                        headers: '',
-                        params: '',
-                        body: ''
+                        name: "test",
+                        method: "POST",
+                        url: "http://www.baodu.com",
+                        headers: "",
+                        params: "",
+                        body: ""
                     }
                 ]}
             />
@@ -395,7 +395,7 @@ const WebhookTable = () => {
             />
             {contextHolder}
         </div>
-    )
+    );
 };
 
 const DingdingTable = () => {
@@ -404,8 +404,8 @@ const DingdingTable = () => {
     const changeModalOpen = (open: boolean) => {
         return () => {
             setModalOpen(open);
-        }
-    }
+        };
+    };
 
     return (
         <div className="table-container">
@@ -420,21 +420,21 @@ const DingdingTable = () => {
                 columns={[
                     {
                         title: <div className="td-text">名称</div>,
-                        dataIndex: 'name',
+                        dataIndex: "name",
                         render: (value) => <div className="td-item td-text">{value}</div>,
                         width: 197
                     },
                     {
                         title: <div className="td-text">地址</div>,
-                        dataIndex: 'address',
+                        dataIndex: "address",
                         render: (value) => <div className="td-item td-text">{value}</div>,
                         width: 567
                     },
                 ]}
                 dataSource={[
                     {
-                        name: 'test',
-                        address: 'aaa'
+                        name: "test",
+                        address: "aaa"
                     }
                 ]}
                 deleteTitle="确定删除当前钉钉机器人吗？"
@@ -470,7 +470,7 @@ const DingdingTable = () => {
                 </Form>
             </Modal>
         </div>
-    )
+    );
 };
 
 
@@ -487,29 +487,29 @@ const ConcatManageModal = (props: ModalProps) => {
             <Tabs
                 items={[
                     {
-                        label: '联系人组',
-                        key: 'contact-group',
+                        label: "联系人组",
+                        key: "contact-group",
                         children: <ContactGroupTable />,
                     },
                     {
-                        label: '联系人',
-                        key: 'contacts',
+                        label: "联系人",
+                        key: "contacts",
                         children: <ContactsTable />,
                     },
                     {
-                        label: 'Webhook',
-                        key: 'webhook',
+                        label: "Webhook",
+                        key: "webhook",
                         children: <WebhookTable />,
                     },
                     {
-                        label: '钉钉机器人',
-                        key: 'dingding',
+                        label: "钉钉机器人",
+                        key: "dingding",
                         children: <DingdingTable />,
                     }
                 ]}
             />
         </Modal>
-    )
+    );
 };
 
 export default ConcatManageModal;

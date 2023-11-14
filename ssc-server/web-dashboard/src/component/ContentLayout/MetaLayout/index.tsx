@@ -1,14 +1,14 @@
-import { Button, Input } from 'antd'
-import './index.sass'
-import { PlusOutlined, ReloadOutlined, SearchOutlined } from '../../Icon'
-import MetaTree from '../DraftLayout/LeftTabBar/LeftTabPanel/MetaTabPanel/MetaTree'
-import ScrollPin from '../../ScrollPin'
-import { useRef } from 'react'
-import MetaDetailLayout from './MetaDetailLayout'
-import { Route, Routes } from 'react-router-dom'
-import CatalogDetailLayout from './CatalogDetailLayout'
-import DatabaseDetailLayout from './DatabaseDetailLayout'
-import TableDetailLayout from './TableDetailLayout'
+import { Button, Input } from "antd";
+import "./index.sass";
+import { PlusOutlined, ReloadOutlined, SearchOutlined } from "../../Icon";
+import MetaTree from "../DraftLayout/LeftTabBar/LeftTabPanel/MetaTabPanel/MetaTree";
+import ScrollPin from "../../ScrollPin";
+import { useRef } from "react";
+import MetaDetailLayout from "./MetaDetailLayout";
+import { Route, Routes } from "react-router-dom";
+import CatalogDetailLayout from "./CatalogDetailLayout";
+import DatabaseDetailLayout from "./DatabaseDetailLayout";
+import TableDetailLayout from "./TableDetailLayout";
 
 
 
@@ -64,7 +64,7 @@ const MetaLayout = () => {
             </div>
 
         </div>
-    )
+    );
 };
 
 export default MetaLayout;

@@ -1,12 +1,12 @@
-import { Col, Divider, Form, FormInstance, Input, Row, Select, Space, Tag, Typography } from 'antd';
-import { ArrowLeftOutlined } from '../../../../../Icon';
-import './index.sass'
-import ScrollPin from '../../../../../ScrollPin';
-import { useRef } from 'react';
-import MonacoEditor from '../../../../../MonacoEditor';
-import { CardTemplate } from '../Step1';
-import dayjs from 'dayjs';
-import DirectorySelect from '../../../../../DirectorySelect';
+import { Col, Divider, Form, FormInstance, Input, Row, Select, Space, Tag, Typography } from "antd";
+import { ArrowLeftOutlined } from "../../../../../Icon";
+import "./index.sass";
+import ScrollPin from "../../../../../ScrollPin";
+import { useRef } from "react";
+import MonacoEditor from "../../../../../MonacoEditor";
+import { CardTemplate } from "../Step1";
+import dayjs from "dayjs";
+import DirectorySelect from "../../../../../DirectorySelect";
 const { Paragraph } = Typography;
 
 
@@ -21,7 +21,7 @@ const Step2 = (props: Step2Props) => {
 
     const editorDidMount = (editor: any) => {
         editor.layout();
-    }
+    };
 
     return (
         <div className="create-draft-step2">
@@ -64,19 +64,19 @@ const Step2 = (props: Step2Props) => {
                                 <Form.Item
                                     label="文件名称"
                                     name='name'
-                                    initialValue={`${props.template?.fileName}-${dayjs().format('YYYYMMDDHHmmss')}`}
+                                    initialValue={`${props.template?.fileName}-${dayjs().format("YYYYMMDDHHmmss")}`}
                                     rules={[
                                         {
                                             pattern: /[\w\d_-]{1,128}/,
-                                            message: '只支持字母（大小写）、数字、下划线（_）、横杠（-），长度不超过 128'
+                                            message: "只支持字母（大小写）、数字、下划线（_）、横杠（-），长度不超过 128"
                                         },
                                         {
                                             required: true,
-                                            message: '文件名称是必填项'
+                                            message: "文件名称是必填项"
                                         }
                                     ]}
                                 >
-                                    <Input style={{width: '100%'}}/>
+                                    <Input style={{width: "100%"}}/>
                                 </Form.Item>
                                 <Form.Item
                                     label="存储位置"
@@ -95,26 +95,26 @@ const Step2 = (props: Step2Props) => {
                                         optionLabelProp='title'
                                         options={[
                                             {
-                                                label: '推荐版本',
+                                                label: "推荐版本",
                                                 options: [
                                                     {
-                                                        title: 'vvr-8.0.1-flink-1.17',
-                                                        value: '1.17',
+                                                        title: "vvr-8.0.1-flink-1.17",
+                                                        value: "1.17",
                                                         label: <>vvr-8.0.1-flink-1.17<Tag className="ant-select-item-option-content-tag" color='#00a700cc'>RECOMMEND</Tag></>
                                                     }
                                                 ]
                                             },
                                             {
-                                                label: '稳定版本',
+                                                label: "稳定版本",
                                                 options: [
                                                     {
-                                                        title: 'vvr-6.0.7-flink-1.15',
-                                                        value: '1.15',
+                                                        title: "vvr-6.0.7-flink-1.15",
+                                                        value: "1.15",
                                                         label: <>vvr-6.0.7-flink-1.15 <Tag className='ant-select-item-option-content-tag' color=''>STABLE</Tag></>
                                                     },
                                                     {
-                                                        title: 'vvr-4.0.18-flink-1.13',
-                                                        value: '1.13',
+                                                        title: "vvr-4.0.18-flink-1.13",
+                                                        value: "1.13",
                                                         label: <>vvr-4.0.18-flink-1.13 <Tag className='ant-select-item-option-content-tag' color=''>STABLE</Tag></>
                                                     }
                                                 ]
@@ -145,7 +145,7 @@ const Step2 = (props: Step2Props) => {
                                         selectOnLineNumbers: true,
                                         lineNumbersMinChars: 2,
                                         lineDecorationsWidth: 0,
-                                        wordWrap: 'on',
+                                        wordWrap: "on",
                                         readOnly: true,
                                         scrollBeyondLastLine: false,
                                     }}
@@ -158,7 +158,7 @@ const Step2 = (props: Step2Props) => {
                 </Form>
             </Row>
         </div>
-    )
+    );
 };
 
 

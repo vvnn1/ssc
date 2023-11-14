@@ -46,7 +46,7 @@ const HiveForm = () => {
                 <Input />
             </Form.Item>
         </Form>
-    )
+    );
 };
 
 export default HiveForm;

@@ -1,6 +1,6 @@
 import { Card, Divider, Space } from "antd";
-import { Typography } from 'antd';
-import './index.sass'
+import { Typography } from "antd";
+import "./index.sass";
 
 const { Paragraph } = Typography;
 
@@ -31,7 +31,7 @@ const DraftCard = (props: CardProps) => {
             <div className="footer">
                 <Space>
                     <span className="key">类别:</span>
-                    <span className="value">{props.classification === 'STREAM' ? '流' : '批'}</span>
+                    <span className="value">{props.classification === "STREAM" ? "流" : "批"}</span>
                 </Space>
                 <Divider type="vertical" />
                 <Space>
@@ -40,7 +40,7 @@ const DraftCard = (props: CardProps) => {
                 </Space>
             </div>
         </Card>
-    )
-}
+    );
+};
 
 export default DraftCard;

@@ -1,33 +1,33 @@
-import { Menu, MenuProps } from 'antd';
-import './index.sass'
-import MyLink from '../../../../MyLink';
-import RuntimeLogLayout from './RuntimeLogLayout';
-import { Outlet, Route, Routes, matchPath, useHref, useLocation, useNavigate } from 'react-router-dom';
-import LaunchLogLayout from './LaunchLogLayout';
-import ExceptionLayout from './ExceptionLayout';
-import RunIdNavigate from './RuntimeLogLayout/RunIdNavigate';
+import { Menu, MenuProps } from "antd";
+import "./index.sass";
+import MyLink from "../../../../MyLink";
+import RuntimeLogLayout from "./RuntimeLogLayout";
+import { Route, Routes, matchPath, useLocation } from "react-router-dom";
+import LaunchLogLayout from "./LaunchLogLayout";
+import ExceptionLayout from "./ExceptionLayout";
+import RunIdNavigate from "./RuntimeLogLayout/RunIdNavigate";
 
-const items: MenuProps['items'] = [
+const items: MenuProps["items"] = [
     {
         label: <MyLink to='running'>运行日志</MyLink>,
-        key: 'running',
+        key: "running",
     },
     {
         label: <MyLink to="starting">启动日志</MyLink>,
-        key: 'starting',
+        key: "starting",
     },
     {
         label: <MyLink to="exceptions">异常信息</MyLink>,
-        key: 'exceptions'
+        key: "exceptions"
     }
-]
+];
 const ExplorationLayout = () => {
-    let { pathname } = useLocation();
+    const { pathname } = useLocation();
     const pathMatch = matchPath("/workspace/:workspaceId/namespace/:namespaceId/operations/:jobType/:jobId/:detailTab/:key/*", pathname);
 
     return (
         <div className="development-exploration-layout">
-            <Menu className="vertical-mode" mode="inline" items={items} defaultSelectedKeys={[pathMatch?.params.key!]} />
+            <Menu className="vertical-mode" mode="inline" items={items} defaultSelectedKeys={pathMatch?.params.key ? [pathMatch?.params.key] : []} />
             <Routes>
                 <Route path='running' element={<RunIdNavigate />}>
                     <Route path=':runId'>
@@ -42,7 +42,7 @@ const ExplorationLayout = () => {
             </Routes>
 
         </div>
-    )
+    );
 };
 
 export default ExplorationLayout;

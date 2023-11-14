@@ -1,7 +1,7 @@
-import './index.sass'
-import { Button, Space } from 'antd';
-import { DownloadOutlined, SyncOutlined } from '../../../../../Icon';
-import MonacoEditor from '../../../../../MonacoEditor';
+import "./index.sass";
+import { Button, Space } from "antd";
+import { DownloadOutlined, SyncOutlined } from "../../../../../Icon";
+import MonacoEditor from "../../../../../MonacoEditor";
 
 const StdoutLayout = () => {
     return (
@@ -14,7 +14,7 @@ const StdoutLayout = () => {
                     selectOnLineNumbers: true,
                     lineNumbersMinChars: 5,
                     lineDecorationsWidth: 0,
-                    wordWrap: 'on',
+                    wordWrap: "on",
                     readOnly: false,
                     scrollBeyondLastLine: false,
                 }}
@@ -370,7 +370,7 @@ INFO  [] -     JVM Overhead:       409.600mb (429496736 bytes)
                 <Button size="small" type='primary'><DownloadOutlined /></Button>
             </Space.Compact>
         </div>
-    )
+    );
 };
 
 export default StdoutLayout;

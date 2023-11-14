@@ -1,5 +1,5 @@
-import ToolBar from '../ToolBar';
-import './index.sass';
+import ToolBar from "../ToolBar";
+import "./index.sass";
 
 const WelcomeContent = () => {
     return (
@@ -115,7 +115,7 @@ const WelcomeContent = () => {
                 </svg>
             </div>
         </>
-    )
+    );
 };
 
 export default WelcomeContent;

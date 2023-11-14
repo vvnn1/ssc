@@ -6,16 +6,16 @@ import { useEffect, useState } from "react";
 const ResourceConfiguration = (props: { editing: boolean, form: FormInstance }) => {
     const [data, setData] = useState<any>(
         {
-            settingMode: 'BASIC',
+            settingMode: "BASIC",
             basicResourceSetting: {
                 parallelism: 1,
                 jobmanagerResourceSettingSpec: {
                     cpu: 2,
-                    memory: '3MiB'
+                    memory: "3MiB"
                 },
                 taskmanagerResourceSettingSpec: {
                     cpu: 4,
-                    memory: '5GiB',
+                    memory: "5GiB",
                     slots: 6
                 }
             }
@@ -27,13 +27,13 @@ const ResourceConfiguration = (props: { editing: boolean, form: FormInstance }) 
         form.setFieldsValue(data);
     }, []);
 
-    const items: DescriptionsProps['items'] = []
+    const items: DescriptionsProps["items"] = [];
     if (editing) {
         items.push(
             ...[
                 {
-                    key: 'setting-mode',
-                    label: '资源模式',
+                    key: "setting-mode",
+                    label: "资源模式",
                     children: (
                         <Form.Item
                             name='settingMode'
@@ -47,11 +47,11 @@ const ResourceConfiguration = (props: { editing: boolean, form: FormInstance }) 
                     )
                 },
                 {
-                    key: 'parallelism',
-                    label: '并发度',
+                    key: "parallelism",
+                    label: "并发度",
                     children: (
                         <Form.Item
-                            name={['basicResourceSetting', 'parallelism']}
+                            name={["basicResourceSetting", "parallelism"]}
                             initialValue={2}
                         >
                             <InputNumber placeholder="请输入并发度" addonAfter={<NumberOutlined />} />
@@ -59,67 +59,67 @@ const ResourceConfiguration = (props: { editing: boolean, form: FormInstance }) 
                     )
                 },
                 {
-                    key: 'jobmanager-cpu',
-                    label: 'Job Manager CPU',
+                    key: "jobmanager-cpu",
+                    label: "Job Manager CPU",
                     children: (
                         <Form.Item
-                            name={['basicResourceSetting', 'jobmanagerResourceSettingSpec', 'cpu']}
+                            name={["basicResourceSetting", "jobmanagerResourceSettingSpec", "cpu"]}
                             initialValue={3}
                         >
-                            <InputNumber placeholder="请输入 CPU 数" addonAfter={'Core'} />
+                            <InputNumber placeholder="请输入 CPU 数" addonAfter={"Core"} />
                         </Form.Item>
                     )
                 },
                 {
-                    key: 'jobmanager-memory',
-                    label: 'Job Manager Memory',
+                    key: "jobmanager-memory",
+                    label: "Job Manager Memory",
                     children: (
                         <Form.Item
-                            name={['basicResourceSetting', 'jobmanagerResourceSettingSpec', 'memory']}
+                            name={["basicResourceSetting", "jobmanagerResourceSettingSpec", "memory"]}
                             initialValue='4MiB'
                         >
                             <MemoryInputNumber
                                 inputProps={{
-                                    placeholder: '请输入内存'
+                                    placeholder: "请输入内存"
                                 }}
                             />
                         </Form.Item>
                     )
                 },
                 {
-                    key: 'taskmanager-cpu',
-                    label: 'Task Manager CPU',
+                    key: "taskmanager-cpu",
+                    label: "Task Manager CPU",
                     children: (
                         <Form.Item
-                            name={['basicResourceSetting', 'taskmanagerResourceSettingSpec', 'cpu']}
+                            name={["basicResourceSetting", "taskmanagerResourceSettingSpec", "cpu"]}
                             initialValue={5}
                         >
-                            <InputNumber placeholder="请输入 CPU 数" defaultValue='1' addonAfter={'Core'} />
+                            <InputNumber placeholder="请输入 CPU 数" defaultValue='1' addonAfter={"Core"} />
                         </Form.Item>
                     )
                 },
                 {
-                    key: 'taskmanager-memory',
-                    label: 'Task Manager Memory',
+                    key: "taskmanager-memory",
+                    label: "Task Manager Memory",
                     children: (
                         <Form.Item
-                            name={['basicResourceSetting', 'taskmanagerResourceSettingSpec', 'memory']}
+                            name={["basicResourceSetting", "taskmanagerResourceSettingSpec", "memory"]}
                             initialValue='6GiB'
                         >
                             <MemoryInputNumber
                                 inputProps={{
-                                    placeholder: '请输入内存'
+                                    placeholder: "请输入内存"
                                 }}
                             />
                         </Form.Item>
                     )
                 },
                 {
-                    key: 'slots',
-                    label: '每个 TaskManager Slot 数',
+                    key: "slots",
+                    label: "每个 TaskManager Slot 数",
                     children: (
                         <Form.Item
-                            name={['basicResourceSetting', 'taskmanagerResourceSettingSpec', 'slots']}
+                            name={["basicResourceSetting", "taskmanagerResourceSettingSpec", "slots"]}
                             initialValue={7}
                         >
                             <InputNumber placeholder="请输入每个 TaskManager Slot 数" addonAfter={<NumberOutlined />} />
@@ -132,39 +132,39 @@ const ResourceConfiguration = (props: { editing: boolean, form: FormInstance }) 
         items.push(
             ...[
                 {
-                    key: 'setting-mode',
-                    label: '资源模式',
-                    children: data['settingMode'] === 'BASIC' ? '基础模式' : '专家模式'
+                    key: "setting-mode",
+                    label: "资源模式",
+                    children: data["settingMode"] === "BASIC" ? "基础模式" : "专家模式"
                 },
                 {
-                    key: 'parallelism',
-                    label: '并发度',
-                    children: data['basicResourceSetting']?.['parallelism']
+                    key: "parallelism",
+                    label: "并发度",
+                    children: data["basicResourceSetting"]?.["parallelism"]
                 },
                 {
-                    key: 'jobmanager-cpu',
-                    label: 'Job Manager CPU',
-                    children: data['basicResourceSetting']?.['jobmanagerResourceSettingSpec']?.['cpu']
+                    key: "jobmanager-cpu",
+                    label: "Job Manager CPU",
+                    children: data["basicResourceSetting"]?.["jobmanagerResourceSettingSpec"]?.["cpu"]
                 },
                 {
-                    key: 'jobmanager-memory',
-                    label: 'Job Manager Memory',
-                    children: data['basicResourceSetting']?.['jobmanagerResourceSettingSpec']?.['memory']
+                    key: "jobmanager-memory",
+                    label: "Job Manager Memory",
+                    children: data["basicResourceSetting"]?.["jobmanagerResourceSettingSpec"]?.["memory"]
                 },
                 {
-                    key: 'taskmanager-cpu',
-                    label: 'Task Manager CPU',
-                    children: data['basicResourceSetting']?.['taskmanagerResourceSettingSpec']?.['cpu']
+                    key: "taskmanager-cpu",
+                    label: "Task Manager CPU",
+                    children: data["basicResourceSetting"]?.["taskmanagerResourceSettingSpec"]?.["cpu"]
                 },
                 {
-                    key: 'taskmanager-memory',
-                    label: 'Task Manager Memory',
-                    children: data['basicResourceSetting']?.['taskmanagerResourceSettingSpec']?.['memory']
+                    key: "taskmanager-memory",
+                    label: "Task Manager Memory",
+                    children: data["basicResourceSetting"]?.["taskmanagerResourceSettingSpec"]?.["memory"]
                 },
                 {
-                    key: 'slots',
-                    label: '每个 TaskManager Slot 数',
-                    children: data['basicResourceSetting']?.['taskmanagerResourceSettingSpec']?.['slots']
+                    key: "slots",
+                    label: "每个 TaskManager Slot 数",
+                    children: data["basicResourceSetting"]?.["taskmanagerResourceSettingSpec"]?.["slots"]
                 }
             ].filter(item => item.children)
         );
@@ -173,8 +173,8 @@ const ResourceConfiguration = (props: { editing: boolean, form: FormInstance }) 
     const onFinish = (value: any) => {
         setData({
             ...value
-        })
-    }
+        });
+    };
 
     return (
         <Form
@@ -193,7 +193,7 @@ const ResourceConfiguration = (props: { editing: boolean, form: FormInstance }) 
                 items={items}
             />
         </Form>
-    )
+    );
 };
 
 export default ResourceConfiguration;

@@ -8,15 +8,15 @@ type RestartStrategy = "failure-rate" | "fixed-delay" | "none";
 
 const RuntimeConfiguration = (props: { editing: boolean, form: FormInstance }) => {
     const [data, setData] = useState<any>({
-        'execution.checkpointing.interval': '100s',
-        'execution.checkpointing.min-pause': '2s',
-        'table.exec.state.ttl': '3s',
-        'restart-strategy': 'fixed-delay',
-        'restart-strategy.fixed-delay.attempts': '14',
-        'restart-strategy.fixed-delay.delay': '65s',
-        'others': 'akka.client-socket-worker-pool.pool-size-min: 1'
+        "execution.checkpointing.interval": "100s",
+        "execution.checkpointing.min-pause": "2s",
+        "table.exec.state.ttl": "3s",
+        "restart-strategy": "fixed-delay",
+        "restart-strategy.fixed-delay.attempts": "14",
+        "restart-strategy.fixed-delay.delay": "65s",
+        "others": "akka.client-socket-worker-pool.pool-size-min: 1"
     });
-    const [restartStrategy, setRestartStrategy] = useState<RestartStrategy>(data['restart-strategy']);
+    const [restartStrategy, setRestartStrategy] = useState<RestartStrategy>(data["restart-strategy"]);
 
     const { editing, form } = props;
 
@@ -25,13 +25,13 @@ const RuntimeConfiguration = (props: { editing: boolean, form: FormInstance }) =
     }, []);
 
 
-    const items: DescriptionsProps['items'] = [];
+    const items: DescriptionsProps["items"] = [];
     if (editing) {
         items.push(
             ...[
                 {
-                    key: 'execution.checkpointing.interval',
-                    label: '系统检查点间隔',
+                    key: "execution.checkpointing.interval",
+                    label: "系统检查点间隔",
                     children: (
                         <Form.Item
                             name='execution.checkpointing.interval'
@@ -39,15 +39,15 @@ const RuntimeConfiguration = (props: { editing: boolean, form: FormInstance }) =
                         >
                             <TimeInputNumber
                                 inputProps={{
-                                    placeholder: '请输入系统检查点间隔，默认值: -'
+                                    placeholder: "请输入系统检查点间隔，默认值: -"
                                 }}
                             />
                         </Form.Item>
                     )
                 },
                 {
-                    key: 'execution.checkpointing.min-pause',
-                    label: '两次系统检查点之间的最短时间间隔',
+                    key: "execution.checkpointing.min-pause",
+                    label: "两次系统检查点之间的最短时间间隔",
                     children: (
                         <Form.Item
                             name='execution.checkpointing.min-pause'
@@ -55,15 +55,15 @@ const RuntimeConfiguration = (props: { editing: boolean, form: FormInstance }) =
                         >
                             <TimeInputNumber
                                 inputProps={{
-                                    placeholder: '请输入时间间隔，默认值: -'
+                                    placeholder: "请输入时间间隔，默认值: -"
                                 }}
                             />
                         </Form.Item>
                     )
                 },
                 {
-                    key: 'table.exec.state.ttl',
-                    label: 'State 数据过期时间',
+                    key: "table.exec.state.ttl",
+                    label: "State 数据过期时间",
                     children: (
                         <Form.Item
                             name='table.exec.state.ttl'
@@ -71,15 +71,15 @@ const RuntimeConfiguration = (props: { editing: boolean, form: FormInstance }) =
                         >
                             <TimeInputNumber
                                 inputProps={{
-                                    placeholder: '请输入 State 数据过期时间，默认值: 36 h'
+                                    placeholder: "请输入 State 数据过期时间，默认值: 36 h"
                                 }}
                             />
                         </Form.Item>
                     )
                 },
                 {
-                    key: 'restart-strategy',
-                    label: 'Flink 重启策略',
+                    key: "restart-strategy",
+                    label: "Flink 重启策略",
                     children: (
                         <Form.Item
                             name='restart-strategy'
@@ -87,7 +87,7 @@ const RuntimeConfiguration = (props: { editing: boolean, form: FormInstance }) =
                                 {
 
                                     warningOnly: true,
-                                    message: '配置该参数后，Task 失败则 JobManager 进程不会重启，请谨慎选择。',
+                                    message: "配置该参数后，Task 失败则 JobManager 进程不会重启，请谨慎选择。",
                                     pattern: /(failure-rate)|(fixed-delay)/
                                 }
                             ]}
@@ -99,7 +99,7 @@ const RuntimeConfiguration = (props: { editing: boolean, form: FormInstance }) =
                                 allowClear
                                 options={[
                                     {
-                                        value: 'failure-rate',
+                                        value: "failure-rate",
                                         label: (
                                             <>
                                                 Failure Rate
@@ -109,7 +109,7 @@ const RuntimeConfiguration = (props: { editing: boolean, form: FormInstance }) =
                                         title: "Failure Rate",
                                     },
                                     {
-                                        value: 'fixed-delay',
+                                        value: "fixed-delay",
                                         label: (
                                             <>
                                                 Fixed Delay
@@ -119,7 +119,7 @@ const RuntimeConfiguration = (props: { editing: boolean, form: FormInstance }) =
                                         title: "Fixed Delay",
                                     },
                                     {
-                                        value: 'none',
+                                        value: "none",
                                         label: (
                                             <>
                                                 No Restarts
@@ -135,11 +135,11 @@ const RuntimeConfiguration = (props: { editing: boolean, form: FormInstance }) =
             ]
         );
 
-        if (restartStrategy === 'failure-rate') {
+        if (restartStrategy === "failure-rate") {
             items.push(
                 ...[
                     {
-                        key: 'restart-strategy.failure-rate.failure-rate-interval',
+                        key: "restart-strategy.failure-rate.failure-rate-interval",
                         label: <Tooltip title="检测 Failure Rate 的时间间隔">检测 Failure Rate 的时间间隔</Tooltip>,
                         children: (
                             <Form.Item
@@ -148,14 +148,14 @@ const RuntimeConfiguration = (props: { editing: boolean, form: FormInstance }) =
                             >
                                 <TimeInputNumber
                                     inputProps={{
-                                        placeholder: '请输入时间间隔'
+                                        placeholder: "请输入时间间隔"
                                     }}
                                 />
                             </Form.Item>
                         )
                     },
                     {
-                        key: 'restart-strategy.failure-rate.max-failures-per-interval',
+                        key: "restart-strategy.failure-rate.max-failures-per-interval",
                         label: <Tooltip title="作业失败之前，给定时间间隔内的最大重新启动次数">时间间隔内的最大失败次数</Tooltip>,
                         children: (
                             <Form.Item
@@ -167,7 +167,7 @@ const RuntimeConfiguration = (props: { editing: boolean, form: FormInstance }) =
                         )
                     },
                     {
-                        key: 'restart-strategy.failure-rate.delay',
+                        key: "restart-strategy.failure-rate.delay",
                         label: <Tooltip title="连续两次重启之间的延迟">每次重启时间间隔</Tooltip>,
                         children: (
                             <Form.Item
@@ -176,22 +176,22 @@ const RuntimeConfiguration = (props: { editing: boolean, form: FormInstance }) =
                             >
                                 <TimeInputNumber
                                     inputProps={{
-                                        placeholder: '请输入每次重启时间间隔'
+                                        placeholder: "请输入每次重启时间间隔"
                                     }}
                                 />
                             </Form.Item>
                         )
                     }
                 ]
-            )
+            );
         }
 
-        if (restartStrategy === 'fixed-delay') {
+        if (restartStrategy === "fixed-delay") {
             items.push(
                 ...[
                     {
-                        key: 'restart-strategy.fixed-delay.attempts',
-                        label: '尝试重启的次数',
+                        key: "restart-strategy.fixed-delay.attempts",
+                        label: "尝试重启的次数",
                         children: (
                             <Form.Item
                                 name="restart-strategy.fixed-delay.attempts"
@@ -202,8 +202,8 @@ const RuntimeConfiguration = (props: { editing: boolean, form: FormInstance }) =
                         )
                     },
                     {
-                        key: 'restart-strategy.fixed-delay.delay',
-                        label: '每次重启时间间隔',
+                        key: "restart-strategy.fixed-delay.delay",
+                        label: "每次重启时间间隔",
                         children: (
                             <Form.Item
                                 name="restart-strategy.fixed-delay.delay"
@@ -211,7 +211,7 @@ const RuntimeConfiguration = (props: { editing: boolean, form: FormInstance }) =
                             >
                                 <TimeInputNumber
                                     inputProps={{
-                                        placeholder: '请输入每次重启时间间隔'
+                                        placeholder: "请输入每次重启时间间隔"
                                     }}
                                 />
                             </Form.Item>
@@ -223,8 +223,8 @@ const RuntimeConfiguration = (props: { editing: boolean, form: FormInstance }) =
 
         items.push(
             {
-                key: 'others',
-                label: '其他配置',
+                key: "others",
+                label: "其他配置",
                 children: (
                     <Form.Item
                         className="monaco-editor-item"
@@ -247,7 +247,7 @@ const RuntimeConfiguration = (props: { editing: boolean, form: FormInstance }) =
                                 selectOnLineNumbers: true,
                                 lineNumbersMinChars: 3,
                                 lineDecorationsWidth: 0,
-                                wordWrap: 'on',
+                                wordWrap: "on",
                                 readOnly: false,
                                 scrollBeyondLastLine: false,
 
@@ -262,54 +262,54 @@ const RuntimeConfiguration = (props: { editing: boolean, form: FormInstance }) =
         items.push(
             ...[
                 {
-                    key: 'execution.checkpointing.interval',
-                    label: '系统检查点间隔',
-                    children: data['execution.checkpointing.interval']
+                    key: "execution.checkpointing.interval",
+                    label: "系统检查点间隔",
+                    children: data["execution.checkpointing.interval"]
                 },
                 {
-                    key: 'execution.checkpointing.min-pause',
-                    label: '两次系统检查点之间的最短时间间隔',
-                    children: data['execution.checkpointing.min-pause']
+                    key: "execution.checkpointing.min-pause",
+                    label: "两次系统检查点之间的最短时间间隔",
+                    children: data["execution.checkpointing.min-pause"]
                 },
                 {
-                    key: 'table.exec.state.ttl',
-                    label: 'State 数据过期时间',
-                    children: data['table.exec.state.ttl']
+                    key: "table.exec.state.ttl",
+                    label: "State 数据过期时间",
+                    children: data["table.exec.state.ttl"]
                 },
                 {
-                    key: 'restart-strategy',
-                    label: 'Flink 重启策略',
-                    children: data['restart-strategy']
+                    key: "restart-strategy",
+                    label: "Flink 重启策略",
+                    children: data["restart-strategy"]
                 },
                 {
-                    key: 'restart-strategy.fixed-delay.attempts',
-                    label: '尝试重启的次数',
-                    children: data['restart-strategy.fixed-delay.attempts']
+                    key: "restart-strategy.fixed-delay.attempts",
+                    label: "尝试重启的次数",
+                    children: data["restart-strategy.fixed-delay.attempts"]
                 },
                 {
-                    key: 'restart-strategy.fixed-delay.delay',
-                    label: '每次重启时间间隔',
-                    children: data['restart-strategy.fixed-delay.delay']
+                    key: "restart-strategy.fixed-delay.delay",
+                    label: "每次重启时间间隔",
+                    children: data["restart-strategy.fixed-delay.delay"]
                 },
                 {
-                    key: 'restart-strategy.failure-rate.failure-rate-interval',
-                    label: '每次重启时间间隔',
-                    children: data['restart-strategy.failure-rate.failure-rate-interval']
+                    key: "restart-strategy.failure-rate.failure-rate-interval",
+                    label: "每次重启时间间隔",
+                    children: data["restart-strategy.failure-rate.failure-rate-interval"]
                 },
                 {
-                    key: 'restart-strategy.failure-rate.max-failures-per-interval',
-                    label: '每次重启时间间隔',
-                    children: data['restart-strategy.failure-rate.max-failures-per-interval']
+                    key: "restart-strategy.failure-rate.max-failures-per-interval",
+                    label: "每次重启时间间隔",
+                    children: data["restart-strategy.failure-rate.max-failures-per-interval"]
                 },
                 {
-                    key: 'restart-strategy.failure-rate.delay',
-                    label: '每次重启时间间隔',
-                    children: data['restart-strategy.failure-rate.delay']
+                    key: "restart-strategy.failure-rate.delay",
+                    label: "每次重启时间间隔",
+                    children: data["restart-strategy.failure-rate.delay"]
                 },
             ].filter(item => item.children)
         );
 
-        (data['others'] as string)?.split('\n')
+        (data["others"] as string)?.split("\n")
             .filter(item => item)
             .forEach(item => {
                 const [key, value] = item.split(":");
@@ -320,15 +320,15 @@ const RuntimeConfiguration = (props: { editing: boolean, form: FormInstance }) =
                         children: value,
                     }
                 );
-            })
+            });
 
     }
 
     const onFinish = (value: any) => {
         setData({
             ...value
-        })
-    }
+        });
+    };
 
     return (
         <Form
@@ -347,7 +347,7 @@ const RuntimeConfiguration = (props: { editing: boolean, form: FormInstance }) =
                 items={items}
             />
         </Form>
-    )
+    );
 };
 
 export default RuntimeConfiguration;

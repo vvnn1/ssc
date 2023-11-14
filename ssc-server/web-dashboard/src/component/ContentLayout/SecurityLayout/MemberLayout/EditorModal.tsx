@@ -31,7 +31,7 @@ const EditorModal = (props: ModalProps) => {
                 </Form.Item>
             </Form>
         </Modal>
-    )
+    );
 };
 
 export default EditorModal;

@@ -1,6 +1,6 @@
 import { Popover } from "antd";
 import { InsertRowLeftOutlined, MinusOutlined } from "../../../../../../Icon";
-import './index.sass'
+import "./index.sass";
 
 const TableFieldPopOverContent = () => {
     return (
@@ -26,8 +26,8 @@ const TableFieldPopOverContent = () => {
                 <div className="value">-</div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 interface TableDescriptionPanelProps {
     onCancel: () => void;
@@ -88,7 +88,7 @@ const TableDescriptionPanel = (props: TableDescriptionPanelProps) => {
 
             </div>
         </div>
-    )
+    );
 };
 
 export default TableDescriptionPanel;

@@ -11,8 +11,8 @@ const TreeTitle = (props: TreeTitleProps) => {
 
 
     const onFloderAddClick = () => {
-        console.log('a');
-    }
+        console.log("a");
+    };
 
 
     return (
@@ -37,7 +37,7 @@ const TreeTitle = (props: TreeTitleProps) => {
             </div>
 
         </>
-    )
+    );
 };
 
 

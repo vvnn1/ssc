@@ -1,6 +1,6 @@
-import { Button, Col, Form, Input, Row, Select, Space } from "antd"
-import SettingCard from "../../../../SettingCard"
-import LogLevelSelect from "../../../../Select/LogLevelSelect"
+import { Button, Col, Form, Input, Row, Select, Space } from "antd";
+import SettingCard from "../../../../SettingCard";
+import LogLevelSelect from "../../../../Select/LogLevelSelect";
 import { DeleteOutlined } from "../../../../Icon";
 
 const LogSetting = () => {
@@ -26,15 +26,15 @@ const LogSetting = () => {
                         {
                             fields.map((field, index) => (
                                 <Form.Item
-                                    label={index === 0 ? '类日志等级' : null}
+                                    label={index === 0 ? "类日志等级" : null}
                                     key={field.key}
-                                    style={{ marginBottom: '0', marginTop: index > 0 ? '8px' : '0px' }}
+                                    style={{ marginBottom: "0", marginTop: index > 0 ? "8px" : "0px" }}
                                 >
                                     <Space.Compact style={{ width: "100%" }}>
-                                        <Form.Item extra={index + 1 === fields.length ? '类日志名称' : null} style={{ display: 'inline-block', width: 'calc(50% - 12px)', marginBottom: '0' }}>
+                                        <Form.Item extra={index + 1 === fields.length ? "类日志名称" : null} style={{ display: "inline-block", width: "calc(50% - 12px)", marginBottom: "0" }}>
                                             <Input onChange={index + 1 === fields.length ? () => add() : undefined} />
                                         </Form.Item>
-                                        <Form.Item extra={index + 1 === fields.length ? '类日志等级' : null} style={{ display: 'inline-block', width: 'calc(50% - 12px)', marginLeft: '24px', marginBottom: '0' }}>
+                                        <Form.Item extra={index + 1 === fields.length ? "类日志等级" : null} style={{ display: "inline-block", width: "calc(50% - 12px)", marginLeft: "24px", marginBottom: "0" }}>
                                             <LogLevelSelect onChange={index + 1 === fields.length ? () => add() : undefined} />
                                         </Form.Item>
                                         <Button style={{ marginLeft: "4px" }} disabled={index + 1 === fields.length} onClick={() => remove(field.name)}><DeleteOutlined /></Button>
@@ -57,14 +57,14 @@ const LogSetting = () => {
                             placeholder="请选择输入模板"
                             options={[
                                 {
-                                    label: '系统模板',
+                                    label: "系统模板",
                                     options: [
-                                        { label: 'default', value: 'jack' },
+                                        { label: "default", value: "jack" },
                                     ],
                                 },
                                 {
-                                    label: '用户配置',
-                                    options: [{ label: '自定义模板', value: 'Yiminghe' }],
+                                    label: "用户配置",
+                                    options: [{ label: "自定义模板", value: "Yiminghe" }],
                                 },
                             ]}
                         />
@@ -72,7 +72,7 @@ const LogSetting = () => {
                 </Col>
             </Row>
         </SettingCard>
-    )
+    );
 };
 
 export default LogSetting;

@@ -1,5 +1,5 @@
-import { Tag } from 'antd';
-import './index.sass'
+import { Tag } from "antd";
+import "./index.sass";
 
 interface StateBadgeProps {
     state: string;
@@ -8,6 +8,6 @@ interface StateBadgeProps {
 const StateBadge = (props: StateBadgeProps) => {
     return (
         <Tag className="FINISHED">{props.state}</Tag>
-    )
+    );
 };
 export default StateBadge;

@@ -1,5 +1,5 @@
 import { Button, ButtonProps, Divider, Input, ModalProps, Space, Table, Tag, Tooltip } from "antd";
-import './index.sass'
+import "./index.sass";
 import { useHref, useNavigate } from "react-router-dom";
 import { CancelCircleFilled, ClusterOutlined, LoadingOutlined, PlayCircleFilled } from "../../Icon";
 import { useState } from "react";
@@ -8,7 +8,7 @@ import { changeModalOpen } from "../../../util";
 
 const { Search } = Input;
 
-type SessionStatus = 'starting' | 'running' | 'stoping' | 'stoped' | 'fail';
+type SessionStatus = "starting" | "running" | "stoping" | "stoped" | "fail";
 
 interface SessionCluster {
     key: React.Key;
@@ -20,15 +20,15 @@ interface SessionCluster {
 }
 
 type TableProps = Parameters<typeof Table<SessionCluster>>[0];
-type ColumnTypes = Exclude<TableProps['columns'], undefined>;
+type ColumnTypes = Exclude<TableProps["columns"], undefined>;
 
 const SessionClusterLayout = () => {
     const [data, setData] = useState<SessionCluster[]>([
         {
-            key: '1',
-            id: 'ec0549ea-6062-48eb-b41c-00ae409fb605',
-            name: 'ssc-session',
-            status: 'stoped',
+            key: "1",
+            id: "ec0549ea-6062-48eb-b41c-00ae409fb605",
+            name: "ssc-session",
+            status: "stoped",
             cpu: 2,
             memory: 2
         },
@@ -40,8 +40,8 @@ const SessionClusterLayout = () => {
     const navigate = useNavigate();
     const columns: ColumnTypes = [
         {
-            title: '名称',
-            dataIndex: 'name',
+            title: "名称",
+            dataIndex: "name",
             sorter: (a, b) => a.name.localeCompare(b.name),
             width: 300,
             ellipsis: true,
@@ -53,94 +53,94 @@ const SessionClusterLayout = () => {
             ),
         },
         {
-            title: '状态',
-            dataIndex: 'status',
+            title: "状态",
+            dataIndex: "status",
             filters: [
                 {
-                    text: '启动中',
-                    value: 'starting',
+                    text: "启动中",
+                    value: "starting",
                 },
                 {
-                    text: '运行中',
-                    value: 'running',
+                    text: "运行中",
+                    value: "running",
                 },
                 {
-                    text: '停止中',
-                    value: 'stoping',
+                    text: "停止中",
+                    value: "stoping",
                 },
                 {
-                    text: '已停止',
-                    value: 'stoped',
+                    text: "已停止",
+                    value: "stoped",
                 },
                 {
-                    text: '已失败',
-                    value: 'fail',
+                    text: "已失败",
+                    value: "fail",
                 },
             ],
             onFilter: (value: string | number | boolean, record) => record.status === value,
             width: 150,
             render: (value) => {
-                if (value === 'starting') {
-                    return <span className="state starting"><LoadingOutlined /> 启动中</span>
+                if (value === "starting") {
+                    return <span className="state starting"><LoadingOutlined /> 启动中</span>;
                 }
-                if (value === 'running') {
-                    return <span><PlayCircleFilled /> 运行中</span>
+                if (value === "running") {
+                    return <span><PlayCircleFilled /> 运行中</span>;
                 }
-                if (value === 'stoping') {
-                    return <span><LoadingOutlined /> 停止中</span>
+                if (value === "stoping") {
+                    return <span><LoadingOutlined /> 停止中</span>;
                 }
-                if (value === 'stoped') {
-                    return <span><CancelCircleFilled /> 已停止</span>
+                if (value === "stoped") {
+                    return <span><CancelCircleFilled /> 已停止</span>;
                 }
-                if (value === 'fail') {
-                    return <></>
+                if (value === "fail") {
+                    return <></>;
                 }
-                return <></>
+                return <></>;
             }
         },
         {
-            title: 'CPU',
-            dataIndex: 'cpu',
+            title: "CPU",
+            dataIndex: "cpu",
             sorter: (a, b) => a.cpu - b.cpu,
         },
         {
-            title: '内存',
-            dataIndex: 'memory',
+            title: "内存",
+            dataIndex: "memory",
             sorter: (a, b) => a.memory - b.memory,
             render: (value) => (<>{value} GiB</>)
         },
         {
-            title: '操作',
+            title: "操作",
             width: 300,
             render: (_, { id, name, status }) => (
                 <>
-                    <Button type="link" size="small" disabled={['starting', 'running'].includes(status)} onClick={onLaunchClick(id)}>启动</Button>
+                    <Button type="link" size="small" disabled={["starting", "running"].includes(status)} onClick={onLaunchClick(id)}>启动</Button>
                     <Divider type="vertical" />
                     <Button type="link" size="small" disabled={["stoped", "stoping"].includes(status)} onClick={onStopClick(id)}>停止</Button>
                     <Divider type="vertical" />
                     <Button type="link" size="small" onClick={onEditClick(name)}>编辑</Button>
                     <Divider type="vertical" />
-                    <Button type="link" size="small" danger disabled={['starting', 'running', 'stoping'].includes(status)}>删除</Button>
+                    <Button type="link" size="small" danger disabled={["starting", "running", "stoping"].includes(status)}>删除</Button>
                 </>
             )
         },
     ];
 
-    const onEditClick = (name: string): ButtonProps['onClick'] => {
+    const onEditClick = (name: string): ButtonProps["onClick"] => {
         return (e) => {
             e.stopPropagation();
-            navigate(`../${name}/configure`)
-        }
-    }
+            navigate(`../${name}/configure`);
+        };
+    };
 
-    const onLaunchClick = (id: string): ButtonProps['onClick'] => {
+    const onLaunchClick = (id: string): ButtonProps["onClick"] => {
         return (e) => {
             e.stopPropagation();
             setData(data => {
                 return [
                     ...data.filter(item => item.id === id)
                         .map(item => {
-                            item.status = 'starting';
+                            item.status = "starting";
                             return item;
                         })
                 ];
@@ -151,16 +151,16 @@ const SessionClusterLayout = () => {
                     return [
                         ...data.filter(item => item.id === id)
                             .map(item => {
-                                item.status = 'running';
+                                item.status = "running";
                                 return item;
                             })
                     ];
-                })
+                });
             }, 4000);
-        }
-    }
+        };
+    };
 
-    const onStopClick = (id: string): ButtonProps['onClick'] => {
+    const onStopClick = (id: string): ButtonProps["onClick"] => {
         return (e) => {
             e.stopPropagation();
             setStopModalProps({
@@ -170,7 +170,7 @@ const SessionClusterLayout = () => {
                         return [
                             ...data.filter(item => item.id === id)
                                 .map(item => {
-                                    item.status = 'stoping';
+                                    item.status = "stoping";
                                     return item;
                                 })
                         ];
@@ -181,17 +181,17 @@ const SessionClusterLayout = () => {
                             return [
                                 ...data.filter(item => item.id === id)
                                     .map(item => {
-                                        item.status = 'stoped';
+                                        item.status = "stoped";
                                         return item;
                                     })
                             ];
-                        })
+                        });
                     }, 4000);
                 }
-            })
+            });
             setStopModalOpen(true);
-        }
-    }
+        };
+    };
 
     return (
         <div className="session-layout">
@@ -202,7 +202,7 @@ const SessionClusterLayout = () => {
                 </div>
                 <div className="actions">
                     <Space>
-                        <Button type='primary' href={useHref('../create-session-cluster')}>创建 Session 集群</Button>
+                        <Button type='primary' href={useHref("../create-session-cluster")}>创建 Session 集群</Button>
                         <Search
                             placeholder="搜索…"
                         />
@@ -222,7 +222,7 @@ const SessionClusterLayout = () => {
             </div>
             <StopModal open={stopModalOpen} onCancel={changeModalOpen(false, setStopModalOpen)} {...stopModalProps} />
         </div>
-    )
+    );
 };
 
 export default SessionClusterLayout;

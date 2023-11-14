@@ -1,7 +1,7 @@
-import { Button, DatePicker, Form, Select, Space, Table } from 'antd';
-import './index.sass';
-import dayjs from 'dayjs';
-import { SearchOutlined } from '../../../../../Icon';
+import { Button, DatePicker, Form, Select, Space, Table } from "antd";
+import "./index.sass";
+import dayjs from "dayjs";
+import { SearchOutlined } from "../../../../../Icon";
 
 const AlarmList = () => {
 
@@ -24,14 +24,14 @@ const AlarmList = () => {
                     <Form.Item>
                         <DatePicker
                             format="YYYY-MM-DD HH:mm:ss"
-                            showTime={{ defaultValue: dayjs('00:00:00', 'HH:mm:ss') }}
+                            showTime={{ defaultValue: dayjs("00:00:00", "HH:mm:ss") }}
                         />
                     </Form.Item>
 
                     <Form.Item>
                         <DatePicker
                             format="YYYY-MM-DD HH:mm:ss"
-                            showTime={{ defaultValue: dayjs('00:00:00', 'HH:mm:ss') }}
+                            showTime={{ defaultValue: dayjs("00:00:00", "HH:mm:ss") }}
                         />
                     </Form.Item>
 
@@ -46,20 +46,20 @@ const AlarmList = () => {
                 bordered
                 columns={[
                     {
-                        title: '告警时间',
+                        title: "告警时间",
                         width: 180
                     },
                     {
-                        title: '告警规则',
+                        title: "告警规则",
                         width: 200
                     },
                     {
-                        title: '告警事件'
+                        title: "告警事件"
                     }
                 ]}
             />
         </div>
-    )
+    );
 };
 
 export default AlarmList;

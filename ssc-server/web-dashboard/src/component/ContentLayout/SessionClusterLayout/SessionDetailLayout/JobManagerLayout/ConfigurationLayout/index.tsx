@@ -1,62 +1,62 @@
 import { Card, Table } from "antd";
-import './index.sass'
+import "./index.sass";
 
 type TableProps = Parameters<typeof Table>[0];
-type ColumnTypes = Exclude<TableProps['columns'], undefined>;
+type ColumnTypes = Exclude<TableProps["columns"], undefined>;
 
 
 const columns: ColumnTypes = [
     {
-        title: 'key',
-        dataIndex: 'key',
-        width: '50%',
+        title: "key",
+        dataIndex: "key",
+        width: "50%",
         render: (value) => <strong>{value}</strong>
     },
     {
-        title: 'value',
-        dataIndex: 'value',
+        title: "value",
+        dataIndex: "value",
         width: "50%",
         ellipsis: true,
-        className: 'td-value'
+        className: "td-value"
     }
 ];
 
 const columns2: ColumnTypes = [
     {
-        title: 'key',
-        dataIndex: 'key',
-        width: '50%',
+        title: "key",
+        dataIndex: "key",
+        width: "50%",
         render: (value) => <strong>{value}</strong>
     },
     {
-        title: 'value',
-        dataIndex: 'value',
+        title: "value",
+        dataIndex: "value",
         width: "50%",
-        className: 'td-value'
+        className: "td-value"
     }
 ];
 
 const columns3: ColumnTypes = [
     {
-        title: 'value',
-        dataIndex: 'value',
-        width: '100%',
+        title: "value",
+        dataIndex: "value",
+        width: "100%",
     }
 ];
 
-interface NoStyleTableBodyProps<RecordType> {
+interface NoStyleTableBodyProps {
     children: React.ReactNode;
 }
 
-const NoStyleTableBody: React.FC<NoStyleTableBodyProps<any>> = ({
+const NoStyleTableBody: React.FC<NoStyleTableBodyProps> = ({
     children
 }) => {
     return (
         <tbody className="ant-table-body">
             {children}
         </tbody>
-    )
-}
+    );
+};
 
 const ConfigurationLayout = () => {
     return (
@@ -210,11 +210,11 @@ const ConfigurationLayout = () => {
                             wrapper: NoStyleTableBody
                         }
                     }}
-                    rowKey={'value'}
+                    rowKey={"value"}
                 />
             </Card>
         </div>
-    )
+    );
 };
 
 export default ConfigurationLayout;

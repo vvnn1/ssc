@@ -23,7 +23,7 @@ const FileSelect = (props: SelectProps) => {
                 </div>
             </Select.Option>
         </Select>
-    )
-}
+    );
+};
 
 export default FileSelect;

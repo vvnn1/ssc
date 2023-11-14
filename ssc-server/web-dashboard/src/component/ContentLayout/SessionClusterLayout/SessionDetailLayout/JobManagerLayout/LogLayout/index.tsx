@@ -1,5 +1,5 @@
 import { Button, Popconfirm, Select } from "antd";
-import './index.sass'
+import "./index.sass";
 import { DownloadOutlined, FullscreenOutlined, SyncOutlined } from "../../../../../Icon";
 import { useState } from "react";
 import MonacoEditor from "../../../../../MonacoEditor";
@@ -10,8 +10,8 @@ const LogLayout = () => {
     const changeSelectDisabled = (disabled: boolean) => {
         return () => {
             setSelectDisabled(disabled);
-        }
-    }
+        };
+    };
 
     return (
         <div className="jobmanager-log-layout">
@@ -55,14 +55,14 @@ const LogLayout = () => {
                         selectOnLineNumbers: true,
                         lineNumbersMinChars: 5,
                         lineDecorationsWidth: 0,
-                        wordWrap: 'on',
+                        wordWrap: "on",
                         readOnly: false,
                         scrollBeyondLastLine: false,
                     }}
                 />
             </div>
         </div>
-    )
+    );
 };
 
 export default LogLayout;

@@ -2,13 +2,13 @@ import { Button, Dropdown, message } from "antd";
 import { useState } from "react";
 import { useLinkClickHandler, useParams } from "react-router-dom";
 import { changeModalOpen, restoreUrl } from "../../../../util";
-import { CheckCircleOutlined, CodeOutlined, CommitAllOutlined, CopyOutlined, ExecuteAllOutlined, FileAddOutlined, FileSearchOutlined, LoadingOutlined, MenuOutlined, NewTabOutlined, PicLeftOutlined, RedoOutlined, SaveOutlined, UndoOutlined, ValidateAllOutlined } from '../../../Icon';
+import { CheckCircleOutlined, CodeOutlined, CommitAllOutlined, CopyOutlined, ExecuteAllOutlined, FileAddOutlined, FileSearchOutlined, LoadingOutlined, MenuOutlined, NewTabOutlined, PicLeftOutlined, RedoOutlined, SaveOutlined, UndoOutlined, ValidateAllOutlined } from "../../../Icon";
 import CreateDraftModal from "./CreateDraftModal";
 import CreateTemporaryTableModal from "./CreateTemporaryTableModal";
 import DebugModal from "./DebugModal";
 import PublishModal from "./PublishModal";
 import SaveAsModal from "./SaveAsModal";
-import './index.sass';
+import "./index.sass";
 
 interface ToolBarProps {
     isOpenFile: boolean;
@@ -26,28 +26,28 @@ const ToolBar = (props: ToolBarProps) => {
     const [messageApi, contextHolder] = message.useMessage();
     const urlParams = useParams();
 
-    const navigateToOperation = useLinkClickHandler(restoreUrl('/workspace/:workspaceId/namespace/:namespaceId/operations/stream/9ddc3745-7453-4d4b-96ee-965d8b2d5f05/configuration', urlParams));
+    const navigateToOperation = useLinkClickHandler(restoreUrl("/workspace/:workspaceId/namespace/:namespaceId/operations/stream/9ddc3745-7453-4d4b-96ee-965d8b2d5f05/configuration", urlParams));
 
     const save = () => {
         messageApi.open({
             icon: <></>,
-            type: 'success',
+            type: "success",
             content: <><CheckCircleOutlined color="#00a700" />保存成功</>
         });
-    }
+    };
 
     const onCheckClick = () => {
         setChecking(true);
         const id = setInterval(() => {
             setChecking(false);
             clearInterval(id);
-            document.dispatchEvent(new CustomEvent('bottom-label-change', {
+            document.dispatchEvent(new CustomEvent("bottom-label-change", {
                 detail: {
-                    label: 'problem'
+                    label: "problem"
                 }
-            }))
-        }, 3000)
-    }
+            }));
+        }, 3000);
+    };
 
     const onDebugClick = () => {
         setDebugPreparing(true);
@@ -56,7 +56,7 @@ const ToolBar = (props: ToolBarProps) => {
             clearInterval(id);
             setDebugModalOpen(true);
         }, 3000);
-    }
+    };
 
     const onPublishConfirm = () => {
         messageApi.success({
@@ -64,7 +64,7 @@ const ToolBar = (props: ToolBarProps) => {
             content: <><CheckCircleOutlined color="#00a700" />部署成功, 请前往 <a onClick={navigateToOperation}>运维</a> 查看详情</>,
         });
         setPublishModalOpen(false);
-    }
+    };
 
 
     return (
@@ -95,19 +95,19 @@ const ToolBar = (props: ToolBarProps) => {
                             </Button>
                             <Dropdown
                                 rootClassName="more-dropdown"
-                                trigger={['click']}
+                                trigger={["click"]}
                                 menu={{
                                     items: [
                                         {
-                                            key: '1',
+                                            key: "1",
                                             label: <><UndoOutlined /> 撤销</>,
                                         },
                                         {
-                                            key: '2',
+                                            key: "2",
                                             label: <><RedoOutlined /> 重做</>,
                                         },
                                         {
-                                            key: '3',
+                                            key: "3",
                                             label: <><FileSearchOutlined /> 查找</>,
                                         }
                                     ]
@@ -160,7 +160,7 @@ const ToolBar = (props: ToolBarProps) => {
             {contextHolder}
             <CreateDraftModal open={draftModalOpen} onCancel={changeModalOpen(false, setDraftModalOpen)} />
         </div>
-    )
+    );
 };
 
 export default ToolBar;

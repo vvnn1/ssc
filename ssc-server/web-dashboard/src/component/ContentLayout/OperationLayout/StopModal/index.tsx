@@ -1,5 +1,5 @@
 import { Button, Checkbox, Modal, ModalProps } from "antd";
-import './index.sass'
+import "./index.sass";
 import { DownOutlined, QuestionCircleOutlined, UpOutlined } from "../../../Icon";
 import { useState } from "react";
 import { checkedChangeWrapper } from "../../../../util";
@@ -10,15 +10,15 @@ const StopModal = (props: ModalProps) => {
 
     const onShowMoreClick = () => {
         setShowMore(showMore => !showMore);
-    }
+    };
 
     const onSnapshotCheckboxChange = (checked:boolean) => {
         if (!checked){
-            console.log('aa');
+            console.log("aa");
             setOutputData(false);
         }
-        setSnapshot(checked);;
-    }
+        setSnapshot(checked);
+    };
 
     return (
         <Modal
@@ -50,7 +50,7 @@ const StopModal = (props: ModalProps) => {
                 <Button onClick={props.onCancel} {...props.cancelButtonProps}>取消</Button>
             </div>
         </Modal>
-    )
+    );
 };
 
 export default StopModal;

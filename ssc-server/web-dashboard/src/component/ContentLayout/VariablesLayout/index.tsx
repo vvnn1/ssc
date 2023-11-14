@@ -1,5 +1,5 @@
 import { Button, Space, Table } from "antd";
-import './index.sass'
+import "./index.sass";
 import { PlusOutlined } from "../../Icon";
 
 
@@ -11,49 +11,49 @@ interface DataType {
 }
 
 type TableProps = Parameters<typeof Table<DataType>>[0];
-type ColumnTypes = Exclude<TableProps['columns'], undefined>;
+type ColumnTypes = Exclude<TableProps["columns"], undefined>;
 
 const columns: ColumnTypes = [
     {
-        title: '变量名称',
-        dataIndex: 'name',
-        width: '70.125%',
+        title: "变量名称",
+        dataIndex: "name",
+        width: "70.125%",
     },
     {
-        title: '创建时间',
-        dataIndex: 'age',
-        width: '17.875%',
+        title: "创建时间",
+        dataIndex: "age",
+        width: "17.875%",
     },
     {
-        title: '操作',
-        dataIndex: 'age',
+        title: "操作",
+        dataIndex: "age",
     },
 ];
 
 const data: DataType[] = [
     {
-        key: '1',
-        name: 'John Brown',
+        key: "1",
+        name: "John Brown",
         age: 32,
-        address: 'New York No. 1 Lake Park',
+        address: "New York No. 1 Lake Park",
     },
     {
-        key: '2',
-        name: 'Jim Green',
+        key: "2",
+        name: "Jim Green",
         age: 42,
-        address: 'London No. 1 Lake Park',
+        address: "London No. 1 Lake Park",
     },
     {
-        key: '3',
-        name: 'Joe Black',
+        key: "3",
+        name: "Joe Black",
         age: 32,
-        address: 'Sydney No. 1 Lake Park',
+        address: "Sydney No. 1 Lake Park",
     },
     {
-        key: '4',
-        name: 'Jim Red',
+        key: "4",
+        name: "Jim Red",
         age: 32,
-        address: 'London No. 2 Lake Park',
+        address: "London No. 2 Lake Park",
     },
 ];
 
@@ -82,7 +82,7 @@ const VariablesLayout = () => {
                 />
             </div>
         </div>
-    )
+    );
 };
 
 export default VariablesLayout;

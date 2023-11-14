@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Divider, Form, Input, InputNumber, Popconfirm, Table, TableProps, Typography } from 'antd';
+import React, { useState } from "react";
+import { Divider, Form, Input, Popconfirm, Table, TableProps, Typography } from "antd";
 
 interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
     editing: boolean;
@@ -44,17 +44,17 @@ const EditableCell: React.FC<EditableCellProps> = ({
 const EditableTable = <RecordType extends Record<PropertyKey, any>>(props: TableProps<RecordType> & { deleteTitle: string }) => {
     const [form] = Form.useForm();
     const [data, setData] = useState<any[]>([]);
-    const [editingKey, setEditingKey] = useState('');
+    const [editingKey, setEditingKey] = useState("");
 
     const isEditing = (record: any) => record.key === editingKey;
 
     const edit = (record: Partial<any> & { key: React.Key }) => {
-        form.setFieldsValue({ [record.key]: '', ...record });
+        form.setFieldsValue({ [record.key]: "", ...record });
         setEditingKey(record.key as string);
     };
 
     const cancel = () => {
-        setEditingKey('');
+        setEditingKey("");
     };
 
     const save = async (key: React.Key) => {
@@ -70,14 +70,14 @@ const EditableTable = <RecordType extends Record<PropertyKey, any>>(props: Table
                     ...row,
                 });
                 setData(newData);
-                setEditingKey('');
+                setEditingKey("");
             } else {
                 newData.push(row);
                 setData(newData);
-                setEditingKey('');
+                setEditingKey("");
             }
         } catch (errInfo) {
-            console.log('Validate Failed:', errInfo);
+            console.log("Validate Failed:", errInfo);
         }
     };
 
@@ -90,13 +90,13 @@ const EditableTable = <RecordType extends Record<PropertyKey, any>>(props: Table
                 title: col.title,
                 editing: isEditing(record),
             }),
-        }
+        };
     });
 
     mergedColumns?.push(
         {
-            title: '操作',
-            dataIndex: 'operation',
+            title: "操作",
+            dataIndex: "operation",
             width: 190,
             render: (_: any, record: any) => {
                 const editable = isEditing(record);
@@ -125,7 +125,7 @@ const EditableTable = <RecordType extends Record<PropertyKey, any>>(props: Table
                     </span>
                 ) : (
                     <span>
-                        <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
+                        <Typography.Link disabled={editingKey !== ""} onClick={() => edit(record)}>
                             编辑
                         </Typography.Link>
                         <Divider type='vertical' />
@@ -142,7 +142,7 @@ const EditableTable = <RecordType extends Record<PropertyKey, any>>(props: Table
                 );
             },
         },
-    )
+    );
 
 
     return (

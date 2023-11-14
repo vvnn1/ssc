@@ -1,25 +1,25 @@
-import { Breadcrumb, Input, Table } from 'antd';
-import { ArrowLeftOutlined, SearchOutlined } from '../../../Icon';
-import './index.sass'
-import MyLink from '../../../MyLink';
-import { useNavigate } from 'react-router-dom';
+import { Breadcrumb, Input, Table } from "antd";
+import { ArrowLeftOutlined, SearchOutlined } from "../../../Icon";
+import "./index.sass";
+import MyLink from "../../../MyLink";
+import { useNavigate } from "react-router-dom";
 
 const CatalogDetailLayout = () => {
     const navigate = useNavigate();
 
     const onBackClick = () => {
         navigate(-1);
-    }
+    };
 
     return (
         <div className="catalog-detail-layout">
             <Breadcrumb
                 items={[
                     {
-                        title: 'Catalog 列表'
+                        title: "Catalog 列表"
                     },
                     {
-                        title: 'vvp'
+                        title: "vvp"
                     }
                 ]}
             />
@@ -50,7 +50,7 @@ const CatalogDetailLayout = () => {
                             title: "操作",
                             width: "30%",
                             render: (_, {name}) => {
-                                return <MyLink to={`../${name}/list`}>查看</MyLink>
+                                return <MyLink to={`../${name}/list`}>查看</MyLink>;
                             }
                         }
                     ]}
@@ -63,7 +63,7 @@ const CatalogDetailLayout = () => {
                 />
             </div>
         </div>
-    )
+    );
 };
 
 export default CatalogDetailLayout;

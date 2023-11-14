@@ -1,5 +1,5 @@
 import { Button, Form, Space, Tag } from "antd";
-import './index.sass'
+import "./index.sass";
 import BasicSetting from "../SettingForm/BasicSetting";
 import NormalSetting from "../SettingForm/NormalSetting";
 import ResourceSetting from "../SettingForm/ResourceSetting";
@@ -15,7 +15,7 @@ const SessionCreateLayout = () => {
         <div className="session-create-layout">
             <div className="header">
                 <div className="title">
-                    <MyLink className="left-arrow" to={'../list'}>
+                    <MyLink className="left-arrow" to={"../list"}>
                         <ArrowLeftOutlined />
                     </MyLink>
                     创建 Session 集群
@@ -41,8 +41,8 @@ const SessionCreateLayout = () => {
                     </div>
                     <div className="form-footer">
                         <Space>
-                            <Button type="primary" href={useHref('../ssc-session/overview')}>创建 Session 集群</Button>
-                            <Button href={useHref('../list')}>取消</Button>
+                            <Button type="primary" href={useHref("../ssc-session/overview")}>创建 Session 集群</Button>
+                            <Button href={useHref("../list")}>取消</Button>
                         </Space>
 
                     </div>
@@ -51,7 +51,7 @@ const SessionCreateLayout = () => {
             </div>
 
         </div>
-    )
+    );
 };
 
 export default SessionCreateLayout;

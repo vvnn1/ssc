@@ -1,16 +1,16 @@
-import { Checkbox, Form, Input, Modal, ModalProps, Radio, RadioChangeEvent, Select, Switch } from 'antd';
-import './index.sass'
-import { UploadOutlined } from '@ant-design/icons';
-import TextArea from 'antd/es/input/TextArea';
-import { useState } from 'react';
+import { Checkbox, Form, Input, Modal, ModalProps, Radio, RadioChangeEvent, Select, Switch } from "antd";
+import "./index.sass";
+import { UploadOutlined } from "@ant-design/icons";
+import TextArea from "antd/es/input/TextArea";
+import { useState } from "react";
 
 const DeployModal = (props: ModalProps) => {
-    const [jobType, setJobType] = useState<'JAR' | 'PYTHON'>('JAR');
+    const [jobType, setJobType] = useState<"JAR" | "PYTHON">("JAR");
     const [showMore, setShowMore] = useState<boolean>(false);
 
     const onModuleRadioChange = ({ target: { value } }: RadioChangeEvent) => {
         setJobType(value);
-    }
+    };
 
 
     return (
@@ -50,8 +50,8 @@ const DeployModal = (props: ModalProps) => {
                         <Select
                             defaultValue="stream"
                             options={[
-                                { value: 'stream', label: '流模式' },
-                                { value: 'batch', label: '批模式' },
+                                { value: "stream", label: "流模式" },
+                                { value: "batch", label: "批模式" },
                             ]}
                         />
                     </Form.Item>
@@ -68,13 +68,13 @@ const DeployModal = (props: ModalProps) => {
                         <Select
                             defaultValue="v1"
                             options={[
-                                { value: 'v1', label: 'vvr-6.0.7-flink-1.15' },
+                                { value: "v1", label: "vvr-6.0.7-flink-1.15" },
                             ]}
                         />
                     </Form.Item>
 
                     {
-                        jobType === 'JAR' ?
+                        jobType === "JAR" ?
                             (
                                 <div className="jar-module">
                                     <Form.Item
@@ -98,7 +98,7 @@ const DeployModal = (props: ModalProps) => {
                     }
 
                     {
-                        jobType === 'PYTHON' ?
+                        jobType === "PYTHON" ?
                             (
                                 <div className="python-module">
                                     <Form.Item
@@ -178,7 +178,7 @@ const DeployModal = (props: ModalProps) => {
                 </Form>
             </div>
         </Modal>
-    )
+    );
 };
 
 export default DeployModal;

@@ -1,18 +1,12 @@
-import { Button, Collapse, CollapseProps, Result, Spin, Tooltip } from 'antd';
-import './index.sass'
-import { CheckCircleFilled, DownloadOutlined } from '../../../../Icon';
-import { useState } from 'react';
+import { Button, Collapse, CollapseProps, Result, Spin, Tooltip } from "antd";
+import "./index.sass";
+import { CheckCircleFilled, DownloadOutlined } from "../../../../Icon";
+import { useState } from "react";
 
-const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
-
-const items: CollapseProps['items'] = [
+const items: CollapseProps["items"] = [
     {
-        key: '1',
-        label: '资源分析',
+        key: "1",
+        label: "资源分析",
         children: (
             <Result
                 status='success'
@@ -22,8 +16,8 @@ const items: CollapseProps['items'] = [
         ),
     },
     {
-        key: '2',
-        label: '启动分析',
+        key: "2",
+        label: "启动分析",
         children: (
             <Result
                 status='success'
@@ -33,8 +27,8 @@ const items: CollapseProps['items'] = [
         ),
     },
     {
-        key: '3',
-        label: '作业分析',
+        key: "3",
+        label: "作业分析",
         children: (
             <Result
                 status='success'
@@ -44,8 +38,8 @@ const items: CollapseProps['items'] = [
         ),
     },
     {
-        key: '4',
-        label: 'State 分析',
+        key: "4",
+        label: "State 分析",
         children: (
             <Result
                 status='success'
@@ -55,8 +49,8 @@ const items: CollapseProps['items'] = [
         ),
     },
     {
-        key: '5',
-        label: '异常分析',
+        key: "5",
+        label: "异常分析",
         children: (
             <Result
                 status='success'
@@ -76,7 +70,7 @@ const DiagnosisLayout = () => {
             setDiagnosising(false);
             clearInterval(id);
         }, 3000);
-    }
+    };
     return (
         <div className="development-diagnosis-layout">
             <div className="meta">
@@ -97,12 +91,12 @@ const DiagnosisLayout = () => {
                         <div className="overview">
                             <CheckCircleFilled /> 5 项检查全部通过，未发现可修复诊断项
                         </div>
-                        <Collapse size='small' bordered={false} items={items} defaultActiveKey={['1']} />
+                        <Collapse size='small' bordered={false} items={items} defaultActiveKey={["1"]} />
                     </div>
                 </Spin>
             </div>
         </div>
-    )
+    );
 };
 
 export default DiagnosisLayout;

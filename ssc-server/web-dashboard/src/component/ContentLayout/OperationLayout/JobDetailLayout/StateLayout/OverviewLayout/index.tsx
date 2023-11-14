@@ -117,7 +117,7 @@ const OverviewLayout = () => {
                 ]}
             />
         </>
-    )
-}
+    );
+};
 
 export default OverviewLayout;

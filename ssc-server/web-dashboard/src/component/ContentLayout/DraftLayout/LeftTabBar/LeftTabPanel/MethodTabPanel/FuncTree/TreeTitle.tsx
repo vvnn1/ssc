@@ -6,28 +6,28 @@ interface TreeTitleProps {
     onManager?: (dataNode: TreeDataNode) => void;
     onUpdate?: (dataNode: TreeDataNode) => void;
     onDrop?: (dataNode: TreeDataNode) => void;
-};
+}
 
 const TreeTitle = (props: TreeTitleProps) => {
 
     const onDropClick = (e?: React.MouseEvent) => {
         stopPropagation(e);
         props.onDrop?.(props.dataNode);
-    }
+    };
 
     const onUpdateClick = (e: React.MouseEvent) => {
         stopPropagation(e);
         props.onUpdate?.(props.dataNode);
-    }
+    };
 
     const onManagerClick = (e: React.MouseEvent) => {
         stopPropagation(e);
         props.onManager?.(props.dataNode);
-    }
+    };
 
     const stopPropagation = (e?: React.MouseEvent) => {
         e?.stopPropagation();
-    }
+    };
 
     return (
         <div className="tree-title">
@@ -65,7 +65,7 @@ const TreeTitle = (props: TreeTitleProps) => {
 
             </div>
         </div>
-    )
+    );
 };
 
 export default TreeTitle;

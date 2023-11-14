@@ -3,7 +3,7 @@ import { ArrowLeftOutlined, CheckCircleFilled } from "../../../Icon";
 import TabMenu from "../../../TabMenu";
 import { Button, Divider, MenuProps, Popconfirm, Space } from "antd";
 import MyLink from "../../../MyLink";
-import './index.sass'
+import "./index.sass";
 import OverviewLayout from "./OverviewLayout";
 import ScrollPin from "../../../ScrollPin";
 import { useRef, useState } from "react";
@@ -13,22 +13,22 @@ import TaskManagerLayout from "./TaskManagerLayout";
 import TaskManagerDetailLayout from "./TaskManagerLayout/TaskManagerDetailLayout";
 import StopModal from "../StopModal";
 
-const menuItems: MenuProps['items'] = [
+const menuItems: MenuProps["items"] = [
     {
         label: <MyLink to='overview'>集群总览</MyLink>,
-        key: 'overview',
+        key: "overview",
     },
     {
         label: <MyLink to='event'>运行事件</MyLink>,
-        key: 'event',
+        key: "event",
     },
     {
         label: <MyLink to='jobmanager/metrics'>Job Manager</MyLink>,
-        key: 'jobmanager',
+        key: "jobmanager",
     },
     {
         label: <MyLink to='taskmanager'>Task Manager</MyLink>,
-        key: 'taskmanager',
+        key: "taskmanager",
     },
 ];
 
@@ -40,14 +40,14 @@ const SessionDetailLayout = () => {
     const changeStopModalOpen = (open: boolean) => {
         return () => {
             setStopModalOpen(open);
-        }
-    }
+        };
+    };
 
     return (
         <div className="session-detail-layout">
             <div className="header">
                 <div className="title">
-                    <MyLink className="left-arrow" to={'../../list'}>
+                    <MyLink className="left-arrow" to={"../../list"}>
                         <ArrowLeftOutlined />
                     </MyLink>
 
@@ -61,11 +61,9 @@ const SessionDetailLayout = () => {
                         <Space split={<Divider type="vertical" />} size={0}>
                             <Button type="link" size="small">启动</Button>
                             <Button type="link" size="small" onClick={changeStopModalOpen(true)}>停止</Button>
-                            <Button type="link" size="small" href={useHref('configure')}>编辑</Button>
+                            <Button type="link" size="small" href={useHref("configure")}>编辑</Button>
                             <Popconfirm
                                 title="确定删除这个 Session 集群？"
-                                onConfirm={() => { }}
-                                onCancel={() => { }}
                                 okText="确认"
                                 cancelText="取消"
                                 overlayClassName="ant-popover-rtl"
@@ -105,7 +103,7 @@ const SessionDetailLayout = () => {
             </div>
             <StopModal open={stopModalOpen} onCancel={changeStopModalOpen(false)} />
         </div>
-    )
+    );
 };
 
 

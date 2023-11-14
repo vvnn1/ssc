@@ -1,6 +1,6 @@
 import { MouseEventHandler, useState } from "react";
-import { AppstoreOutlined, DatabaseOutlined, FileOutlined } from "../../../Icon"
-import './index.sass'
+import { AppstoreOutlined, DatabaseOutlined, FileOutlined } from "../../../Icon";
+import "./index.sass";
 import DraftTabPanel from "./LeftTabPanel/DraftTabPanel";
 import MetaTabPanel from "./LeftTabPanel/MetaTabPanel";
 import MethodTabPanel from "./LeftTabPanel/MethodTabPanel";
@@ -10,14 +10,14 @@ interface LeftTabProps {
 }
 const LeftTabBar = (props: LeftTabProps) => {
     const {activeTabPanel} = props;
-    const [activeTabId, setActiveTabId] = useState<string>('draft');
+    const [activeTabId, setActiveTabId] = useState<string>("draft");
 
     const onTabClick = (tabPanel: React.ReactNode): MouseEventHandler<HTMLDivElement> => {
         return (e) => {
             setActiveTabId(e.currentTarget.id);
             activeTabPanel(tabPanel);
-        }
-    }
+        };
+    };
 
     const generateClassName = (id:string) => {
         if(activeTabId === id) {
@@ -25,7 +25,7 @@ const LeftTabBar = (props: LeftTabProps) => {
         } else {
             return "tabs-bar-tab-label";
         }
-    }
+    };
 
     return (
         <div className="draft-lef-tab-bar">
@@ -48,7 +48,7 @@ const LeftTabBar = (props: LeftTabProps) => {
                 <span className="tabs-bar-tab-title"> 函数 </span>
             </div>
         </div>
-    )
+    );
 };
 
 export default LeftTabBar;

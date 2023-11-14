@@ -24,15 +24,15 @@ const AlarmRuleItem = (props: AlarmRuleItemProps) => {
         mouseOnTarget.className = "top-z-index";
 
         zIndexTarget.current = mouseOnTarget;
-    }
+    };
 
     const zIndexWrapper = (node: React.ReactNode): React.ReactElement => {
         return (
-            <div onMouseEnter={onMouseEnterZIndex} style={{ display: 'flex' }}>
+            <div onMouseEnter={onMouseEnterZIndex} style={{ display: "flex" }}>
                 {node}
             </div>
-        )
-    }
+        );
+    };
 
     return (
         <AlarmCard
@@ -44,10 +44,10 @@ const AlarmRuleItem = (props: AlarmRuleItemProps) => {
                 rules={[
                     {
                         required: true,
-                        message: '请输入规则名称'
+                        message: "请输入规则名称"
                     },
                     {
-                        message: '以字母开头，仅包含小写英文字母、数字、下划线（_）, 长度限制为3-64个字符'
+                        message: "以字母开头，仅包含小写英文字母、数字、下划线（_）, 长度限制为3-64个字符"
                     }
                 ]}
             >
@@ -59,7 +59,7 @@ const AlarmRuleItem = (props: AlarmRuleItemProps) => {
                 rules={[
                     {
                         required: true,
-                        message: '请输入规则说明'
+                        message: "请输入规则说明"
                     }
                 ]}
             >
@@ -82,32 +82,32 @@ const AlarmRuleItem = (props: AlarmRuleItemProps) => {
                                             defaultValue='a'
                                             options={[
                                                 {
-                                                    label: 'Restart Count in 1 Minute',
-                                                    value: 'a'
+                                                    label: "Restart Count in 1 Minute",
+                                                    value: "a"
                                                 },
                                                 {
-                                                    label: 'Checkpoint Count in 5 Minutes',
-                                                    value: 'b'
+                                                    label: "Checkpoint Count in 5 Minutes",
+                                                    value: "b"
                                                 },
                                                 {
-                                                    label: 'Emit Delay',
-                                                    value: 'c'
+                                                    label: "Emit Delay",
+                                                    value: "c"
                                                 },
                                                 {
-                                                    label: 'IN RPS',
-                                                    value: 'd'
+                                                    label: "IN RPS",
+                                                    value: "d"
                                                 },
                                                 {
-                                                    label: 'OUT RPS',
-                                                    value: 'e'
+                                                    label: "OUT RPS",
+                                                    value: "e"
                                                 },
                                                 {
-                                                    label: 'Source Idle Time',
-                                                    value: 'f'
+                                                    label: "Source Idle Time",
+                                                    value: "f"
                                                 },
                                                 {
-                                                    label: 'Job Failed',
-                                                    value: 'g'
+                                                    label: "Job Failed",
+                                                    value: "g"
                                                 }
                                             ]}
                                         />
@@ -135,15 +135,15 @@ const AlarmRuleItem = (props: AlarmRuleItemProps) => {
                                 {
                                     zIndexWrapper(
                                         <Select
-                                            defaultValue={'re'}
+                                            defaultValue={"re"}
                                             options={[
                                                 {
-                                                    label: '>=',
-                                                    value: 're'
+                                                    label: ">=",
+                                                    value: "re"
                                                 },
                                                 {
-                                                    label: '<=',
-                                                    value: 'le'
+                                                    label: "<=",
+                                                    value: "le"
                                                 }
                                             ]}
                                         />
@@ -186,7 +186,7 @@ const AlarmRuleItem = (props: AlarmRuleItemProps) => {
                 <Input type="number" suffix="分钟" placeholder="请输入分钟数"/>
             </Form.Item>
         </AlarmCard>
-    )
+    );
 };
 
 export default AlarmRuleItem;

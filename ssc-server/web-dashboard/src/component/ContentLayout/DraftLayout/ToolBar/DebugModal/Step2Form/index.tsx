@@ -1,6 +1,6 @@
 import { Table } from "antd";
 import { DoubleRightOutlined } from "../../../../../Icon";
-import './index.sass'
+import "./index.sass";
 import { useState } from "react";
 import MonacoEditor from "../../../../../MonacoEditor";
 
@@ -12,33 +12,33 @@ const Step2Form = (props: Step2FormProps) => {
     const [collapsedOpen, setCollapsedOpen] = useState<boolean>(false);
     const changeCollapsedOpen = () => {
         setCollapsedOpen(!collapsedOpen);
-    }
+    };
     return (
         <div className="step2" hidden={props.hidden}>
             <Table
                 size="small"
                 columns={[
                     {
-                        title: '',
+                        title: "",
                         width: 60
                     },
                     {
-                        title: '源表',
+                        title: "源表",
                         width: 160
                     },
                     {
-                        title: '数据状态',
+                        title: "数据状态",
                         width: 140
                     },
                     {
-                        title: '操作'
+                        title: "操作"
                     }
                 ]}
             />
 
 
             <div className="code-collapsed-header">
-                <span className="collapsed-btn" onClick={changeCollapsedOpen}>调试代码预览<DoubleRightOutlined style={{ transform: collapsedOpen ? 'rotate(-90deg)' : 'rotate(90deg)' }} /></span>
+                <span className="collapsed-btn" onClick={changeCollapsedOpen}>调试代码预览<DoubleRightOutlined style={{ transform: collapsedOpen ? "rotate(-90deg)" : "rotate(90deg)" }} /></span>
             </div>
 
             <div className="code-collapsed" hidden={!collapsedOpen}>
@@ -50,7 +50,7 @@ const Step2Form = (props: Step2FormProps) => {
                         selectOnLineNumbers: true,
                         lineNumbersMinChars: 5,
                         lineDecorationsWidth: 0,
-                        wordWrap: 'on',
+                        wordWrap: "on",
                         readOnly: false,
                         scrollBeyondLastLine: false,
                     }}
@@ -97,7 +97,7 @@ SELECT martvey_pre(id) AS id, dt, temperature FROM sensor_source;`
             </div>
 
         </div>
-    )
+    );
 };
 
 

@@ -1,5 +1,5 @@
 import { Card } from "antd";
-import "./AlarmCard.sass"
+import "./AlarmCard.sass";
 
 interface AlarmCardProps {
     title: string;
@@ -17,7 +17,7 @@ const AlarmCard = (props: AlarmCardProps) => {
         >
             {props.children}
         </Card>
-    )
-}
+    );
+};
 
 export default AlarmCard;

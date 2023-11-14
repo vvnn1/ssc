@@ -1,5 +1,5 @@
-import { MenuProps } from "antd"
-import './index.sass'
+import { MenuProps } from "antd";
+import "./index.sass";
 import MemberLayout from "./MemberLayout";
 import SecretLayout from "./SecretLayout";
 import { Route, Routes } from "react-router-dom";
@@ -7,18 +7,18 @@ import MyLink from "../../MyLink";
 import TabMenu from "../../TabMenu";
 import KerberoLayout from "./KerberoLayout";
 
-const menuItems: MenuProps['items'] = [
+const menuItems: MenuProps["items"] = [
     {
         label: <MyLink to="member">成员管理</MyLink>,
-        key: 'member',
+        key: "member",
     },
     {
         label: <MyLink to="kerbero">Hive Kerberos</MyLink>,
-        key: 'kerbero'
+        key: "kerbero"
     },
     {
         label: <MyLink to="secret">密钥托管</MyLink>,
-        key: 'secret',
+        key: "secret",
     },
 ];
 
@@ -41,7 +41,7 @@ const SecurityLayout = () => {
             </div>
 
         </div>
-    )
+    );
 };
 
 export default SecurityLayout;

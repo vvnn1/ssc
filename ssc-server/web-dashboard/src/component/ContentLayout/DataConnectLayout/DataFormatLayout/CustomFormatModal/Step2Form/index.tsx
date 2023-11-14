@@ -14,44 +14,44 @@ interface FormatProperties {
 const Step2Form = (props: { hidden: boolean }) => {
     const [dataSource, setDataSource] = useState<FormatProperties[]>([
         {
-            name: 'ignore-parse-errors',
-            description: '',
+            name: "ignore-parse-errors",
+            description: "",
             required: true,
             defineFormat: true,
-            defaultValue: '1s'
+            defaultValue: "1s"
         }
     ]);
 
     const defaultColumns:EditColumType[] = [
         {
-            title: 'Name',
-            dataIndex: 'name',
+            title: "Name",
+            dataIndex: "name",
             editType: TooltipInput
         },
         {
-            title: 'Description',
-            dataIndex: 'description',
+            title: "Description",
+            dataIndex: "description",
             editType: Input
         },
         {
-            title: 'Required',
-            dataIndex: 'required',
+            title: "Required",
+            dataIndex: "required",
             editType: Checkbox
         },
         {
-            title: 'Defines Format',
-            dataIndex: 'defineFormat',
+            title: "Defines Format",
+            dataIndex: "defineFormat",
             editType: Checkbox
         },
         {
-            title: 'Default Value',
-            dataIndex: 'defaultValue',
+            title: "Default Value",
+            dataIndex: "defaultValue",
             editType: Input
         },
         {
-            title: 'Actions',
-            dataIndex: 'operation',
-            render: (_: any, record: any) => (
+            title: "Actions",
+            dataIndex: "operation",
+            render: () => (
                 <Button type='link' danger size='small'>
                     <DeleteOutlined />
                 </Button>
@@ -61,14 +61,14 @@ const Step2Form = (props: { hidden: boolean }) => {
 
     const handleAdd = () => {
         const newData = {
-            name: '',
-            description: '',
+            name: "",
+            description: "",
             required: false,
             defineFormat: false,
-            defaultValue: ''
-        }
+            defaultValue: ""
+        };
         setDataSource([...dataSource, newData]);
-    }
+    };
     
     return (
         <Form
@@ -89,7 +89,7 @@ const Step2Form = (props: { hidden: boolean }) => {
                 <EditableTable columns={defaultColumns} dataSource={dataSource} handleAdd={handleAdd}/>
             </Form.Item>
         </Form>
-    )
+    );
 };
 
 export default Step2Form;

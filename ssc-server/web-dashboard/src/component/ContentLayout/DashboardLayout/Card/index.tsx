@@ -1,5 +1,5 @@
-import { Button } from 'antd'
-import './index.sass'
+import { Button } from "antd";
+import "./index.sass";
 
 interface TemplateCardProps {
     backgroundImageUrl: string;
@@ -27,7 +27,7 @@ const Card = (props: TemplateCardProps) => {
                 <span>{props.buttonText}</span>
             </Button>
         </div>
-    )
+    );
 };
 
 export default Card;

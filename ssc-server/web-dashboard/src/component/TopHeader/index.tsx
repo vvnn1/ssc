@@ -1,5 +1,5 @@
-import { Header } from "antd/es/layout/layout"
-import './index.sass'
+import { Header } from "antd/es/layout/layout";
+import "./index.sass";
 import { Dropdown, MenuProps, Select } from "antd";
 import { ApiOutlined, BellOutlined, CaretDownOutlined, LogoutOutlined, NotificationOutlined, ProjectLogoOutlined, QuestionCircleOutlined, SkinOutlined, UserOutlined } from "../Icon";
 
@@ -8,17 +8,17 @@ const onChange = (value: string) => {
 };
 
 const onSearch = (value: string) => {
-    console.log('search:', value);
+    console.log("search:", value);
 };
 
-const items: MenuProps['items'] = [
+const items: MenuProps["items"] = [
     {
         label: (
             <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
                 <UserOutlined /><span>用户信息</span>
             </a>
         ),
-        key: '0',
+        key: "0",
     },
     {
         label: (
@@ -26,7 +26,7 @@ const items: MenuProps['items'] = [
                 <LogoutOutlined /><span>注销</span>
             </a>
         ),
-        key: '1',
+        key: "1",
     }
 ];
 
@@ -53,15 +53,15 @@ const TopHeader = () => {
                         onSearch={onSearch}
                         dropdownStyle={{ top: 50 }}
                         filterOption={(input, option) =>
-                            (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                            (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
                         }
                         options={[
                             {
-                                label: '可选用项目空间',
+                                label: "可选用项目空间",
                                 options: [
                                     {
-                                        label: 'test',
-                                        value: 'test'
+                                        label: "test",
+                                        value: "test"
                                     }
                                 ]
                             }
@@ -87,7 +87,7 @@ const TopHeader = () => {
                         </li>
 
                     </ul>
-                    <Dropdown menu={{ items }} trigger={['click']} overlayClassName="user-center-dropdown">
+                    <Dropdown menu={{ items }} trigger={["click"]} overlayClassName="user-center-dropdown">
                         <div className="user">
                             <div className="avatar"></div>
                             <div className="name">1494641150039679</div>
@@ -97,7 +97,7 @@ const TopHeader = () => {
                 </div>
             </div>
         </Header >
-    )
+    );
 };
 
 export default TopHeader;

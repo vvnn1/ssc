@@ -5,7 +5,7 @@ import CustomSetting from "../SettingForm/CustomSetting";
 import ResourceSetting from "../SettingForm/ResourceSetting";
 import LogSetting from "../SettingForm/LogSetting";
 import { useNavigate } from "react-router-dom";
-import './index.sass'
+import "./index.sass";
 import { useEffect, useRef } from "react";
 import ScrollPin from "../../../ScrollPin";
 import MyLink from "../../../MyLink";
@@ -18,11 +18,11 @@ const SessionEditorLayout = () => {
 
     const onCancel = () => {
         navigate(-1);
-    }
+    };
 
     const onSave = () => {
-        navigate('../overview');
-    }
+        navigate("../overview");
+    };
 
     useEffect(() => {
         form.setFieldsValue({
@@ -38,14 +38,14 @@ metrics.reporter.promappmgr.factory.class: org.apache.flink.metrics.prometheus.P
             tmCpu: 1,
             tmMemory: "3GiB",
             rootLogLevel: "INFO"
-        })
+        });
     }, []);
 
     return (
         <div className="session-editor-layout">
             <div className="header">
                 <div className="title">
-                    <MyLink className="left-arrow" to={'../../list'}>
+                    <MyLink className="left-arrow" to={"../../list"}>
                         <ArrowLeftOutlined />
                     </MyLink>
                     编辑 Session 集群
@@ -78,7 +78,7 @@ metrics.reporter.promappmgr.factory.class: org.apache.flink.metrics.prometheus.P
             </div>
 
         </div>
-    )
+    );
 };
 
 export default SessionEditorLayout;

@@ -7,7 +7,7 @@ const PaimonForm = () => {
 
     const onSelectChange = (value: string) => {
         setDlfVisible(value === "dlf");
-    }
+    };
 
     return (
         <Form
@@ -99,7 +99,7 @@ const PaimonForm = () => {
 
 
         </Form>
-    )
+    );
 };
 
 export default PaimonForm;

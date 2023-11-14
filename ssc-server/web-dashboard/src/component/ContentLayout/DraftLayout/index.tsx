@@ -1,12 +1,12 @@
-import './index.sass'
-import MainContent from './MainContent';
-import LeftTabBar from './LeftTabBar';
-import DraftTabPanel from './LeftTabBar/LeftTabPanel/DraftTabPanel';
-import { useState } from 'react';
-import Resizable from '../../Resizable';
-import BottomTabBar from './BottomTabBar';
-import WelcomeContent from './WelcomeContent';
-import { Route, Routes } from 'react-router-dom';
+import "./index.sass";
+import MainContent from "./MainContent";
+import LeftTabBar from "./LeftTabBar";
+import DraftTabPanel from "./LeftTabBar/LeftTabPanel/DraftTabPanel";
+import { useState } from "react";
+import Resizable from "../../Resizable";
+import BottomTabBar from "./BottomTabBar";
+import WelcomeContent from "./WelcomeContent";
+import { Route, Routes } from "react-router-dom";
 
 const DraftLayout = () => {
     const [tabPanel, setTabPanel] = useState<React.ReactNode>(<DraftTabPanel />);
@@ -46,7 +46,7 @@ const DraftLayout = () => {
                 </div>
             </div>
         </div>
-    )
+    );
 };
 
 export default DraftLayout;

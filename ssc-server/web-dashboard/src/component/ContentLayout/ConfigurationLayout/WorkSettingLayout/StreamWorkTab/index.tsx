@@ -1,4 +1,4 @@
-import { Button, Divider, Form, Space } from "antd"
+import { Button, Divider, Form, Space } from "antd";
 import RuntimeSettingModule from "../SettingModule/RuntimeSetting";
 import FlinkSettingModule from "../SettingModule/CustomSetting";
 import LogSettingModule from "../SettingModule/LogSetting";
@@ -35,7 +35,7 @@ const StreamWorkTab = () => {
                 </Space>
             </div>
         </div>
-    )
+    );
 };
 
 export default StreamWorkTab;

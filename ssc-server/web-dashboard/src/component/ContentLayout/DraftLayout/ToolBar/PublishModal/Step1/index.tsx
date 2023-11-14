@@ -9,12 +9,12 @@ const Step1 = () => {
     const changeExpand = (expand: boolean) => {
         return () => {
             setExpand(expand);
-        }
-    }
+        };
+    };
 
     const onCheckedChange: CheckboxProps["onChange"] = ({ target: { checked } }) => {
         setShowSelect(checked);
-    }
+    };
 
 
     return (
@@ -44,7 +44,7 @@ const Step1 = () => {
                                 wrapperCol={{ span: 16 }}
                             >
                                 <Tooltip title="因 session 集群 JobManager 共用，JobManager 异常将导致该集群所有作业异常，请勿在生产环境中使用 session 集群">
-                                    <Checkbox children="提交到 Session 集群（不推荐生产环境使用)" onChange={onCheckedChange} />
+                                    <Checkbox onChange={onCheckedChange} >提交到 Session 集群（不推荐生产环境使用)</Checkbox>
                                 </Tooltip>
                                 {
                                     showSelect
@@ -79,7 +79,7 @@ const Step1 = () => {
                                 labelCol={{ span: 6 }}
                                 wrapperCol={{ span: 16 }}
                             >
-                                <Checkbox children="跳过部署前的深度检查" />
+                                <Checkbox>跳过部署前的深度检查</Checkbox>
                             </Form.Item>
                         </>
                     ) : (
@@ -91,7 +91,7 @@ const Step1 = () => {
                 注意：该次部署将在作业下次启动时生效。
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Step1;

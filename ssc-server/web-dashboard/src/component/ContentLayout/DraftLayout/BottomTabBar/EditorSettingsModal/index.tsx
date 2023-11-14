@@ -1,26 +1,26 @@
-import { Checkbox, CheckboxProps, Col, Divider, Form, InputNumber, Modal, ModalProps, Row, Select, Tooltip } from 'antd';
-import './index.sass'
-import MonacoEditor from '../../../../MonacoEditor';
-import { QuestionCircleOutlined } from '../../../../Icon';
-import { useState } from 'react';
+import { Checkbox, CheckboxProps, Col, Divider, Form, InputNumber, Modal, ModalProps, Row, Select, Tooltip } from "antd";
+import "./index.sass";
+import MonacoEditor from "../../../../MonacoEditor";
+import { QuestionCircleOutlined } from "../../../../Icon";
+import { useState } from "react";
 
 
 const lineBreakSelect = [
     {
-        label: 'Off',
-        value: 'off'
+        label: "Off",
+        value: "off"
     },
     {
-        label: 'On',
-        value: 'on'
+        label: "On",
+        value: "on"
     },
     {
-        label: 'Word',
-        value: 'word'
+        label: "Word",
+        value: "word"
     },
     {
-        label: 'Bounded',
-        value: 'bounded'
+        label: "Bounded",
+        value: "bounded"
     },
 ];
 
@@ -33,8 +33,8 @@ const EditorSettingsModal = (props: ModalProps) => {
     const checkedChangeWrapper = (onCheckedChange: (chcked: boolean) => void): CheckboxProps["onChange"] => {
         return ({ target: { checked } }) => {
             onCheckedChange(checked);
-        }
-    }
+        };
+    };
     
     return (
         <Modal
@@ -46,7 +46,7 @@ const EditorSettingsModal = (props: ModalProps) => {
             okText="应用"
             cancelText="关闭"
         >
-            <Divider orientation='left' orientationMargin={0} children="编辑器" className="title-divider" />
+            <Divider orientation='left' orientationMargin={0} className="title-divider">编辑器</Divider>
             <Row
 
             >
@@ -75,15 +75,15 @@ const EditorSettingsModal = (props: ModalProps) => {
                         </Form.Item>
 
                         <Form.Item>
-                            <Checkbox children="显示行号" checked={showLineNumber} onChange={checkedChangeWrapper(setShowLineNumber)} />
+                            <Checkbox checked={showLineNumber} onChange={checkedChangeWrapper(setShowLineNumber)}>显示行号</Checkbox>
                         </Form.Item>
 
                         <Form.Item>
-                            <Checkbox children="显示 minimap" checked={showMiniMap} onChange={checkedChangeWrapper(setShowMiniMap)} />
+                            <Checkbox checked={showMiniMap} onChange={checkedChangeWrapper(setShowMiniMap)} >显示 minimap</Checkbox>
                         </Form.Item>
 
                         <Form.Item>
-                            <Checkbox children="开启自动保存" checked={autoSave} onChange={checkedChangeWrapper(setAutoSave)} />
+                            <Checkbox checked={autoSave} onChange={checkedChangeWrapper(setAutoSave)} >开启自动保存</Checkbox>
                         </Form.Item>
 
                         {
@@ -110,7 +110,7 @@ const EditorSettingsModal = (props: ModalProps) => {
                             fontSize: fontSize!,
                             lineNumbersMinChars: 5,
                             lineDecorationsWidth: 0,
-                            lineNumbers: showLineNumber ? 'on' : 'off',
+                            lineNumbers: showLineNumber ? "on" : "off",
                             minimap: {
                                 enabled: showMiniMap
                             }
@@ -150,7 +150,7 @@ LIKE Orders_in_file (
                 </Col>
             </Row>
         </Modal>
-    )
+    );
 };
 
 export default EditorSettingsModal;

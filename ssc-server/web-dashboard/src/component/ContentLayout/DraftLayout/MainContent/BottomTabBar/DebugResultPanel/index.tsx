@@ -1,13 +1,13 @@
-import { Button, Tabs, TabsProps, message } from 'antd';
-import { CheckCircleOutlined, DashboardFilled, ExclamationCircleOutlined, FullscreenOutlined, MinusOutlined, PauseOutlined, ResumeOutlined, Stop2Outlined, TableOutlined } from '../../../../../Icon';
-import './index.sass'
-import StreamResultTable from './StreamResultTable';
-import { useEffect, useState } from 'react';
-import MonacoEditor from '../../../../../MonacoEditor';
+import { Button, Tabs, TabsProps, message } from "antd";
+import { CheckCircleOutlined, DashboardFilled, ExclamationCircleOutlined, FullscreenOutlined, MinusOutlined, PauseOutlined, ResumeOutlined, Stop2Outlined, TableOutlined } from "../../../../../Icon";
+import "./index.sass";
+import StreamResultTable from "./StreamResultTable";
+import { useEffect, useState } from "react";
+import MonacoEditor from "../../../../../MonacoEditor";
 
-const items: TabsProps['items'] = [
+const items: TabsProps["items"] = [
     {
-        key: '1',
+        key: "1",
         label: <span><TableOutlined /> print-table</span>,
         children: <StreamResultTable />
     }
@@ -69,7 +69,7 @@ const DebugResultPanel = (props: DebugResultPanelProps) => {
                         )
                         : (
                             <MonacoEditor
-                                value={'2023-09-21T14:00:47.238+08:00 - Loading data, please wait...'}
+                                value={"2023-09-21T14:00:47.238+08:00 - Loading data, please wait..."}
                                 options={{
                                     lineNumbers: "off",
                                     lineDecorationsWidth: 0,
@@ -87,7 +87,7 @@ const DebugResultPanel = (props: DebugResultPanelProps) => {
             </div>
             {contextHolder}
         </div>
-    )
+    );
 };
 
 export default DebugResultPanel;

@@ -1,21 +1,21 @@
-import { Button, Col, Collapse, CollapseProps, DatePicker, Radio, Row, Space } from 'antd';
-import './index.sass'
-import { HistoryOutlined, SearchOutlined } from '../../../../Icon';
-import Line from '../../../../Chart/Line';
-import { LineConfig } from '@ant-design/plots';
-import dayjs from 'dayjs';
-import { merge } from 'lodash';
+import { Button, Col, Collapse, CollapseProps, DatePicker, Radio, Row, Space } from "antd";
+import "./index.sass";
+import { HistoryOutlined, SearchOutlined } from "../../../../Icon";
+import Line from "../../../../Chart/Line";
+import { LineConfig } from "@ant-design/plots";
+import dayjs from "dayjs";
+import { merge } from "lodash";
 
 const { RangePicker } = DatePicker;
 
 const options = [
-    { label: '最近15分钟', value: 'Apple' },
-    { label: '最近1小时', value: 'Pear' },
-    { label: '最近6小时', value: 'Orange' },
+    { label: "最近15分钟", value: "Apple" },
+    { label: "最近1小时", value: "Pear" },
+    { label: "最近6小时", value: "Orange" },
 ];
 const defaultLineConfig: LineConfig = {
     data: [],
-    padding: 'auto',
+    padding: "auto",
     xField: "x",
     yField: "y",
     legend: {
@@ -35,24 +35,24 @@ const defaultLineConfig: LineConfig = {
         grid: {
             line: {
                 style: {
-                    stroke: '#ddd',
+                    stroke: "#ddd",
                     lineDash: [2, 4],
                 },
             },
         },
     },
     limitInPlot: false
-}
+};
 
 
 const defaultLineConfigWith = (config: LineConfig): LineConfig => {
     return merge({}, defaultLineConfig, config);
-}
+};
 
-const items: CollapseProps['items'] = [
+const items: CollapseProps["items"] = [
     {
-        key: '1',
-        label: 'Overview',
+        key: "1",
+        label: "Overview",
         children: (
             <Row>
                 <Col span={12}>
@@ -61,8 +61,8 @@ const items: CollapseProps['items'] = [
                         tooltip="每个作业重启次数总数"
                         lineConfig={{
                             ...defaultLineConfig,
-                            data: [{ "x": 1698888994, "y": 0 }, { "x": 1698889009, "y": 0 }, { "x": 1698889024, "y": 0 }, { "x": 1698889039, "y": 0 }, { "x": 1698889054, "y": 0 }, { "x": 1698889069, "y": 0 }, { "x": 1698889084, "y": 0 }, { "x": 1698889099, "y": 0 }, { "x": 1698889114, "y": 0 }, { "x": 1698889129, "y": 0 }, { "x": 1698889144, "y": 0 }, { "x": 1698889159, "y": 0 }, { "x": 1698889174, "y": 0 }, { "x": 1698889189, "y": 0 }, { "x": 1698889204, "y": 0 }, { "x": 1698889219, "y": 0 }, { "x": 1698889234, "y": 0 }, { "x": 1698889249, "y": 0 }, { "x": 1698889264, "y": 0 }, { "x": 1698889279, "y": 0 }, { "x": 1698889294, "y": 0 }, { "x": 1698889309, "y": 0 }, { "x": 1698889324, "y": 0 }, { "x": 1698889339, "y": 0 }, { "x": 1698889354, "y": 0 }, { "x": 1698889369, "y": 0 }, { "x": 1698889384, "y": 0 }, { "x": 1698889399, "y": 0 }, { "x": 1698889414, "y": 0 }, { "x": 1698889429, "y": 0 }, { "x": 1698889444, "y": 0 }, { "x": 1698889459, "y": 0 }, { "x": 1698889474, "y": 0 }, { "x": 1698889489, "y": 0 }, { "x": 1698889504, "y": 0 }, { "x": 1698889519, "y": 0 }, { "x": 1698889534, "y": 0 }, { "x": 1698889549, "y": 0 }, { "x": 1698889564, "y": 0 }, { "x": 1698889579, "y": 0 }, { "x": 1698889594, "y": 0 }, { "x": 1698889609, "y": 0 }, { "x": 1698889624, "y": 0 }, { "x": 1698889639, "y": 0 }, { "x": 1698889654, "y": 0 }, { "x": 1698889669, "y": 0 }, { "x": 1698889684, "y": 0 }, { "x": 1698889699, "y": 0 }, { "x": 1698889714, "y": 0 }, { "x": 1698889729, "y": 0 }, { "x": 1698889744, "y": 0 }, { "x": 1698889759, "y": 0 }, { "x": 1698889774, "y": 0 }, { "x": 1698889789, "y": 0 }, { "x": 1698889804, "y": 0 }, { "x": 1698889819, "y": 0 }, { "x": 1698889834, "y": 0 }, { "x": 1698889849, "y": 0 }, { "x": 1698889864, "y": 0 }, { "x": 1698889879, "y": 0 }, { "x": 1698889894, "y": 0 }].map(item => ({ ...item, taskName: 'jobId:f2fd8c5c-7d0a-4597-b94a-4ffa5575747c' })),
-                            seriesField: 'taskName'
+                            data: [{ "x": 1698888994, "y": 0 }, { "x": 1698889009, "y": 0 }, { "x": 1698889024, "y": 0 }, { "x": 1698889039, "y": 0 }, { "x": 1698889054, "y": 0 }, { "x": 1698889069, "y": 0 }, { "x": 1698889084, "y": 0 }, { "x": 1698889099, "y": 0 }, { "x": 1698889114, "y": 0 }, { "x": 1698889129, "y": 0 }, { "x": 1698889144, "y": 0 }, { "x": 1698889159, "y": 0 }, { "x": 1698889174, "y": 0 }, { "x": 1698889189, "y": 0 }, { "x": 1698889204, "y": 0 }, { "x": 1698889219, "y": 0 }, { "x": 1698889234, "y": 0 }, { "x": 1698889249, "y": 0 }, { "x": 1698889264, "y": 0 }, { "x": 1698889279, "y": 0 }, { "x": 1698889294, "y": 0 }, { "x": 1698889309, "y": 0 }, { "x": 1698889324, "y": 0 }, { "x": 1698889339, "y": 0 }, { "x": 1698889354, "y": 0 }, { "x": 1698889369, "y": 0 }, { "x": 1698889384, "y": 0 }, { "x": 1698889399, "y": 0 }, { "x": 1698889414, "y": 0 }, { "x": 1698889429, "y": 0 }, { "x": 1698889444, "y": 0 }, { "x": 1698889459, "y": 0 }, { "x": 1698889474, "y": 0 }, { "x": 1698889489, "y": 0 }, { "x": 1698889504, "y": 0 }, { "x": 1698889519, "y": 0 }, { "x": 1698889534, "y": 0 }, { "x": 1698889549, "y": 0 }, { "x": 1698889564, "y": 0 }, { "x": 1698889579, "y": 0 }, { "x": 1698889594, "y": 0 }, { "x": 1698889609, "y": 0 }, { "x": 1698889624, "y": 0 }, { "x": 1698889639, "y": 0 }, { "x": 1698889654, "y": 0 }, { "x": 1698889669, "y": 0 }, { "x": 1698889684, "y": 0 }, { "x": 1698889699, "y": 0 }, { "x": 1698889714, "y": 0 }, { "x": 1698889729, "y": 0 }, { "x": 1698889744, "y": 0 }, { "x": 1698889759, "y": 0 }, { "x": 1698889774, "y": 0 }, { "x": 1698889789, "y": 0 }, { "x": 1698889804, "y": 0 }, { "x": 1698889819, "y": 0 }, { "x": 1698889834, "y": 0 }, { "x": 1698889849, "y": 0 }, { "x": 1698889864, "y": 0 }, { "x": 1698889879, "y": 0 }, { "x": 1698889894, "y": 0 }].map(item => ({ ...item, taskName: "jobId:f2fd8c5c-7d0a-4597-b94a-4ffa5575747c" })),
+                            seriesField: "taskName"
                         }}
                     />
                 </Col>
@@ -81,7 +81,7 @@ const items: CollapseProps['items'] = [
                                     formatter: (v) => `${(Number(v) / 10e8).toFixed(3)} Bil`
                                 }
                             },
-                            seriesField: 'taskName'
+                            seriesField: "taskName"
                         }}
                     />
                 </Col>
@@ -98,7 +98,7 @@ const items: CollapseProps['items'] = [
                                     formatter: (v) => `${(Number(v) / 10e8).toFixed(3)} Bil`
                                 }
                             },
-                            seriesField: 'taskName'
+                            seriesField: "taskName"
                         }}
                     />
                 </Col>
@@ -117,7 +117,7 @@ const items: CollapseProps['items'] = [
                                     formatter: (v) => `${(Number(v) / 1e3).toFixed(3)} K`
                                 }
                             },
-                            seriesField: 'taskName'
+                            seriesField: "taskName"
                         }}
 
 
@@ -136,7 +136,7 @@ const items: CollapseProps['items'] = [
                                     formatter: (v) => `${(Number(v) / 1e3).toFixed(3)} K`
                                 }
                             },
-                            seriesField: 'taskName'
+                            seriesField: "taskName"
                         }}
                     />
                 </Col>
@@ -149,8 +149,8 @@ const items: CollapseProps['items'] = [
         ),
     },
     {
-        key: '2',
-        label: 'Checkpoint',
+        key: "2",
+        label: "Checkpoint",
         children: (
             <Row>
                 <Col span={12}>
@@ -174,12 +174,12 @@ const items: CollapseProps['items'] = [
                                         if (value < 1000) {
                                             return value.toString();
                                         }
-                                        return `${(value / 1e3).toFixed(1)} K`
+                                        return `${(value / 1e3).toFixed(1)} K`;
                                     },
                                 },
 
                             },
-                            seriesField: 'name',
+                            seriesField: "name",
                         }}
                     />
                 </Col>
@@ -209,8 +209,8 @@ const items: CollapseProps['items'] = [
         ),
     },
     {
-        key: '3',
-        label: 'State',
+        key: "3",
+        label: "State",
         children: (
             <Row>
                 <Col span={12}><Line title="State Size" tooltip="状态数据大小（每个 subtask 上总状态数据大小，只有 stateful 节点才支持，否则无数据），VVR-4.0.12 起支持" /></Col>
@@ -226,8 +226,8 @@ const items: CollapseProps['items'] = [
         ),
     },
     {
-        key: '4',
-        label: 'IO',
+        key: "4",
+        label: "IO",
         children: (
             <Row>
                 <Col span={12}>
@@ -322,8 +322,8 @@ const items: CollapseProps['items'] = [
         ),
     },
     {
-        key: '5',
-        label: 'Watermark',
+        key: "5",
+        label: "Watermark",
         children: (
             <Row>
                 <Col span={12}><Line title="Task InputWatermark" tooltip="每个 task 收到最近一条水印的时间" /></Col>
@@ -332,8 +332,8 @@ const items: CollapseProps['items'] = [
         ),
     },
     {
-        key: '6',
-        label: 'CPU',
+        key: "6",
+        label: "CPU",
         children: (
             <Row>
                 <Col span={12}>
@@ -349,7 +349,7 @@ const items: CollapseProps['items'] = [
                                 label: {
                                     formatter(text) {
                                         const value = Number(text);
-                                        return `${(value * 100).toFixed(6)}%`
+                                        return `${(value * 100).toFixed(6)}%`;
                                     },
                                 }
                             }
@@ -369,7 +369,7 @@ const items: CollapseProps['items'] = [
                                 label: {
                                     formatter(text) {
                                         const value = Number(text);
-                                        return `${(value * 100).toFixed(6)}%`
+                                        return `${(value * 100).toFixed(6)}%`;
                                     },
                                 }
                             }
@@ -380,8 +380,8 @@ const items: CollapseProps['items'] = [
         ),
     },
     {
-        key: '7',
-        label: 'Memory',
+        key: "7",
+        label: "Memory",
         children: (
             <Row>
                 <Col span={12}>
@@ -403,9 +403,9 @@ const items: CollapseProps['items'] = [
                                         const value = Number(text);
                                         const mbValue = value / 1e6;
                                         if (mbValue < 1000) {
-                                            return `${mbValue} MB`
+                                            return `${mbValue} MB`;
                                         }
-                                        return `${(mbValue / 1e3).toFixed(1)} GB`
+                                        return `${(mbValue / 1e3).toFixed(1)} GB`;
                                     },
                                 }
                             }
@@ -431,9 +431,9 @@ const items: CollapseProps['items'] = [
                                         const value = Number(text);
                                         const mbValue = value / 1e6;
                                         if (mbValue < 1000) {
-                                            return `${mbValue} MB`
+                                            return `${mbValue} MB`;
                                         }
-                                        return `${(mbValue / 1e3).toFixed(1)} GB`
+                                        return `${(mbValue / 1e3).toFixed(1)} GB`;
                                     },
                                 }
                             }
@@ -459,9 +459,9 @@ const items: CollapseProps['items'] = [
                                         const value = Number(text);
                                         const mbValue = value / 1e6;
                                         if (mbValue < 1000) {
-                                            return `${mbValue} MB`
+                                            return `${mbValue} MB`;
                                         }
-                                        return `${(mbValue / 1e3).toFixed(1)} GB`
+                                        return `${(mbValue / 1e3).toFixed(1)} GB`;
                                     },
                                 }
                             }
@@ -487,9 +487,9 @@ const items: CollapseProps['items'] = [
                                         const value = Number(text);
                                         const mbValue = value / 1e6;
                                         if (mbValue < 1000) {
-                                            return `${mbValue} MB`
+                                            return `${mbValue} MB`;
                                         }
-                                        return `${(mbValue / 1e3).toFixed(1)} GB`
+                                        return `${(mbValue / 1e3).toFixed(1)} GB`;
                                     },
                                 }
                             }
@@ -511,9 +511,9 @@ const items: CollapseProps['items'] = [
                                         const value = Number(text);
                                         const mbValue = value / 1e6;
                                         if (mbValue < 1000) {
-                                            return `${mbValue} MB`
+                                            return `${mbValue} MB`;
                                         }
-                                        return `${(mbValue / 1e3).toFixed(1)} GB`
+                                        return `${(mbValue / 1e3).toFixed(1)} GB`;
                                     },
                                 }
                             }
@@ -524,8 +524,8 @@ const items: CollapseProps['items'] = [
         ),
     },
     {
-        key: '8',
-        label: 'JVM',
+        key: "8",
+        label: "JVM",
         children: (
             <Row>
                 <Col span={12}>
@@ -544,7 +544,7 @@ const items: CollapseProps['items'] = [
                                     
                                 },
                                 style: {
-                                    top: '100'
+                                    top: "100"
                                 }
                             }
                         )}
@@ -664,10 +664,10 @@ const ChartLayout = () => {
                 </Space>
             </div>
             <div className="charts">
-                <Collapse size='small' items={items} defaultActiveKey={['1']} />
+                <Collapse size='small' items={items} defaultActiveKey={["1"]} />
             </div>
         </div>
-    )
+    );
 };
 
 export default ChartLayout;

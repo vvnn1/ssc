@@ -1,17 +1,11 @@
 import { Collapse, CollapseProps, Descriptions, Modal, ModalProps } from "antd";
-import './index.sass'
+import "./index.sass";
 import MonacoEditor from "../../../../MonacoEditor";
 
-const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
-
-const items: CollapseProps['items'] = [
+const items: CollapseProps["items"] = [
     {
-        key: '1',
-        label: '基础配置',
+        key: "1",
+        label: "基础配置",
         children: (
             <>
                 <MonacoEditor
@@ -62,18 +56,18 @@ INSERT INTO print_sink SELECT id,score from datagen_source;`
                     items={[
                         {
                             key: 1,
-                            label: 'Session 集群',
-                            children: 'ssc-session',
+                            label: "Session 集群",
+                            children: "ssc-session",
                         },
                         {
                             key: 2,
-                            label: '引擎版本',
-                            children: 'vvr-8.0.1-flink-1.17',
+                            label: "引擎版本",
+                            children: "vvr-8.0.1-flink-1.17",
                         },
                         {
                             key: 3,
-                            label: '附加依赖文件',
-                            children: '-',
+                            label: "附加依赖文件",
+                            children: "-",
                         },
                     ]}
                 />
@@ -81,8 +75,8 @@ INSERT INTO print_sink SELECT id,score from datagen_source;`
         ),
     },
     {
-        key: '2',
-        label: '资源配置',
+        key: "2",
+        label: "资源配置",
         children: (
             <Descriptions
                 column={1}
@@ -93,26 +87,26 @@ INSERT INTO print_sink SELECT id,score from datagen_source;`
                 items={[
                     {
                         key: 1,
-                        label: '资源模式',
-                        children: '基础模式',
+                        label: "资源模式",
+                        children: "基础模式",
                     },
                     {
                         key: 2,
-                        label: '并发度',
-                        children: '1',
+                        label: "并发度",
+                        children: "1",
                     },
                     {
                         key: 3,
-                        label: '每个 TaskManager Slot 数',
-                        children: '1',
+                        label: "每个 TaskManager Slot 数",
+                        children: "1",
                     },
                 ]}
             />
         ),
     },
     {
-        key: '3',
-        label: '运动参数配置',
+        key: "3",
+        label: "运动参数配置",
         className: "parameters-panel",
         children: (
             <Collapse
@@ -130,33 +124,33 @@ INSERT INTO print_sink SELECT id,score from datagen_source;`
                                 items={[
                                     {
                                         key: 1,
-                                        label: 'execution.checkpointing.interval',
-                                        children: '180s',
+                                        label: "execution.checkpointing.interval",
+                                        children: "180s",
                                     },
                                     {
                                         key: 2,
-                                        label: 'table.exec.state.ttl',
-                                        children: '36 h',
+                                        label: "table.exec.state.ttl",
+                                        children: "36 h",
                                     },
                                     {
                                         key: 3,
-                                        label: 'restart-strategy.fixed-delay.delay',
-                                        children: '10 s',
+                                        label: "restart-strategy.fixed-delay.delay",
+                                        children: "10 s",
                                     },
                                     {
                                         key: 4,
-                                        label: 'restart-strategy',
-                                        children: 'fixed-delay',
+                                        label: "restart-strategy",
+                                        children: "fixed-delay",
                                     },
                                     {
                                         key: 5,
-                                        label: 'restart-strategy.fixed-delay.attempts',
-                                        children: '2147483647',
+                                        label: "restart-strategy.fixed-delay.attempts",
+                                        children: "2147483647",
                                     },
                                     {
                                         key: 6,
-                                        label: 'execution.checkpointing.min-pause',
-                                        children: '180s',
+                                        label: "execution.checkpointing.min-pause",
+                                        children: "180s",
                                     },
                                 ]}
                             />
@@ -261,7 +255,7 @@ const DetailModal = (props: ModalProps) => {
             />
 
         </Modal>
-    )
-}
+    );
+};
 
 export default DetailModal;

@@ -10,7 +10,7 @@ const DeleteModal = (props: ModalProps) => {
             className="ant-modal-confirm ant-modal-confirm-confirm"
         >
             <div className="ant-modal-confirm-body-wrapper">
-                <div className={`ant-modal-confirm-body ant-modal-confirm-body-has-title`}>
+                <div className={"ant-modal-confirm-body ant-modal-confirm-body-has-title"}>
                     <QuestionCircleOutlined />
                     <div className="ant-modal-confirm-paragraph">
                         <span className="ant-modal-confirm-title">删除: datagen_kk_source</span>
@@ -23,7 +23,7 @@ const DeleteModal = (props: ModalProps) => {
                 </div>
             </div>
         </Modal>
-    )
-}
+    );
+};
 
 export default DeleteModal;

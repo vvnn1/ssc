@@ -1,4 +1,4 @@
-import { Form, Input, Modal, ModalProps } from "antd"
+import { Form, Input, Modal, ModalProps } from "antd";
 import DirectorySelect from "../../../../DirectorySelect";
 
 const SaveAsModal = (props: ModalProps) => {
@@ -34,7 +34,7 @@ const SaveAsModal = (props: ModalProps) => {
                 </Form.Item>
             </Form>
         </Modal>
-    )
+    );
 };
 
 export default SaveAsModal;

@@ -1,24 +1,24 @@
-import { Button, Input, Tooltip, TreeProps } from "antd"
-import { AimOutlined, DeleteOutlined, ReloadOutlined, SearchOutlined } from "../../../../../Icon"
-import './index.sass'
-import MetaTree from "./MetaTree"
-import TableDescriptionPanel from "./TableDescriptionPanel"
-import Resizable from "../../../../../Resizable"
-import { useState } from "react"
+import { Button, Input, Tooltip, TreeProps } from "antd";
+import { ReloadOutlined, SearchOutlined } from "../../../../../Icon";
+import "./index.sass";
+import MetaTree from "./MetaTree";
+import TableDescriptionPanel from "./TableDescriptionPanel";
+import Resizable from "../../../../../Resizable";
+import { useState } from "react";
 
-export default () => {
+const MetaTabPanel = () => {
     const [fieldPanel, setFieldPanel] = useState<React.ReactNode>();
     const changeFieldPanel = (open: boolean) => {
         return () => {
             setFieldPanel(open ? <TableDescriptionPanel onCancel={changeFieldPanel(false)} /> : undefined);
-        }
-    }
+        };
+    };
 
-    const onDoubleClick: TreeProps['onDoubleClick'] = (_, node) => {
+    const onDoubleClick: TreeProps["onDoubleClick"] = (_, node) => {
         if(node.isLeaf){
             setFieldPanel(<TableDescriptionPanel onCancel={changeFieldPanel(false)} />);
         }
-    }
+    };
 
     return (
         <div className="mata-tab-panel tab-panel">
@@ -63,5 +63,7 @@ export default () => {
 
             }
         </div>
-    )
-}
+    );
+};
+
+export default MetaTabPanel;

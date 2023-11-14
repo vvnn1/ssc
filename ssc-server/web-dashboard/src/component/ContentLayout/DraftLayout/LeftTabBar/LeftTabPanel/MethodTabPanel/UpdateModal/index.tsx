@@ -1,14 +1,14 @@
 import { Button, Form, Input, Modal, ModalProps, Radio, RadioChangeEvent, Space, Upload } from "antd";
 import { useState } from "react";
 import { DeleteOutlined, PlusOutlined, UploadOutlined } from "../../../../../../Icon";
-import './index.sass'
+import "./index.sass";
 
 const UpdateModal = (props: ModalProps) => {
-    const [radioValue, setRadioValue] = useState<string>('file');
+    const [radioValue, setRadioValue] = useState<string>("file");
 
     const onRadioChange = (e: RadioChangeEvent) => {
         setRadioValue(e.target.value);
-    }
+    };
 
     return (
         <Modal
@@ -28,12 +28,12 @@ const UpdateModal = (props: ModalProps) => {
                     <Radio.Group
                         options={[
                             {
-                                label: '上传文件',
-                                value: 'file'
+                                label: "上传文件",
+                                value: "file"
                             },
                             {
-                                label: '外部 URL',
-                                value: 'url'
+                                label: "外部 URL",
+                                value: "url"
                             }
                         ]}
                         onChange={onRadioChange}
@@ -43,7 +43,7 @@ const UpdateModal = (props: ModalProps) => {
                 </Form.Item>
 
                 {
-                    radioValue === 'file' ? (
+                    radioValue === "file" ? (
                         <>
                             <Form.Item
                                 label="选择文件"
@@ -51,7 +51,7 @@ const UpdateModal = (props: ModalProps) => {
                                 rules={[
                                     {
                                         required: true,
-                                        message: '请选择一个文件'
+                                        message: "请选择一个文件"
                                     }
                                 ]}
                             >
@@ -95,9 +95,9 @@ const UpdateModal = (props: ModalProps) => {
                                                 {
                                                     fields.map((field, index) => {
                                                         return (
-                                                            <Space.Compact key={field.key} style={{ width: '100%', marginBottom: 24 }}>
+                                                            <Space.Compact key={field.key} style={{ width: "100%", marginBottom: 24 }}>
                                                                 <Form.Item
-                                                                    name={[field.name, 'relyUrl']}
+                                                                    name={[field.name, "relyUrl"]}
                                                                     noStyle
                                                                 >
 
@@ -107,12 +107,12 @@ const UpdateModal = (props: ModalProps) => {
 
                                                             </Space.Compact>
 
-                                                        )
+                                                        );
                                                     })
                                                 }
                                                 <Button className="add-url" type="dashed" icon={<PlusOutlined />} onClick={add}>添加依赖文件</Button>
                                             </>
-                                        )
+                                        );
                                     }}
                                 </Form.List>
                             </Form.Item>
@@ -123,7 +123,7 @@ const UpdateModal = (props: ModalProps) => {
             </Form>
 
         </Modal>
-    )
+    );
 };
 
 export default UpdateModal;

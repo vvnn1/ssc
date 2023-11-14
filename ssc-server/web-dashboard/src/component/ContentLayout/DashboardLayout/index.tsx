@@ -1,7 +1,7 @@
-import { Button, Divider } from 'antd'
-import { BackgroundOutlined, BuildOutlined, DesktopOutlined, FileZipOutlined, InfoCircleOutlined, PlusOutlined, TutorialOutlined } from '../../Icon'
-import './index.sass'
-import Card from './Card'
+import { Button, Divider } from "antd";
+import { BackgroundOutlined, BuildOutlined, DesktopOutlined, FileZipOutlined, InfoCircleOutlined, PlusOutlined, TutorialOutlined } from "../../Icon";
+import "./index.sass";
+import Card from "./Card";
 
 const DashboardLayout = () => {
     return (
@@ -84,7 +84,7 @@ const DashboardLayout = () => {
                 />
             </div>
         </div>
-    )
+    );
 };
 
 export default DashboardLayout;

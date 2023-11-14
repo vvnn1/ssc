@@ -1,17 +1,17 @@
-import { Button, ButtonProps, Divider, Select, Space, Table, message } from 'antd'
-import './index.sass'
-import { CancelCircleFilled, CheckCircleFilled, CheckCircleOutlined, ExclamationCircleOutlined, LoadingOutlined, PlayCircleFilled, SettingOutlined } from '../../Icon'
-import { useState } from 'react';
-import Search from 'antd/es/input/Search';
-import { useNavigate, useParams } from 'react-router-dom';
-import { changeModalOpen } from '../../../util';
-import DeployModal from './DeployModal';
-import SettingModal from './SettingModal';
-import LaunchModal from './LaunchModal';
-import StopModal from './StopModal';
-import dayjs from 'dayjs';
+import { Button, ButtonProps, Divider, Select, Space, Table, message } from "antd";
+import "./index.sass";
+import { CancelCircleFilled, CheckCircleFilled, CheckCircleOutlined, ExclamationCircleOutlined, LoadingOutlined, PlayCircleFilled, SettingOutlined } from "../../Icon";
+import { useState } from "react";
+import Search from "antd/es/input/Search";
+import { useNavigate, useParams } from "react-router-dom";
+import { changeModalOpen } from "../../../util";
+import DeployModal from "./DeployModal";
+import SettingModal from "./SettingModal";
+import LaunchModal from "./LaunchModal";
+import StopModal from "./StopModal";
+import dayjs from "dayjs";
 
-type Status = 'starting' | 'running' | 'stoping' | 'stoped' | 'finished' | 'fail';
+type Status = "starting" | "running" | "stoping" | "stoped" | "finished" | "fail";
 
 interface Job {
     id: string;
@@ -27,7 +27,7 @@ interface Job {
 }
 
 type TableProps = Parameters<typeof Table<Job>>[0];
-type ColumnTypes = Exclude<TableProps['columns'], undefined>;
+type ColumnTypes = Exclude<TableProps["columns"], undefined>;
 
 const OperationLayout = () => {
     const [deployModalOpen, setDeployModalOpen] = useState<boolean>(false);
@@ -37,15 +37,15 @@ const OperationLayout = () => {
     const [messageApi, contextHolder] = message.useMessage();
     const [data, setData] = useState<Job[]>([
         {
-            id: '9ddc3745-7453-4d4b-96ee-965d8b2d5f05',
-            key: '1',
-            name: 'Untitled-stream-sql',
-            status: 'running',// 已停止 启动中 运行中 停止中
+            id: "9ddc3745-7453-4d4b-96ee-965d8b2d5f05",
+            key: "1",
+            name: "Untitled-stream-sql",
+            status: "running",// 已停止 启动中 运行中 停止中
             healthSorce: 75,
-            bizDelay: '',
+            bizDelay: "",
             cpu: 6,
             memory: 1024,
-            updateUser: 'vvnnl',
+            updateUser: "vvnnl",
             updateTime: 1695720687,
         }
     ]);
@@ -54,88 +54,88 @@ const OperationLayout = () => {
 
     const columns: ColumnTypes = [
         {
-            title: '名称',
-            dataIndex: 'name',
+            title: "名称",
+            dataIndex: "name",
             render: (value) => <><div className="type">SQL</div> <a>{value}</a></>
         },
         {
-            title: '状态',
-            dataIndex: 'status',
+            title: "状态",
+            dataIndex: "status",
             filters: [
                 {
-                    text: '启动中',
-                    value: 'starting',
+                    text: "启动中",
+                    value: "starting",
                 },
                 {
-                    text: '运行中',
-                    value: 'running',
+                    text: "运行中",
+                    value: "running",
                 },
                 {
-                    text: '停止中',
-                    value: 'stoping',
+                    text: "停止中",
+                    value: "stoping",
                 },
                 {
-                    text: '已停止',
-                    value: 'stoped',
+                    text: "已停止",
+                    value: "stoped",
                 },
                 {
-                    text: '已完成',
-                    value: 'finished',
+                    text: "已完成",
+                    value: "finished",
                 },
                 {
-                    text: '已失败',
-                    value: 'fail',
+                    text: "已失败",
+                    value: "fail",
                 },
             ],
             onFilter: (value: React.Key | boolean, record) => record.status === value,
-            width: '12.15%',
+            width: "12.15%",
             render: (value) => {
-                if (value === 'starting') {
-                    return <><LoadingOutlined /> 启动中</>
+                if (value === "starting") {
+                    return <><LoadingOutlined /> 启动中</>;
                 }
-                if (value === 'running') {
-                    return <><PlayCircleFilled /> 运行中</>
+                if (value === "running") {
+                    return <><PlayCircleFilled /> 运行中</>;
                 }
-                if (value === 'stoping') {
-                    return <><LoadingOutlined /> 停止中</>
+                if (value === "stoping") {
+                    return <><LoadingOutlined /> 停止中</>;
                 }
-                if (value === 'stoped') {
-                    return <><CancelCircleFilled /> 已停止</>
+                if (value === "stoped") {
+                    return <><CancelCircleFilled /> 已停止</>;
                 }
-                if (value === 'finished') {
-                    return <><CheckCircleFilled/> 已完成</>
+                if (value === "finished") {
+                    return <><CheckCircleFilled/> 已完成</>;
                 }
-                if (value === 'fail') {
-                    return <></>
+                if (value === "fail") {
+                    return <></>;
                 }
-                return <></>
+                return <></>;
             } 
         },
         {
-            title: '健康分',
-            dataIndex: 'healthSorce',
+            title: "健康分",
+            dataIndex: "healthSorce",
             sorter: (a, b) => a.healthSorce - b.healthSorce,
-            width: '10.2%',
+            width: "10.2%",
             render: (value, {status}) => {
                 if (value > 0) {
                     if(status === "finished"){
-                        return <span className="source-circle high disabled">{value}</span>
+                        return <span className="source-circle high disabled">{value}</span>;
                     }
-                    return <span className="source-circle high">{value}</span>
+                    return <span className="source-circle high">{value}</span>;
                 }
-                return <span className="source-circle unknown">-</span>
+                return <span className="source-circle unknown">-</span>;
             }
         },
         {
-            title: '业务延时',
-            dataIndex: 'bizDelay',
-            width: '7.3%',
+            title: "业务延时",
+            dataIndex: "bizDelay",
+            width: "7.3%",
         },
         {
-            title: 'CPU',
-            dataIndex: 'cpu',
+            title: "CPU",
+            dataIndex: "cpu",
             sorter: (a, b) => a.cpu - b.cpu,
-            width: '7.5%',
+            width: "7.5%",
             render: (value) => {
                 if (value > 0) {
                     return value;
@@ -144,10 +144,10 @@ const OperationLayout = () => {
             }
         },
         {
-            title: '内存',
-            dataIndex: 'memory',
+            title: "内存",
+            dataIndex: "memory",
             sorter: (a, b) => a.memory - b.memory,
-            width: '8.25%',
+            width: "8.25%",
             render: (value) => {
                 if (value > 0) {
                     return <>{value} Gib</>;
@@ -156,44 +156,44 @@ const OperationLayout = () => {
             }
         },
         {
-            title: '修改人',
-            dataIndex: 'updateUser',
-            width: '12.2%',
+            title: "修改人",
+            dataIndex: "updateUser",
+            width: "12.2%",
 
         },
         {
-            title: '修改时间',
-            dataIndex: 'updateTime',
+            title: "修改时间",
+            dataIndex: "updateTime",
             sorter: (a, b) => a.updateTime - b.updateTime,
-            width: '12%',
-            render: (value) => <>{dayjs.unix(value).format('MM/DD HH:mm:ss')}</>
+            width: "12%",
+            render: (value) => <>{dayjs.unix(value).format("MM/DD HH:mm:ss")}</>
         },
         {
-            title: '操作',
-            dataIndex: 'age',
-            render: (_, { id, status }) => {
+            title: "操作",
+            dataIndex: "age",
+            render: (_, { status }) => {
                 return (
                     <>
-                        <Button size="small" type="link" disabled={['running', 'starting', 'stoping'].includes(status)} onClick={onLaunchButtonClick}>启动</Button>
+                        <Button size="small" type="link" disabled={["running", "starting", "stoping"].includes(status)} onClick={onLaunchButtonClick}>启动</Button>
                         <Divider type="vertical" />
-                        <Button size="small" type="link" disabled={['stoped', 'stoping', 'finished'].includes(status)} onClick={onStopButtonClick}>停止</Button>
+                        <Button size="small" type="link" disabled={["stoped", "stoping", "finished"].includes(status)} onClick={onStopButtonClick}>停止</Button>
                         <Divider type="vertical" />
-                        <Button size="small" type="link" danger disabled={['running', 'starting', 'stoping'].includes(status)} onClick={onDeleteClick}>删除</Button>
+                        <Button size="small" type="link" danger disabled={["running", "starting", "stoping"].includes(status)} onClick={onDeleteClick}>删除</Button>
                     </>
-                )
+                );
             },
         },
     ];
 
-    const onLaunchButtonClick: ButtonProps['onClick'] = (e) => {
+    const onLaunchButtonClick: ButtonProps["onClick"] = (e) => {
         e.stopPropagation();
         setLaunchModalOpen(true);
-    }
+    };
 
-    const onStopButtonClick: ButtonProps['onClick'] = (e) => {
+    const onStopButtonClick: ButtonProps["onClick"] = (e) => {
         e.stopPropagation();
         setStopModalOpen(true);
-    }
+    };
 
     const onStopModalOkClick = () => {
         messageApi.info({
@@ -203,9 +203,9 @@ const OperationLayout = () => {
         setStopModalOpen(false);
         setData(data => {
             return [
-                ...data.filter(item => item.id === '9ddc3745-7453-4d4b-96ee-965d8b2d5f05')
+                ...data.filter(item => item.id === "9ddc3745-7453-4d4b-96ee-965d8b2d5f05")
                     .map(item => {
-                        item.status = 'stoping';
+                        item.status = "stoping";
                         return item;
                     })
             ];
@@ -214,15 +214,15 @@ const OperationLayout = () => {
         setTimeout(() => {
             setData(data => {
                 return [
-                    ...data.filter(item => item.id === '9ddc3745-7453-4d4b-96ee-965d8b2d5f05')
+                    ...data.filter(item => item.id === "9ddc3745-7453-4d4b-96ee-965d8b2d5f05")
                         .map(item => {
-                            item.status = 'stoped';
+                            item.status = "stoped";
                             return item;
                         })
                 ];
-            })
+            });
         }, 4000);
-    }
+    };
 
     const onLaunchModalOkClick = () => {
         messageApi.info({
@@ -233,9 +233,9 @@ const OperationLayout = () => {
 
         setData(data => {
             return [
-                ...data.filter(item => item.id === '9ddc3745-7453-4d4b-96ee-965d8b2d5f05')
+                ...data.filter(item => item.id === "9ddc3745-7453-4d4b-96ee-965d8b2d5f05")
                     .map(item => {
-                        item.status = 'starting';
+                        item.status = "starting";
                         return item;
                     })
             ];
@@ -244,23 +244,23 @@ const OperationLayout = () => {
         setTimeout(() => {
             setData(data => {
                 return [
-                    ...data.filter(item => item.id === '9ddc3745-7453-4d4b-96ee-965d8b2d5f05')
+                    ...data.filter(item => item.id === "9ddc3745-7453-4d4b-96ee-965d8b2d5f05")
                         .map(item => {
-                            item.status = 'running';
+                            item.status = "running";
                             return item;
                         })
                 ];
-            })
+            });
         }, 4000);
-    }
+    };
 
-    const onDeleteClick: ButtonProps['onClick'] = (e) => {
+    const onDeleteClick: ButtonProps["onClick"] = (e) => {
         e.stopPropagation();
         messageApi.success({
             icon: <></>,
-            content: <><CheckCircleOutlined color="#00a700" /> Session 集群 "kk-test" 已删除</>
+            content: <><CheckCircleOutlined color="#00a700" /> Session 集群 &#34;kk-test&#34; 已删除</>
         });
-    }
+    };
 
     return (
         <div className="development-layout">
@@ -272,8 +272,8 @@ const OperationLayout = () => {
                         <Select
                             defaultValue={jobType}
                             options={[
-                                { value: 'stream', label: '流作业' },
-                                { value: 'batch', label: '批作业' },
+                                { value: "stream", label: "流作业" },
+                                { value: "batch", label: "批作业" },
                             ]}
                         />
                         <Search
@@ -294,7 +294,7 @@ const OperationLayout = () => {
                     onRow={(record) => {
                         return {
                             onClick: () => navigate(`${record.id}/configuration`)
-                        }
+                        };
                     }}
                 />
             </div>
@@ -305,7 +305,7 @@ const OperationLayout = () => {
             <StopModal open={stopModalOpen} onCancel={changeModalOpen(false, setStopModalOpen)} onOk={onStopModalOkClick} />
             {contextHolder}
         </div>
-    )
+    );
 };
 
 export default OperationLayout;

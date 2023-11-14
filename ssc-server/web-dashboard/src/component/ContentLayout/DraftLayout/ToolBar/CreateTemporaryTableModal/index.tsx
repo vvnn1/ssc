@@ -1,5 +1,5 @@
-import { Modal, ModalProps, Steps } from "antd";
-import './index.sass'
+import { ModalProps } from "antd";
+import "./index.sass";
 import Step1, { CardDetail } from "./Step1";
 import StepModal from "../../../../StepModal";
 import Step2 from "./Step2";
@@ -24,23 +24,23 @@ const CreateTemporaryTableModal = (props: ModalProps) => {
             stepsProps={{
                 items: [
                     {
-                        title: '选择临时表类型',
+                        title: "选择临时表类型",
                     },
                     {
-                        title: '构建临时表'
+                        title: "构建临时表"
                     }
                 ],
-                size: 'small'
+                size: "small"
             }}
         >
             {(currentStep) => {
                 if (currentStep === 0) {
-                    return <Step1 onCardChange={setSelectedCard}/>
+                    return <Step1 onCardChange={setSelectedCard}/>;
                 }
-                return <Step2 {...selectedCard!}/>
+                return <Step2 {...selectedCard!}/>;
             }}
         </StepModal >
-    )
+    );
 };
 
 export default CreateTemporaryTableModal;

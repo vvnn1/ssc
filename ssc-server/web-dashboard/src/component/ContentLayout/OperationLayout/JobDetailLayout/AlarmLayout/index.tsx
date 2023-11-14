@@ -1,23 +1,23 @@
 import { Menu, MenuProps } from "antd";
 import MyLink from "../../../../MyLink";
-import './index.sass'
+import "./index.sass";
 import { Route, Routes, matchPath, useLocation } from "react-router-dom";
 import AlarmList from "./AlarmList";
 import AlarmRule from "./AlarmRule";
 
-const items: MenuProps['items'] = [
+const items: MenuProps["items"] = [
     {
         label: <MyLink to='events'>告警事件</MyLink>,
-        key: 'events',
+        key: "events",
     },
     {
         label: <MyLink to='rules'>告警规则</MyLink>,
-        key: 'rules',
+        key: "rules",
     },
 ];
 
 const AlarmLayout = () => {
-    let { pathname } = useLocation();
+    const { pathname } = useLocation();
     const pathMatch = matchPath("/workspace/:workspaceId/namespace/:namespaceId/operations/:jobType/:jobId/:detailTab/:key", pathname);
     
     return (
@@ -25,7 +25,7 @@ const AlarmLayout = () => {
             <Menu
                 mode="horizontal"
                 items={items}
-                defaultSelectedKeys={[pathMatch?.params.key!]}
+                defaultSelectedKeys={pathMatch?.params.key ? [pathMatch?.params.key] : []}
             />
             <div className="detail-container">
                 <Routes>
@@ -34,7 +34,7 @@ const AlarmLayout = () => {
                 </Routes>
             </div>
         </div>
-    )
+    );
 };
 
 export default AlarmLayout;

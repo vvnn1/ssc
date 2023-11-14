@@ -27,8 +27,8 @@ const ContentLayout = () => {
     const changeDocumentOpen = (open:boolean) => {
         return () => {
             setOpen(open);
-        }
-    }
+        };
+    };
 
     return (
         <DocumentContext.Provider value={setOpen}>
@@ -71,7 +71,7 @@ const ContentLayout = () => {
             <DocumentLayout open={open} onCancel={changeDocumentOpen(false)}/>
         </DocumentContext.Provider>
 
-    )
-}
+    );
+};
 
 export default ContentLayout;

@@ -1,77 +1,75 @@
 import { Tree, TreeDataNode, TreeProps, message } from "antd";
-import { CheckCircleOutlined, ContainerOutlined, DatabaseOutlined, FunctionOutlined, MinusSquareOutlined, PlusSquareOutlined, TableOutlined } from "../../../../../../Icon";
-import './index.sass'
+import { CheckCircleOutlined, ContainerOutlined, FunctionOutlined, MinusSquareOutlined, PlusSquareOutlined } from "../../../../../../Icon";
+import "./index.sass";
 import TreeTitle from "./TreeTitle";
-import { useEffect, useState } from "react";
-import DataConnectLayout from "../../../../../DataConnectLayout";
+import { useState } from "react";
 import ManageModal from "../ManageModal";
 import { changeModalOpen } from "../../../../../../../util";
-import RegisterModal from "../RegisterModal";
 import UpdateModal from "../UpdateModal";
 import DeleteModal from "../DeleteModal";
 
 const treeData: TreeDataNode[] = [
     {
-        title: 'testfunc',
-        key: '0-0',
+        title: "testfunc",
+        key: "0-0",
         icon: <ContainerOutlined />,
         children: [
             {
-                title: 'ASI_UDF',
-                key: '0-0-0',
+                title: "ASI_UDF",
+                key: "0-0-0",
                 icon: <FunctionOutlined />,
-                className: 'function',
+                className: "function",
                 isLeaf: true,
             },
             {
-                title: 'ASI_UDTF',
-                key: '0-0-1',
+                title: "ASI_UDTF",
+                key: "0-0-1",
                 icon: <FunctionOutlined />,
-                className: 'function',
+                className: "function",
                 isLeaf: true,
             },
             {
-                title: 'ASI_UDAF$MySum',
-                key: '0-0-2',
+                title: "ASI_UDAF$MySum",
+                key: "0-0-2",
                 icon: <FunctionOutlined />,
-                className: 'function',
+                className: "function",
                 isLeaf: true,
             }
         ],
         switcherIcon: (node) => (node.expanded ? <MinusSquareOutlined /> : <PlusSquareOutlined />),
-        className: 'jar',
+        className: "jar",
         isLeaf: false
     },
     {
-        title: 'testfunc2',
-        key: '0-1',
+        title: "testfunc2",
+        key: "0-1",
         icon: <ContainerOutlined />,
         children: [
             {
-                title: 'ASI_UDF2',
-                key: '0-1-0',
+                title: "ASI_UDF2",
+                key: "0-1-0",
                 icon: <FunctionOutlined />,
-                className: 'function',
+                className: "function",
                 isLeaf: true,
             },
             {
-                title: 'ASI_UDTF2',
-                key: '0-1-1',
+                title: "ASI_UDTF2",
+                key: "0-1-1",
                 icon: <FunctionOutlined />,
-                className: 'function',
+                className: "function",
                 isLeaf: true,
             },
             {
-                title: 'ASI_UDAF2$MySum',
-                key: '0-2-2',
+                title: "ASI_UDAF2$MySum",
+                key: "0-2-2",
                 icon: <FunctionOutlined />,
-                className: 'function',
+                className: "function",
                 isLeaf: true,
 
             }
         ],
         switcherIcon: (node) => (node.expanded ? <MinusSquareOutlined /> : <PlusSquareOutlined />),
-        className: 'jar',
+        className: "jar",
         isLeaf: false
     },
 ];
@@ -90,30 +88,30 @@ const FuncTree = (props: TreeProps) => {
     const onFunctionDrop = (dataNode: TreeDataNode) => {
         dataNode.className = "function unregister-function";
         setDataSource((dataSource) => [...dataSource]);
-    }
+    };
 
-    const onManage = (dataNode: TreeDataNode) => {
+    const onManage = (/* dataNode: TreeDataNode */) => {
         setManageModalOpen(true);
-    }
+    };
 
-    const onJarDrop = (dataNode: TreeDataNode) => {
+    const onJarDrop = (/* dataNode: TreeDataNode */) => {
         setDeleteModalOpen(true);
-    }
+    };
 
-    const onUpdate = (dataNode: TreeDataNode) => {
+    const onUpdate = (/* dataNode: TreeDataNode */) => {
         setUpdateModalOpen(true);
-    }
+    };
 
     const titleRender = (node: TreeDataNode) => {
         let onDrop;
-        if (node.className?.includes('function')) {
+        if (node.className?.includes("function")) {
             onDrop = onFunctionDrop;
         }
-        if (node.className?.includes('jar')) {
+        if (node.className?.includes("jar")) {
             onDrop = onJarDrop;
         }
-        return <TreeTitle dataNode={node} onDrop={onDrop} onManager={onManage} onUpdate={onUpdate} />
-    }
+        return <TreeTitle dataNode={node} onDrop={onDrop} onManager={onManage} onUpdate={onUpdate} />;
+    };
 
     const onCreateClick = () => {
         messageApi.success({
@@ -121,7 +119,7 @@ const FuncTree = (props: TreeProps) => {
             content: <><CheckCircleOutlined color="#00a700" />创建成功</>
         });
         setManageModalOpen(false);
-    }
+    };
 
     const onDeleteClick = () => {
         messageApi.success({
@@ -129,7 +127,7 @@ const FuncTree = (props: TreeProps) => {
             content: <><CheckCircleOutlined color="#00a700" />删除成功</>
         });
         setManageModalOpen(false);
-    }
+    };
 
     return (
         <>
@@ -161,7 +159,7 @@ const FuncTree = (props: TreeProps) => {
             />
         </>
 
-    )
+    );
 };
 
 export default FuncTree;

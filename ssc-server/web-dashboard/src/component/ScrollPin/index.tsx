@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import './index.sass'
+import "./index.sass";
 
 interface ScollPinProps {
     containerRef: React.RefObject<HTMLDivElement>;
@@ -13,15 +13,15 @@ const ScrollPin = (props: ScollPinProps) => {
         } else {
             setShowScollPin(true);
         }
-    }
+    };
 
     useEffect(() => {
-        props.containerRef.current?.addEventListener('scroll', containerScollListener)
+        props.containerRef.current?.addEventListener("scroll", containerScollListener);
     }, []);
 
     return (
-        <div className="scroll-pin-decoration scroll-pin-decoration-top" style={showScollPin ? { display: 'block' } : { display: 'none' }}></div>
-    )
+        <div className="scroll-pin-decoration scroll-pin-decoration-top" style={showScollPin ? { display: "block" } : { display: "none" }}></div>
+    );
 };
 
 export default ScrollPin;

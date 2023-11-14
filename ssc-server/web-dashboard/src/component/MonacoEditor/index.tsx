@@ -1,6 +1,6 @@
 import { useRef } from "react";
-import ReactMonacoEditor, { EditorDidMount, EditorWillUnmount, MonacoEditorProps } from "react-monaco-editor"
-import './index.sass'
+import ReactMonacoEditor, { EditorDidMount, EditorWillUnmount, MonacoEditorProps } from "react-monaco-editor";
+import "./index.sass";
 
 const MonacoEditor = (props: MonacoEditorProps) => {
     const editorContainer = useRef(null);
@@ -11,16 +11,16 @@ const MonacoEditor = (props: MonacoEditorProps) => {
         observerRef.current = new ResizeObserver(() => {
             window.requestAnimationFrame(() => {
                 editor.layout();
-            })
+            });
         });
         observerRef.current.observe(editorContainer.current!);
-    }
+    };
 
     const editorWillUnmount:EditorWillUnmount = (editor, monaco) => {
         props.editorWillUnmount?.(editor, monaco);
         observerRef.current?.disconnect();
         observerRef.current = undefined;
-    }
+    };
 
 
     return (
@@ -32,7 +32,7 @@ const MonacoEditor = (props: MonacoEditorProps) => {
             />
         </div>
 
-    )
+    );
 };
 
 export default MonacoEditor;

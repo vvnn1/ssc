@@ -1,5 +1,5 @@
-import { Card, Divider, Space } from "antd"
-import Paragraph from "antd/es/typography/Paragraph"
+import { Card, Divider, Space } from "antd";
+import Paragraph from "antd/es/typography/Paragraph";
 import { NewTabOutlined } from "../../../../../Icon";
 
 type ConnectorType = "结果表" | "源表" | "维表";
@@ -32,13 +32,13 @@ const ConnectorCard = (props: CardProps) => {
                                         <Space size={4}>
                                             {
                                                 props.type
-                                                    .map(item => (<span>{item}</span>))
+                                                    .map((item, index) => (<span key={index}>{item}</span>))
                                                     .reduce((accu, elem) => {
                                                         return <>
                                                             {accu}
                                                             <Divider type="vertical" />
                                                             {elem}
-                                                        </>
+                                                        </>;
                                                     })
                                             }
                                             <NewTabOutlined />
@@ -51,7 +51,7 @@ const ConnectorCard = (props: CardProps) => {
                 }
             </div>
         </Card>
-    )
+    );
 };
 
 export default ConnectorCard;

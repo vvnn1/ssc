@@ -1,4 +1,4 @@
-import { Row, Col, InputNumber, Select, Form } from "antd"
+import { Row, Col, InputNumber, Select, Form, SelectProps } from "antd";
 import { NumberOutlined } from "../../../../Icon";
 import { useState } from "react";
 import SettingCard from "../../../../SettingCard";
@@ -19,7 +19,7 @@ const timeUnitSelector = (
 
 const restartStrategyOptions = [
     {
-        value: 'jack',
+        value: "jack",
         label: (
             <>
                 Failure Rate
@@ -69,7 +69,7 @@ const restartStrategyOptions = [
         )
     },
     {
-        value: 'lucy',
+        value: "lucy",
         label: (
             <>
                 Fixed Delay
@@ -112,7 +112,7 @@ const restartStrategyOptions = [
         )
     },
     {
-        value: 'Yiminghe',
+        value: "Yiminghe",
         label: (
             <>
                 No Restarts
@@ -132,9 +132,9 @@ interface RuntimeSettingProps {
 const RuntimeSetting = (props: RuntimeSettingProps) => {
     const [strategyModule, setStrategyModule] = useState<React.ReactElement | null>(null);
 
-    const strategyModuleChange = (_: any, { strategyModule }: any) => {
+    const strategyModuleChange:SelectProps["onSelect"] = ({ strategyModule }) => {
         setStrategyModule(strategyModule);
-    }
+    };
 
 
     return (
@@ -212,7 +212,7 @@ const RuntimeSetting = (props: RuntimeSettingProps) => {
                 </Col>
             </Row>
         </SettingCard>
-    )
+    );
 };
 
 export default RuntimeSetting;

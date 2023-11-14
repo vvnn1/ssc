@@ -1,6 +1,6 @@
-import { Col, Form, InputNumber, Row } from "antd"
-import SettingCard from "../../../SettingCard"
-import { NumberOutlined } from "../../../Icon"
+import { Col, Form, InputNumber, Row } from "antd";
+import SettingCard from "../../../SettingCard";
+import { NumberOutlined } from "../../../Icon";
 import MemoryInputNumber from "../../../InputNumber/MemoryInputNumber";
 
 const ResourceSetting = () => {
@@ -87,7 +87,7 @@ const ResourceSetting = () => {
                 </Col>
             </Row>
         </SettingCard>
-    )
+    );
 };
 
 export default ResourceSetting;

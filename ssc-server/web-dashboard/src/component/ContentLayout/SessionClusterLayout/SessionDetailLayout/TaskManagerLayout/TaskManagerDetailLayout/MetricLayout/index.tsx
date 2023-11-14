@@ -1,6 +1,6 @@
 import AdvancedTable from "./AdvancedTable";
 import MetricTable from "./MetricTable";
-import './index.sass'
+import "./index.sass";
 
 const MetricLayout = () => {
     return (
@@ -8,7 +8,7 @@ const MetricLayout = () => {
             <MetricTable />
             <AdvancedTable />
         </div>
-    )
+    );
 };
 
 export default MetricLayout;

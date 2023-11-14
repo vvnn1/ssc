@@ -1,7 +1,7 @@
-import { Button, Divider, Form, Input, Modal, Popconfirm, Radio, Space, Table, Tag } from "antd"
+import { Button, Divider, Input, Popconfirm, Space, Table } from "antd";
 import { useState } from "react";
 import { DeleteOutlined, EditOutlined } from "../../../Icon";
-import "./index.sass"
+import "./index.sass";
 import AddModal from "./AddModal";
 import { changeModalOpen } from "../../../../util";
 import EditModal from "./EditModal";
@@ -14,20 +14,16 @@ interface Kerberos {
 }
 
 type TableProps = Parameters<typeof Table<Kerberos>>[0];
-type ColumnTypes = Exclude<TableProps['columns'], undefined>;
+type ColumnTypes = Exclude<TableProps["columns"], undefined>;
 
 const data: Kerberos[] = [
     {
-        key: '1',
-        name: 'test',
+        key: "1",
+        name: "test",
         keyTab: "oss://ssc-bucket-v2/artifacts/namespaces/ssc-space-default/Final_Company.txt",
-        conf: 'oss://ssc-bucket-v2/artifacts/namespaces/ssc-space-default/Final_Company.txt',
+        conf: "oss://ssc-bucket-v2/artifacts/namespaces/ssc-space-default/Final_Company.txt",
     },
 ];
-
-
-
-
 
 const { Search } = Input;
 
@@ -39,21 +35,21 @@ const KerberoLayout = () => {
 
     const columns: ColumnTypes = [
         {
-            title: 'Kerberos 集群名称',
-            dataIndex: 'name',
+            title: "Kerberos 集群名称",
+            dataIndex: "name",
             width: 200,
 
         },
         {
-            title: 'Kerberos Keytab',
-            dataIndex: 'keyTab',
+            title: "Kerberos Keytab",
+            dataIndex: "keyTab",
         },
         {
-            title: 'Kerberos Krb5,conf',
-            dataIndex: 'conf',
+            title: "Kerberos Krb5,conf",
+            dataIndex: "conf",
         },
         {
-            title: '操作',
+            title: "操作",
             width: 200,
             render: () => (
                 <>
@@ -93,7 +89,7 @@ const KerberoLayout = () => {
             <EditModal open={deleteModalOpen} onCancel={changeModalOpen(false, setDeleteModalOpen)} />
             <AddModal open={addModalOpen} onCancel={changeModalOpen(false, setAddModalOpen)} />
         </div>
-    )
+    );
 };
 
 export default KerberoLayout;

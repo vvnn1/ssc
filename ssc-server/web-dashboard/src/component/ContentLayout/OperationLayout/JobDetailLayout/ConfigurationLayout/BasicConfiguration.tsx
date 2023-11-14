@@ -43,18 +43,18 @@ SELECT SUBSTRING(randstr,0,8) from datagen_source;`}
                 items={[
                     {
                         key: 1,
-                        label: '引擎版本',
-                        children: 'vvr-8.0.1-flink-1.17',
+                        label: "引擎版本",
+                        children: "vvr-8.0.1-flink-1.17",
                     },
                     {
                         key: 2,
-                        label: '附加依赖文件',
-                        children: '-',
+                        label: "附加依赖文件",
+                        children: "-",
                     },
                     {
                         key: 2,
-                        label: '备注',
-                        children: '-',
+                        label: "备注",
+                        children: "-",
                     }
                 ]}
             />

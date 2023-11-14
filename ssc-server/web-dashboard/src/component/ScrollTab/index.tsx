@@ -1,5 +1,5 @@
 import { Tabs, TabsProps } from "antd";
-import './index.sass'
+import "./index.sass";
 import { useRef } from "react";
 import ScrollPin from "../ScrollPin";
 
@@ -15,27 +15,27 @@ const ScrollContent = (props: { children?: React.ReactNode }) => {
             </div>
         </>
 
-    )
-}
+    );
+};
 
 
-const wrapScrollItems = (items: TabsProps['items']) => {
+const wrapScrollItems = (items: TabsProps["items"]) => {
     return items?.map(item => {
         return {
             ...item,
             children: <ScrollContent>{item.children}</ScrollContent>
-        }
-    })
-}
+        };
+    });
+};
 
 const ScrollTab = (props: TabsProps) => {
     return (
         <Tabs
             {...props}
             items={wrapScrollItems(props.items)}
-            className={props.className ? ['scroll-tabs', props.className].join(" ") : 'scroll-tabs'}
+            className={props.className ? ["scroll-tabs", props.className].join(" ") : "scroll-tabs"}
         />
-    )
+    );
 };
 
 export default ScrollTab;

@@ -1,5 +1,5 @@
-import { Col, Form, InputNumber, Row, Select } from "antd"
-import SettingCard from "../../../SettingCard"
+import { Col, Form, InputNumber, Row, Select } from "antd";
+import SettingCard from "../../../SettingCard";
 import { NumberOutlined } from "../../../Icon";
 import { useState } from "react";
 import TimeUnitSelect from "../../../Select/TimeUnitSelect";
@@ -7,7 +7,7 @@ import EngineSelect from "../../../Select/EngineSelect";
 
 const restartStrategyOptions = [
     {
-        value: 'jack',
+        value: "jack",
         label: (
             <>
                 Failure Rate
@@ -67,7 +67,7 @@ const restartStrategyOptions = [
         )
     },
     {
-        value: 'lucy',
+        value: "lucy",
         label: (
             <>
                 Fixed Delay
@@ -116,7 +116,7 @@ const restartStrategyOptions = [
         )
     },
     {
-        value: 'Yiminghe',
+        value: "Yiminghe",
         label: (
             <>
                 No Restarts
@@ -135,7 +135,7 @@ const NormalSetting = () => {
 
     const strategyModuleChange = (_: any, { strategyModule }: any) => {
         setStrategyModule(strategyModule);
-    }
+    };
 
     return (
         <SettingCard
@@ -162,7 +162,7 @@ const NormalSetting = () => {
                 strategyModule
             }
         </SettingCard>
-    )
+    );
 };
 
 export default NormalSetting;

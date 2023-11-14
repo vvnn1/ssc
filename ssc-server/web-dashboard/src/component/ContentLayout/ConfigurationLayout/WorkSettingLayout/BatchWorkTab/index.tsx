@@ -1,4 +1,4 @@
-import { Button, Form, Divider, Space } from "antd"
+import { Button, Form, Divider, Space } from "antd";
 import RuntimeSettingModule from "../SettingModule/RuntimeSetting";
 import FlinkSettingModule from "../SettingModule/CustomSetting";
 import LogSettingModule from "../SettingModule/LogSetting";
@@ -35,7 +35,7 @@ const BatchWorkTab = () => {
             </div>
         </div>
 
-    )
+    );
 };
 
 export default BatchWorkTab;

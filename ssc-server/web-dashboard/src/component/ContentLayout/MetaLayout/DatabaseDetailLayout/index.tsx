@@ -1,12 +1,12 @@
-import { Breadcrumb, Button, Input, Modal, Space, Table } from 'antd';
-import './index.sass'
-import { ArrowLeftOutlined, QuestionCircleOutlined, SearchOutlined } from '../../../Icon';
-import { useNavigate } from 'react-router-dom';
-import MyLink from '../../../MyLink';
-import RenameModal from '../TableDetailLayout/RenameModal';
-import { useState } from 'react';
-import { changeModalOpen } from '../../../../util';
-import DeleteModal from '../TableDetailLayout/DeleteModal';
+import { Breadcrumb, Button, Input, Space, Table } from "antd";
+import "./index.sass";
+import { ArrowLeftOutlined, SearchOutlined } from "../../../Icon";
+import { useNavigate } from "react-router-dom";
+import MyLink from "../../../MyLink";
+import RenameModal from "../TableDetailLayout/RenameModal";
+import { useState } from "react";
+import { changeModalOpen } from "../../../../util";
+import DeleteModal from "../TableDetailLayout/DeleteModal";
 
 const DatabaseDetailLayout = () => {
     const [renameModalOpen, setRenameModalOpen] = useState<boolean>(false);
@@ -15,24 +15,24 @@ const DatabaseDetailLayout = () => {
 
     const onBackClick = () => {
         navigate(-1);
-    }
+    };
 
     const onDeleteClick = () => {
         setDeleteModalOpen(true);
-    }
+    };
 
     return (
         <div className="databse-detail-layout">
             <Breadcrumb
                 items={[
                     {
-                        title: 'Catalog 列表'
+                        title: "Catalog 列表"
                     },
                     {
-                        title: 'vvp'
+                        title: "vvp"
                     },
                     {
-                        title: 'default'
+                        title: "default"
                     }
                 ]}
             />
@@ -72,7 +72,7 @@ const DatabaseDetailLayout = () => {
                                         <a className="ant-btn ant-btn-link ant-btn-sm" onClick={changeModalOpen(true, setRenameModalOpen)}>重命名</a>
                                         <a className="ant-btn ant-btn-link ant-btn-sm ant-btn-dangerous" onClick={onDeleteClick}>删除</a>
                                     </>
-                                )
+                                );
                             }
                         }
                     ]}
@@ -91,7 +91,7 @@ const DatabaseDetailLayout = () => {
             <RenameModal open={renameModalOpen} onCancel={changeModalOpen(false, setRenameModalOpen)}/>
             <DeleteModal open={deleteModalOpen} onCancel={changeModalOpen(false, setDeleteModalOpen)}/>
         </div>
-    )
+    );
 };
 
 export default DatabaseDetailLayout;

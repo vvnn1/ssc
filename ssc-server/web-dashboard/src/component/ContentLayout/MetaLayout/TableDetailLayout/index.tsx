@@ -1,13 +1,13 @@
-import { Breadcrumb, Button, Space, Tabs } from 'antd';
-import './index.sass'
-import { ArrowLeftOutlined } from '../../../Icon';
-import { useNavigate } from 'react-router-dom';
-import StructureLayout from './StructureLayout';
-import RelationLayout from './RelationLayout';
-import DeleteModal from './DeleteModal';
-import { useState } from 'react';
-import { changeModalOpen } from '../../../../util';
-import RenameModal from './RenameModal';
+import { Breadcrumb, Button, Space, Tabs } from "antd";
+import "./index.sass";
+import { ArrowLeftOutlined } from "../../../Icon";
+import { useNavigate } from "react-router-dom";
+import StructureLayout from "./StructureLayout";
+import RelationLayout from "./RelationLayout";
+import DeleteModal from "./DeleteModal";
+import { useState } from "react";
+import { changeModalOpen } from "../../../../util";
+import RenameModal from "./RenameModal";
 
 const TableDetailLayout = () => {
     const [renameModalOpen, setRenameModalOpen] = useState<boolean>(false);
@@ -16,16 +16,16 @@ const TableDetailLayout = () => {
 
     const onBackClick = () => {
         navigate(-1);
-    }
+    };
     return (
         <div className="table-detail-layout">
             <Breadcrumb
                 items={[
                     {
-                        title: 'Catalog 列表'
+                        title: "Catalog 列表"
                     },
                     {
-                        title: 'vvp'
+                        title: "vvp"
                     },
                     {
                         title: "default"
@@ -67,7 +67,7 @@ const TableDetailLayout = () => {
             <RenameModal open={renameModalOpen} onCancel={changeModalOpen(false, setRenameModalOpen)}/>
             <DeleteModal open={deleteModalOpen} onCancel={changeModalOpen(false, setDeleteModalOpen)}/>
         </div>
-    )
-}
+    );
+};
 
 export default TableDetailLayout;

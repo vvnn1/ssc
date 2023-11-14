@@ -22,10 +22,10 @@ const TreeTitle = (props: TreeTitleProps) => {
         editingCallback(editing);
         if (editing) {
             inputRef.current?.focus({
-                cursor: 'all'
+                cursor: "all"
             });
 
-            inputRef.current?.input?.addEventListener('blur', () => {
+            inputRef.current?.input?.addEventListener("blur", () => {
                 setEditing(false);
                 dataNode.className = undefined;
                 dataNode.title = inputRef.current?.input?.value;
@@ -39,7 +39,7 @@ const TreeTitle = (props: TreeTitleProps) => {
         if (dataNode.isLeaf) {
             return;
         }
-    }
+    };
 
     const onFloderAddClick: MouseEventHandler<HTMLAnchorElement> & MouseEventHandler<HTMLButtonElement> = (event) => {
         event.stopPropagation();
@@ -51,12 +51,12 @@ const TreeTitle = (props: TreeTitleProps) => {
 
         if (dataNode.children) {
             dataNode.children.push({
-                title: 'test',
+                title: "test",
                 key: dataNode.key + "-" + dataNode.children.length,
                 isLeaf: false,
                 switcherIcon: (node) => (node.expanded ? <FloderOpenColorOutlined /> : <FloderClosedColorOutlined />),
                 children: []
-            })
+            });
         } else {
             dataNode.children = [{
                 title: "test",
@@ -64,18 +64,18 @@ const TreeTitle = (props: TreeTitleProps) => {
                 isLeaf: false,
                 switcherIcon: (node) => (node.expanded ? <FloderOpenColorOutlined /> : <FloderClosedColorOutlined />),
                 children: []
-            }]
+            }];
         }
 
         changedCallback();
-    }
+    };
 
     const onRenameClick: MouseEventHandler<HTMLAnchorElement> & MouseEventHandler<HTMLButtonElement> = (event) => {
         event.stopPropagation();
         dataNode.className = "edit-node";
         changedCallback();
         setEditing(true);
-    }
+    };
 
     return (
         <>
@@ -134,7 +134,7 @@ const TreeTitle = (props: TreeTitleProps) => {
                                     className="action"
                                     type='text'
                                     size='small'
-                                    style={{ display: dataNode.key === "0" ? 'none' : 'inline-block' }}
+                                    style={{ display: dataNode.key === "0" ? "none" : "inline-block" }}
                                     onClick={onRenameClick}
                                 >
                                     <EditOutlined />
@@ -144,7 +144,7 @@ const TreeTitle = (props: TreeTitleProps) => {
                     )
             }
         </>
-    )
+    );
 };
 
 export default TreeTitle;

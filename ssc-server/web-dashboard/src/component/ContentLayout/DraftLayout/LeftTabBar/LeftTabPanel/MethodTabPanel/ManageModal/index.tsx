@@ -1,5 +1,5 @@
 import { Button, Divider, Input, Modal, ModalProps, Table } from "antd";
-import './index.sass'
+import "./index.sass";
 import { useState } from "react";
 
 
@@ -26,24 +26,24 @@ const ManageModal = (props: ManageModalProps) => {
                 size="small"
                 columns={[
                     {
-                        title: 'Function Name',
-                        dataIndex: 'name'
+                        title: "Function Name",
+                        dataIndex: "name"
                     },
                     {
-                        title: 'Class',
-                        dataIndex: 'clazz'
+                        title: "Class",
+                        dataIndex: "clazz"
                     },
                     Table.SELECTION_COLUMN,
                 ]}
                 dataSource={[
                     {
-                        key: '1',
-                        name: 'ASI_UDF',
-                        clazz: 'ASI_UDF.ASI_UDF'
+                        key: "1",
+                        name: "ASI_UDF",
+                        clazz: "ASI_UDF.ASI_UDF"
                     },
                 ]}
                 rowSelection={{
-                    columnWidth: '33%',
+                    columnWidth: "33%",
                     onChange: (keys) => setEnableDelete(keys.length > 0)
                 }}
                 pagination={false}
@@ -56,33 +56,33 @@ const ManageModal = (props: ManageModalProps) => {
             <Table
                 columns={[
                     {
-                        title: 'Function Name',
-                        dataIndex: 'name',
-                        render: (value) => <Input defaultValue={value} style={{ backgroundColor: 'transparent' }} />
+                        title: "Function Name",
+                        dataIndex: "name",
+                        render: (value) => <Input defaultValue={value} style={{ backgroundColor: "transparent" }} />
                     },
                     {
-                        title: 'Function class',
-                        dataIndex: 'clazz',
+                        title: "Function class",
+                        dataIndex: "clazz",
                     },
                     Table.SELECTION_COLUMN,
                 ]}
                 dataSource={[
 
                     {
-                        key: '2',
-                        name: 'ASI_UDTF',
-                        clazz: 'ASI_UDTF.ASI_UDTF'
+                        key: "2",
+                        name: "ASI_UDTF",
+                        clazz: "ASI_UDTF.ASI_UDTF"
                     },
                     {
-                        key: '3',
-                        name: 'ASI_UDAF$MySum',
-                        clazz: 'ASI_UDAF.ASI_UDAF$MySum'
+                        key: "3",
+                        name: "ASI_UDAF$MySum",
+                        clazz: "ASI_UDAF.ASI_UDAF$MySum"
                     }
                 ]}
                 bordered
                 size="small"
                 rowSelection={{
-                    columnWidth: '33%',
+                    columnWidth: "33%",
                     onChange: (keys) => setEnableCreate(keys.length > 0)
                 }}
                 pagination={false}
@@ -91,7 +91,7 @@ const ManageModal = (props: ManageModalProps) => {
                 <Button disabled={!enableCreate} type="primary" onClick={props.onCreateClick}>创建函数</Button>
             </div >
         </Modal >
-    )
+    );
 };
 
 export default ManageModal;

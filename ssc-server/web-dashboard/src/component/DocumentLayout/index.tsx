@@ -1,12 +1,12 @@
-import { Breadcrumb, Button, Input, Tabs } from 'antd';
-import { ArrowLeftOutlined, ArrowRightOutlined, CloseOutlined, NewTabOutlined, SearchOutlined } from '../Icon';
-import type { DraggableData, DraggableEvent } from 'react-draggable';
-import Draggable from 'react-draggable';
-import './index.sass'
-import ReactDOM from 'react-dom';
-import { useRef, useState } from 'react';
-import React from 'react';
-import { Resizable, ResizeCallbackData } from 'react-resizable';
+import { Breadcrumb, Button, Input, Tabs } from "antd";
+import { ArrowLeftOutlined, ArrowRightOutlined, CloseOutlined, NewTabOutlined, SearchOutlined } from "../Icon";
+import type { DraggableData, DraggableEvent } from "react-draggable";
+import Draggable from "react-draggable";
+import "./index.sass";
+import ReactDOM from "react-dom";
+import { useRef, useState } from "react";
+import React from "react";
+import { Resizable, ResizeCallbackData } from "react-resizable";
 
 interface DocumentProps {
     open?: boolean;
@@ -49,25 +49,25 @@ const DocumentLayout: React.FC<DocumentProps> = ({ open, onCancel }) => {
         if (disabled) {
             setDisabled(false);
         }
-    }
+    };
 
     const onMouseLeave = () => {
         if (!disabled) {
             setDisabled(true);
         }
-    }
+    };
 
     const onResize = (_: any, { size, handle }: ResizeCallbackData) => {
-        if (handle === 'n' || handle === 'w' || handle === 'nw' || handle === 'sw' || handle === 'ne') {
+        if (handle === "n" || handle === "w" || handle === "nw" || handle === "sw" || handle === "ne") {
             setDocumentWindow(dcWindow => {
                 const w = size.width - dcWindow.width;
                 const h = size.height - dcWindow.height;
                 return {
                     width: size.width,
                     height: size.height,
-                    x: handle === 'ne' ? dcWindow.x : dcWindow.x - w,
-                    y: handle === 'sw' ? dcWindow.y : dcWindow.y - h
-                }
+                    x: handle === "ne" ? dcWindow.x : dcWindow.x - w,
+                    y: handle === "sw" ? dcWindow.y : dcWindow.y - h
+                };
             });
         } else {
             setDocumentWindow(dcWindow => (
@@ -76,9 +76,9 @@ const DocumentLayout: React.FC<DocumentProps> = ({ open, onCancel }) => {
                     width: size.width,
                     height: size.height
                 }
-            ))
+            ));
         }
-    }
+    };
 
     const onDrag = (_: DraggableEvent, data: DraggableData) => {
         setDocumentWindow(dcWindow => ({
@@ -86,7 +86,7 @@ const DocumentLayout: React.FC<DocumentProps> = ({ open, onCancel }) => {
             x: data.x,
             y: data.y
         }));
-    }
+    };
 
     return ReactDOM.createPortal(
         <Draggable
@@ -104,11 +104,11 @@ const DocumentLayout: React.FC<DocumentProps> = ({ open, onCancel }) => {
                 width={documentWindow.width}
                 height={documentWindow.height}
                 axis='both'
-                resizeHandles={['e', 's', 'w', 'n', 'sw', 'nw', 'se', 'ne']}
+                resizeHandles={["e", "s", "w", "n", "sw", "nw", "se", "ne"]}
                 minConstraints={[240, 400]}
                 onResize={onResize}
             >
-                <div className="sub-screen-container" ref={draggleRef} style={{ visibility: open ? 'visible' : 'hidden', width: documentWindow.width, height: documentWindow.height }}>
+                <div className="sub-screen-container" ref={draggleRef} style={{ visibility: open ? "visible" : "hidden", width: documentWindow.width, height: documentWindow.height }}>
                     <div className="sub-screen">
                         <div className="browser-tool-bar">
                             <div className="blank" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}></div>
@@ -139,10 +139,10 @@ const DocumentLayout: React.FC<DocumentProps> = ({ open, onCancel }) => {
                                 <Breadcrumb
                                     items={[
                                         {
-                                            title: '实时计算 Flink 版',
+                                            title: "实时计算 Flink 版",
                                         },
                                         {
-                                            title: '云原生数据仓库AnalyticDB MySQL版（ADB）3.0'
+                                            title: "云原生数据仓库AnalyticDB MySQL版（ADB）3.0"
                                         },
                                     ]}
                                 />
@@ -218,11 +218,11 @@ const DocumentLayout: React.FC<DocumentProps> = ({ open, onCancel }) => {
                                                                             `num` BIGINT,
                                                                             PRIMARY KEY (`id`) NOT ENFORCED
                                                                             ) WITH (
-                                                                            'connector' = 'adb3.0',
-                                                                            'url' = '&lt;yourUrl&gt;',
-                                                                            'userName' = '&lt;yourUsername&gt;',
-                                                                            'password' = '&lt;yourPassword&gt;',
-                                                                            'tableName' = '&lt;yourTablename&gt;'
+                                                                            &#39;connector&#39; = &#39;adb3.0&#39;,
+                                                                            &#39;url&#39; = &#39;&lt;yourUrl&gt;&#39;,
+                                                                            &#39;userName&#39; = &#39;&lt;yourUsername&gt;&#39;,
+                                                                            &#39;password&#39; = &#39;&lt;yourPassword&gt;&#39;,
+                                                                            &#39;tableName&#39; = &#39;&lt;yourTablename&gt;&#39;
                                                                             );</pre>
                                                                     </div>
                                                                     <div data-console-base-html-note="help">
@@ -309,18 +309,18 @@ const DocumentLayout: React.FC<DocumentProps> = ({ open, onCancel }) => {
                                                                                     `name` VARCHAR,
                                                                                     `age` INT
                                                                                     ) WITH (
-                                                                                    'connector' = 'datagen'
+                                                                                        &#39;connector&#39; = &#39;datagen&#39;
                                                                                     );
 
                                                                                     CREATE TEMPORARY TABLE adb_sink (
                                                                                     `name` VARCHAR,
                                                                                     `age` INT
                                                                                     ) WITH (
-                                                                                    'connector' = 'adb3.0',
-                                                                                    'url' = '&lt;yourUrl&gt;',
-                                                                                    'userName' = '&lt;yourUsername&gt;',
-                                                                                    'password' = '&lt;yourPassword&gt;',
-                                                                                    'tableName' = '&lt;yourTablename&gt;'
+                                                                                    &#39;connector&#39; = &#39;adb3.0&#39;,
+                                                                                    &#39;url&#39; = &#39;&lt;yourUrl&gt;&#39;,
+                                                                                    &#39;userName&#39; = &#39;&lt;yourUsername&gt;&#39;,
+                                                                                    &#39;password&#39; = &#39;&lt;yourPassword&gt;&#39;,
+                                                                                    &#39;tableName&#39; = &#39;&lt;yourTablename&gt;&#39;
                                                                                     );
 
                                                                                     INSERT INTO adb_sink
@@ -346,7 +346,7 @@ const DocumentLayout: React.FC<DocumentProps> = ({ open, onCancel }) => {
                                                                                     `c` STRING,
                                                                                     `proctime` AS PROCTIME()
                                                                                     ) WITH (
-                                                                                    'connector' = 'datagen'
+                                                                                        &#39;connector&#39; = &#39;datagen&#39;
                                                                                     );
 
                                                                                     CREATE TEMPORARY TABLE adb_dim (
@@ -354,18 +354,18 @@ const DocumentLayout: React.FC<DocumentProps> = ({ open, onCancel }) => {
                                                                                     `b` VARCHAR,
                                                                                     `c` VARCHAR
                                                                                     ) WITH (
-                                                                                    'connector' = 'adb3.0',
-                                                                                    'url' = '&lt;yourUrl&gt;',
-                                                                                    'userName' = '&lt;yourUsername&gt;',
-                                                                                    'password' = '&lt;yourPassword&gt;',
-                                                                                    'tableName' = '&lt;yourTablename&gt;'
+                                                                                    &#39;connector&#39; = &#39;adb3.0&#39;,
+                                                                                    &#39;url&#39; = &#39;&lt;yourUrl&gt;&#39;,
+                                                                                    &#39;userName&#39; = &#39;&lt;yourUsername&gt;&#39;,
+                                                                                    &#39;password&#39; = &#39;&lt;yourPassword&gt;&#39;,
+                                                                                    &#39;tableName&#39; = &#39;&lt;yourTablename&gt;&#39;
                                                                                     );
 
                                                                                     CREATE TEMPORARY TABLE blackhole_sink(
                                                                                     `a` INT,
                                                                                     `b` VARCHAR
                                                                                     ) WITH (
-                                                                                    'connector' = 'blackhole'
+                                                                                        &#39;connector&#39; = &#39;blackhole&#39;
                                                                                     );
 
                                                                                     INSERT INTO blackhole_sink SELECT T.a,H.b
@@ -394,7 +394,7 @@ const DocumentLayout: React.FC<DocumentProps> = ({ open, onCancel }) => {
         </Draggable>
         ,
         document.getElementById("document")!
-    )
-}
+    );
+};
 
 export default DocumentLayout;

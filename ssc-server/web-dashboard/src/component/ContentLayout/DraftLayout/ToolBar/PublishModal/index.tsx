@@ -1,30 +1,30 @@
-import { Modal, ModalProps, ProgressProps, StepProps, Steps, StepsProps } from 'antd';
-import './index.sass'
-import Step1 from './Step1';
-import { useEffect, useState } from 'react';
-import Step2 from './Step2';
+import { Modal, ModalProps, ProgressProps, StepProps, Steps } from "antd";
+import "./index.sass";
+import Step1 from "./Step1";
+import { useEffect, useState } from "react";
+import Step2 from "./Step2";
 
 const PublishModal = (props: ModalProps) => {
     const [currentStep, setCurrentStep] = useState<number>(0);
-    const [publishStatus, setPublishStatus] = useState<ProgressProps['status']>();
+    const [publishStatus, setPublishStatus] = useState<ProgressProps["status"]>();
     
 
     useEffect(() => {
-        if(publishStatus === 'success') {
+        if(publishStatus === "success") {
             props.onOk?.(undefined as any);
         }
     }, [publishStatus]);
 
     const next = () => {
         setCurrentStep(currentStep + 1);
-    }
+    };
 
     const stepProps: StepProps[] = [
         {
-            title: '部署确认',
+            title: "部署确认",
         },
         {
-            title: '最终检查',
+            title: "最终检查",
         }
     ];
 
@@ -49,10 +49,10 @@ const PublishModal = (props: ModalProps) => {
             className="publish-draft-modal"
             footer={(_, { CancelBtn, OkBtn }) => <><OkBtn/><CancelBtn /></>}
             onOk={steps[currentStep].onOk}
-            confirmLoading={publishStatus === 'active'}
+            confirmLoading={publishStatus === "active"}
             cancelButtonProps={{
                 style: {
-                    display: currentStep > 0 ? 'none' : 'inline-block'
+                    display: currentStep > 0 ? "none" : "inline-block"
                 },
             }}
         >
@@ -65,7 +65,7 @@ const PublishModal = (props: ModalProps) => {
 
             {steps[currentStep].content}
         </Modal>
-    )
+    );
 };
 
 export default PublishModal;

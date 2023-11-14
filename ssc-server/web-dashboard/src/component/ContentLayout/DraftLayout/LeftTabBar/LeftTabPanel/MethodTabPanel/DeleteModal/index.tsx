@@ -1,14 +1,14 @@
 import { Alert, Checkbox, CheckboxProps, Modal, ModalProps, Table } from "antd";
-import './index.sass'
+import "./index.sass";
 import { useState } from "react";
 
 const DeleteModal = (props: ModalProps) => {
     const [btnEnable, setBtnEnable] = useState<boolean>(false);
 
 
-    const onCheckedChange: CheckboxProps['onChange'] = ({target: {checked}}) => {
+    const onCheckedChange: CheckboxProps["onChange"] = ({target: {checked}}) => {
         setBtnEnable(checked);
-    }
+    };
     return (
         <Modal
             {...props}
@@ -25,26 +25,26 @@ const DeleteModal = (props: ModalProps) => {
                 size="small"
                 columns={[
                     {
-                        title: 'Function Name',
-                        dataIndex: 'name'
+                        title: "Function Name",
+                        dataIndex: "name"
                     },
                     {
-                        title: 'Class Name',
-                        dataIndex: 'clazz'
+                        title: "Class Name",
+                        dataIndex: "clazz"
                     }
                 ]}
                 dataSource={[
                     {
-                        name: 'ASI_UDF',
-                        clazz: 'ASI_UDF.ASI_UDF'
+                        name: "ASI_UDF",
+                        clazz: "ASI_UDF.ASI_UDF"
                     },
                     {
-                        name: 'ASI_UDTF',
-                        clazz: 'ASI_UDTF.ASI_UDTF'
+                        name: "ASI_UDTF",
+                        clazz: "ASI_UDTF.ASI_UDTF"
                     },
                     {
-                        name: 'ASI_UDAF$MySum',
-                        clazz: 'ASI_UDAF.ASI_UDAF$MySum'
+                        name: "ASI_UDAF$MySum",
+                        clazz: "ASI_UDAF.ASI_UDAF$MySum"
                     }
                 ]}
                 pagination={false}
@@ -58,7 +58,7 @@ const DeleteModal = (props: ModalProps) => {
                 />
             </div>
         </Modal>
-    )
+    );
 };
 
 export default DeleteModal;

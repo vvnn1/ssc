@@ -1,18 +1,18 @@
-import { Input } from 'antd';
-import './index.sass'
-import { DownOutlined, UpOutlined } from '../Icon';
-import { useState } from 'react';
+import { Input } from "antd";
+import "./index.sass";
+import { DownOutlined, UpOutlined } from "../Icon";
+import { useState } from "react";
 
 const InputCron = () => {
     const [expand, setExpand] = useState<boolean>(false);
 
     const onExpandClick = () => {
         setExpand(expand => !expand);
-    }
+    };
 
     const loadMore = () => {
-        console.log("load more...")
-    }
+        console.log("load more...");
+    };
 
     return (
         <div className="ant-cron-expression-content">
@@ -51,7 +51,7 @@ const InputCron = () => {
                 </div>
             </div>
             <div className="ant-collapse ant-collapse-borderless ant-cron-expression-preview">
-                <div className={`ant-cron-expression-preview-dateTime ${expand ? 'ant-cron-expression-preview-dateTime-center' : null}`}>
+                <div className={`ant-cron-expression-preview-dateTime ${expand ? "ant-cron-expression-preview-dateTime-center" : null}`}>
                     2023-11-08 15:00:00
                 </div>
                 <div className="ant-cron-expression-preview-content">
@@ -83,7 +83,7 @@ const InputCron = () => {
             </div>
         </div>
 
-    )
-}
+    );
+};
 
 export default InputCron;

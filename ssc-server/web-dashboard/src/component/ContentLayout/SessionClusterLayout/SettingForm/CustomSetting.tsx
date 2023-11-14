@@ -1,5 +1,5 @@
-import { Form } from "antd"
-import SettingCard from "../../../SettingCard"
+import { Form } from "antd";
+import SettingCard from "../../../SettingCard";
 import MonacoEditor from "../../../MonacoEditor";
 
 const CustomSetting = () => {
@@ -28,7 +28,7 @@ const CustomSetting = () => {
 
             </Form.Item>
         </SettingCard>
-    )
+    );
 };
 
 export default CustomSetting;

@@ -1,38 +1,16 @@
-import { Select, Tooltip } from 'antd';
-import './index.sass'
-import { CopyOutlined } from '../../../../../Icon';
-import TabMenu from '../../../../../TabMenu';
-import { useEffect, useState } from 'react';
-import { Navigate, Route, Routes, matchPath, useLocation, useNavigate, useParams } from 'react-router-dom';
-import MyLink from '../../../../../MyLink';
-import JobManagerLogTable from './JobManagerLogTable';
-import LogDetailLayout from './LogDetailLayout';
-import TaskManagerList from './TaskManagerList';
-import TmIdNavigate from './TaskManagerList/TmIdNavigate';
-
-interface RunningHistory {
-    id: string;
-    date: string;
-}
-
+import { Select, Tooltip } from "antd";
+import "./index.sass";
+import { CopyOutlined } from "../../../../../Icon";
+import TabMenu from "../../../../../TabMenu";
+import { Route, Routes, useParams } from "react-router-dom";
+import MyLink from "../../../../../MyLink";
+import JobManagerLogTable from "./JobManagerLogTable";
+import LogDetailLayout from "./LogDetailLayout";
+import TaskManagerList from "./TaskManagerList";
+import TmIdNavigate from "./TaskManagerList/TmIdNavigate";
 
 const RuntimeLogLayout = () => {
-    const [runningHistory, setRunningHistory] = useState<RunningHistory[]>([]);
     const {runId} = useParams();
-    useEffect(() => {
-        setRunningHistory(
-            [
-                {
-                    id: '0e4eb4ec-61d8-4ae9-bf0e-dcaee4b7db5f',
-                    date: '2023-09-27 09:52:00'
-                },
-                {
-                    id: '4b66c06e-8f23-4517-9d00-010c4e6ed2ce',
-                    date: '2023-09-26 17:46:31'
-                }
-            ]
-        );
-    }, []);
 
     return (
         <div className="runtime-log-layout">
@@ -45,7 +23,7 @@ const RuntimeLogLayout = () => {
                         optionLabelProp='echo'
                         options={[
                             {
-                                label: '历史运行作业',
+                                label: "历史运行作业",
                                 options: [
                                     {
                                         label: (
@@ -54,8 +32,8 @@ const RuntimeLogLayout = () => {
                                                 <small className="nz-option-description with-tag ng-star-inserted">0e4eb4ec-61d8-4ae9-bf0e-dcaee4b7db5f</small>
                                             </>
                                         ),
-                                        value: '0e4eb4ec-61d8-4ae9-bf0e-dcaee4b7db5f',
-                                        echo: '2023-09-27 09:52:00'
+                                        value: "0e4eb4ec-61d8-4ae9-bf0e-dcaee4b7db5f",
+                                        echo: "2023-09-27 09:52:00"
 
                                     },
                                     {
@@ -65,8 +43,8 @@ const RuntimeLogLayout = () => {
                                                 <small className="nz-option-description with-tag ng-star-inserted">4b66c06e-8f23-4517-9d00-010c4e6ed2ce</small>
                                             </>
                                         ),
-                                        value: '4b66c06e-8f23-4517-9d00-010c4e6ed2ce',
-                                        echo: '2023-09-26 17:46:31'
+                                        value: "4b66c06e-8f23-4517-9d00-010c4e6ed2ce",
+                                        echo: "2023-09-26 17:46:31"
                                     }
                                 ]
                             }
@@ -83,11 +61,11 @@ const RuntimeLogLayout = () => {
                 <TabMenu
                     menuItems={[
                         {
-                            key: 'jobmanager',
+                            key: "jobmanager",
                             label: <MyLink to="jobmanager">Job Manager</MyLink>
                         },
                         {
-                            key: 'taskmanagers',
+                            key: "taskmanagers",
                             label: <MyLink to="taskmanagers">Task Managers</MyLink>
                         }
                     ]}
@@ -108,7 +86,7 @@ const RuntimeLogLayout = () => {
 
             </div>
         </div>
-    )
+    );
 };
 
 export default RuntimeLogLayout;

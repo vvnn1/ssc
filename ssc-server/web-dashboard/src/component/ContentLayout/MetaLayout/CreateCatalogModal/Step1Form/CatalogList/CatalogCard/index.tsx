@@ -1,6 +1,6 @@
-import { Button, Card } from "antd"
-import './index.sass'
-import Paragraph from "antd/es/typography/Paragraph"
+import { Button, Card } from "antd";
+import "./index.sass";
+import Paragraph from "antd/es/typography/Paragraph";
 import { DeleteOutlined } from "../../../../../../Icon";
 
 
@@ -23,14 +23,14 @@ const CatalogCard = (props: CardProps) => {
                 </Paragraph>
                 {
                     props.deletable 
-                    ? (
-                        <Button type="text" icon={<DeleteOutlined />}/>
-                    ) : null
+                        ? (
+                            <Button type="text" icon={<DeleteOutlined />}/>
+                        ) : null
                 }
 
             </div>
         </Card>
-    )
+    );
 };
 
 export default CatalogCard;

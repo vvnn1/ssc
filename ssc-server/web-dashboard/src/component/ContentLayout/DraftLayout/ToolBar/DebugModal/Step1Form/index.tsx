@@ -19,7 +19,7 @@ const Step1Form = (props: Step1FormProps) => {
                 dropdownRender={(menu) => (
                     <>
                         {menu}
-                        <Divider style={{ margin: '0' }} />
+                        <Divider style={{ margin: "0" }} />
                         <div className="ant-select-item">
                             <a><span><NewTabOutlined /> 创建新的集群</span></a>
                         </div>
@@ -39,7 +39,7 @@ const Step1Form = (props: Step1FormProps) => {
                 </Select.Option>
             </Select>
         </Form.Item>
-    )
+    );
 };
 
 export default Step1Form;

@@ -1,4 +1,4 @@
-import './index.sass'
+import "./index.sass";
 import MetricTable from "./MetricTable";
 import AdvancedTable from "./AdvancedTable";
 
@@ -8,7 +8,7 @@ const MetricLayout = () => {
             <MetricTable />
             <AdvancedTable />
         </div>
-    )
+    );
 };
 
 export default MetricLayout;

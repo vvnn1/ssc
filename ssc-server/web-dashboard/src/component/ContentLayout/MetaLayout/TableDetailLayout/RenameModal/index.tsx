@@ -1,6 +1,6 @@
-import { Alert, Input, InputProps, InputRef, Modal, ModalProps } from 'antd';
-import './index.sass'
-import { useEffect, useRef, useState } from 'react';
+import { Alert, Input, InputProps, InputRef, Modal, ModalProps } from "antd";
+import "./index.sass";
+import { useEffect, useRef, useState } from "react";
 
 const RenameModal = (props: ModalProps) => {
     const inputRef = useRef<InputRef>(null);
@@ -10,9 +10,9 @@ const RenameModal = (props: ModalProps) => {
     }, []);
 
 
-    const onInputChange:InputProps['onChange'] = (e) => {
+    const onInputChange:InputProps["onChange"] = (e) => {
         setOkDisable(e.target.value === "datagen_kk_source");
-    }
+    };
 
     return (
         <Modal
@@ -30,7 +30,7 @@ const RenameModal = (props: ModalProps) => {
                 description="请注意，如果作业重新转换（例如在暂停/恢复或自动调优更改作业配置时）重命名表可能会破坏现有的 SQL 作业。"
             />
         </Modal>
-    )
-}
+    );
+};
 
 export default RenameModal;

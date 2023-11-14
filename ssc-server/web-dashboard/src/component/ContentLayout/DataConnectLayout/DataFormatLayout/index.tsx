@@ -1,7 +1,7 @@
 import Card, { CardProps } from "../Card";
-import { CsvOutlined, JsonOutlined, RawOutlined, SearchOutlined } from '../../../Icon';
+import { CsvOutlined, JsonOutlined, RawOutlined, SearchOutlined } from "../../../Icon";
 import { Button, Empty, Input, List, Space, Tabs, TabsProps } from "antd";
-import './index.sass'
+import "./index.sass";
 import CustomFormatModal from "./CustomFormatModal";
 import { useState } from "react";
 import EngineSelect from "../../../Select/EngineSelect";
@@ -20,12 +20,12 @@ const connectorItems: CardProps[] = [
         desc: "Raw",
     },
 
-]
+];
 
-const tabItems: TabsProps['items'] = [
+const tabItems: TabsProps["items"] = [
     {
-        key: '1',
-        label: `内置数据格式`,
+        key: "1",
+        label: "内置数据格式",
         children: (
             <div className="connector-list-wrapper">
                 <List
@@ -46,8 +46,8 @@ const tabItems: TabsProps['items'] = [
         ),
     },
     {
-        key: '2',
-        label: `自定义数据格式`,
+        key: "2",
+        label: "自定义数据格式",
         children: <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />,
     },
 ];
@@ -58,8 +58,8 @@ const DataFormatLayout = () => {
     const changeModalOpen = (open: boolean) => {
         return () => {
             setModalOpen(open);
-        }
-    }
+        };
+    };
     return (
         <div className="data-format-page">
             <div className="data-format-actions">
@@ -92,7 +92,7 @@ const DataFormatLayout = () => {
                 onCancel={changeModalOpen(false)}
             />
         </div>
-    )
+    );
 };
 
 export default DataFormatLayout;

@@ -1,7 +1,7 @@
 import { MinusOutlined } from "../../../../../Icon";
 import MonacoEditor from "../../../../../MonacoEditor";
-import './index.sass'
-import '../index.sass'
+import "./index.sass";
+import "../index.sass";
 
 const problem =
     `org.apache.flink.table.api.SqlParserException: SQL parse failed. From line 20, column 1 to line 20, column 12: Encountered "DEBUG". Was expecting one of:
@@ -98,7 +98,7 @@ const ProblemPanel = (props: ProblemPanelProps) => {
                 />
             </div>
         </div>
-    )
+    );
 };
 
 export default ProblemPanel;

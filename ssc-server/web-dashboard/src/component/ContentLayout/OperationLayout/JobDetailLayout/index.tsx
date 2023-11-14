@@ -1,74 +1,74 @@
-import { Button, Divider, Space, Tabs, TabsProps } from 'antd';
-import './index.sass'
-import { BuildOutlined, CancelCircleFilled } from '../../../Icon';
-import ConfigurationLayout from './ConfigurationLayout';
-import { Route, Routes, matchPath, useLocation, useNavigate } from 'react-router-dom';
-import AlarmLayout from './AlarmLayout';
-import DiagnosisLayout from './DiagnosisLayout';
-import AutopilotLayout from './AutopilotLayout';
-import ExplorationLayout from './ExplorationLayout';
-import StateLayout from './StateLayout';
-import EventLayout from './EventLayout';
-import ChartLayout from './ChartLayout';
-import OverviewLayout from './OverviewLayout';
+import { Button, Divider, Space, Tabs, TabsProps } from "antd";
+import "./index.sass";
+import { BuildOutlined, CancelCircleFilled } from "../../../Icon";
+import ConfigurationLayout from "./ConfigurationLayout";
+import { Route, Routes, matchPath, useLocation, useNavigate } from "react-router-dom";
+import AlarmLayout from "./AlarmLayout";
+import DiagnosisLayout from "./DiagnosisLayout";
+import AutopilotLayout from "./AutopilotLayout";
+import ExplorationLayout from "./ExplorationLayout";
+import StateLayout from "./StateLayout";
+import EventLayout from "./EventLayout";
+import ChartLayout from "./ChartLayout";
+import OverviewLayout from "./OverviewLayout";
 
-const menuItems: TabsProps['items'] = [
+const menuItems: TabsProps["items"] = [
     {
-        label: '部署详情',
-        key: 'configuration',
-        children: 'configuration'
+        label: "部署详情",
+        key: "configuration",
+        children: "configuration"
     },
     {
-        label: '状态总览',
-        key: 'overview',
-        children: 'overview',
+        label: "状态总览",
+        key: "overview",
+        children: "overview",
     },
     {
-        label: '数据曲线',
-        key: 'charts',
-        children: 'charts',
+        label: "数据曲线",
+        key: "charts",
+        children: "charts",
     },
     {
-        label: '运行事件',
-        key: 'events',
-        children: 'events',
+        label: "运行事件",
+        key: "events",
+        children: "events",
     },
     {
-        label: '状态集管理',
-        key: 'states',
-        children: 'states/overview',
+        label: "状态集管理",
+        key: "states",
+        children: "states/overview",
     },
     {
-        label: '作业探查',
-        key: 'exploration',
-        children: 'exploration/running',
+        label: "作业探查",
+        key: "exploration",
+        children: "exploration/running",
     },
     {
-        label: '自动调优',
-        key: 'autopilot',
-        children: 'autopilot',
+        label: "自动调优",
+        key: "autopilot",
+        children: "autopilot",
     },
     {
-        label: '智能诊断',
-        key: 'diagnosis',
-        children: 'diagnosis',
+        label: "智能诊断",
+        key: "diagnosis",
+        children: "diagnosis",
     },
     {
-        label: '告警配置',
-        key: 'alarm',
-        children: 'alarm/events',
+        label: "告警配置",
+        key: "alarm",
+        children: "alarm/events",
     },
 ];
 
 const JobDetailLayout = () => {
-    let { pathname } = useLocation();
+    const { pathname } = useLocation();
     const pathMatch = matchPath("/workspace/:workspaceId/namespace/:namespaceId/operations/:jobType/:jobId/:key/*", pathname);
     const navigate = useNavigate();
 
-    const onTabClick: TabsProps['onTabClick'] = (activeKey) => {
+    const onTabClick: TabsProps["onTabClick"] = (activeKey) => {
         const link = menuItems.find(item => item.key === activeKey)?.children as string;
         navigate(link);
-    }
+    };
 
     return (
         <div className="job-detail-layout">
@@ -109,7 +109,7 @@ const JobDetailLayout = () => {
                 </div>
             </div>
         </div>
-    )
+    );
 };
 
 export default JobDetailLayout;

@@ -1,9 +1,9 @@
-import { Alert, Button, Checkbox, Dropdown, Form, InputNumber, Radio, Space, Switch, message } from 'antd';
-import './index.sass'
-import InputCron from '../../../../../InputCron';
-import { CheckCircleOutlined, DownOutlined, ExclamationCircleFilled, WarningFilled } from '../../../../../Icon';
-import { useState } from 'react';
-import { checkedChangeWrapper } from '../../../../../../util';
+import { Alert, Button, Checkbox, Dropdown, Form, InputNumber, Space, Switch, message } from "antd";
+import "./index.sass";
+import InputCron from "../../../../../InputCron";
+import { CheckCircleOutlined, DownOutlined } from "../../../../../Icon";
+import { useState } from "react";
+import { checkedChangeWrapper } from "../../../../../../util";
 const items = [
     {
         key: "1",
@@ -35,7 +35,7 @@ const ConfigureLayout = () => {
             icon: <></>,
             content: <><CheckCircleOutlined color="#00a700" />配置成功</>
         });
-    }
+    };
 
     return (
         <div className="state-configure-layout">
@@ -58,7 +58,7 @@ const ConfigureLayout = () => {
                                     <Form.Item
                                         label="周期设置"
                                         extra="最小间隔为十分钟。如果输入的 cron 表达式小于 10min，默认按 10min 触发"
-                                        style={{ flex: '1' }}
+                                        style={{ flex: "1" }}
                                     >
                                         <InputCron />
                                     </Form.Item>
@@ -100,9 +100,10 @@ const ConfigureLayout = () => {
                                     >
                                         <Form.Item>
                                             <Checkbox
-                                                children="历史快照保存个数"
                                                 onChange={checkedChangeWrapper(setSaveCountChecked)}
-                                            />
+                                            >
+                                                历史快照保存个数
+                                            </Checkbox>
                                         </Form.Item>
 
                                         {
@@ -117,9 +118,10 @@ const ConfigureLayout = () => {
 
                                         <Form.Item>
                                             <Checkbox
-                                                children="历史快照保存最长时间（单位：小时）"
                                                 onChange={checkedChangeWrapper(setSaveTimeChecked)}
-                                            />
+                                            >
+                                                历史快照保存最长时间（单位：小时）
+                                            </Checkbox>
                                         </Form.Item>
 
                                         {
@@ -146,7 +148,7 @@ const ConfigureLayout = () => {
             </div>
             {contextHolder}
         </div>
-    )
-}
+    );
+};
 
 export default ConfigureLayout;

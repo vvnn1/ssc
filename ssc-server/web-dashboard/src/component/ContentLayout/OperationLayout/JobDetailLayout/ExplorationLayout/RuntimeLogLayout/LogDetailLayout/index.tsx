@@ -1,8 +1,8 @@
-import { Breadcrumb, Pagination } from 'antd';
-import './index.sass'
-import { LeftSquareFilled } from '../../../../../../Icon';
-import MonacoEditor from '../../../../../../MonacoEditor';
-import { useHref } from 'react-router-dom';
+import { Breadcrumb, Pagination } from "antd";
+import "./index.sass";
+import { LeftSquareFilled } from "../../../../../../Icon";
+import MonacoEditor from "../../../../../../MonacoEditor";
+import { useHref } from "react-router-dom";
 
 const LogDetailLayout = () => {
     return (
@@ -12,10 +12,10 @@ const LogDetailLayout = () => {
                     items={[
                         {
                             title: <><LeftSquareFilled /> 日志列表</>,
-                            href: useHref('../.')
+                            href: useHref("../.")
                         },
                         {
-                            title: '20230927_095224-0'
+                            title: "20230927_095224-0"
                         }
                     ]}
                 />
@@ -29,10 +29,10 @@ const LogDetailLayout = () => {
                             enabled: false
                         },
                         lineDecorationsWidth: 0,
-                        wordWrap: 'on'
+                        wordWrap: "on"
                     }}
                     value={
-`2023-09-27 09:52:24,292 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - --------------------------------------------------------------------------------
+                        `2023-09-27 09:52:24,292 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - --------------------------------------------------------------------------------
 2023-09-27 09:52:24,305 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  Preconfiguration: 
 2023-09-27 09:52:24,309 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - 
 
@@ -772,7 +772,7 @@ INFO  [] -     JVM Overhead:       192.000mb (201326592 bytes)
                 />
             </div>
         </div>
-    )
+    );
 };
 
 export default LogDetailLayout;

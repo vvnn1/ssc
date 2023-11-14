@@ -1,5 +1,5 @@
-import { Descriptions, Table } from "antd"
-import './index.sass'
+import { Descriptions, Table } from "antd";
+import "./index.sass";
 
 const StructureLayout = () => {
     return (
@@ -41,12 +41,12 @@ const StructureLayout = () => {
                     {
                         title: "参数名称",
                         dataIndex:"name",
-                        width: '50%'
+                        width: "50%"
                     },
                     {
                         title: "参数值",
                         dataIndex: "value",
-                        width: '50%'
+                        width: "50%"
                     }
                 ]}
                 dataSource={[
@@ -65,32 +65,32 @@ const StructureLayout = () => {
                     {
                         title: "字段名称",
                         dataIndex: "name",
-                        width: '20%'
+                        width: "20%"
                     },
                     {
                         title: "字段类型",
                         dataIndex: "type",
-                        width: '20%'
+                        width: "20%"
                     },
                     {
                         title: "表达式",
                         dataIndex: "expression",
-                        width: '20%'
+                        width: "20%"
                     },
                     {
                         title: "是否主键",
                         dataIndex: "primary",
-                        width: '10%'
+                        width: "10%"
                     },
                     {
                         title: "可为空",
                         dataIndex: "nullable",
-                        width: '10%'
+                        width: "10%"
                     },
                     {
                         title: "Watermark",
                         dataIndex: "watermark",
-                        width: '20%'
+                        width: "20%"
                     }
                 ]}
                 dataSource={[
@@ -119,32 +119,32 @@ const StructureLayout = () => {
                 columns={[
                     {
                         title: "字段名称",
-                        width: '20%'
+                        width: "20%"
                     },
                     {
                         title: "字段类型",
-                        width: '20%'
+                        width: "20%"
                     },
                     {
                         title: "表达式",
-                        width: '20%'
+                        width: "20%"
                     },
                     {
                         title: "是否是主键",
-                        width: '10%'
+                        width: "10%"
                     },
                     {
                         title: "可为空",
-                        width: '10%'
+                        width: "10%"
                     },
                     {
                         title: "Watermark",
-                        width: '20%'
+                        width: "20%"
                     }
                 ]}
             />
         </div>
-    )
-}
+    );
+};
 
 export default StructureLayout;

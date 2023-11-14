@@ -1,9 +1,9 @@
-import { Button, Input, Tooltip } from "antd"
-import { AimOutlined, DeleteOutlined, ReloadOutlined, SearchOutlined } from "../../../../../Icon"
-import ScrollPin from "../../../../../ScrollPin"
-import DraftTree from "./DraftTree"
+import { Button, Input, Tooltip } from "antd";
+import { AimOutlined, DeleteOutlined, ReloadOutlined, SearchOutlined } from "../../../../../Icon";
+import ScrollPin from "../../../../../ScrollPin";
+import DraftTree from "./DraftTree";
 import { useRef } from "react";
-import './index.sass'
+import "./index.sass";
 
 const DraftTabPanel = () => {
     const treeRef = useRef<HTMLDivElement>(null);
@@ -58,7 +58,7 @@ const DraftTabPanel = () => {
                 </div>
             </div>
         </div>
-    )
+    );
 };
 
 export default DraftTabPanel;

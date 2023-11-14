@@ -26,7 +26,7 @@ const MySqlForm = () => {
                 label="port"
                 extra="连接到服务器的端口"
             >
-                <InputNumber defaultValue={'3306'} style={{width: '90px'}}/>
+                <InputNumber defaultValue={"3306"} style={{width: "90px"}}/>
             </Form.Item>
 
             <Form.Item
@@ -53,7 +53,7 @@ const MySqlForm = () => {
                 <Input />
             </Form.Item>
         </Form>
-    )
+    );
 };
 
 export default MySqlForm;

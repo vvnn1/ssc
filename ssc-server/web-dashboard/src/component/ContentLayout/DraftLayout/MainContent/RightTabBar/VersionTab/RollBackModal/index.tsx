@@ -1,6 +1,6 @@
 import { Button, Modal, ModalProps, Popconfirm, message } from "antd";
 import { CheckCircleOutlined, RollbackOutlined } from "../../../../../../Icon";
-import './index.sass'
+import "./index.sass";
 import { MonacoDiffEditor } from "react-monaco-editor";
 
 const RollBackModal = (props: ModalProps) => {
@@ -13,7 +13,7 @@ const RollBackModal = (props: ModalProps) => {
             }
         );
         props.onCancel?.(undefined as any);
-    }
+    };
     return (
         <Modal
             {...props}
@@ -85,13 +85,13 @@ CREATE TEMPORARY TABLE print_table(
 INSERT INTO print_table
 SELECT SUBSTRING(randstr,0,8) from datagen_source;`
                             }
-                            height={'100%'}
+                            height={"100%"}
                         />
                     </div>
                 </div>
             </div>
         </Modal>
-    )
+    );
 };
 
 export default RollBackModal;

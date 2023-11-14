@@ -69,7 +69,7 @@ const DLFForm = () => {
                 <Input.TextArea />
             </Form.Item>
         </Form>
-    )
+    );
 };
 
 export default DLFForm;

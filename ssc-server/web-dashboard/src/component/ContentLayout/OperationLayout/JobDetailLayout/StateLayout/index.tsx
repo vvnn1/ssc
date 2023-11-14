@@ -1,10 +1,10 @@
-import {  Menu } from 'antd';
-import './index.sass'
-import { Route, Routes, matchPath, useHref, useLocation } from 'react-router-dom';
-import OverviewLayout from './OverviewLayout';
-import HistoryLayout from './HistoryLayout';
-import ConfigureLayout from './ConfigureLayout';
-import MyLink from '../../../../MyLink';
+import {  Menu } from "antd";
+import "./index.sass";
+import { Route, Routes, matchPath, useLocation } from "react-router-dom";
+import OverviewLayout from "./OverviewLayout";
+import HistoryLayout from "./HistoryLayout";
+import ConfigureLayout from "./ConfigureLayout";
+import MyLink from "../../../../MyLink";
 
 const menuItems = [
     {
@@ -22,14 +22,14 @@ const menuItems = [
 ];
 
 const StateLayout = () => {
-    let { pathname } = useLocation();
+    const { pathname } = useLocation();
     const pathMatch = matchPath("/workspace/:workspaceId/namespace/:namespaceId/operations/:jobType/:jobId/states/:key", pathname);
     
     return (
         <div className="development-state-layout">
             <Menu
                 items={menuItems}
-                selectedKeys={[pathMatch?.params.key!]}
+                selectedKeys={pathMatch?.params.key ? [pathMatch?.params.key] : []}
                 mode="horizontal"
             />
             <div className="detail-container">
@@ -40,7 +40,7 @@ const StateLayout = () => {
                 </Routes>
             </div>
         </div>
-    )
+    );
 };
 
 export default StateLayout;

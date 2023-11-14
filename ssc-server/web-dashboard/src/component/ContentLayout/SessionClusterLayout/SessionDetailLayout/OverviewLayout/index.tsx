@@ -1,5 +1,5 @@
 import { Descriptions, DescriptionsProps, Tabs, TabsProps } from "antd";
-import './index.sass';
+import "./index.sass";
 import MonacoEditor from "../../../../MonacoEditor";
 
 
@@ -62,151 +62,151 @@ const xml = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 </Configuration>
 `;
 
-const sessionItems: DescriptionsProps['items'] = [
+const sessionItems: DescriptionsProps["items"] = [
     {
-        key: '1',
-        label: 'Deployment Target',
-        children: 'vvp-workload (8d8475c7-48e5-4cac-9436-3936fc0e4ad5)',
+        key: "1",
+        label: "Deployment Target",
+        children: "vvp-workload (8d8475c7-48e5-4cac-9436-3936fc0e4ad5)",
         span: 3
     },
     {
-        key: '2',
-        label: 'Desired State',
-        children: 'STOPPED',
+        key: "2",
+        label: "Desired State",
+        children: "STOPPED",
         span: 3
     },
     {
-        key: '3',
-        label: 'Number of Task Managers',
-        children: '1',
+        key: "3",
+        label: "Number of Task Managers",
+        children: "1",
         span: 3
     },
     {
-        key: '4',
-        label: 'Job Manager CPU',
-        children: '1',
+        key: "4",
+        label: "Job Manager CPU",
+        children: "1",
         span: 3
     },
     {
-        key: '5',
-        label: 'Job Manager Memory',
-        children: '4GiB',
+        key: "5",
+        label: "Job Manager Memory",
+        children: "4GiB",
         span: 3
     },
     {
-        key: '6',
-        label: 'Task Manager CPU',
-        children: '2',
+        key: "6",
+        label: "Task Manager CPU",
+        children: "2",
         span: 3
     },
     {
-        key: '7',
-        label: 'Task Manager Memory',
-        children: '8GiB',
+        key: "7",
+        label: "Task Manager Memory",
+        children: "8GiB",
         span: 3
     },
 ];
 
 const artifactItems = [
     {
-        key: '1',
-        label: 'Engine Version',
-        children: 'vvr-8.0.1-flink-1.17',
+        key: "1",
+        label: "Engine Version",
+        children: "vvr-8.0.1-flink-1.17",
         span: 1
     },
 ];
 
 const FlinkItems = [
     {
-        key: '1',
-        label: 'metrics.reporters',
-        children: 'promappmgr',
+        key: "1",
+        label: "metrics.reporters",
+        children: "promappmgr",
         span: 3
     },
     {
-        key: '2',
-        label: 'metrics.reporter.promappmgr.port',
-        children: '9999',
+        key: "2",
+        label: "metrics.reporter.promappmgr.port",
+        children: "9999",
         span: 3
     },
     {
-        key: '3',
-        label: 'metrics.reporter.promappmgr.factory.class',
-        children: 'org.apache.flink.metrics.prometheus.PrometheusReporterFactory',
+        key: "3",
+        label: "metrics.reporter.promappmgr.factory.class",
+        children: "org.apache.flink.metrics.prometheus.PrometheusReporterFactory",
         span: 3
     },
     {
-        key: '4',
-        label: 'restart-strategy',
-        children: 'none',
+        key: "4",
+        label: "restart-strategy",
+        children: "none",
         span: 3
     },
 ];
 
 const loggingItems = [
     {
-        key: '1',
-        label: 'root',
-        children: 'INFO',
+        key: "1",
+        label: "root",
+        children: "INFO",
         span: 3
     },
-]
+];
 
 const OverviewLayout = () => {
-    const items: DescriptionsProps['items'] = [
+    const items: DescriptionsProps["items"] = [
         {
-            key: '1',
-            label: '创建时间',
-            children: '09-07 10:26:31',
+            key: "1",
+            label: "创建时间",
+            children: "09-07 10:26:31",
         },
         {
-            key: '2',
-            label: '修改时间',
-            children: '09-07 14:14:29',
+            key: "2",
+            label: "修改时间",
+            children: "09-07 14:14:29",
         },
 
         {
-            key: '36',
-            label: '操作',
-            children: '',
-            labelStyle: { visibility: 'hidden', borderRight: 'none' }
+            key: "36",
+            label: "操作",
+            children: "",
+            labelStyle: { visibility: "hidden", borderRight: "none" }
         },
         {
-            key: '4',
-            label: 'Used / Total Slots',
-            children: '-',
+            key: "4",
+            label: "Used / Total Slots",
+            children: "-",
         },
         {
-            key: '5',
-            label: 'Taskmanagers',
-            children: '-',
+            key: "5",
+            label: "Taskmanagers",
+            children: "-",
         },
         {
-            key: '6',
-            label: 'Jobs',
-            children: '-',
+            key: "6",
+            label: "Jobs",
+            children: "-",
         },
     ];
 
-    const tabItems: TabsProps['items'] = [
+    const tabItems: TabsProps["items"] = [
         {
-            key: '1',
-            label: ' Session 集群配置 ',
+            key: "1",
+            label: " Session 集群配置 ",
             children: <Descriptions bordered items={sessionItems} size="small" />,
         },
         {
-            key: '2',
-            label: 'Artifact 配置',
+            key: "2",
+            label: "Artifact 配置",
             children: <Descriptions bordered items={artifactItems} size="small" />,
         },
         {
-            key: '3',
-            label: 'Flink 配置',
+            key: "3",
+            label: "Flink 配置",
             children: <Descriptions bordered items={FlinkItems} size="small" />,
         },
         {
-            key: '4',
-            label: '日志配置 | default',
+            key: "4",
+            label: "日志配置 | default",
             children: (
                 <MonacoEditor
                     language="xml"
@@ -217,7 +217,7 @@ const OverviewLayout = () => {
                         selectOnLineNumbers: true,
                         lineNumbersMinChars: 2,
                         lineDecorationsWidth: 0,
-                        wordWrap: 'on',
+                        wordWrap: "on",
                         readOnly: false,
                         scrollBeyondLastLine: false,
 
@@ -228,8 +228,8 @@ const OverviewLayout = () => {
             ),
         },
         {
-            key: '5',
-            label: 'Logging Level 配置',
+            key: "5",
+            label: "Logging Level 配置",
             children: <Descriptions bordered items={loggingItems} size="small" />,
         },
     ];
@@ -241,7 +241,7 @@ const OverviewLayout = () => {
             </div>
             <Tabs className="configuration-tabs" items={tabItems} defaultActiveKey="1" />
         </div>
-    )
+    );
 };
 
 export default OverviewLayout;

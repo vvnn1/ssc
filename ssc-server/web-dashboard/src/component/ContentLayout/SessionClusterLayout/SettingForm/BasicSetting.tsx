@@ -16,15 +16,15 @@ const statusSelectOptions = [
 
 const statusItemExtra = (
     <div>
-        <p style={{ marginBottom: '1em' }}>
+        <p style={{ marginBottom: "1em" }}>
             设置当前集群的期望运行状态
         </p>
-        <ul style={{listStyleType: 'circle'}}>
-            <li style={{ margin: '0 0 0 20px', padding: '0 0 0 4px' }}><strong>RUNNING</strong> 当集群配置完成后保持运行状态。</li>
-            <li style={{ margin: '0 0 0 20px', padding: '0 0 0 4px' }}><strong>STOPPED</strong> 当集群配置完成后保持停止状态，同样会停止所有在运行中的作业。</li>
+        <ul style={{listStyleType: "circle"}}>
+            <li style={{ margin: "0 0 0 20px", padding: "0 0 0 4px" }}><strong>RUNNING</strong> 当集群配置完成后保持运行状态。</li>
+            <li style={{ margin: "0 0 0 20px", padding: "0 0 0 4px" }}><strong>STOPPED</strong> 当集群配置完成后保持停止状态，同样会停止所有在运行中的作业。</li>
         </ul>
     </div>
-)
+);
 
 interface BasicSettingProps {
     editing?: boolean;
@@ -65,16 +65,16 @@ const BasicSetting = (props: BasicSettingProps) => {
                         {
                             fields.map((field, index) => (
                                 <Form.Item
-                                    label={index === 0 ? '标签' : null}
+                                    label={index === 0 ? "标签" : null}
                                     key={field.key}
-                                    style={{ marginBottom: '0', marginTop: index > 0 ? '8px' : '0px' }}
+                                    style={{ marginBottom: "0", marginTop: index > 0 ? "8px" : "0px" }}
                                 >
                                     <Space.Compact style={{ width: "100%" }}>
-                                        <Form.Item extra={index + 1 === fields.length ? '标签名' : null} style={{ display: 'inline-block', width: 'calc(50% - 12px)', marginBottom: '0' }}>
+                                        <Form.Item extra={index + 1 === fields.length ? "标签名" : null} style={{ display: "inline-block", width: "calc(50% - 12px)", marginBottom: "0" }}>
                                             <Input size="small" onChange={index + 1 === fields.length ? () => add() : undefined} />
                                         </Form.Item>
 
-                                        <Form.Item extra={index + 1 === fields.length ? '标签值' : null} style={{ display: 'inline-block', width: 'calc(50% - 12px)', marginLeft: '24px', marginBottom: '0' }}>
+                                        <Form.Item extra={index + 1 === fields.length ? "标签值" : null} style={{ display: "inline-block", width: "calc(50% - 12px)", marginLeft: "24px", marginBottom: "0" }}>
 
                                             <Input size="small" onChange={index + 1 === fields.length ? () => add() : undefined} />
                                         </Form.Item>
@@ -89,7 +89,7 @@ const BasicSetting = (props: BasicSettingProps) => {
 
 
         </SettingCard>
-    )
+    );
 };
 
 export default BasicSetting;

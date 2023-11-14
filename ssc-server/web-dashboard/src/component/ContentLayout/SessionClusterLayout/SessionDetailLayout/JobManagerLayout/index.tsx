@@ -1,47 +1,47 @@
-import { Menu, MenuProps, } from 'antd';
-import './index.sass'
-import MetricLayout from './MetricLayout';
-import ConfigurationLayout from './ConfigurationLayout';
-import LogLayout from './LogLayout';
-import LogListLayout from './LogListLayout';
-import StdoutLayout from './StdoutLayout';
-import { Route, Routes, matchPath, useLocation } from 'react-router-dom';
-import MyLink from '../../../../MyLink';
-import LogDetailLayout from './LogListLayout/LogDetailLayout';
+import { Menu, MenuProps, } from "antd";
+import "./index.sass";
+import MetricLayout from "./MetricLayout";
+import ConfigurationLayout from "./ConfigurationLayout";
+import LogLayout from "./LogLayout";
+import LogListLayout from "./LogListLayout";
+import StdoutLayout from "./StdoutLayout";
+import { Route, Routes, matchPath, useLocation } from "react-router-dom";
+import MyLink from "../../../../MyLink";
+import LogDetailLayout from "./LogListLayout/LogDetailLayout";
 
-const items: MenuProps['items'] = [
+const items: MenuProps["items"] = [
     {
         label: <MyLink to='metrics'>Metrics</MyLink>,
-        key: 'metrics',
+        key: "metrics",
     },
     {
         label: <MyLink to='configuration'>配置</MyLink>,
-        key: 'configuration',
+        key: "configuration",
     },
     {
         label: <MyLink to='logs'>日志</MyLink>,
-        key: 'logs',
+        key: "logs",
 
     },
     {
         label: <MyLink to='stdout'>Stdout</MyLink>,
-        key: 'stdout',
+        key: "stdout",
     },
     {
         label: <MyLink to='log-list'>日志列表</MyLink>,
-        key: 'log-list'
+        key: "log-list"
     }
 ];
 
 const JobManagerLayout = () => {
-    let { pathname } = useLocation();
+    const { pathname } = useLocation();
     const pathMatch = matchPath("/workspace/:workspaceId/namespace/:namespaceId/session-clusters/:sessionName/jobmanager/:key", pathname);
     
     return (
         <div className="session-jobmanager-layout">
             <Menu
                 className="jobmanager-menu"
-                selectedKeys={[pathMatch?.params.key!]}
+                selectedKeys={pathMatch?.params.key ? [pathMatch?.params.key] : []}
                 mode="horizontal"
                 items={items}
             />
@@ -58,7 +58,7 @@ const JobManagerLayout = () => {
                 </Routes>
             </div>
         </div>
-    )
+    );
 };
 
 export default JobManagerLayout;

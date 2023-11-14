@@ -1,17 +1,17 @@
-import { Button, Descriptions, DescriptionsProps, Dropdown, Form, FormInstance, Input, InputNumber, Popconfirm, Select, Space, Switch } from "antd";
+import { Button, Descriptions, Dropdown, Form, FormInstance, Input, InputNumber, Popconfirm, Select, Space, Switch } from "antd";
 import MonacoEditor from "../../../../MonacoEditor";
 import LogLevelSelect from "../../../../Select/LogLevelSelect";
 import { BarsOutlined, DeleteOutlined } from "../../../../Icon";
 import { useState } from "react";
 
-type LogLevel = 'TRACE' | 'DEBUG' | 'INFO' | 'WARN' | 'ERROR';
+type LogLevel = "TRACE" | "DEBUG" | "INFO" | "WARN" | "ERROR";
 
 interface Cofniguration {
     enableFile: boolean,
     fileKeepDays: number,
     rootLogLevel: LogLevel,
     classLogLevel: { classPath: string | undefined, logLevel: LogLevel | undefined }[],
-    templateType: 'default' | 'custom',
+    templateType: "default" | "custom",
     configXml: string
 }
 
@@ -19,10 +19,10 @@ const LogConfiguration = (props: { editing: boolean, form: FormInstance }) => {
     const [data, setData] = useState<Cofniguration>({
         enableFile: true,
         fileKeepDays: 7,
-        rootLogLevel: 'INFO',
+        rootLogLevel: "INFO",
         classLogLevel: [],
-        templateType: 'custom',
-        configXml: ''
+        templateType: "custom",
+        configXml: ""
     });
 
     const [enableFile, setEnableFile] = useState<boolean>(data.enableFile);
@@ -33,8 +33,8 @@ const LogConfiguration = (props: { editing: boolean, form: FormInstance }) => {
     if (editing) {
         items.push(
             {
-                key: 'log-file',
-                label: '日志归档',
+                key: "log-file",
+                label: "日志归档",
                 children: (
                     <Space>
                         <Form.Item
@@ -53,8 +53,8 @@ const LogConfiguration = (props: { editing: boolean, form: FormInstance }) => {
         if (enableFile) {
             items.push(
                 {
-                    key: 'file-keep',
-                    label: '归档日志有效期',
+                    key: "file-keep",
+                    label: "归档日志有效期",
                     children: (
                         <Form.Item
                             name="fileKeepDays"
@@ -64,13 +64,13 @@ const LogConfiguration = (props: { editing: boolean, form: FormInstance }) => {
                         </Form.Item>
                     )
                 }
-            )
+            );
         }
 
         items.push(
             {
-                key: 'root-log-level',
-                label: '根日志级别',
+                key: "root-log-level",
+                label: "根日志级别",
                 children: (
                     <Form.Item
                         name="rootLogLevel"
@@ -84,8 +84,8 @@ const LogConfiguration = (props: { editing: boolean, form: FormInstance }) => {
 
         items.push(
             {
-                key: 'class-log-level',
-                label: '类日志级别',
+                key: "class-log-level",
+                label: "类日志级别",
                 children: (
                     <Form.List
                         name="classLogLevel"
@@ -97,14 +97,14 @@ const LogConfiguration = (props: { editing: boolean, form: FormInstance }) => {
                                     fields.map((field, index) => (
                                         <Form.Item
                                             key={field.key}
-                                            style={{ marginBottom: '0', marginTop: index > 0 ? '8px' : '0px' }}
+                                            style={{ marginBottom: "0", marginTop: index > 0 ? "8px" : "0px" }}
                                         >
-                                            <Form.Item name={[field.name, "classPath"]} style={{ display: 'inline-block', width: 'calc(50% - 12px)', marginBottom: '0' }}>
+                                            <Form.Item name={[field.name, "classPath"]} style={{ display: "inline-block", width: "calc(50% - 12px)", marginBottom: "0" }}>
                                                 <Input placeholder="Logger name" onChange={index + 1 === fields.length ? () => add() : undefined} />
                                             </Form.Item>
-                                            <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 12px)', marginLeft: '24px', marginBottom: '0' }}>
-                                                <Space.Compact style={{ alignItems: "center", width: '100%' }}>
-                                                    <Form.Item name={[field.name, "logLevel"]} style={{ width: '100%' }}>
+                                            <Form.Item style={{ display: "inline-block", width: "calc(50% - 12px)", marginLeft: "24px", marginBottom: "0" }}>
+                                                <Space.Compact style={{ alignItems: "center", width: "100%" }}>
+                                                    <Form.Item name={[field.name, "logLevel"]} style={{ width: "100%" }}>
                                                         <LogLevelSelect placeholder="Logger level" onChange={index + 1 === fields.length ? () => add() : undefined} />
                                                     </Form.Item>
                                                     <Button style={{ marginLeft: "4px" }} disabled={index + 1 === fields.length} onClick={() => remove(field.name)} danger><DeleteOutlined /></Button>
@@ -122,8 +122,8 @@ const LogConfiguration = (props: { editing: boolean, form: FormInstance }) => {
 
         items.push(
             {
-                key: 'log-template',
-                label: '日志模板',
+                key: "log-template",
+                label: "日志模板",
                 children: (
                     <Form.Item
                         name="templateType"
@@ -134,20 +134,20 @@ const LogConfiguration = (props: { editing: boolean, form: FormInstance }) => {
                             options={
                                 [
                                     {
-                                        label: '系统模板',
+                                        label: "系统模板",
                                         options: [
                                             {
-                                                label: 'default',
-                                                value: 'default'
+                                                label: "default",
+                                                value: "default"
                                             }
                                         ]
                                     },
                                     {
-                                        label: '用户配置',
+                                        label: "用户配置",
                                         options: [
                                             {
-                                                label: '自定义模板',
-                                                value: 'custom'
+                                                label: "自定义模板",
+                                                value: "custom"
                                             }
                                         ]
                                     }
@@ -157,20 +157,20 @@ const LogConfiguration = (props: { editing: boolean, form: FormInstance }) => {
                     </Form.Item>
                 )
             }
-        )
+        );
     } else {
         if (data.enableFile) {
             items.push(
                 {
-                    key: 'log-file',
-                    label: '日志归档',
-                    children: '已开启'
+                    key: "log-file",
+                    label: "日志归档",
+                    children: "已开启"
                 }
             );
             items.push(
                 {
-                    key: 'file-keep',
-                    label: '归档日志有效期',
+                    key: "file-keep",
+                    label: "归档日志有效期",
                     children: `${data.fileKeepDays} 天`
                 }
             );
@@ -178,8 +178,8 @@ const LogConfiguration = (props: { editing: boolean, form: FormInstance }) => {
 
         items.push(
             {
-                key: 'root-log-level',
-                label: '根日志级别',
+                key: "root-log-level",
+                label: "根日志级别",
                 children: data.rootLogLevel
             },
         );
@@ -194,19 +194,19 @@ const LogConfiguration = (props: { editing: boolean, form: FormInstance }) => {
 
         items.push(
             {
-                key: 'log-template',
-                label: '日志模板',
-                children: data.templateType === 'default' ? 'default' : '自定义模板'
+                key: "log-template",
+                label: "日志模板",
+                children: data.templateType === "default" ? "default" : "自定义模板"
             }
-        )
+        );
     }
 
     const onFinish = (value: any) => {
         setData({
             ...data,
             ...value
-        })
-    }
+        });
+    };
 
     return (
         <div className="log-configuration">
@@ -227,14 +227,14 @@ const LogConfiguration = (props: { editing: boolean, form: FormInstance }) => {
                 />
                 <div className="template-container">
                     {
-                        data.templateType === 'custom' && editing
+                        data.templateType === "custom" && editing
                             ? (
                                 <div className="logging-action">
                                     <Dropdown
                                         menu={{
                                             items: [
                                                 {
-                                                    key: 'default',
+                                                    key: "default",
                                                     label: (
                                                         <Popconfirm
                                                             okText="确认"
@@ -245,7 +245,7 @@ const LogConfiguration = (props: { editing: boolean, form: FormInstance }) => {
                                                                 setData({
                                                                     ...data,
                                                                     configXml: defaultLogXml
-                                                                })
+                                                                });
                                                             }}
                                                         >
                                                             default
@@ -272,13 +272,13 @@ const LogConfiguration = (props: { editing: boolean, form: FormInstance }) => {
                             lineDecorationsWidth: 0,
                         }}
                         height={300}
-                        value={data.templateType === 'default' ? defaultLogXml : data.configXml}
+                        value={data.templateType === "default" ? defaultLogXml : data.configXml}
                     />
                 </div>
 
             </Form>
         </div>
-    )
+    );
 };
 
 export default LogConfiguration;
@@ -340,4 +340,4 @@ const defaultLogXml = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
             <AppenderRef ref="RollingFile"/>
         </Root>
     </Loggers>
-</Configuration>`
+</Configuration>`;

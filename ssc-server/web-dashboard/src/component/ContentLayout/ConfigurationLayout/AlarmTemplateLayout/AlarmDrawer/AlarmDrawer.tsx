@@ -1,10 +1,10 @@
-import { Button, Drawer, DrawerProps, Form, Space } from 'antd';
-import './AlarmDrawer.sass'
-import AlarmRuleItem from './AlarmRuleItem';
-import NotifiAvenueItem from './NotifiAvenueItem';
+import { Button, Drawer, DrawerProps, Form, Space } from "antd";
+import "./AlarmDrawer.sass";
+import AlarmRuleItem from "./AlarmRuleItem";
+import NotifiAvenueItem from "./NotifiAvenueItem";
 
 interface AlarmDrawerProps {
-    model?: 'create-template' | 'create-rule'
+    model?: "create-template" | "create-rule"
 }
 
 const AlarmDrawer = (props: DrawerProps & AlarmDrawerProps) => {
@@ -20,8 +20,8 @@ const AlarmDrawer = (props: DrawerProps & AlarmDrawerProps) => {
                 labelCol={{ span: 4 }}
                 wrapperCol={{ span: 20 }}
             >
-                <AlarmRuleItem strict={props.model === 'create-rule'}/>
-                <NotifiAvenueItem strict={props.model === 'create-rule'}/>
+                <AlarmRuleItem strict={props.model === "create-rule"}/>
+                <NotifiAvenueItem strict={props.model === "create-rule"}/>
             </Form>
 
             <div className="drawer-footer">
@@ -31,7 +31,7 @@ const AlarmDrawer = (props: DrawerProps & AlarmDrawerProps) => {
                 </Space>
             </div>
         </Drawer>
-    )
+    );
 };
 
 export default AlarmDrawer;

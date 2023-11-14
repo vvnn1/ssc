@@ -1,6 +1,6 @@
 import { Input, Space, Table } from "antd";
 import { SearchOutlined } from "../../../../Icon";
-import './index.sass'
+import "./index.sass";
 import MonacoEditor from "../../../../MonacoEditor";
 
 interface DataType {
@@ -12,15 +12,15 @@ interface DataType {
 }
 
 type TableProps = Parameters<typeof Table>[0];
-type ColumnTypes = Exclude<TableProps['columns'], undefined>;
+type ColumnTypes = Exclude<TableProps["columns"], undefined>;
 
 const columns: ColumnTypes = [
-    { title: '时间', dataIndex: 'name', key: 'name', width: 200 },
-    { title: '信息', dataIndex: 'address', key: 'address' },
+    { title: "时间", dataIndex: "name", key: "name", width: 200 },
+    { title: "信息", dataIndex: "address", key: "address" },
     {
-        title: '操作',
-        dataIndex: '',
-        key: 'x',
+        title: "操作",
+        dataIndex: "",
+        key: "x",
         width: 150,
         render: () => <a>复制信息</a>,
     },
@@ -29,31 +29,31 @@ const columns: ColumnTypes = [
 const data: DataType[] = [
     {
         key: 1,
-        name: '2023-09-07 14:14:29',
+        name: "2023-09-07 14:14:29",
         age: 32,
-        address: 'Session cluster has successfully finished.',
-        description: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
+        address: "Session cluster has successfully finished.",
+        description: "My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.",
     },
     {
         key: 2,
-        name: '2023-09-07 14:14:26',
+        name: "2023-09-07 14:14:26",
         age: 42,
-        address: 'Awaiting cluster teardown.',
-        description: 'My name is Jim Green, I am 42 years old, living in London No. 1 Lake Park.',
+        address: "Awaiting cluster teardown.",
+        description: "My name is Jim Green, I am 42 years old, living in London No. 1 Lake Park.",
     },
     {
         key: 3,
-        name: '2023-09-07 14:13:50',
+        name: "2023-09-07 14:13:50",
         age: 29,
-        address: 'Session cluster was successfully started.',
-        description: 'This not expandable',
+        address: "Session cluster was successfully started.",
+        description: "This not expandable",
     },
     {
         key: 4,
-        name: '2023-09-07 14:13:33',
+        name: "2023-09-07 14:13:33",
         age: 32,
-        address: 'Waiting for a cluster to become ready.',
-        description: 'My name is Joe Black, I am 32 years old, living in Sydney No. 1 Lake Park.',
+        address: "Waiting for a cluster to become ready.",
+        description: "My name is Joe Black, I am 32 years old, living in Sydney No. 1 Lake Park.",
     },
 ];
 
@@ -72,13 +72,13 @@ const EventLayout = () => {
                 size="small"
                 expandable={{
                     expandedRowRender: (record) => <MonacoEditor options={{minimap: {enabled: false}}} height={62} value={record.description} />,
-                    rowExpandable: (record) => record.name !== 'Not Expandable',
+                    rowExpandable: (record) => record.name !== "Not Expandable",
                     columnWidth: 60
                 }}
                 dataSource={data}
             />
         </div>
-    )
+    );
 };
 
 

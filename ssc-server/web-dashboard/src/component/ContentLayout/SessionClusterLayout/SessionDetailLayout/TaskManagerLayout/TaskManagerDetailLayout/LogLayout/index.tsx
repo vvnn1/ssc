@@ -1,7 +1,7 @@
 import { Button, Popconfirm, Select } from "antd";
 import { useState } from "react";
 import { DownloadOutlined, FullscreenOutlined, SyncOutlined } from "../../../../../../Icon";
-import './index.sass'
+import "./index.sass";
 import MonacoEditor from "../../../../../../MonacoEditor";
 
 const LogLayout = () => {
@@ -10,8 +10,8 @@ const LogLayout = () => {
     const changeSelectDisabled = (disabled: boolean) => {
         return () => {
             setSelectDisabled(disabled);
-        }
-    }
+        };
+    };
 
     return (
         <div className="taskmanager-log-layout">
@@ -55,12 +55,12 @@ const LogLayout = () => {
                         selectOnLineNumbers: true,
                         lineNumbersMinChars: 5,
                         lineDecorationsWidth: 0,
-                        wordWrap: 'on',
+                        wordWrap: "on",
                         readOnly: false,
                         scrollBeyondLastLine: false,
                     }}
                     value={
-`2023-09-14 11:11:17,558 [main] INFO  org.apache.flink.runtime.taskexecutor.TaskManagerRunner      [] - --------------------------------------------------------------------------------
+                        `2023-09-14 11:11:17,558 [main] INFO  org.apache.flink.runtime.taskexecutor.TaskManagerRunner      [] - --------------------------------------------------------------------------------
 2023-09-14 11:11:17,564 [main] INFO  org.apache.flink.runtime.taskexecutor.TaskManagerRunner      [] -  Preconfiguration: 
 2023-09-14 11:11:17,564 [main] INFO  org.apache.flink.runtime.taskexecutor.TaskManagerRunner      [] - 
 
@@ -100,7 +100,7 @@ INFO  [] - Loading configuration property: state.backend, com.alibaba.flink.stat
                 />
             </div>
         </div>
-    )
+    );
 };
 
 export default LogLayout;

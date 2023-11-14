@@ -10,11 +10,11 @@ interface TimeInputNumberProps {
     selectProps?: SelectProps;
 }
 
-const pattern = /(?<number>\d+)(?<unit>d|h|min|s|ms|us|ns)/
+const pattern = /(?<number>\d+)(?<unit>d|h|min|s|ms|us|ns)/;
 
 const TimeInputNumber:React.FC<TimeInputNumberProps> = ({ value, defaultValue, onChange, inputProps, selectProps }) => {
-    const defaultGroups = pattern.exec(defaultValue ?? '')?.groups;
-    const valueGroups = pattern.exec(value ?? '')?.groups;
+    const defaultGroups = pattern.exec(defaultValue ?? "")?.groups;
+    const valueGroups = pattern.exec(value ?? "")?.groups;
 
     const [number, setNumber] = useState<string | null | undefined>(valueGroups?.number);
     const [unit, setUnit] = useState<TimeUnit|undefined>(valueGroups?.unit as TimeUnit);
@@ -26,16 +26,16 @@ const TimeInputNumber:React.FC<TimeInputNumberProps> = ({ value, defaultValue, o
         } else {
             onChange?.(null);
         }
-    }
+    };
 
-    const onUnitChange = (unit: any) => {
+    const onUnitChange:SelectProps["onChange"] = (unit) => {
         setUnit(unit);
         if (number && unit) {
             onChange?.(number + unit);
         } else {
             onChange?.(null);
         }
-    }
+    };
 
     return (
         <InputNumber

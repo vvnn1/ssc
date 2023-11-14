@@ -10,11 +10,11 @@ const StopModal = (props: ModalProps) => {
         if (props.open) {
             setChecked(false);
         }
-    }, [props.open])
+    }, [props.open]);
 
     const onCheckedChange: CheckboxProps["onChange"] = ({ target: { checked } }) => {
         setChecked(checked);
-    }
+    };
 
     return (
         <Modal
@@ -42,7 +42,7 @@ const StopModal = (props: ModalProps) => {
                 </div>
             </div>
         </Modal>
-    )
+    );
 };
 
 export default StopModal;

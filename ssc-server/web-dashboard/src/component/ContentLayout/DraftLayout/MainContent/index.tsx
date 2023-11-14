@@ -1,19 +1,14 @@
-import { useRef, useState } from 'react';
-import MonacoEditor from '../../../MonacoEditor'
-import RightTabBar from './RightTabBar';
-import './index.sass'
-import BottomTabBar from './BottomTabBar';
-import Resizable from '../../../Resizable';
-import ToolBar from '../ToolBar';
-import NavTab, { Draft } from '../NavTab';
-import { EditorDidMount } from 'react-monaco-editor';
+import { useRef, useState } from "react";
+import MonacoEditor from "../../../MonacoEditor";
+import RightTabBar from "./RightTabBar";
+import "./index.sass";
+import BottomTabBar from "./BottomTabBar";
+import Resizable from "../../../Resizable";
+import ToolBar from "../ToolBar";
+import NavTab, { Draft } from "../NavTab";
+import { EditorDidMount } from "react-monaco-editor";
 
-
-interface MainContentProps {
-}
-
-
-const MainContent = (props: MainContentProps) => {
+const MainContent = () => {
     const [rightPanel, setRightPanel] = useState<React.ReactNode>();
     const [bottomPanel, setBottomPanel] = useState<React.ReactNode>();
     const [curDraft, setCurDraft] = useState<Draft>();
@@ -27,11 +22,11 @@ const MainContent = (props: MainContentProps) => {
         const state = openedDraft.current.get(draft?.id??"");
         monacoEditor.current?.restoreViewState(state);
         monacoEditor.current?.focus();
-    }
+    };
 
     const editorDidMount: EditorDidMount = (editor) => {
         monacoEditor.current = editor;
-    }
+    };
 
     return (
         <>
@@ -92,7 +87,7 @@ const MainContent = (props: MainContentProps) => {
             </div>
 
         </>
-    )
+    );
 };
 
 export default MainContent;

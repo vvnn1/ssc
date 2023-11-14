@@ -1,7 +1,7 @@
-import { Button, Space } from 'antd';
-import MonacoEditor from '../../../../../MonacoEditor';
-import './index.sass'
-import { FullscreenOutlined, SyncOutlined } from '../../../../../Icon';
+import { Button, Space } from "antd";
+import MonacoEditor from "../../../../../MonacoEditor";
+import "./index.sass";
+import { FullscreenOutlined, SyncOutlined } from "../../../../../Icon";
 
 const LaunchLogLayout = () => {
     return (
@@ -18,7 +18,7 @@ const LaunchLogLayout = () => {
                         enabled: false
                     },
                     lineDecorationsWidth: 0,
-                    wordWrap: 'on',
+                    wordWrap: "on",
                 }}
                 value={
                     ` seconds: [900]
@@ -716,7 +716,7 @@ end new OSSLogClient endTimeInMs:[1695779548641], costInMs:[3 ms]end new Abstrac
                 }
             />
         </div>
-    )
+    );
 };
 
 

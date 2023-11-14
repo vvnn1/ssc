@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 // import ReactDOM from 'react-dom/client';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { HashRouter } from 'react-router-dom';
-import { ConfigProvider } from 'antd';
-import zhCN from 'antd/locale/zh_CN';
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { HashRouter } from "react-router-dom";
+import { ConfigProvider } from "antd";
+import zhCN from "antd/locale/zh_CN";
 
 
 
@@ -28,15 +28,15 @@ import zhCN from 'antd/locale/zh_CN';
 
 
 window.addEventListener("load", () => {
-  ReactDOM.render(
-    <React.StrictMode>
-      <HashRouter>
-        <ConfigProvider locale={zhCN} wave={{ disabled: true }}>
-          <App />
-        </ConfigProvider>
-      </HashRouter>
-    </React.StrictMode>,
-    document.getElementById("root"));
+    ReactDOM.render(
+        <React.StrictMode>
+            <HashRouter>
+                <ConfigProvider locale={zhCN} wave={{ disabled: true }}>
+                    <App />
+                </ConfigProvider>
+            </HashRouter>
+        </React.StrictMode>,
+        document.getElementById("root"));
 });
 
 reportWebVitals();

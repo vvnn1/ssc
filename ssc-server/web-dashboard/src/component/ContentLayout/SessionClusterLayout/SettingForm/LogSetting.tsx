@@ -65,10 +65,10 @@ const defaultLog = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 const LogSetting = () => {
     const [templateOpen, setTemplateOpen] = useState<boolean>(false);
-    const [templateModel, setTemplateModel] = useState<'default' | 'custom'>();
+    const [templateModel, setTemplateModel] = useState<"default" | "custom">();
     const onTemplateBtnClick = () => {
         setTemplateOpen(!templateOpen);
-    }
+    };
     return (
         <SettingCard
             title="日志配置"
@@ -93,15 +93,15 @@ const LogSetting = () => {
                                 {
                                     fields.map((field, index) => (
                                         <Form.Item
-                                            label={index === 0 ? '类日志等级' : null}
+                                            label={index === 0 ? "类日志等级" : null}
                                             key={field.key}
-                                            style={{ marginBottom: '0', marginTop: index > 0 ? '8px' : '0px' }}
+                                            style={{ marginBottom: "0", marginTop: index > 0 ? "8px" : "0px" }}
                                         >
                                             <Space.Compact style={{ width: "100%" }}>
-                                                <Form.Item extra={index + 1 === fields.length ? '类日志名称' : null} style={{ display: 'inline-block', width: 'calc(50% - 12px)', marginBottom: '0' }}>
+                                                <Form.Item extra={index + 1 === fields.length ? "类日志名称" : null} style={{ display: "inline-block", width: "calc(50% - 12px)", marginBottom: "0" }}>
                                                     <Input onChange={index + 1 === fields.length ? () => add() : undefined} />
                                                 </Form.Item>
-                                                <Form.Item extra={index + 1 === fields.length ? '类日志等级' : null} style={{ display: 'inline-block', width: 'calc(50% - 12px)', marginLeft: '24px', marginBottom: '0' }}>
+                                                <Form.Item extra={index + 1 === fields.length ? "类日志等级" : null} style={{ display: "inline-block", width: "calc(50% - 12px)", marginLeft: "24px", marginBottom: "0" }}>
                                                     <LogLevelSelect onChange={index + 1 === fields.length ? () => add() : undefined} />
                                                 </Form.Item>
                                                 <Button style={{ marginLeft: "4px" }} disabled={index + 1 === fields.length} onClick={() => remove(field.name)}><DeleteOutlined /></Button>
@@ -124,20 +124,20 @@ const LogSetting = () => {
                             onChange={setTemplateModel}
                             options={[
                                 {
-                                    label: '系统模板',
+                                    label: "系统模板",
                                     options: [
                                         {
-                                            value: 'default',
-                                            label: 'Default'
+                                            value: "default",
+                                            label: "Default"
                                         }
                                     ]
                                 },
                                 {
-                                    label: '用户配置',
+                                    label: "用户配置",
                                     options: [
                                         {
-                                            value: 'custom',
-                                            label: '自定义模板'
+                                            value: "custom",
+                                            label: "自定义模板"
                                         }
                                     ]
                                 },
@@ -145,35 +145,32 @@ const LogSetting = () => {
                         />
                     </Form.Item>
                 </Col>
-                <Col className="template-btn-col" span={8} push={8} style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                <Col className="template-btn-col" span={8} push={8} style={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
                     {
-                        templateModel === 'default' ? (
+                        templateModel === "default" ? (
                             <Button
                                 icon={templateOpen ? <UpOutlined /> : <DownOutlined />}
                                 type="link"
                                 onClick={onTemplateBtnClick}
                             >
-                                {templateOpen ? '收起模板' : '显示模板'}
+                                {templateOpen ? "收起模板" : "显示模板"}
                             </Button>
                         ) : null
                     }
 
                     {
-                        templateModel === 'custom' ? (
+                        templateModel === "custom" ? (
                             <Dropdown
                                 menu={{
                                     items: [
                                         {
-                                            key: 'default',
+                                            key: "default",
                                             label: (
                                                 <Popconfirm
                                                     okText="确认"
                                                     cancelText="取消"
                                                     title='如果应用了新模板，您当前的更改将丢失。确定要这样做吗？'
                                                     overlayClassName="ant-popover-rtl"
-                                                    onConfirm={() => {
-
-                                                    }}
                                                 >
                                                     default
                                                 </Popconfirm>
@@ -190,18 +187,18 @@ const LogSetting = () => {
                 </Col>
                 <Col span={24}>
                     {
-                        templateModel === 'custom' || templateOpen ? (
+                        templateModel === "custom" || templateOpen ? (
                             <Form.Item
                                 noStyle
                             >
-                                <div style={{ border: '1px solid #dedede', marginBottom: 12 }}>
+                                <div style={{ border: "1px solid #dedede", marginBottom: 12 }}>
                                     <MonacoEditor
                                         options={{
                                             minimap: {
                                                 enabled: false
                                             },
                                             scrollBeyondLastLine: false,
-                                            lineNumbers: 'off',
+                                            lineNumbers: "off",
                                         }}
                                         height={300}
                                         value={defaultLog}
@@ -212,7 +209,7 @@ const LogSetting = () => {
                     }
                 </Col>
                 {
-                    templateModel === 'custom' ? (
+                    templateModel === "custom" ? (
                         <Col span={24}>
                             <Alert
                                 style={{ marginBottom: 12 }}
@@ -233,7 +230,7 @@ const LogSetting = () => {
                 }
             </Row>
         </SettingCard >
-    )
+    );
 };
 
 export default LogSetting;

@@ -1,11 +1,11 @@
-import { Button, Divider, Popconfirm, Table } from "antd"
-import './index.sass'
+import { Button, Divider, Popconfirm, Table } from "antd";
+import "./index.sass";
 import { DeleteOutlined, EditOutlined } from "../../../Icon";
 import { useState } from "react";
 import AlarmDrawer from "./AlarmDrawer";
 
 type TableProps = Parameters<typeof Table<AlarmTemplate>>[0];
-type ColumnTypes = Exclude<TableProps['columns'], undefined>;
+type ColumnTypes = Exclude<TableProps["columns"], undefined>;
 
 interface AlarmTemplate {
     key: React.Key;
@@ -19,10 +19,10 @@ interface AlarmTemplate {
 
 const data: AlarmTemplate[] = [
     {
-        key: '1',
-        name: 'John Brown',
+        key: "1",
+        name: "John Brown",
         indicator: "Restart Count in 1 Minute",
-        description: 'New York No. 1 Lake Park',
+        description: "New York No. 1 Lake Park",
         createTime: "2023-11-10 17:08:25"
     },
 ];
@@ -32,30 +32,30 @@ const WarnTemplateLayout = () => {
     const changeDrawerOpen = (open: boolean) => {
         return () => {
             setDrawerOpen(open);
-        }
-    }
+        };
+    };
 
     const columns: ColumnTypes = [
         {
-            title: '名称',
-            dataIndex: 'name',
+            title: "名称",
+            dataIndex: "name",
         },
         {
-            title: '指标',
-            dataIndex: 'indicator',
+            title: "指标",
+            dataIndex: "indicator",
         },
         {
-            title: '描述',
-            dataIndex: 'description',
+            title: "描述",
+            dataIndex: "description",
         },
         {
-            title: '创建时间',
-            dataIndex: 'createTime',
+            title: "创建时间",
+            dataIndex: "createTime",
             width: 180,
         },
         {
-            title: '操作',
-            dataIndex: 'age',
+            title: "操作",
+            dataIndex: "age",
             width: 160,
             render: () => (
                 <>
@@ -97,7 +97,7 @@ const WarnTemplateLayout = () => {
 
             <AlarmDrawer open={drawerOpen} onClose={changeDrawerOpen(false)} title="创建告警规则模板" />
         </div>
-    )
+    );
 };
 
 export default WarnTemplateLayout;

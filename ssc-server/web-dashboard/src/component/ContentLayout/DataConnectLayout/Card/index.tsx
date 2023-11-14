@@ -1,7 +1,7 @@
-import { Card, Divider, Space } from "antd"
-import { NewTabOutlined } from "../../../Icon"
-import './index.sass'
-import Paragraph from "antd/es/typography/Paragraph"
+import { Card, Divider, Space } from "antd";
+import { NewTabOutlined } from "../../../Icon";
+import "./index.sass";
+import Paragraph from "antd/es/typography/Paragraph";
 import { useContext } from "react";
 import { DocumentContext } from "../..";
 
@@ -37,13 +37,13 @@ const Card2 = (props: CardProps) => {
                                         <Space size={4}>
                                             {
                                                 props.type
-                                                    .map(item => (<span>{item}</span>))
+                                                    .map((item, index) => (<span key={index}>{item}</span>))
                                                     .reduce((accu, elem) => {
                                                         return <>
                                                             {accu}
                                                             <Divider type="vertical" />
                                                             {elem}
-                                                        </>
+                                                        </>;
                                                     })
                                             }
                                             <NewTabOutlined />
@@ -56,7 +56,7 @@ const Card2 = (props: CardProps) => {
                 }
             </div>
         </Card>
-    )
+    );
 };
 
 export default Card2;

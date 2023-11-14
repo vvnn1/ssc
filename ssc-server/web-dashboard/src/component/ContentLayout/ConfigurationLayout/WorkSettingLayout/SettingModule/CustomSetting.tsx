@@ -1,7 +1,7 @@
-import { Form } from 'antd';
-import SettingCard from '../../../../SettingCard'
-import './index.sass'
-import MonacoEditor from '../../../../MonacoEditor';
+import { Form } from "antd";
+import SettingCard from "../../../../SettingCard";
+import "./index.sass";
+import MonacoEditor from "../../../../MonacoEditor";
 
 const CustomSetting = () => {
     return (
@@ -28,7 +28,7 @@ const CustomSetting = () => {
 
             </Form.Item>
         </SettingCard>
-    )
+    );
 };
 
 export default CustomSetting;
