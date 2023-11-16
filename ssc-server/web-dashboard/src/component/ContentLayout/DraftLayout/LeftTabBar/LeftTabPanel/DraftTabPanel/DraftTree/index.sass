@@ -9,7 +9,7 @@
         .ant-tree-treenode
             .ant-tree-switcher
                 pointer-events: none
-    
+
 .ant-tree.draft-tree
     width: 1400px
     height: 100%
@@ -17,7 +17,9 @@
         .ant-tree-treenode-selected
             background-color: #2281d4
             color: rgba(255,255,255,.85)
-        .ant-tree-treenode:hover:not(.ant-tree-treenode-selected)
+        .ant-tree-treenode-focused:not(.ant-tree-treenode-selected)
+            background-color: #e6f7ff
+        .ant-tree-treenode:hover:not(.ant-tree-treenode-selected,.ant-tree-treenode-focused)
             background-color: #f7f9fa
         .ant-tree-treenode.drop-target
             background-color: #dedede

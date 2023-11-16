@@ -1,11 +1,12 @@
-import { Key, useState } from "react";
+import { Key, useEffect, useState } from "react";
 import { FloderClosedColorOutlined, FloderOpenColorOutlined, StreamDraftOutlined } from "../../../../../../Icon";
 import "./index.sass";
 import TreeTitle from "./TreeTitle";
 import { Item, Menu, Separator, useContextMenu } from "react-contexify";
 import CreateDraftModal from "../../../../ToolBar/CreateDraftModal";
-import { Tree, TreeDataNode, TreeProps } from "antd";
-import { useNavigate } from "react-router-dom";
+import { Tooltip, Tree, TreeDataNode, TreeProps } from "antd";
+import { matchPath, useLocation, useNavigate } from "react-router-dom";
+import { changeModalOpen } from "../../../../../../../util";
 
 const demoData: TreeDataNode[] = [
     {
@@ -22,18 +23,42 @@ const demoData: TreeDataNode[] = [
                         title: "实时查询",
                         key: "2ca189d0-e96c-4389-8422-24ad910a6dc1",
                         isLeaf: true,
-                        switcherIcon: <span className="type offline"><StreamDraftOutlined /></span>,
-                        className: "sql"
+                        switcherIcon: <Tooltip title="未部署"><span className="type offline"><StreamDraftOutlined /></span></Tooltip>,
                     },
                     {
                         title: "实时大屏",
                         key: "96b2af76-27a3-46f2-a1c9-b7a7e7df73d4",
                         isLeaf: true,
-                        switcherIcon: <span className="type offline"><StreamDraftOutlined /></span>,
-                        className: "sql"
+                        switcherIcon: <Tooltip title="未部署"><span className="type offline"><StreamDraftOutlined /></span></Tooltip>,
                     }
                 ]
             },
+            {
+                title: "数据同步",
+                key: "0-1",
+                isLeaf: false,
+                switcherIcon: (node) => (node.expanded ? <FloderOpenColorOutlined /> : <FloderClosedColorOutlined />),
+                children: [
+                    {
+                        title: "db2kafka",
+                        key: "e65309f5-7e94-4c8f-aa2e-8c8fe19869f6",
+                        isLeaf: true,
+                        switcherIcon: <Tooltip title="已部署"><span className="type online"><StreamDraftOutlined /></span></Tooltip>,
+                    },
+                    {
+                        title: "order2kafka",
+                        key: "4ed06c1a-1fb3-4727-9607-e6a2ec38f9ef",
+                        isLeaf: true,
+                        switcherIcon: <Tooltip title="未部署"><span className="type offline"><StreamDraftOutlined /></span></Tooltip>,
+                    }
+                ]
+            },
+            {
+                title: "临时文件夹",
+                key: "0-2",
+                isLeaf: false,
+                switcherIcon: (node) => (node.expanded ? <FloderOpenColorOutlined /> : <FloderClosedColorOutlined />),
+            }
         ],
         switcherIcon: (node) => (node.expanded ? <FloderOpenColorOutlined /> : <FloderClosedColorOutlined />),
     },
@@ -42,16 +67,42 @@ const demoData: TreeDataNode[] = [
 const dirMenuId = "draft-tree-context-dir-menu";
 const fileMenuId = "draft-tree-context-file-menu";
 
+const doOnLeafNode = (treeData: TreeDataNode[], callback: (data: TreeDataNode) => void) => {
+    for (let i = 0; i < treeData.length; i++) {
+        if (treeData[i].isLeaf) {
+            callback(treeData[i]);
+        } else if (treeData[i].children) {
+            doOnLeafNode(treeData[i].children!, callback);
+        }
+    }
+};
+
 const DraftTree = () => {
     const [treeData, setTreeData] = useState<TreeDataNode[]>(demoData);
-    const [expandedKeys, setExpandedKeys] = useState<Key[]>([]);
+    const [expandedKeys, setExpandedKeys] = useState<Key[]>(["0"]);
     const [selectedKeys, setSelectedKeys] = useState<Key[]>([]);
     const [editing, setEditing] = useState<boolean>(false);
     const { show: showDirMenu } = useContextMenu({ id: dirMenuId });
     const { show: showFileMenu } = useContextMenu({ id: fileMenuId });
     const [modalOpen, setModalOpen] = useState<boolean>(false);
-
     const navigate = useNavigate();
+
+    const { pathname } = useLocation();
+    const pathMatch = matchPath("/workspace/:workspaceId/namespace/:namespaceId/draft/:draftId/sql", pathname);
+
+    useEffect(() => {
+        const draftId = pathMatch?.params.draftId;
+        if (draftId) {
+            doOnLeafNode(treeData, data => {
+                if (data.key === draftId) {
+                    data.className = "ant-tree-treenode-focused";
+                } else {
+                    data.className = undefined;
+                }
+            });
+            setTreeData([...treeData]);
+        }
+    }, [pathMatch?.params.draftId]);
 
     const titleRender = (dataNode: TreeDataNode) => {
         const expandCallback = () => {
@@ -74,12 +125,6 @@ const DraftTree = () => {
         );
     };
 
-
-    const onExpand = (expandedKeys: Key[]) => {
-        setExpandedKeys(expandedKeys);
-    };
-
-
     const atLastOneSelected = (keys: Key[]) => {
         if (keys.length === 0) {
             return;
@@ -91,13 +136,16 @@ const DraftTree = () => {
         return node.key !== "0";
     };
 
-    const allowDrop = (p: any) => {
+    const allowDrop: TreeProps["allowDrop"] = (p) => {
         return !p.dropNode.isLeaf;
     };
 
     const onDrop: TreeProps["onDrop"] = (info) => {
         const dropKey = info.node.key;
         const dragKey = info.dragNode.key;
+
+
+        const data = [...treeData];
 
         const loop = (
             data: TreeDataNode[],
@@ -113,7 +161,6 @@ const DraftTree = () => {
                 }
             }
         };
-        const data = [...treeData];
 
         let dragObj: TreeDataNode;
         loop(data, dragKey, (item, index, arr) => {
@@ -130,25 +177,18 @@ const DraftTree = () => {
 
     const onRightClick: TreeProps["onRightClick"] = ({ event, node }) => {
         if (node.isLeaf) {
-            showFileMenu({ event, props:node });
+            showFileMenu({ event, props: node });
         } else {
-            showDirMenu({ event, props:node });
+            showDirMenu({ event, props: node });
         }
     };
 
-    const onDoubleClick: TreeProps["onDoubleClick"] = (e, node) => {
-        if (!node.isLeaf){
+    const onDoubleClick: TreeProps["onDoubleClick"] = (_, node) => {
+        if (!node.isLeaf) {
             return;
         }
-        
-        navigate(`${node.key}/${node.className}`);
-    };
 
-
-    const changeModalOpen = (open: boolean) => {
-        return () => {
-            setModalOpen(open);
-        };
+        navigate(`${node.key}/sql`);
     };
 
     return (
@@ -159,7 +199,7 @@ const DraftTree = () => {
                 treeData={treeData}
                 titleRender={titleRender}
                 expandAction='doubleClick'
-                onExpand={onExpand}
+                onExpand={setExpandedKeys}
                 expandedKeys={expandedKeys}
                 rootClassName={editing ? "editing" : undefined}
                 onSelect={atLastOneSelected}
@@ -174,7 +214,7 @@ const DraftTree = () => {
             />
 
             <Menu id={dirMenuId}>
-                <Item id="1" onClick={changeModalOpen(true)}>
+                <Item id="1" onClick={changeModalOpen(true, setModalOpen)}>
                     新建作业草稿
                 </Item>
                 <Item id="2">
@@ -211,7 +251,7 @@ const DraftTree = () => {
                 </Item>
             </Menu>
 
-            <CreateDraftModal open={modalOpen} onCancel={changeModalOpen(false)} />
+            <CreateDraftModal open={modalOpen} onCancel={changeModalOpen(false, setModalOpen)} />
         </>
     );
 };
