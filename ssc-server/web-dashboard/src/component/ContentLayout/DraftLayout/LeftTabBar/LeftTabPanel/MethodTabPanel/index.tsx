@@ -22,18 +22,19 @@ const MethodTabPanel = () => {
                 {
                     key: "jar-url",
                     label: "Jar URL",
-                    children: "oss://ssc-b/sql-artifacts/namespaces/ssc-m-default/udfs/2023-10-24T07-22-39.525888Z/ASI_UDX-1.0-SNAPSHOT.jar"
+                    children:
+                        "oss://ssc-b/sql-artifacts/namespaces/ssc-m-default/udfs/2023-10-24T07-22-39.525888Z/ASI_UDX-1.0-SNAPSHOT.jar",
                 },
                 {
                     key: "create-time",
                     label: "Create Time",
-                    children: "2023-10-24 15:22:39"
+                    children: "2023-10-24 15:22:39",
                 },
                 {
                     key: "update-time",
                     label: "Update Time",
-                    children: "2023-10-24 15:22:40"
-                }
+                    children: "2023-10-24 15:22:40",
+                },
             ];
         }
 
@@ -58,7 +59,7 @@ const MethodTabPanel = () => {
                     key: "update-time",
                     label: "Update Time",
                     children: "2023-10-24 15:22:40",
-                }
+                },
             ];
         }
         return [];
@@ -79,7 +80,7 @@ const MethodTabPanel = () => {
                 <div className="actions">
                     <Button
                         className="ant-btn-icon-only"
-                        type='text'
+                        type="text"
                         size="small"
                         onClick={changeModalOpen(true, setRegisterModalOpen)}
                     >
@@ -87,7 +88,7 @@ const MethodTabPanel = () => {
                     </Button>
                     <Button
                         className="ant-btn-icon-only"
-                        type='text'
+                        type="text"
                         size="small"
                         onClick={onRefreshClick}
                     >
@@ -96,19 +97,35 @@ const MethodTabPanel = () => {
                 </div>
             </div>
             <div className="panel-bar searchbar panel panel-ltr panel-border-bottom">
-                <Input suffix={<SearchOutlined />} placeholder="搜索 UDFs / 函数…" />
+                <Input
+                    suffix={<SearchOutlined />}
+                    placeholder="搜索 UDFs / 函数…"
+                />
             </div>
             <div className="panel tree panel-ttb panel-border-bottom">
-                {
-                    loading
-                        ? (hasData ? <Spin>{<FuncTree onSelect={onSelect} />}</Spin> : <Spin />)
-                        : hasData ? <FuncTree onSelect={onSelect} />
-                            : (
-                                <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={false}>
-                                    <Button type="primary" block size="small" onClick={changeModalOpen(true, setRegisterModalOpen)}>注册 UDF</Button>
-                                </Empty>
-                            )
-                }
+                {loading ? (
+                    hasData ? (
+                        <Spin>{<FuncTree onSelect={onSelect} />}</Spin>
+                    ) : (
+                        <Spin />
+                    )
+                ) : hasData ? (
+                    <FuncTree onSelect={onSelect} />
+                ) : (
+                    <Empty
+                        image={Empty.PRESENTED_IMAGE_SIMPLE}
+                        description={false}
+                    >
+                        <Button
+                            type="primary"
+                            block
+                            size="small"
+                            onClick={changeModalOpen(true, setRegisterModalOpen)}
+                        >
+                            注册 UDF
+                        </Button>
+                    </Empty>
+                )}
             </div>
 
             <Resizable
@@ -120,23 +137,38 @@ const MethodTabPanel = () => {
             >
                 <>
                     <div className="title">
-                        {selectedNode ? <span className={selectedNode.className}>{selectedNode.icon as React.ReactNode} {selectedNode.title as React.ReactNode}</span> : <span>没有项目被选中</span>}
+                        {selectedNode ? (
+                            <span className={selectedNode.className}>
+                                {selectedNode.icon as React.ReactNode} {selectedNode.title as React.ReactNode}
+                            </span>
+                        ) : (
+                            <span>没有项目被选中</span>
+                        )}
                     </div>
 
                     <div className="detail">
-                        {selectedNode
-                            ? <Descriptions
+                        {selectedNode ? (
+                            <Descriptions
                                 layout="vertical"
                                 items={buildItems(selectedNode)}
                                 column={1}
                                 bordered
                                 size="small"
                             />
-                            : <div className="no-selected">没有 UDFs JAR / 函数 被选中</div>}
+                        ) : (
+                            <div className="no-selected">没有 UDFs JAR / 函数 被选中</div>
+                        )}
                     </div>
                 </>
             </Resizable>
-            <RegisterModal open={registerModalOpen} onCancel={changeModalOpen(false, setRegisterModalOpen)} onOk={() => { setHasData(true); setRegisterModalOpen(false); }} />
+            <RegisterModal
+                open={registerModalOpen}
+                onCancel={changeModalOpen(false, setRegisterModalOpen)}
+                onOk={() => {
+                    setHasData(true);
+                    setRegisterModalOpen(false);
+                }}
+            />
         </div>
     );
 };

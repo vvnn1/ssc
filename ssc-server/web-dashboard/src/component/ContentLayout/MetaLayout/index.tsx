@@ -10,13 +10,8 @@ import CatalogDetailLayout from "./CatalogDetailLayout";
 import DatabaseDetailLayout from "./DatabaseDetailLayout";
 import TableDetailLayout from "./TableDetailLayout";
 
-
-
-
 const MetaLayout = () => {
     const treeContainerRef = useRef<HTMLDivElement>(null);
-
-
 
     return (
         <div className="meta-layout">
@@ -26,43 +21,58 @@ const MetaLayout = () => {
                     <div className="actions">
                         <Button
                             className="ant-btn-icon-only"
-                            type='text'
+                            type="text"
                             size="small"
                         >
                             <ReloadOutlined />
                         </Button>
                         <Button
                             className="ant-btn-icon-only"
-                            type='text'
+                            type="text"
                             size="small"
                         >
                             <PlusOutlined />
                         </Button>
-
                     </div>
                 </div>
                 <div className="panel-bar searchbar panel panel-ltr">
-                    <Input suffix={<SearchOutlined />} placeholder="搜索名称…" />
+                    <Input
+                        suffix={<SearchOutlined />}
+                        placeholder="搜索名称…"
+                    />
                 </div>
-                <div className="panel tree panel-ltr" ref={treeContainerRef}>
+                <div
+                    className="panel tree panel-ltr"
+                    ref={treeContainerRef}
+                >
                     <ScrollPin containerRef={treeContainerRef} />
                     <MetaTree />
                 </div>
             </div>
             <div className="panel main panel-ttb">
                 <Routes>
-                    <Route path="list" element={<MetaDetailLayout />} />
+                    <Route
+                        path="list"
+                        element={<MetaDetailLayout />}
+                    />
                     <Route path=":catalogName">
-                        <Route path='list' element={<CatalogDetailLayout />} />
-                        <Route path=':databseName'>
-                            <Route path="list" element={<DatabaseDetailLayout />} />
-                            <Route path=":tableName" element={<TableDetailLayout />} />
+                        <Route
+                            path="list"
+                            element={<CatalogDetailLayout />}
+                        />
+                        <Route path=":databseName">
+                            <Route
+                                path="list"
+                                element={<DatabaseDetailLayout />}
+                            />
+                            <Route
+                                path=":tableName"
+                                element={<TableDetailLayout />}
+                            />
                         </Route>
                     </Route>
                 </Routes>
-
             </div>
-
         </div>
     );
 };

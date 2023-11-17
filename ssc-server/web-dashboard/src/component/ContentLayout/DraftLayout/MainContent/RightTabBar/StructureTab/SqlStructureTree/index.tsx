@@ -2,7 +2,6 @@ import { Tree, TreeProps } from "antd";
 import { CaretDownOutlined } from "../../../../../../Icon";
 import "./index.sass";
 
-
 const treeData: TreeProps["treeData"] = [
     {
         title: "INSERT INTO sensor_sink SELECT martvey_pre(id) AS id, dt, temperature FROM sensor_source",
@@ -17,7 +16,7 @@ const treeData: TreeProps["treeData"] = [
                     {
                         title: "sensor_source",
                         key: "0-0-0-0",
-                        className: "source"
+                        className: "source",
                     },
                 ],
             },
@@ -26,13 +25,11 @@ const treeData: TreeProps["treeData"] = [
 ];
 
 const SqlStructureTree = () => {
-
     const onSelect: TreeProps["onSelect"] = (selectedKeys, info) => {
         console.log("selected", selectedKeys, info);
     };
 
-    const titleRender: TreeProps["titleRender"] = (node) => {
-
+    const titleRender: TreeProps["titleRender"] = node => {
         return (
             <span className="tree-node-text">
                 <span className="tree-node-text-type">{node.className?.toUpperCase()}</span>
@@ -54,6 +51,5 @@ const SqlStructureTree = () => {
         />
     );
 };
-
 
 export default SqlStructureTree;

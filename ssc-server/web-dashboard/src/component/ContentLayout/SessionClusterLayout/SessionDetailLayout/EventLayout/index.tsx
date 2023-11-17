@@ -63,7 +63,10 @@ const EventLayout = () => {
             <div className="event-filter">
                 <Space.Compact className="ant-input-group">
                     <span className="ant-input-group-addon">过滤事件</span>
-                    <Input placeholder="输入信息内容搜索" suffix={<SearchOutlined />} />
+                    <Input
+                        placeholder="输入信息内容搜索"
+                        suffix={<SearchOutlined />}
+                    />
                 </Space.Compact>
             </div>
             <Table
@@ -71,15 +74,20 @@ const EventLayout = () => {
                 columns={columns}
                 size="small"
                 expandable={{
-                    expandedRowRender: (record) => <MonacoEditor options={{minimap: {enabled: false}}} height={62} value={record.description} />,
-                    rowExpandable: (record) => record.name !== "Not Expandable",
-                    columnWidth: 60
+                    expandedRowRender: record => (
+                        <MonacoEditor
+                            options={{ minimap: { enabled: false } }}
+                            height={62}
+                            value={record.description}
+                        />
+                    ),
+                    rowExpandable: record => record.name !== "Not Expandable",
+                    columnWidth: 60,
                 }}
                 dataSource={data}
             />
         </div>
     );
 };
-
 
 export default EventLayout;

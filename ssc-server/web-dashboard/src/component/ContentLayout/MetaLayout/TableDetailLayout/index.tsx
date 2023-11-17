@@ -22,28 +22,38 @@ const TableDetailLayout = () => {
             <Breadcrumb
                 items={[
                     {
-                        title: "Catalog 列表"
+                        title: "Catalog 列表",
                     },
                     {
-                        title: "vvp"
+                        title: "vvp",
                     },
                     {
-                        title: "default"
+                        title: "default",
                     },
                     {
-                        title: "datagen_kk_source"
-                    }
+                        title: "datagen_kk_source",
+                    },
                 ]}
             />
             <div className="header">
                 <div className="title">
                     <ArrowLeftOutlined onClick={onBackClick} />
-                    <span className='text'>datagen_kk_source</span>
+                    <span className="text">datagen_kk_source</span>
                 </div>
                 <div className="actions">
                     <Space>
-                        <Button type="primary" onClick={changeModalOpen(true, setRenameModalOpen)}>重命名</Button>
-                        <Button danger onClick={changeModalOpen(true, setDeleteModalOpen)}>删除表</Button>
+                        <Button
+                            type="primary"
+                            onClick={changeModalOpen(true, setRenameModalOpen)}
+                        >
+                            重命名
+                        </Button>
+                        <Button
+                            danger
+                            onClick={changeModalOpen(true, setDeleteModalOpen)}
+                        >
+                            删除表
+                        </Button>
                     </Space>
                 </div>
             </div>
@@ -59,13 +69,19 @@ const TableDetailLayout = () => {
                         {
                             key: "2",
                             label: "血缘关系",
-                            children: <RelationLayout />
-                        }
+                            children: <RelationLayout />,
+                        },
                     ]}
                 />
             </div>
-            <RenameModal open={renameModalOpen} onCancel={changeModalOpen(false, setRenameModalOpen)}/>
-            <DeleteModal open={deleteModalOpen} onCancel={changeModalOpen(false, setDeleteModalOpen)}/>
+            <RenameModal
+                open={renameModalOpen}
+                onCancel={changeModalOpen(false, setRenameModalOpen)}
+            />
+            <DeleteModal
+                open={deleteModalOpen}
+                onCancel={changeModalOpen(false, setDeleteModalOpen)}
+            />
         </div>
     );
 };

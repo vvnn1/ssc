@@ -18,18 +18,26 @@ const menuItems: MenuProps["items"] = [
 ];
 
 const ConfigurationLayout = () => {
-
     return (
         <div className="configuration-layout">
             <div className="header">
                 <div className="title">配置管理</div>
             </div>
             <div className="content">
-                <TabMenu menuItems={menuItems} keyPath={"/workspace/:workspaceId/namespace/:namespaceId/configurations/:key"}/>
+                <TabMenu
+                    menuItems={menuItems}
+                    keyPath={"/workspace/:workspaceId/namespace/:namespaceId/configurations/:key"}
+                />
                 <div className="content-container">
                     <Routes>
-                        <Route path="deployment-defaults" element={<WorkSettingLayout />} />
-                        <Route path="alarm-rules" element={<AlarmTemplateLayout />} />
+                        <Route
+                            path="deployment-defaults"
+                            element={<WorkSettingLayout />}
+                        />
+                        <Route
+                            path="alarm-rules"
+                            element={<AlarmTemplateLayout />}
+                        />
                     </Routes>
                 </div>
             </div>

@@ -8,7 +8,6 @@ const AlarmRule = () => {
     const [templateDrawerOpen, setTemplateDrawerOpen] = useState<boolean>(false);
     const [ruleDrawerOpen, setRuleDrawerOpen] = useState<boolean>(false);
 
-
     const changeTemplateDrawerOpen = (open: boolean) => {
         return () => {
             setTemplateDrawerOpen(open);
@@ -23,69 +22,87 @@ const AlarmRule = () => {
 
     return (
         <div className="alarm-rule-layout">
-            <div className='custom-template'>
+            <div className="custom-template">
                 <Dropdown
                     menu={{
                         items: [
                             {
-                                label: <><PlusOutlined /> 自定义规则</>,
+                                label: (
+                                    <>
+                                        <PlusOutlined /> 自定义规则
+                                    </>
+                                ),
                                 key: "1",
-                                onClick: changeRuleDrawerOpen(true)
+                                onClick: changeRuleDrawerOpen(true),
                             },
                             {
                                 type: "divider",
                             },
                             {
-                                label: <><PlusOutlined /> 自定义模板</>,
+                                label: (
+                                    <>
+                                        <PlusOutlined /> 自定义模板
+                                    </>
+                                ),
                                 key: "2",
                                 children: [
                                     {
                                         key: "2-1",
-                                        label: <span style={{ color: "#0070cc" }}><PlusOutlined /> 添加规则模板</span>,
-                                        onClick: changeTemplateDrawerOpen(true)
+                                        label: (
+                                            <span style={{ color: "#0070cc" }}>
+                                                <PlusOutlined /> 添加规则模板
+                                            </span>
+                                        ),
+                                        onClick: changeTemplateDrawerOpen(true),
                                     },
                                     {
                                         key: "2-2",
-                                        label: <><PlusOutlined /> test</>,
-                                        onClick: changeRuleDrawerOpen(true)
-                                    }
-                                ]
-                            }
-                        ]
+                                        label: (
+                                            <>
+                                                <PlusOutlined /> test
+                                            </>
+                                        ),
+                                        onClick: changeRuleDrawerOpen(true),
+                                    },
+                                ],
+                            },
+                        ],
                     }}
                 >
                     <a>
-                        <PlusOutlined />添加告警规则<DownOutlined />
+                        <PlusOutlined />
+                        添加告警规则
+                        <DownOutlined />
                     </a>
                 </Dropdown>
             </div>
 
             <Table
                 bordered
-                size='middle'
+                size="middle"
                 columns={[
                     {
                         title: "规则名称",
-                        dataIndex: "name"
+                        dataIndex: "name",
                     },
                     {
                         title: "指标",
-                        dataIndex: "criteria"
+                        dataIndex: "criteria",
                     },
                     {
                         title: "规则状态",
                         width: 100,
                         dataIndex: "status",
-                        render: (value) => <Tag color='blue'>{value}</Tag>
+                        render: value => <Tag color="blue">{value}</Tag>,
                     },
                     {
                         title: "描述",
-                        dataIndex: "desc"
+                        dataIndex: "desc",
                     },
                     {
                         title: "创建时间",
                         width: 180,
-                        dataIndex: "createTime"
+                        dataIndex: "createTime",
                     },
                     {
                         title: "操作",
@@ -97,7 +114,7 @@ const AlarmRule = () => {
                                 <Popconfirm
                                     okText="确认"
                                     cancelText="取消"
-                                    title='确定停止当前规则吗?'
+                                    title="确定停止当前规则吗?"
                                     overlayClassName="ant-popover-rtl"
                                 >
                                     <Typography.Link>停止</Typography.Link>
@@ -109,14 +126,14 @@ const AlarmRule = () => {
                                 <Popconfirm
                                     okText="确认"
                                     cancelText="取消"
-                                    title='确定删除当前规则吗?'
+                                    title="确定删除当前规则吗?"
                                     overlayClassName="ant-popover-rtl"
                                 >
                                     <a>删除</a>
                                 </Popconfirm>
                             </div>
-                        )
-                    }
+                        ),
+                    },
                 ]}
                 dataSource={[
                     {
@@ -124,15 +141,24 @@ const AlarmRule = () => {
                         criteria: "Restart Count in 1 Minute",
                         status: "已启用",
                         desc: "大苏打阿斯顿阿斯顿",
-                        createTime: "2023-10-07 14:55:03"
-                    }
+                        createTime: "2023-10-07 14:55:03",
+                    },
                 ]}
             />
 
-            <AlarmDrawer open={ruleDrawerOpen} onClose={changeRuleDrawerOpen(false)} model="create-rule" title="创建规则" />
-            <AlarmDrawer open={templateDrawerOpen} onClose={changeTemplateDrawerOpen(false)} model='create-template' title="创建告警规则模板" />
+            <AlarmDrawer
+                open={ruleDrawerOpen}
+                onClose={changeRuleDrawerOpen(false)}
+                model="create-rule"
+                title="创建规则"
+            />
+            <AlarmDrawer
+                open={templateDrawerOpen}
+                onClose={changeTemplateDrawerOpen(false)}
+                model="create-template"
+                title="创建告警规则模板"
+            />
         </div>
-
     );
 };
 

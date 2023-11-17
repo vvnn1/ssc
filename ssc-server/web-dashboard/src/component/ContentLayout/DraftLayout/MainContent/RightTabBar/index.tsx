@@ -26,19 +26,33 @@ const RightTabBar = (props: RightTabBarProps) => {
 
     return (
         <div className="tabs-bar-right">
-            <div id="draft-configurations" className={`tabs-bar-tab-label ${activeLabel === "draft-configurations" ? "tabs-bar-tab-label-activated" : ""}`} onClick={changeActiveLabel("draft-configurations", <ConfigurationTab />)}>
+            <div
+                id="draft-configurations"
+                className={`tabs-bar-tab-label ${
+                    activeLabel === "draft-configurations" ? "tabs-bar-tab-label-activated" : ""
+                }`}
+                onClick={changeActiveLabel("draft-configurations", <ConfigurationTab />)}
+            >
                 <span className="tabs-bar-tab-icon">
                     <ControlOutlined />
                 </span>
                 <span className="tabs-bar-tab-title">更多配置</span>
             </div>
-            <div id="structure" className={`tabs-bar-tab-label ${activeLabel === "structure" ? "tabs-bar-tab-label-activated" : ""}`} onClick={changeActiveLabel("structure", <StructureTab />)}>
+            <div
+                id="structure"
+                className={`tabs-bar-tab-label ${activeLabel === "structure" ? "tabs-bar-tab-label-activated" : ""}`}
+                onClick={changeActiveLabel("structure", <StructureTab />)}
+            >
                 <span className="tabs-bar-tab-icon">
                     <ApartmentOutlined />
                 </span>
                 <span className="tabs-bar-tab-title">代码结构</span>
             </div>
-            <div id="versions" className={`tabs-bar-tab-label ${activeLabel === "versions" ? "tabs-bar-tab-label-activated" : ""}`} onClick={changeActiveLabel("versions", <VersionTab />)}>
+            <div
+                id="versions"
+                className={`tabs-bar-tab-label ${activeLabel === "versions" ? "tabs-bar-tab-label-activated" : ""}`}
+                onClick={changeActiveLabel("versions", <VersionTab />)}
+            >
                 <span className="tabs-bar-tab-icon">
                     <HistoryOutlined />
                 </span>

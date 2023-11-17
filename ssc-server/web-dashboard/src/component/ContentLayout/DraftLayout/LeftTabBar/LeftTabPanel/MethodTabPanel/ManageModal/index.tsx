@@ -2,7 +2,6 @@ import { Button, Divider, Input, Modal, ModalProps, Table } from "antd";
 import "./index.sass";
 import { useState } from "react";
 
-
 interface ManageModalProps extends ModalProps {
     onDeleteClick: () => void;
     onCreateClick: () => void;
@@ -27,11 +26,11 @@ const ManageModal = (props: ManageModalProps) => {
                 columns={[
                     {
                         title: "Function Name",
-                        dataIndex: "name"
+                        dataIndex: "name",
                     },
                     {
                         title: "Class",
-                        dataIndex: "clazz"
+                        dataIndex: "clazz",
                     },
                     Table.SELECTION_COLUMN,
                 ]}
@@ -39,17 +38,23 @@ const ManageModal = (props: ManageModalProps) => {
                     {
                         key: "1",
                         name: "ASI_UDF",
-                        clazz: "ASI_UDF.ASI_UDF"
+                        clazz: "ASI_UDF.ASI_UDF",
                     },
                 ]}
                 rowSelection={{
                     columnWidth: "33%",
-                    onChange: (keys) => setEnableDelete(keys.length > 0)
+                    onChange: keys => setEnableDelete(keys.length > 0),
                 }}
                 pagination={false}
             />
             <div className="btn-container">
-                <Button disabled={!enableDelete} type="primary" onClick={props.onDeleteClick}>删除函数</Button>
+                <Button
+                    disabled={!enableDelete}
+                    type="primary"
+                    onClick={props.onDeleteClick}
+                >
+                    删除函数
+                </Button>
             </div>
             <Divider />
             <h3>可用函数</h3>
@@ -58,7 +63,12 @@ const ManageModal = (props: ManageModalProps) => {
                     {
                         title: "Function Name",
                         dataIndex: "name",
-                        render: (value) => <Input defaultValue={value} style={{ backgroundColor: "transparent" }} />
+                        render: value => (
+                            <Input
+                                defaultValue={value}
+                                style={{ backgroundColor: "transparent" }}
+                            />
+                        ),
                     },
                     {
                         title: "Function class",
@@ -67,30 +77,35 @@ const ManageModal = (props: ManageModalProps) => {
                     Table.SELECTION_COLUMN,
                 ]}
                 dataSource={[
-
                     {
                         key: "2",
                         name: "ASI_UDTF",
-                        clazz: "ASI_UDTF.ASI_UDTF"
+                        clazz: "ASI_UDTF.ASI_UDTF",
                     },
                     {
                         key: "3",
                         name: "ASI_UDAF$MySum",
-                        clazz: "ASI_UDAF.ASI_UDAF$MySum"
-                    }
+                        clazz: "ASI_UDAF.ASI_UDAF$MySum",
+                    },
                 ]}
                 bordered
                 size="small"
                 rowSelection={{
                     columnWidth: "33%",
-                    onChange: (keys) => setEnableCreate(keys.length > 0)
+                    onChange: keys => setEnableCreate(keys.length > 0),
                 }}
                 pagination={false}
             />
             <div className="btn-container">
-                <Button disabled={!enableCreate} type="primary" onClick={props.onCreateClick}>创建函数</Button>
-            </div >
-        </Modal >
+                <Button
+                    disabled={!enableCreate}
+                    type="primary"
+                    onClick={props.onCreateClick}
+                >
+                    创建函数
+                </Button>
+            </div>
+        </Modal>
     );
 };
 

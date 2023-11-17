@@ -15,7 +15,7 @@ const CreateCatalogModal = (props: ModalProps) => {
                 title: "创建 Catalog",
                 width: 900,
                 rootClassName: "create-catalog-modal",
-                destroyOnClose: true
+                destroyOnClose: true,
             }}
             stepsProps={{
                 size: "small",
@@ -26,19 +26,20 @@ const CreateCatalogModal = (props: ModalProps) => {
                     {
                         title: "配置 Catalog",
                     },
-                ]
+                ],
             }}
         >
-            {
-                (currentStep: number) => {
-                    return (
-                        <div className="steps-body">
-                            <Step1Form hidden={currentStep !== 0} onNextFormChange={setStepForm2}  />
-                            <div hidden={currentStep !== 1}>{stepForm2}</div>
-                        </div>
-                    );
-                }
-            }
+            {(currentStep: number) => {
+                return (
+                    <div className="steps-body">
+                        <Step1Form
+                            hidden={currentStep !== 0}
+                            onNextFormChange={setStepForm2}
+                        />
+                        <div hidden={currentStep !== 1}>{stepForm2}</div>
+                    </div>
+                );
+            }}
         </StepModal>
     );
 };

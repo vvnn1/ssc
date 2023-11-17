@@ -3,7 +3,7 @@ import "./AlarmCard.sass";
 
 interface AlarmCardProps {
     title: string;
-    children: React.ReactNode
+    children: React.ReactNode;
 }
 
 const AlarmCard = (props: AlarmCardProps) => {
@@ -13,7 +13,7 @@ const AlarmCard = (props: AlarmCardProps) => {
             title={props.title}
             bordered={false}
             className="alarm-card"
-            bodyStyle={{padding: "16px 24px"}}
+            bodyStyle={{ padding: "16px 24px" }}
         >
             {props.children}
         </Card>

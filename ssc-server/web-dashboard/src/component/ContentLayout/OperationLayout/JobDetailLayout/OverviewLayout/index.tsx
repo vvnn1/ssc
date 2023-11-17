@@ -9,7 +9,12 @@ const items: DescriptionsProps["items"] = [
     {
         key: "1",
         label: "健康分",
-        children: <SorceBadge sorce={0} model="disabled" />
+        children: (
+            <SorceBadge
+                sorce={0}
+                model="disabled"
+            />
+        ),
     },
     {
         key: "2",
@@ -19,7 +24,13 @@ const items: DescriptionsProps["items"] = [
     {
         key: "3",
         label: "操作",
-        children: <><a>作业详情</a><Divider type="vertical"/><a>Flink UI</a></>
+        children: (
+            <>
+                <a>作业详情</a>
+                <Divider type="vertical" />
+                <a>Flink UI</a>
+            </>
+        ),
     },
     {
         key: "4",
@@ -44,19 +55,35 @@ const OverviewLayout = () => {
     const onCopy = () => {
         messageApi.success({
             icon: <></>,
-            content: <><CheckCircleOutlined color="#00a700" />作业 ID 已复制</>
+            content: (
+                <>
+                    <CheckCircleOutlined color="#00a700" />
+                    作业 ID 已复制
+                </>
+            ),
         });
     };
 
     return (
         <div className="development-overview-layout">
             <Card
-                title={<>当前作业 <Divider type="vertical" /> <CopyToClipboard text='d740d2cc-c085-4d22-b620-7e1d5c68454b' onCopy={onCopy}><span className="id">d740d2cc-c085-4d22-b620-7e1d5c68454b</span></CopyToClipboard></>}
+                title={
+                    <>
+                        当前作业 <Divider type="vertical" />{" "}
+                        <CopyToClipboard
+                            text="d740d2cc-c085-4d22-b620-7e1d5c68454b"
+                            onCopy={onCopy}
+                        >
+                            <span className="id">d740d2cc-c085-4d22-b620-7e1d5c68454b</span>
+                        </CopyToClipboard>
+                    </>
+                }
                 size="small"
             >
                 <Descriptions
                     size="small"
-                    bordered items={items}
+                    bordered
+                    items={items}
                 />
                 <div className="job-detail-chart-container">
                     <div className="no-chart">
@@ -83,28 +110,27 @@ const OverviewLayout = () => {
                         {
                             title: "状态",
                             dataIndex: "status",
-                            render: () => (<StateBadge state="FINISHED"/>)
+                            render: () => <StateBadge state="FINISHED" />,
                         },
                         {
                             title: "操作",
                             render: () => (
                                 <>
                                     <a>详情</a>
-                                    <Divider type="vertical"/>
+                                    <Divider type="vertical" />
                                     <a>事件</a>
                                 </>
-                            )
-                        }
+                            ),
+                        },
                     ]}
                     dataSource={[
                         {
                             createTime: "2023-11-03 15:37:41",
                             stopTime: "2023-11-03 15:39:41",
-                            status: "FINISHED"
-                        }
+                            status: "FINISHED",
+                        },
                     ]}
                     pagination={false}
-
                 />
             </Card>
             {contextHolder}

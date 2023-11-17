@@ -9,7 +9,7 @@ const StdoutLayout = () => {
             <MonacoEditor
                 options={{
                     minimap: {
-                        enabled: false
+                        enabled: false,
                     },
                     selectOnLineNumbers: true,
                     lineNumbersMinChars: 5,
@@ -18,8 +18,7 @@ const StdoutLayout = () => {
                     readOnly: false,
                     scrollBeyondLastLine: false,
                 }}
-                value={
-                    `2023-09-10 16:57:03,461 [main] INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - --------------------------------------------------------------------------------
+                value={`2023-09-10 16:57:03,461 [main] INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - --------------------------------------------------------------------------------
 2023-09-10 16:57:03,466 [main] INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  Preconfiguration: 
 2023-09-10 16:57:03,466 [main] INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - 
 
@@ -363,11 +362,19 @@ INFO  [] -     JVM Overhead:       409.600mb (429496736 bytes)
 
                     `}
             />
-            <Space.Compact
-                className='actions'
-            >
-                <Button size="small" type='primary'><SyncOutlined /></Button>
-                <Button size="small" type='primary'><DownloadOutlined /></Button>
+            <Space.Compact className="actions">
+                <Button
+                    size="small"
+                    type="primary"
+                >
+                    <SyncOutlined />
+                </Button>
+                <Button
+                    size="small"
+                    type="primary"
+                >
+                    <DownloadOutlined />
+                </Button>
             </Space.Compact>
         </div>
     );

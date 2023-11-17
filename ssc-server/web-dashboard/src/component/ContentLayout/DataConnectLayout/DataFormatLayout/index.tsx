@@ -19,7 +19,6 @@ const connectorItems: CardProps[] = [
         icon: <RawOutlined />,
         desc: "Raw",
     },
-
 ];
 
 const tabItems: TabsProps["items"] = [
@@ -31,7 +30,7 @@ const tabItems: TabsProps["items"] = [
                 <List
                     grid={{ gutter: 16, column: 3 }}
                     dataSource={connectorItems}
-                    renderItem={(item) => (
+                    renderItem={item => (
                         <List.Item>
                             <Card
                                 icon={item.icon}
@@ -41,7 +40,6 @@ const tabItems: TabsProps["items"] = [
                         </List.Item>
                     )}
                 />
-
             </div>
         ),
     },
@@ -74,15 +72,21 @@ const DataFormatLayout = () => {
 
                     <Input
                         placeholder="搜索数据格式"
-                        suffix={
-                            <SearchOutlined />
-                        }
+                        suffix={<SearchOutlined />}
                     />
                 </Space>
             </div>
 
             <Tabs
-                tabBarExtraContent={<Button size='small' type="primary" onClick={changeModalOpen(true)}>创建自定义数据格式</Button>}
+                tabBarExtraContent={
+                    <Button
+                        size="small"
+                        type="primary"
+                        onClick={changeModalOpen(true)}
+                    >
+                        创建自定义数据格式
+                    </Button>
+                }
                 defaultActiveKey="1"
                 items={tabItems}
             />

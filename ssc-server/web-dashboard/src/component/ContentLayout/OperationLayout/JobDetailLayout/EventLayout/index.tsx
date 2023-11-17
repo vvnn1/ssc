@@ -12,20 +12,24 @@ const EventLayout = () => {
         {
             key: "1",
             label: <span style={{ color: "#0064c8" }}>作业详情</span>,
-            onClick: changeModalOpen(true, setDetailModalOpen)
+            onClick: changeModalOpen(true, setDetailModalOpen),
         },
         {
             key: "2",
-            label: <span style={{ color: "#0064c8" }}>搜索该作业事件</span>
-        }
+            label: <span style={{ color: "#0064c8" }}>搜索该作业事件</span>,
+        },
     ];
 
     return (
         <div className="development-event-layout">
-            <Input className="search-input" suffix={<SearchOutlined />} placeholder='输入信息内容或作业 ID' />
+            <Input
+                className="search-input"
+                suffix={<SearchOutlined />}
+                placeholder="输入信息内容或作业 ID"
+            />
 
             <Table
-                size='small'
+                size="small"
                 columns={[
                     {
                         width: 65,
@@ -33,26 +37,28 @@ const EventLayout = () => {
                     {
                         title: "时间",
                         width: 200,
-                        dataIndex: "date"
+                        dataIndex: "date",
                     },
                     {
                         title: "信息",
-                        dataIndex: "message"
+                        dataIndex: "message",
                     },
                     {
                         title: "操作",
                         className: "operator",
                         render: () => (
                             <>
-                                <a>复制信息</a><Divider type="vertical" />
-                                <Dropdown
-                                    menu={{ items }}
-                                >
-                                    <a>更多<DownOutlined /></a>
+                                <a>复制信息</a>
+                                <Divider type="vertical" />
+                                <Dropdown menu={{ items }}>
+                                    <a>
+                                        更多
+                                        <DownOutlined />
+                                    </a>
                                 </Dropdown>
                             </>
-                        )
-                    }
+                        ),
+                    },
                 ]}
                 dataSource={[
                     {
@@ -64,10 +70,13 @@ const EventLayout = () => {
                         key: "2",
                         date: "	2023-09-27 09:54:10",
                         message: "Awaiting cluster teardown.",
-                    }
+                    },
                 ]}
             />
-            <DetailModal open={detailModalOpen} onCancel={changeModalOpen(false, setDetailModalOpen)} />
+            <DetailModal
+                open={detailModalOpen}
+                onCancel={changeModalOpen(false, setDetailModalOpen)}
+            />
         </div>
     );
 };

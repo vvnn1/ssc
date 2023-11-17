@@ -13,7 +13,7 @@ const HologresForm = () => {
             >
                 <Input />
             </Form.Item>
-            
+
             <Form.Item
                 label="endpoint"
                 required

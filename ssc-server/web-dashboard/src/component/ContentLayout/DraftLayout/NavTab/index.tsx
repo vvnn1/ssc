@@ -7,7 +7,6 @@ import CreateDraftModal from "../ToolBar/CreateDraftModal";
 
 type TargetKey = React.MouseEvent | React.KeyboardEvent | string;
 
-
 export interface TabItem {
     id: string;
     name: string;
@@ -38,7 +37,14 @@ const NavTab: React.FC<NavTabProps> = ({ selectedItem }) => {
             return {
                 id: item.id,
                 key: item.id,
-                label: <><span className="draft-type type offline"><StreamDraftOutlined /></span><span className="draft-name">{item.name}</span></>,
+                label: (
+                    <>
+                        <span className="draft-type type offline">
+                            <StreamDraftOutlined />
+                        </span>
+                        <span className="draft-name">{item.name}</span>
+                    </>
+                ),
             };
         });
     };
@@ -46,7 +52,6 @@ const NavTab: React.FC<NavTabProps> = ({ selectedItem }) => {
     const onChange = (id: string) => {
         navigate(`../../${id}/sql`);
     };
-
 
     const changeModalOpen = (open: boolean) => {
         return () => {
@@ -69,14 +74,14 @@ const NavTab: React.FC<NavTabProps> = ({ selectedItem }) => {
             }
         }
 
-        const newPanes = items.filter((item) => item.id !== targetId);
+        const newPanes = items.filter(item => item.id !== targetId);
         if (newPanes.length === 0) {
             navigate("../../.");
             return;
         }
-        
+
         setItems(newPanes);
-        
+
         if (newActiveId === targetId) {
             if (lastIndex > -1) {
                 newActiveId = newPanes[lastIndex].id;
@@ -87,10 +92,7 @@ const NavTab: React.FC<NavTabProps> = ({ selectedItem }) => {
         }
     };
 
-    const onEdit = (
-        targetId: React.MouseEvent | React.KeyboardEvent | string,
-        action: "add" | "remove",
-    ) => {
+    const onEdit = (targetId: React.MouseEvent | React.KeyboardEvent | string, action: "add" | "remove") => {
         if (action === "add") {
             add();
         } else {
@@ -109,11 +111,12 @@ const NavTab: React.FC<NavTabProps> = ({ selectedItem }) => {
                 items={transTabs(items)}
                 size="small"
             />
-            <CreateDraftModal open={modalOpen} onCancel={changeModalOpen(false)} />
+            <CreateDraftModal
+                open={modalOpen}
+                onCancel={changeModalOpen(false)}
+            />
         </>
-
     );
 };
 
 export default NavTab;
-

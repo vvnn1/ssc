@@ -11,28 +11,35 @@ const LogDetailLayout = () => {
                 <Breadcrumb
                     items={[
                         {
-                            title: <><LeftSquareFilled /> 日志列表</>,
-                            href: useHref("../.")
+                            title: (
+                                <>
+                                    <LeftSquareFilled /> 日志列表
+                                </>
+                            ),
+                            href: useHref("../."),
                         },
                         {
-                            title: "20230927_095224-0"
-                        }
+                            title: "20230927_095224-0",
+                        },
                     ]}
                 />
 
-                <Pagination simple defaultCurrent={2} total={50} />
+                <Pagination
+                    simple
+                    defaultCurrent={2}
+                    total={50}
+                />
             </div>
             <div className="editor-container">
                 <MonacoEditor
                     options={{
                         minimap: {
-                            enabled: false
+                            enabled: false,
                         },
                         lineDecorationsWidth: 0,
-                        wordWrap: "on"
+                        wordWrap: "on",
                     }}
-                    value={
-                        `2023-09-27 09:52:24,292 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - --------------------------------------------------------------------------------
+                    value={`2023-09-27 09:52:24,292 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - --------------------------------------------------------------------------------
 2023-09-27 09:52:24,305 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  Preconfiguration: 
 2023-09-27 09:52:24,309 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - 
 
@@ -767,8 +774,7 @@ INFO  [] -     JVM Overhead:       192.000mb (201326592 bytes)
 2023-09-27 09:54:11,729 INFO  org.apache.flink.kubernetes.highavailability.KubernetesMultipleComponentLeaderElectionHaServices [] - Finished cleaning up the high availability data.
 2023-09-27 09:54:11,947 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - Terminating cluster entrypoint process KubernetesJobGraphClusterEntrypoint with exit code 0.
 2023-09-27 09:54:11,947 INFO  org.apache.flink.kubernetes.utils.KubernetesUtilsInternal    [] - Waiting for cluster entrypoint process to be terminated by Kubernetes.
-2023-09-27 09:54:14,427 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - RECEIVED SIGNAL 15: SIGTERM. Shutting down as requested.`
-                    }
+2023-09-27 09:54:14,427 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - RECEIVED SIGNAL 15: SIGTERM. Shutting down as requested.`}
                 />
             </div>
         </div>

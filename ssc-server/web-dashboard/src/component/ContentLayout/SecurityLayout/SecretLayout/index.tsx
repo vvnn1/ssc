@@ -15,8 +15,6 @@ interface Secret {
 type TableProps = Parameters<typeof Table<Secret>>[0];
 type ColumnTypes = Exclude<TableProps["columns"], undefined>;
 
-
-
 const data: Secret[] = [
     {
         key: "1",
@@ -33,7 +31,11 @@ const SecretLayout = () => {
         {
             title: "密钥名称",
             dataIndex: "name",
-            render: (value) => <><LockOutlined style={{ color: "#666" }} /> {value}</>
+            render: value => (
+                <>
+                    <LockOutlined style={{ color: "#666" }} /> {value}
+                </>
+            ),
         },
         {
             title: "创建时间",
@@ -43,14 +45,28 @@ const SecretLayout = () => {
         {
             title: "操作",
             width: 200,
-            render: () => (<Button type="link" icon={<DeleteOutlined />} size="small" danger onClick={changeModalOpen(true, setDeleteModalOpen)}>删除</Button>)
+            render: () => (
+                <Button
+                    type="link"
+                    icon={<DeleteOutlined />}
+                    size="small"
+                    danger
+                    onClick={changeModalOpen(true, setDeleteModalOpen)}
+                >
+                    删除
+                </Button>
+            ),
         },
     ];
 
     return (
         <div className="security-secret-page">
             <div className="actions">
-                <Button icon={<PlusOutlined />} type='primary' onClick={changeModalOpen(true, setAddModalOpen)}>
+                <Button
+                    icon={<PlusOutlined />}
+                    type="primary"
+                    onClick={changeModalOpen(true, setAddModalOpen)}
+                >
                     新增密钥
                 </Button>
             </div>
@@ -58,10 +74,16 @@ const SecretLayout = () => {
                 columns={columns}
                 dataSource={data}
                 showSorterTooltip={false}
-                size='small'
+                size="small"
             />
-            <DeleteModal open={deleteModalOpen} onCancel={changeModalOpen(false, setDeleteModalOpen)} />
-            <AddModal open={addModalOpen} onCancel={changeModalOpen(false, setAddModalOpen)} />
+            <DeleteModal
+                open={deleteModalOpen}
+                onCancel={changeModalOpen(false, setDeleteModalOpen)}
+            />
+            <AddModal
+                open={addModalOpen}
+                onCancel={changeModalOpen(false, setAddModalOpen)}
+            />
         </div>
     );
 };

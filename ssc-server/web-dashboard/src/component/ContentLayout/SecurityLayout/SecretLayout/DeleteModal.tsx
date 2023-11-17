@@ -19,7 +19,13 @@ const DeleteModal = (props: ModalProps) => {
                     </div>
                 </div>
                 <div className="ant-modal-confirm-btns">
-                    <Button type="primary" danger onClick={props.onOk}>确定</Button>
+                    <Button
+                        type="primary"
+                        danger
+                        onClick={props.onOk}
+                    >
+                        确定
+                    </Button>
                     <Button onClick={props.onCancel}>取消</Button>
                 </div>
             </div>

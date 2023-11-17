@@ -3,8 +3,7 @@ import MonacoEditor from "../../../../../MonacoEditor";
 import "./index.sass";
 import "../index.sass";
 
-const problem =
-    `org.apache.flink.table.api.SqlParserException: SQL parse failed. From line 20, column 1 to line 20, column 12: Encountered "DEBUG". Was expecting one of:
+const problem = `org.apache.flink.table.api.SqlParserException: SQL parse failed. From line 20, column 1 to line 20, column 12: Encountered "DEBUG". Was expecting one of:
 "CATALOG" , "DATABASE" , "FUNCTION" , "OR" , "SYSTEM" , "TABLE" , "TEMPORARY" , "VIEW" 
 at org.apache.flink.table.sqlserver.utils.FormatParserExceptionUtils.newSqlParserException(FormatParserExceptionUtils.java:47)
 at org.apache.flink.table.sqlserver.utils.ErrorConverter.formatException(ErrorConverter.java:111)
@@ -79,7 +78,7 @@ const ProblemPanel = (props: ProblemPanelProps) => {
             <div className="header">
                 <div className="title">问题: Untitled-stream-sql</div>
                 <div className="actions">
-                    <MinusOutlined onClick={props.onMinusClick}/>
+                    <MinusOutlined onClick={props.onMinusClick} />
                 </div>
             </div>
             <div className="result-wrap">
@@ -89,7 +88,7 @@ const ProblemPanel = (props: ProblemPanelProps) => {
                         lineDecorationsWidth: 0,
                         lineNumbersMinChars: 0,
                         minimap: {
-                            enabled: false
+                            enabled: false,
                         },
                         readOnly: true,
                         scrollBeyondLastLine: false,

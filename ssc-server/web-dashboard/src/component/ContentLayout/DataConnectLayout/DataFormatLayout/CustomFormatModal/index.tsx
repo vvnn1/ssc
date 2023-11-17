@@ -5,7 +5,6 @@ import "./index.sass";
 import StepModal from "../../../../StepModal";
 
 const CustomFormatModal = (props: ModalProps) => {
-
     return (
         <StepModal
             modalProps={{
@@ -14,7 +13,7 @@ const CustomFormatModal = (props: ModalProps) => {
                 title: "创建自定义数据格式",
                 width: 800,
                 rootClassName: "custom-format-modal",
-                destroyOnClose: true
+                destroyOnClose: true,
             }}
             stepsProps={{
                 size: "small",
@@ -25,19 +24,17 @@ const CustomFormatModal = (props: ModalProps) => {
                     {
                         title: "查看 Format",
                     },
-                ]
+                ],
             }}
         >
-            {
-                (currentStep: number) => {
-                    return (
-                        <div className="steps-body">
-                            <Step1Form hidden={currentStep !== 0} />
-                            <Step2Form hidden={currentStep !== 1} />
-                        </div>
-                    );
-                }
-            }
+            {(currentStep: number) => {
+                return (
+                    <div className="steps-body">
+                        <Step1Form hidden={currentStep !== 0} />
+                        <Step2Form hidden={currentStep !== 1} />
+                    </div>
+                );
+            }}
         </StepModal>
     );
 };

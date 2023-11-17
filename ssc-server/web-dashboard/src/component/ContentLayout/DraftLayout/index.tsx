@@ -21,9 +21,9 @@ const DraftLayout = () => {
 
                     <Resizable
                         size={220}
-                        axis='x'
-                        className='left-bar-panel resizable-panel panel panel-ltr panel-border-right'
-                        resizeHandle='e'
+                        axis="x"
+                        className="left-bar-panel resizable-panel panel panel-ltr panel-border-right"
+                        resizeHandle="e"
                         minSize={150}
                         maxSize={500}
                     >
@@ -31,15 +31,19 @@ const DraftLayout = () => {
                     </Resizable>
 
                     <div className="panel main-panel panel-ttb">
-
                         <Routes>
-                            <Route path='' element={<WelcomeContent />} />
+                            <Route
+                                path=""
+                                element={<WelcomeContent />}
+                            />
                             <Route path=":draftId">
-                                <Route path="sql" element={<MainContent />} />
+                                <Route
+                                    path="sql"
+                                    element={<MainContent />}
+                                />
                             </Route>
                         </Routes>
                     </div>
-
                 </div>
                 <div className="panel-bar panel-bar-small panel panel-ltr">
                     <BottomTabBar />

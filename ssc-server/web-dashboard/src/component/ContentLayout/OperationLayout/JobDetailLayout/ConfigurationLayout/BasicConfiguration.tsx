@@ -7,7 +7,7 @@ const BasicConfiguration = () => {
             <MonacoEditor
                 options={{
                     minimap: {
-                        enabled: false
+                        enabled: false,
                     },
                     scrollBeyondLastLine: false,
                     lineNumbersMinChars: 4,
@@ -37,7 +37,7 @@ SELECT SUBSTRING(randstr,0,8) from datagen_source;`}
             <Descriptions
                 column={1}
                 bordered
-                size='small'
+                size="small"
                 labelStyle={{ width: 280, fontSize: 12 }}
                 contentStyle={{ fontSize: 12 }}
                 items={[
@@ -55,7 +55,7 @@ SELECT SUBSTRING(randstr,0,8) from datagen_source;`}
                         key: 2,
                         label: "备注",
                         children: "-",
-                    }
+                    },
                 ]}
             />
         </div>

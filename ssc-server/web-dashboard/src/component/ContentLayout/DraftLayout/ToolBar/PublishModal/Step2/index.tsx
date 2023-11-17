@@ -11,7 +11,7 @@ const Step2 = (props: Step2Props & ProgressProps) => {
     useEffect(() => {
         props.onStatusChange?.("active");
         const id = setInterval(() => {
-            setPercent((percent) => {
+            setPercent(percent => {
                 if (percent > 100) {
                     clearInterval(id);
                     return 100;
@@ -29,10 +29,11 @@ const Step2 = (props: Step2Props & ProgressProps) => {
 
     return (
         <div className="content-container">
-            <Progress percent={percent} status={props.status} />
-            <div className="note-wrapper">
-                正在进行作业最终检查，请稍后。
-            </div>
+            <Progress
+                percent={percent}
+                status={props.status}
+            />
+            <div className="note-wrapper">正在进行作业最终检查，请稍后。</div>
         </div>
     );
 };

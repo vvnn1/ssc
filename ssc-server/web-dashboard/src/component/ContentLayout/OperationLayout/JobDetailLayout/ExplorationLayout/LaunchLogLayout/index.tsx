@@ -8,20 +8,25 @@ const LaunchLogLayout = () => {
         <div className="stream-detail-exploration-launch">
             <div className="actions">
                 <Space>
-                    <Button size="small" icon={<SyncOutlined />} />
-                    <Button size="small" icon={<FullscreenOutlined />} />
+                    <Button
+                        size="small"
+                        icon={<SyncOutlined />}
+                    />
+                    <Button
+                        size="small"
+                        icon={<FullscreenOutlined />}
+                    />
                 </Space>
             </div>
             <MonacoEditor
                 options={{
                     minimap: {
-                        enabled: false
+                        enabled: false,
                     },
                     lineDecorationsWidth: 0,
                     wordWrap: "on",
                 }}
-                value={
-                    ` seconds: [900]
+                value={` seconds: [900]
 end new OSSLogClient endTimeInMs:[1695779544074], costInMs:[22 ms]end new AbstractVvpLogAppender endTimeInMs:[1695779544079], costInMs:[46 ms]2023-09-27 09:52:24,292 [main] INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - --------------------------------------------------------------------------------
 2023-09-27 09:52:24,305 [main] INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  Preconfiguration: 
 2023-09-27 09:52:24,309 [main] INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - 
@@ -712,12 +717,10 @@ end new OSSLogClient endTimeInMs:[1695779548641], costInMs:[3 ms]end new Abstrac
 2023-09-27 09:52:31,694 [flink-akka.actor.default-dispatcher-17] INFO  org.apache.flink.kubernetes.KubernetesResourceManagerDriver  [] - Creating new TaskManager pod with name job-0e4eb4ec-61d8-4ae9-bf0e-dcaee4b7db5f-taskmanager-1-1 and resource <2048,1.0>.
 2023-09-27 09:52:31,952 [flink-akka.actor.default-dispatcher-17] INFO  org.apache.flink.kubernetes.KubernetesResourceManagerDriver  [] - Pod job-0e4eb4ec-61d8-4ae9-bf0e-dcaee4b7db5f-taskmanager-1-1 is created.
 2023-09-27 09:52:32,145 [flink-akka.actor.default-dispatcher-17] INFO  org.apache.flink.kubernetes.KubernetesResourceManagerDriver  [] - Received new TaskManager pod: job-0e4eb4ec-61d8-4ae9-bf0e-dcaee4b7db5f-taskmanager-1-1
-2023-09-27 09:52:32,146 [flink-akka.actor.default-dispatcher-17] INFO  org.apache.flink.runtime.resourcemanager.active.ActiveResourceManager [] - Requested worker job-0e4eb4ec-61d8-4ae9-bf0e-dcaee4b7db5f-taskmanager-1-1 with resource spec WorkerResourceSpec {cpuCores=1.0, taskHeapSize=537.600mb (563714445 bytes), taskOffHeapSize=0 bytes, networkMemSize=158.720mb (166429984 bytes), managedMemSize=634.880mb (665719939 bytes), numSlots=1}.`
-                }
+2023-09-27 09:52:32,146 [flink-akka.actor.default-dispatcher-17] INFO  org.apache.flink.runtime.resourcemanager.active.ActiveResourceManager [] - Requested worker job-0e4eb4ec-61d8-4ae9-bf0e-dcaee4b7db5f-taskmanager-1-1 with resource spec WorkerResourceSpec {cpuCores=1.0, taskHeapSize=537.600mb (563714445 bytes), taskOffHeapSize=0 bytes, networkMemSize=158.720mb (166429984 bytes), managedMemSize=634.880mb (665719939 bytes), numSlots=1}.`}
             />
         </div>
     );
 };
-
 
 export default LaunchLogLayout;

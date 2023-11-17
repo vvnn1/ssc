@@ -10,19 +10,17 @@ interface ListProps {
 }
 
 const CatalogList = (props: ListProps) => {
-
     const [activeItemIndex, setActiveItemIndex] = useState<number>(0);
 
     useEffect(() => {
         props.dataSource[0]?.onClick?.();
     }, []);
 
-    const onListItemClick = (index:number) => {
+    const onListItemClick = (index: number) => {
         return () => {
             setActiveItemIndex(index);
         };
     };
-
 
     return (
         <List
@@ -45,6 +43,5 @@ const CatalogList = (props: ListProps) => {
         />
     );
 };
-
 
 export default CatalogList;

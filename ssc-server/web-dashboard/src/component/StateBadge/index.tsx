@@ -6,8 +6,6 @@ interface StateBadgeProps {
 }
 
 const StateBadge = (props: StateBadgeProps) => {
-    return (
-        <Tag className="FINISHED">{props.state}</Tag>
-    );
+    return <Tag className="FINISHED">{props.state}</Tag>;
 };
 export default StateBadge;

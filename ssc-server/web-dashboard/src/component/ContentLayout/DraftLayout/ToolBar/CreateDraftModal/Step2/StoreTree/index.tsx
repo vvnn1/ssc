@@ -4,22 +4,19 @@ import { FloderClosedColorOutlined, FloderOpenColorOutlined } from "../../../../
 import "./index.sass";
 import TreeTitle from "./TreeTitle";
 
-const demoData: TreeDataNode = 
-    {
-        title: "作业草稿",
-        key: "0",
-        children: [
-            {
-                title: "母婴订单实时查询",
-                key: "0-0",
-                isLeaf: false,
-                switcherIcon: (node) => (node.expanded ? <FloderOpenColorOutlined /> : <FloderClosedColorOutlined />),
-            },
-        ],
-        switcherIcon: (node) => (node.expanded ? <FloderOpenColorOutlined /> : <FloderClosedColorOutlined />),
-    }
-;
-
+const demoData: TreeDataNode = {
+    title: "作业草稿",
+    key: "0",
+    children: [
+        {
+            title: "母婴订单实时查询",
+            key: "0-0",
+            isLeaf: false,
+            switcherIcon: node => (node.expanded ? <FloderOpenColorOutlined /> : <FloderClosedColorOutlined />),
+        },
+    ],
+    switcherIcon: node => (node.expanded ? <FloderOpenColorOutlined /> : <FloderClosedColorOutlined />),
+};
 interface StoreTreeProps {
     onSelectedPathChange: (path: string) => void;
 }
@@ -41,9 +38,9 @@ const StoreTree = (props: StoreTreeProps) => {
         if (keys.length === 0) {
             return;
         }
-        
+
         const key = keys[0];
-        const selectedPath:string[] = [];
+        const selectedPath: string[] = [];
 
         tracePath(key, demoData, selectedPath);
 
@@ -58,7 +55,7 @@ const StoreTree = (props: StoreTreeProps) => {
             return;
         }
 
-        if(node.children?.length === 0) {
+        if (node.children?.length === 0) {
             return;
         }
 
@@ -74,7 +71,7 @@ const StoreTree = (props: StoreTreeProps) => {
     };
 
     const titleRender = (dataNode: TreeDataNode) => {
-        return (<TreeTitle dataNode={dataNode}/>);
+        return <TreeTitle dataNode={dataNode} />;
     };
 
     return (

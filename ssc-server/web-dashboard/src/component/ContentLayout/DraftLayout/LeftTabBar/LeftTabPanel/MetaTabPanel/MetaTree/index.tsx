@@ -1,5 +1,11 @@
 import { Tree, TreeProps } from "antd";
-import { ContainerOutlined, DatabaseOutlined, MinusSquareOutlined, PlusSquareOutlined, TableOutlined } from "../../../../../../Icon";
+import {
+    ContainerOutlined,
+    DatabaseOutlined,
+    MinusSquareOutlined,
+    PlusSquareOutlined,
+    TableOutlined,
+} from "../../../../../../Icon";
 import { DataNode } from "antd/es/tree";
 import "./index.sass";
 import TreeTitle from "./TreeTitle";
@@ -25,7 +31,7 @@ const treeData: DataNode[] = [
                 ),
                 key: "0-0-0",
                 icon: <DatabaseOutlined />,
-                switcherIcon: (node) => (node.expanded ? <MinusSquareOutlined /> : <PlusSquareOutlined />),
+                switcherIcon: node => (node.expanded ? <MinusSquareOutlined /> : <PlusSquareOutlined />),
                 className: "database",
                 isLeaf: false,
                 children: [
@@ -34,14 +40,14 @@ const treeData: DataNode[] = [
                         key: "0-0-0-1",
                         icon: <TableOutlined />,
                         className: "table",
-                        isLeaf: true
+                        isLeaf: true,
                     },
                 ],
-            }
+            },
         ],
-        switcherIcon: (node) => (node.expanded ? <MinusSquareOutlined /> : <PlusSquareOutlined />),
+        switcherIcon: node => (node.expanded ? <MinusSquareOutlined /> : <PlusSquareOutlined />),
         className: "catalog",
-        isLeaf: false
+        isLeaf: false,
     },
 ];
 
@@ -58,7 +64,7 @@ const MetaTree = (props: TreeProps) => {
         }
         setSelectedKeys(keys);
     };
-    
+
     return (
         <Tree
             {...props}

@@ -5,15 +5,22 @@ const EditorModal = (props: ModalProps) => {
         <Modal
             {...props}
             title="编辑成员 1840755998634838"
-            footer={(_, { OkBtn, CancelBtn }) => (<><OkBtn /><CancelBtn /></>)}
+            footer={(_, { OkBtn, CancelBtn }) => (
+                <>
+                    <OkBtn />
+                    <CancelBtn />
+                </>
+            )}
         >
-            <Form
-                layout="vertical"
-            >
+            <Form layout="vertical">
                 <Form.Item
                     required
                     label="角色"
-                    extra={<span>不同角色的功能使用差异. 请查看 <a>详情</a></span>}
+                    extra={
+                        <span>
+                            不同角色的功能使用差异. 请查看 <a>详情</a>
+                        </span>
+                    }
                 >
                     <Radio.Group defaultValue="owner">
                         <Radio value="owner">owner</Radio>
@@ -27,7 +34,11 @@ const EditorModal = (props: ModalProps) => {
                     label="成员信息"
                     extra="填写阿里云账号 UID、RAM 用户账号 UID 、RAM 角色账号扮演的阿里云主账号 UID"
                 >
-                    <Input disabled placeholder="请输入成员信息" allowClear />
+                    <Input
+                        disabled
+                        placeholder="请输入成员信息"
+                        allowClear
+                    />
                 </Form.Item>
             </Form>
         </Modal>

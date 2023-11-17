@@ -1,4 +1,18 @@
-import { Button, Divider, Form, Input, Modal, ModalProps, Popconfirm, Select, Table, Tabs, Tag, Tooltip, message } from "antd";
+import {
+    Button,
+    Divider,
+    Form,
+    Input,
+    Modal,
+    ModalProps,
+    Popconfirm,
+    Select,
+    Table,
+    Tabs,
+    Tag,
+    Tooltip,
+    message,
+} from "antd";
 import "./index.sass";
 import { CheckCircleOutlined, PlusOutlined, SearchOutlined } from "../../../../../Icon";
 import { useState } from "react";
@@ -18,8 +32,17 @@ const ContactGroupTable = () => {
     return (
         <div className="table-container">
             <div className="custom-template">
-                <Input suffix={<SearchOutlined />} placeholder="请输入名称搜索" />
-                <Button type="link" onClick={changeModalOpen(true)}><PlusOutlined />添加联系人组</Button>
+                <Input
+                    suffix={<SearchOutlined />}
+                    placeholder="请输入名称搜索"
+                />
+                <Button
+                    type="link"
+                    onClick={changeModalOpen(true)}
+                >
+                    <PlusOutlined />
+                    添加联系人组
+                </Button>
             </div>
             <EditableTable
                 className="contact-group-table"
@@ -29,19 +52,33 @@ const ContactGroupTable = () => {
                     {
                         title: <div className="td-text">联系人组名</div>,
                         dataIndex: "name",
-                        render: (value) => <div className="td-item td-text" style={{width: 180}}>{value}</div>,
+                        render: value => (
+                            <div
+                                className="td-item td-text"
+                                style={{ width: 180 }}
+                            >
+                                {value}
+                            </div>
+                        ),
                     },
                     {
                         title: <div className="td-text">联系人</div>,
                         dataIndex: "contacts",
-                        render: (value) => <div className="td-item td-text" style={{width: 550}}>{value}</div>,
+                        render: value => (
+                            <div
+                                className="td-item td-text"
+                                style={{ width: 550 }}
+                            >
+                                {value}
+                            </div>
+                        ),
                     },
                 ]}
                 dataSource={[
                     {
                         name: "test",
-                        contacts: "王，李"
-                    }
+                        contacts: "王，李",
+                    },
                 ]}
                 deleteTitle="确定删除当前联系人组吗?"
             />
@@ -53,7 +90,12 @@ const ContactGroupTable = () => {
                 okText="提交"
                 cancelText="重置"
                 onCancel={changeModalOpen(false)}
-                footer={(_, { CancelBtn, OkBtn }) => <><OkBtn/><CancelBtn /></>}
+                footer={(_, { CancelBtn, OkBtn }) => (
+                    <>
+                        <OkBtn />
+                        <CancelBtn />
+                    </>
+                )}
                 className="add-contact-modal"
             >
                 <Form
@@ -62,13 +104,13 @@ const ContactGroupTable = () => {
                 >
                     <Form.Item
                         required
-                        label='组名称'
+                        label="组名称"
                     >
                         <Input placeholder="请输入联系人组名称" />
                     </Form.Item>
                     <Form.Item
                         required
-                        label='联系人'
+                        label="联系人"
                     >
                         <Select
                             showSearch
@@ -80,9 +122,9 @@ const ContactGroupTable = () => {
                                     label: "联系人",
                                     options: [
                                         { label: "王", value: "wang" },
-                                        { label: "李", value: "li" }
-                                    ]
-                                }
+                                        { label: "李", value: "li" },
+                                    ],
+                                },
                             ]}
                         />
                     </Form.Item>
@@ -91,7 +133,6 @@ const ContactGroupTable = () => {
         </div>
     );
 };
-
 
 const ContactsTable = () => {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -105,8 +146,17 @@ const ContactsTable = () => {
     return (
         <div className="table-container">
             <div className="custom-template">
-                <Input suffix={<SearchOutlined />} placeholder="请输入名称搜索" />
-                <Button type="link" onClick={changeModalOpen(true)}><PlusOutlined />新建联系人</Button>
+                <Input
+                    suffix={<SearchOutlined />}
+                    placeholder="请输入名称搜索"
+                />
+                <Button
+                    type="link"
+                    onClick={changeModalOpen(true)}
+                >
+                    <PlusOutlined />
+                    新建联系人
+                </Button>
             </div>
 
             <EditableTable
@@ -119,43 +169,66 @@ const ContactsTable = () => {
                         name: "王梦龙",
                         phone: "15888276203",
                         email: "-",
-                        verify: false
+                        verify: false,
                     },
                     {
                         key: "2",
                         name: "王梦龙",
                         phone: "15888276203",
                         email: "-",
-                        verify: true
+                        verify: true,
                     },
                     {
                         key: "3",
                         name: "王梦龙",
                         phone: "-",
                         email: "137418235@qq.com",
-                        verify: true
-                    }
+                        verify: true,
+                    },
                 ]}
                 columns={[
                     {
                         title: <div className="td-text">联系人</div>,
                         dataIndex: "name",
-                        render: (value) => <div className="td-item td-text" style={{ width: 125 }}>{value}</div>,
+                        render: value => (
+                            <div
+                                className="td-item td-text"
+                                style={{ width: 125 }}
+                            >
+                                {value}
+                            </div>
+                        ),
                     },
                     {
                         title: <div className="td-text">电话</div>,
                         dataIndex: "phone",
                         render: (value, record) => (
                             <div className="td-content">
-                                <div className="td-item td-text" style={{ width: 125 }}>{value}</div>
-                                {record.verify ? null : (<Tooltip title="未验证手机号的联系人无法使用电话方式通知，点击验证手机号"><Button size="small">未验证</Button></Tooltip>)}
+                                <div
+                                    className="td-item td-text"
+                                    style={{ width: 125 }}
+                                >
+                                    {value}
+                                </div>
+                                {record.verify ? null : (
+                                    <Tooltip title="未验证手机号的联系人无法使用电话方式通知，点击验证手机号">
+                                        <Button size="small">未验证</Button>
+                                    </Tooltip>
+                                )}
                             </div>
-                        )
+                        ),
                     },
                     {
                         title: <div className="td-text">邮箱</div>,
                         dataIndex: "email",
-                        render: (value) => (<div className="td-item td-text" style={{ width: 200 }}>{value}</div>)
+                        render: value => (
+                            <div
+                                className="td-item td-text"
+                                style={{ width: 200 }}
+                            >
+                                {value}
+                            </div>
+                        ),
                     },
                 ]}
                 deleteTitle="确定删除当前联系人吗？"
@@ -167,7 +240,12 @@ const ContactsTable = () => {
                 okText="提交"
                 cancelText="重置"
                 onCancel={changeModalOpen(false)}
-                footer={(_, { CancelBtn, OkBtn }) => <><OkBtn/><CancelBtn /></>}
+                footer={(_, { CancelBtn, OkBtn }) => (
+                    <>
+                        <OkBtn />
+                        <CancelBtn />
+                    </>
+                )}
                 className="add-contact-modal"
             >
                 <Form
@@ -180,9 +258,7 @@ const ContactsTable = () => {
                     >
                         <Input placeholder="请输入联系人" />
                     </Form.Item>
-                    <Form.Item
-                        label="手机"
-                    >
+                    <Form.Item label="手机">
                         <Input placeholder="请输入手机号码" />
                     </Form.Item>
                     <Form.Item
@@ -197,9 +273,8 @@ const ContactsTable = () => {
     );
 };
 
-
-const WebhookModal = (props: ModalProps
-    & {
+const WebhookModal = (
+    props: ModalProps & {
         initValue?: {
             name: string;
             method: string;
@@ -207,15 +282,21 @@ const WebhookModal = (props: ModalProps
             headers: string;
             params: string;
             body: string;
-        }
-    }) => {
+        };
+    }
+) => {
     return (
         <Modal
             {...props}
             width={600}
             okText="确认"
             cancelText="取消"
-            footer={(_, { CancelBtn, OkBtn }) => <><OkBtn/><CancelBtn /></>}
+            footer={(_, { CancelBtn, OkBtn }) => (
+                <>
+                    <OkBtn />
+                    <CancelBtn />
+                </>
+            )}
             className="add-contact-modal"
         >
             <Form
@@ -226,7 +307,10 @@ const WebhookModal = (props: ModalProps
                     label="名称"
                     required
                 >
-                    <Input placeholder="请输入 webhook 名称" defaultValue={props.initValue?.name} />
+                    <Input
+                        placeholder="请输入 webhook 名称"
+                        defaultValue={props.initValue?.name}
+                    />
                 </Form.Item>
 
                 <Form.Item
@@ -235,19 +319,21 @@ const WebhookModal = (props: ModalProps
                 >
                     <Input
                         placeholder="请输入 webhook url"
-                        addonBefore={<Select
-                            defaultValue={props.initValue?.method ?? "POST"}
-                            options={[
-                                {
-                                    label: "POST",
-                                    value: "post"
-                                },
-                                {
-                                    label: "GET",
-                                    value: "get"
-                                }
-                            ]}
-                        />}
+                        addonBefore={
+                            <Select
+                                defaultValue={props.initValue?.method ?? "POST"}
+                                options={[
+                                    {
+                                        label: "POST",
+                                        value: "post",
+                                    },
+                                    {
+                                        label: "GET",
+                                        value: "get",
+                                    },
+                                ]}
+                            />
+                        }
                         defaultValue={props.initValue?.url}
                     />
                 </Form.Item>
@@ -260,9 +346,7 @@ const WebhookModal = (props: ModalProps
                     <MonacoEditor
                         height={70}
                         defaultValue={props.initValue?.headers}
-                        options={{
-
-                        }}
+                        options={{}}
                     />
                 </Form.Item>
 
@@ -274,9 +358,7 @@ const WebhookModal = (props: ModalProps
                     <MonacoEditor
                         height={70}
                         defaultValue={props.initValue?.params}
-                        options={{
-
-                        }}
+                        options={{}}
                     />
                 </Form.Item>
 
@@ -307,7 +389,12 @@ const WebhookTable = () => {
     const onCopy = () => {
         messageApi.success({
             icon: <></>,
-            content: <><CheckCircleOutlined color="#00a700" />已复制到剪切板</>
+            content: (
+                <>
+                    <CheckCircleOutlined color="#00a700" />
+                    已复制到剪切板
+                </>
+            ),
         });
     };
 
@@ -321,8 +408,17 @@ const WebhookTable = () => {
     return (
         <div className="table-container">
             <div className="custom-template">
-                <Input suffix={<SearchOutlined />} placeholder="请输入名称搜索" />
-                <Button type="link" onClick={changeModalOpen(true)}><PlusOutlined />新建 Webhook</Button>
+                <Input
+                    suffix={<SearchOutlined />}
+                    placeholder="请输入名称搜索"
+                />
+                <Button
+                    type="link"
+                    onClick={changeModalOpen(true)}
+                >
+                    <PlusOutlined />
+                    新建 Webhook
+                </Button>
             </div>
             <Table //TODO bug
                 className="webhook-table"
@@ -334,20 +430,25 @@ const WebhookTable = () => {
                         title: "名称",
                         width: 200,
                         fixed: "left",
-                        dataIndex: "name"
+                        dataIndex: "name",
                     },
                     {
                         title: "Method",
                         width: 80,
                         dataIndex: "method",
-                        render: (value) => (
-                            <Tag color="blue">{value}</Tag>
-                        )
+                        render: value => <Tag color="blue">{value}</Tag>,
                     },
                     {
                         title: "URL",
                         dataIndex: "url",
-                        render: (value) => (<CopyToClipboard text={value} onCopy={onCopy}><span>{value}</span></CopyToClipboard>)
+                        render: value => (
+                            <CopyToClipboard
+                                text={value}
+                                onCopy={onCopy}
+                            >
+                                <span>{value}</span>
+                            </CopyToClipboard>
+                        ),
                     },
                     {
                         title: "操作",
@@ -360,14 +461,14 @@ const WebhookTable = () => {
                                 <Popconfirm
                                     okText="确认"
                                     cancelText="取消"
-                                    title='确定删除这个 webhook？'
+                                    title="确定删除这个 webhook？"
                                     overlayClassName="ant-popover-rtl"
                                 >
                                     <a>删除</a>
                                 </Popconfirm>
                             </span>
-                        )
-                    }
+                        ),
+                    },
                 ]}
                 dataSource={[
                     {
@@ -376,8 +477,8 @@ const WebhookTable = () => {
                         url: "http://www.baodu.com",
                         headers: "",
                         params: "",
-                        body: ""
-                    }
+                        body: "",
+                    },
                 ]}
             />
 
@@ -410,8 +511,17 @@ const DingdingTable = () => {
     return (
         <div className="table-container">
             <div className="custom-template">
-                <Input suffix={<SearchOutlined />} placeholder="请输入名称搜索" />
-                <Button type="link" onClick={changeModalOpen(true)}><PlusOutlined />添加钉钉机器人</Button>
+                <Input
+                    suffix={<SearchOutlined />}
+                    placeholder="请输入名称搜索"
+                />
+                <Button
+                    type="link"
+                    onClick={changeModalOpen(true)}
+                >
+                    <PlusOutlined />
+                    添加钉钉机器人
+                </Button>
             </div>
             <EditableTable
                 className="dingding-table"
@@ -421,21 +531,21 @@ const DingdingTable = () => {
                     {
                         title: <div className="td-text">名称</div>,
                         dataIndex: "name",
-                        render: (value) => <div className="td-item td-text">{value}</div>,
-                        width: 197
+                        render: value => <div className="td-item td-text">{value}</div>,
+                        width: 197,
                     },
                     {
                         title: <div className="td-text">地址</div>,
                         dataIndex: "address",
-                        render: (value) => <div className="td-item td-text">{value}</div>,
-                        width: 567
+                        render: value => <div className="td-item td-text">{value}</div>,
+                        width: 567,
                     },
                 ]}
                 dataSource={[
                     {
                         name: "test",
-                        address: "aaa"
-                    }
+                        address: "aaa",
+                    },
                 ]}
                 deleteTitle="确定删除当前钉钉机器人吗？"
             />
@@ -447,7 +557,12 @@ const DingdingTable = () => {
                 okText="提交"
                 cancelText="重置"
                 onCancel={changeModalOpen(false)}
-                footer={(_, { CancelBtn, OkBtn }) => <><OkBtn/><CancelBtn /></>}
+                footer={(_, { CancelBtn, OkBtn }) => (
+                    <>
+                        <OkBtn />
+                        <CancelBtn />
+                    </>
+                )}
                 className="add-contact-modal"
             >
                 <Form
@@ -473,12 +588,11 @@ const DingdingTable = () => {
     );
 };
 
-
 const ConcatManageModal = (props: ModalProps) => {
     return (
         <Modal
             {...props}
-            title='编辑联系人组'
+            title="编辑联系人组"
             width={1000}
             className="concat-manager-modal"
             footer={null}
@@ -505,7 +619,7 @@ const ConcatManageModal = (props: ModalProps) => {
                         label: "钉钉机器人",
                         key: "dingding",
                         children: <DingdingTable />,
-                    }
+                    },
                 ]}
             />
         </Modal>

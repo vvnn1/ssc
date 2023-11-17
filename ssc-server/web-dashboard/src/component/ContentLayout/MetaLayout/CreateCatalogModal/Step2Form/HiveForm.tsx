@@ -4,8 +4,8 @@ const HiveForm = () => {
     return (
         <Form
             size="small"
-            labelCol={{span: 6}}
-            wrapperCol={{span: 14}}
+            labelCol={{ span: 6 }}
+            wrapperCol={{ span: 14 }}
         >
             <Form.Item
                 label="catalog name"

@@ -5,15 +5,22 @@ const AddModal = (props: ModalProps) => {
         <Modal
             {...props}
             title="添加成员"
-            footer={(_, { OkBtn, CancelBtn }) => (<><OkBtn /><CancelBtn /></>)}
+            footer={(_, { OkBtn, CancelBtn }) => (
+                <>
+                    <OkBtn />
+                    <CancelBtn />
+                </>
+            )}
         >
-            <Form
-                layout="vertical"
-            >
+            <Form layout="vertical">
                 <Form.Item
                     required
                     label="角色"
-                    extra={<span>不同角色的功能使用差异. 请查看 <a>详情</a></span>}
+                    extra={
+                        <span>
+                            不同角色的功能使用差异. 请查看 <a>详情</a>
+                        </span>
+                    }
                 >
                     <Radio.Group defaultValue="owner">
                         <Radio value="owner">owner</Radio>
@@ -29,7 +36,10 @@ const AddModal = (props: ModalProps) => {
                     validateStatus="success"
                     hasFeedback
                 >
-                    <Input placeholder="请输入成员信息" allowClear />
+                    <Input
+                        placeholder="请输入成员信息"
+                        allowClear
+                    />
                 </Form.Item>
             </Form>
         </Modal>

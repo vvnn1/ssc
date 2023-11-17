@@ -7,14 +7,21 @@ const RelationLayout = () => {
         <div className="table-relation-layout">
             <div className="top-bar">
                 <Space>
-                    <Radio.Group optionType='button' defaultValue="table">
+                    <Radio.Group
+                        optionType="button"
+                        defaultValue="table"
+                    >
                         <Radio value="table">表级别</Radio>
                         <Radio value="field">字段级别</Radio>
                     </Radio.Group>
-                    <Input prefix={<SearchOutlined />} placeholder='通过节点名称搜索' />
+                    <Input
+                        prefix={<SearchOutlined />}
+                        placeholder="通过节点名称搜索"
+                    />
                 </Space>
                 <span className="top-bar-right">
-                    居中选中节点：<Switch />
+                    居中选中节点：
+                    <Switch />
                 </span>
             </div>
             <Empty />

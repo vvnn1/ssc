@@ -17,7 +17,6 @@ export function restoreUrl(url: string, urlParams: any): string {
                 break;
             }
 
-
             const searchValue = link.substring(i, j);
             const replaceValue = urlParams[link.substring(i + 1, j)];
             if (replaceValue === undefined) {
@@ -39,7 +38,7 @@ export function changeModalOpen(open: boolean, setModalOpen: React.Dispatch<Reac
 }
 
 export function checkedChangeWrapper(onCheckedChange: (chcked: boolean) => void) {
-    return ({ target: { checked } }:any) => {
+    return ({ target: { checked } }: any) => {
         onCheckedChange(checked);
     };
 }

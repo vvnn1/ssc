@@ -26,70 +26,94 @@ const DatabaseDetailLayout = () => {
             <Breadcrumb
                 items={[
                     {
-                        title: "Catalog 列表"
+                        title: "Catalog 列表",
                     },
                     {
-                        title: "vvp"
+                        title: "vvp",
                     },
                     {
-                        title: "default"
-                    }
+                        title: "default",
+                    },
                 ]}
             />
             <div className="header">
                 <div className="title">
                     <ArrowLeftOutlined onClick={onBackClick} />
-                    <span className='text'>default</span>
+                    <span className="text">default</span>
                 </div>
                 <div className="actions">
                     <Space>
                         <Button type="primary">创建表</Button>
-                        <Input suffix={<SearchOutlined />} placeholder='搜索…' />
+                        <Input
+                            suffix={<SearchOutlined />}
+                            placeholder="搜索…"
+                        />
                     </Space>
                 </div>
             </div>
             <div className="content">
                 <Table
-                    size='small'
+                    size="small"
                     columns={[
                         {
                             title: "表名称",
                             width: "35%",
-                            dataIndex: "name"
+                            dataIndex: "name",
                         },
                         {
                             title: "备注",
                             width: "35%",
-                            dataIndex: "comment"
+                            dataIndex: "comment",
                         },
                         {
                             title: "操作",
                             width: "35%",
-                            render: (_,{name}) => {
+                            render: (_, { name }) => {
                                 return (
                                     <>
-                                        <MyLink className="ant-btn ant-btn-link ant-btn-sm" to={`../${name}`}>查看</MyLink>
-                                        <a className="ant-btn ant-btn-link ant-btn-sm" onClick={changeModalOpen(true, setRenameModalOpen)}>重命名</a>
-                                        <a className="ant-btn ant-btn-link ant-btn-sm ant-btn-dangerous" onClick={onDeleteClick}>删除</a>
+                                        <MyLink
+                                            className="ant-btn ant-btn-link ant-btn-sm"
+                                            to={`../${name}`}
+                                        >
+                                            查看
+                                        </MyLink>
+                                        <a
+                                            className="ant-btn ant-btn-link ant-btn-sm"
+                                            onClick={changeModalOpen(true, setRenameModalOpen)}
+                                        >
+                                            重命名
+                                        </a>
+                                        <a
+                                            className="ant-btn ant-btn-link ant-btn-sm ant-btn-dangerous"
+                                            onClick={onDeleteClick}
+                                        >
+                                            删除
+                                        </a>
                                     </>
                                 );
-                            }
-                        }
+                            },
+                        },
                     ]}
                     dataSource={[
                         {
                             name: "datagen_kk_source",
-                            comment: "-"
+                            comment: "-",
                         },
                         {
                             name: "faker_source",
-                            comment: "-"
-                        }
+                            comment: "-",
+                        },
                     ]}
                 />
             </div>
-            <RenameModal open={renameModalOpen} onCancel={changeModalOpen(false, setRenameModalOpen)}/>
-            <DeleteModal open={deleteModalOpen} onCancel={changeModalOpen(false, setDeleteModalOpen)}/>
+            <RenameModal
+                open={renameModalOpen}
+                onCancel={changeModalOpen(false, setRenameModalOpen)}
+            />
+            <DeleteModal
+                open={deleteModalOpen}
+                onCancel={changeModalOpen(false, setDeleteModalOpen)}
+            />
         </div>
     );
 };

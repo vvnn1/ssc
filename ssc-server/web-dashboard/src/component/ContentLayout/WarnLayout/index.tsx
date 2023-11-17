@@ -72,7 +72,7 @@ const WarnLayout = () => {
                 <div className="title">告警模板</div>
                 <div className="actions">
                     <Space>
-                        <Button type='primary'>添加告警模板</Button>
+                        <Button type="primary">添加告警模板</Button>
                     </Space>
                 </div>
             </div>
@@ -81,7 +81,7 @@ const WarnLayout = () => {
                     columns={columns}
                     dataSource={data}
                     showSorterTooltip={false}
-                    size='small'
+                    size="small"
                 />
             </div>
         </div>

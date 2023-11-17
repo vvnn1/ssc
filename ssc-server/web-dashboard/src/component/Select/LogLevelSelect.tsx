@@ -10,7 +10,8 @@ const LogLevelSelect = (props: SelectProps) => {
                 { value: "INFO", label: "INFO" },
                 { value: "WARN", label: "WARN" },
                 { value: "ERROR", label: "ERROR" },
-            ]} />
+            ]}
+        />
     );
 };
 export default LogLevelSelect;

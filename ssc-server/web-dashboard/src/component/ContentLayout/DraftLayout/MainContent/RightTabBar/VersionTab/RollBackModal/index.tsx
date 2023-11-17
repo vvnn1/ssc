@@ -6,12 +6,15 @@ import { MonacoDiffEditor } from "react-monaco-editor";
 const RollBackModal = (props: ModalProps) => {
     const [messageApi, contextMessage] = message.useMessage();
     const onRollBackClick = () => {
-        messageApi.success(
-            {
-                icon: <></>,
-                content: <><CheckCircleOutlined color="#00a700" />作业回滚到指定版本成功</>
-            }
-        );
+        messageApi.success({
+            icon: <></>,
+            content: (
+                <>
+                    <CheckCircleOutlined color="#00a700" />
+                    作业回滚到指定版本成功
+                </>
+            ),
+        });
         props.onCancel?.(undefined as any);
     };
     return (
@@ -21,16 +24,21 @@ const RollBackModal = (props: ModalProps) => {
             width={1000}
             cancelText="取消"
             className="draft-rollback-modal"
-            footer={(_, { CancelBtn, }) => (
+            footer={(_, { CancelBtn }) => (
                 <>
                     <Popconfirm
                         okText="确认"
                         cancelText="取消"
-                        title='你确定要回滚到选择的版本吗?'
+                        title="你确定要回滚到选择的版本吗?"
                         overlayClassName="ant-popover-rtl"
                         onConfirm={onRollBackClick}
                     >
-                        <Button icon={<RollbackOutlined />} type="primary">回 滚</Button>
+                        <Button
+                            icon={<RollbackOutlined />}
+                            type="primary"
+                        >
+                            回 滚
+                        </Button>
                     </Popconfirm>
                     <CancelBtn />
                 </>
@@ -45,8 +53,7 @@ const RollBackModal = (props: ModalProps) => {
                     </div>
                     <div className="editor-container">
                         <MonacoDiffEditor
-                            value={
-                                `--创建一个datagen_source临时表。
+                            value={`--创建一个datagen_source临时表。
 CREATE TEMPORARY TABLE datagen_source(
 randstr VARCHAR
 ) WITH (
@@ -63,10 +70,8 @@ randstr  VARCHAR
 
 --将randstr字段的数据打印出来。
 INSERT INTO print_table
-SELECT SUBSTRING(randstr,0,8) from datagen_source;`
-                            }
-                            original={
-                                `--创建一个datagen_source临时表。
+SELECT SUBSTRING(randstr,0,8) from datagen_source;`}
+                            original={`--创建一个datagen_source临时表。
 CREATE TEMPORARY TABLE datagen_source(
     randstr VARCHAR
 ) WITH (
@@ -83,8 +88,7 @@ CREATE TEMPORARY TABLE print_table(
 
 --将randstr字段的数据打印出来。
 INSERT INTO print_table
-SELECT SUBSTRING(randstr,0,8) from datagen_source;`
-                            }
+SELECT SUBSTRING(randstr,0,8) from datagen_source;`}
                             height={"100%"}
                         />
                     </div>

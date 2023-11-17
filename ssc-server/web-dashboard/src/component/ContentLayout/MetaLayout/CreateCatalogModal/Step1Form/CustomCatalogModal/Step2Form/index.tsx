@@ -4,7 +4,6 @@ import "./index.sass";
 import { DeleteOutlined } from "../../../../../../Icon";
 import EditableTable, { EditColumType, TooltipInput } from "../../../../../../EditableTable";
 
-
 interface ConnectorProperties {
     name: string;
     description: string;
@@ -14,46 +13,49 @@ interface ConnectorProperties {
 }
 
 const Step2Form = (props: { hidden: boolean }) => {
-
     const [dataSource, setDataSource] = useState<ConnectorProperties[]>([
         {
             name: "sink.batch.interval",
             description: "",
             required: true,
             defineFormat: true,
-            defaultValue: "1s"
-        }
+            defaultValue: "1s",
+        },
     ]);
 
-    const defaultColumns:EditColumType[] = [
+    const defaultColumns: EditColumType[] = [
         {
             title: "Name",
             dataIndex: "name",
-            editType: TooltipInput
+            editType: TooltipInput,
         },
         {
             title: "Description",
             dataIndex: "description",
-            editType: Input
+            editType: Input,
         },
         {
             title: "Required",
             dataIndex: "required",
-            editType: Checkbox
+            editType: Checkbox,
         },
         {
             title: "Default Value",
             dataIndex: "defaultValue",
-            editType: Input
+            editType: Input,
         },
         {
             title: "Actions",
             dataIndex: "operation",
             render: () => (
-                <Button type='link' danger size='small'>
+                <Button
+                    type="link"
+                    danger
+                    size="small"
+                >
                     <DeleteOutlined />
                 </Button>
-            )
+            ),
         },
     ];
 
@@ -63,7 +65,7 @@ const Step2Form = (props: { hidden: boolean }) => {
             description: "",
             required: false,
             defineFormat: false,
-            defaultValue: ""
+            defaultValue: "",
         };
         setDataSource([...dataSource, newData]);
     };
@@ -81,11 +83,13 @@ const Step2Form = (props: { hidden: boolean }) => {
             >
                 <Select />
             </Form.Item>
-            
-            <Form.Item
-                label="Properties"
-            >
-                <EditableTable columns={defaultColumns} dataSource={dataSource} handleAdd={handleAdd} />
+
+            <Form.Item label="Properties">
+                <EditableTable
+                    columns={defaultColumns}
+                    dataSource={dataSource}
+                    handleAdd={handleAdd}
+                />
             </Form.Item>
         </Form>
     );

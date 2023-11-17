@@ -6,12 +6,15 @@ import { MonacoDiffEditor } from "react-monaco-editor";
 const DeleteModal = (props: ModalProps) => {
     const [messageApi, contextMessage] = message.useMessage();
     const onDeleteClick = () => {
-        messageApi.success(
-            {
-                icon: <></>,
-                content: <><CheckCircleOutlined color="#00a700" />删除作业版本成功</>
-            }
-        );
+        messageApi.success({
+            icon: <></>,
+            content: (
+                <>
+                    <CheckCircleOutlined color="#00a700" />
+                    删除作业版本成功
+                </>
+            ),
+        });
         props.onCancel?.(undefined as any);
     };
     return (
@@ -21,16 +24,22 @@ const DeleteModal = (props: ModalProps) => {
             width={1000}
             cancelText="取消"
             className="draft-delete-modal"
-            footer={(_, { CancelBtn, }) => (
+            footer={(_, { CancelBtn }) => (
                 <>
                     <Popconfirm
                         okText="确认"
                         cancelText="取消"
-                        title='你确定要删除选择的版本吗?'
+                        title="你确定要删除选择的版本吗?"
                         overlayClassName="ant-popover-rtl"
                         onConfirm={onDeleteClick}
                     >
-                        <Button danger icon={<DeleteOutlined />} type="primary">删除</Button>
+                        <Button
+                            danger
+                            icon={<DeleteOutlined />}
+                            type="primary"
+                        >
+                            删除
+                        </Button>
                     </Popconfirm>
                     <CancelBtn />
                 </>
@@ -45,8 +54,7 @@ const DeleteModal = (props: ModalProps) => {
                     </div>
                     <div className="editor-container">
                         <MonacoDiffEditor
-                            value={
-                                `--创建一个datagen_source临时表。
+                            value={`--创建一个datagen_source临时表。
 CREATE TEMPORARY TABLE datagen_source(
 randstr VARCHAR
 ) WITH (
@@ -63,10 +71,8 @@ randstr  VARCHAR
 
 --将randstr字段的数据打印出来。
 INSERT INTO print_table
-SELECT SUBSTRING(randstr,0,8) from datagen_source;`
-                            }
-                            original={
-                                `--创建一个datagen_source临时表。
+SELECT SUBSTRING(randstr,0,8) from datagen_source;`}
+                            original={`--创建一个datagen_source临时表。
 CREATE TEMPORARY TABLE datagen_source(
     randstr VARCHAR
 ) WITH (
@@ -83,8 +89,7 @@ CREATE TEMPORARY TABLE print_table(
 
 --将randstr字段的数据打印出来。
 INSERT INTO print_table
-SELECT SUBSTRING(randstr,0,8) from datagen_source;`
-                            }
+SELECT SUBSTRING(randstr,0,8) from datagen_source;`}
                             height={"100%"}
                         />
                     </div>

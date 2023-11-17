@@ -38,7 +38,6 @@ const KerberoLayout = () => {
             title: "Kerberos 集群名称",
             dataIndex: "name",
             width: 200,
-
         },
         {
             title: "Kerberos Keytab",
@@ -53,7 +52,14 @@ const KerberoLayout = () => {
             width: 200,
             render: () => (
                 <>
-                    <Button type="link" icon={<EditOutlined />} size="small" onClick={changeModalOpen(true, setDeleteModalOpen)}>编辑</Button>
+                    <Button
+                        type="link"
+                        icon={<EditOutlined />}
+                        size="small"
+                        onClick={changeModalOpen(true, setDeleteModalOpen)}
+                    >
+                        编辑
+                    </Button>
                     <Divider type="vertical" />
                     <Popconfirm
                         okText="确认"
@@ -62,10 +68,17 @@ const KerberoLayout = () => {
                         overlayClassName="ant-popover-rtl"
                         placement="left"
                     >
-                        <Button type="link" icon={<DeleteOutlined />} size="small" danger>删除</Button>
+                        <Button
+                            type="link"
+                            icon={<DeleteOutlined />}
+                            size="small"
+                            danger
+                        >
+                            删除
+                        </Button>
                     </Popconfirm>
                 </>
-            )
+            ),
         },
     ];
 
@@ -73,7 +86,12 @@ const KerberoLayout = () => {
         <div className="security-kerbero-page">
             <div className="actions">
                 <Space>
-                    <Button type='primary' onClick={changeModalOpen(true, setAddModalOpen)}>新增 Kerberos</Button>
+                    <Button
+                        type="primary"
+                        onClick={changeModalOpen(true, setAddModalOpen)}
+                    >
+                        新增 Kerberos
+                    </Button>
                     <Search
                         placeholder="搜索…"
                         onSearch={onSearch}
@@ -84,10 +102,16 @@ const KerberoLayout = () => {
                 columns={columns}
                 dataSource={data}
                 showSorterTooltip={false}
-                size='small'
+                size="small"
             />
-            <EditModal open={deleteModalOpen} onCancel={changeModalOpen(false, setDeleteModalOpen)} />
-            <AddModal open={addModalOpen} onCancel={changeModalOpen(false, setAddModalOpen)} />
+            <EditModal
+                open={deleteModalOpen}
+                onCancel={changeModalOpen(false, setDeleteModalOpen)}
+            />
+            <AddModal
+                open={addModalOpen}
+                onCancel={changeModalOpen(false, setAddModalOpen)}
+            />
         </div>
     );
 };

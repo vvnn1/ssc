@@ -1,7 +1,5 @@
 const CommonForm = () => {
-    return (
-        <></>
-    );
+    return <></>;
 };
 
 export default CommonForm;

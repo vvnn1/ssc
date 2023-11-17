@@ -7,10 +7,9 @@ import Step2 from "./Step2";
 const PublishModal = (props: ModalProps) => {
     const [currentStep, setCurrentStep] = useState<number>(0);
     const [publishStatus, setPublishStatus] = useState<ProgressProps["status"]>();
-    
 
     useEffect(() => {
-        if(publishStatus === "success") {
+        if (publishStatus === "success") {
             props.onOk?.(undefined as any);
         }
     }, [publishStatus]);
@@ -25,9 +24,8 @@ const PublishModal = (props: ModalProps) => {
         },
         {
             title: "最终检查",
-        }
+        },
     ];
-
 
     const steps = [
         {
@@ -35,9 +33,14 @@ const PublishModal = (props: ModalProps) => {
             onOk: next,
         },
         {
-            content: <Step2 onStatusChange={setPublishStatus} status={publishStatus}/>,
+            content: (
+                <Step2
+                    onStatusChange={setPublishStatus}
+                    status={publishStatus}
+                />
+            ),
             onOk: props.onCancel,
-        }
+        },
     ];
 
     return (
@@ -47,19 +50,23 @@ const PublishModal = (props: ModalProps) => {
             title="部署新版本"
             width={600}
             className="publish-draft-modal"
-            footer={(_, { CancelBtn, OkBtn }) => <><OkBtn/><CancelBtn /></>}
+            footer={(_, { CancelBtn, OkBtn }) => (
+                <>
+                    <OkBtn />
+                    <CancelBtn />
+                </>
+            )}
             onOk={steps[currentStep].onOk}
             confirmLoading={publishStatus === "active"}
             cancelButtonProps={{
                 style: {
-                    display: currentStep > 0 ? "none" : "inline-block"
+                    display: currentStep > 0 ? "none" : "inline-block",
                 },
             }}
         >
-
             <Steps
                 items={stepProps}
-                size='small'
+                size="small"
                 current={currentStep}
             />
 

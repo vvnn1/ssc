@@ -13,34 +13,28 @@ const DraftTabPanel = () => {
             <div className="panel-bar header panel panel-ltr panel-border-bottom">
                 <span className="title">作业草稿</span>
                 <div className="actions">
-                    <Tooltip
-                        title="定位打开的作业草稿"
-                    >
+                    <Tooltip title="定位打开的作业草稿">
                         <Button
                             className="ant-btn-icon-only"
-                            type='text'
+                            type="text"
                             size="small"
                         >
                             <AimOutlined />
                         </Button>
                     </Tooltip>
-                    <Tooltip
-                        title="删除选中的作业草稿"
-                    >
+                    <Tooltip title="删除选中的作业草稿">
                         <Button
                             className="ant-btn-icon-only"
-                            type='text'
+                            type="text"
                             size="small"
                         >
                             <DeleteOutlined />
                         </Button>
                     </Tooltip>
-                    <Tooltip
-                        title="刷新"
-                    >
+                    <Tooltip title="刷新">
                         <Button
                             className="ant-btn-icon-only"
-                            type='text'
+                            type="text"
                             size="small"
                         >
                             <ReloadOutlined />
@@ -49,11 +43,17 @@ const DraftTabPanel = () => {
                 </div>
             </div>
             <div className="panel-bar searchbar panel panel-ltr panel-border-bottom">
-                <Input suffix={<SearchOutlined />} placeholder="搜索名称…" />
+                <Input
+                    suffix={<SearchOutlined />}
+                    placeholder="搜索名称…"
+                />
             </div>
             <div className="panel draft-list panel-ttb">
                 <ScrollPin containerRef={treeRef} />
-                <div className="draft-tree-container" ref={treeRef}>
+                <div
+                    className="draft-tree-container"
+                    ref={treeRef}
+                >
                     <DraftTree />
                 </div>
             </div>

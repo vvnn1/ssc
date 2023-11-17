@@ -1,5 +1,5 @@
 import { List } from "antd";
-import DraftCard, {CardProps} from "./DraftCard";
+import DraftCard, { CardProps } from "./DraftCard";
 import { useEffect, useState } from "react";
 import "./index.sass";
 
@@ -12,18 +12,17 @@ interface ListProps {
 const DraftList = (props: ListProps) => {
     const [activeItemIndex, setActiveItemIndex] = useState<number>(0);
 
-
     useEffect(() => {
         props.items[0].onClick?.();
     }, []);
 
-    const onItemClick = (index:number) => {
+    const onItemClick = (index: number) => {
         return () => {
             setActiveItemIndex(index);
         };
     };
     return (
-        <List 
+        <List
             grid={{ gutter: 16, column: 4 }}
             dataSource={props.items}
             className="draft-template-list"
@@ -32,9 +31,7 @@ const DraftList = (props: ListProps) => {
                     className={activeItemIndex === index ? "active" : undefined}
                     onClick={onItemClick(index)}
                 >
-                    <DraftCard 
-                        {...item}
-                    />
+                    <DraftCard {...item} />
                 </List.Item>
             )}
         />

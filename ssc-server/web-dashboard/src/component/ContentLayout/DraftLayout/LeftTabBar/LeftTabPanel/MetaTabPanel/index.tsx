@@ -15,7 +15,7 @@ const MetaTabPanel = () => {
     };
 
     const onDoubleClick: TreeProps["onDoubleClick"] = (_, node) => {
-        if(node.isLeaf){
+        if (node.isLeaf) {
             setFieldPanel(<TableDescriptionPanel onCancel={changeFieldPanel(false)} />);
         }
     };
@@ -25,12 +25,10 @@ const MetaTabPanel = () => {
             <div className="panel-bar header panel panel-ltr panel-border-bottom">
                 <span className="title">元数据</span>
                 <div className="actions">
-                    <Tooltip
-                        title="刷新所有元数据信息"
-                    >
+                    <Tooltip title="刷新所有元数据信息">
                         <Button
                             className="ant-btn-icon-only"
-                            type='text'
+                            type="text"
                             size="small"
                         >
                             <ReloadOutlined />
@@ -39,29 +37,24 @@ const MetaTabPanel = () => {
                 </div>
             </div>
             <div className="panel-bar searchbar panel panel-ltr panel-border-bottom">
-                <Input suffix={<SearchOutlined />} placeholder="搜索名称…" />
-            </div>
-            <div className="panel meta-list panel-ttb">
-                <MetaTree 
-                    onDoubleClick={onDoubleClick}
+                <Input
+                    suffix={<SearchOutlined />}
+                    placeholder="搜索名称…"
                 />
             </div>
-            {
-                fieldPanel
-                    ? (
-                        <Resizable
-                            className="panel panel-ttb panel-border-top resizable-panel"
-                            size={200}
-                            resizeHandle="n"
-                            axis={"y"}
-                        >
-                            {fieldPanel}
-                        </Resizable>
-                    ) : (
-                        null
-                    )
-
-            }
+            <div className="panel meta-list panel-ttb">
+                <MetaTree onDoubleClick={onDoubleClick} />
+            </div>
+            {fieldPanel ? (
+                <Resizable
+                    className="panel panel-ttb panel-border-top resizable-panel"
+                    size={200}
+                    resizeHandle="n"
+                    axis={"y"}
+                >
+                    {fieldPanel}
+                </Resizable>
+            ) : null}
         </div>
     );
 };

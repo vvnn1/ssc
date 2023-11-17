@@ -6,7 +6,12 @@ import SettingCard from "../../../../SettingCard";
 const { Option } = Select;
 
 const timeUnitSelector = (
-    <Select defaultValue="second" size="small" popupMatchSelectWidth={52} popupClassName="no-padding-select">
+    <Select
+        defaultValue="second"
+        size="small"
+        popupMatchSelectWidth={52}
+        popupClassName="no-padding-select"
+    >
         <Option value="day">天</Option>
         <Option value="hour">小时</Option>
         <Option value="minute">分</Option>
@@ -66,7 +71,7 @@ const restartStrategyOptions = [
                     </Form.Item>
                 </Col>
             </Row>
-        )
+        ),
     },
     {
         value: "lucy",
@@ -97,7 +102,10 @@ const restartStrategyOptions = [
                         extra={
                             <>
                                 <p>延迟重试意味着在执行失败后，重新执行不会立即开始，而只会在一定的延迟后开始</p>
-                                <p>当程序与外部系统进行交互（例如，连接或挂起的事务在尝试重新执行之前应达到超时）时，延迟重试可能会有所帮助。如果通过检查点激活，则使用 10s</p>
+                                <p>
+                                    当程序与外部系统进行交互（例如，连接或挂起的事务在尝试重新执行之前应达到超时）时，延迟重试可能会有所帮助。如果通过检查点激活，则使用
+                                    10s
+                                </p>
                             </>
                         }
                     >
@@ -109,7 +117,7 @@ const restartStrategyOptions = [
                     </Form.Item>
                 </Col>
             </Row>
-        )
+        ),
     },
     {
         value: "Yiminghe",
@@ -120,10 +128,9 @@ const restartStrategyOptions = [
             </>
         ),
         title: "No Restarts",
-        strategyModule: null
+        strategyModule: null,
     },
 ];
-
 
 interface RuntimeSettingProps {
     onlyStrategy?: boolean;
@@ -132,65 +139,75 @@ interface RuntimeSettingProps {
 const RuntimeSetting = (props: RuntimeSettingProps) => {
     const [strategyModule, setStrategyModule] = useState<React.ReactElement | null>(null);
 
-    const strategyModuleChange:SelectProps["onSelect"] = ({ strategyModule }) => {
+    const strategyModuleChange: SelectProps["onSelect"] = ({ strategyModule }) => {
         setStrategyModule(strategyModule);
     };
 
-
     return (
-        <SettingCard
-            title="运行参数配置"
-        >
+        <SettingCard title="运行参数配置">
             <Row gutter={24}>
-                {
-                    props.onlyStrategy
-                        ? null
-                        : (
-                            <>
-                                <Col span={12}>
-                                    <Form.Item
-                                        label="系统检查点间隔"
-                                        labelAlign="left"
-                                        extra={<><i>默认值:</i><code>-</code> 定时执行 Checkpoint 的时间间隔，如果不填写，将会使用作业引擎版本的默认值</>}
-                                    >
-                                        <InputNumber
-                                            size="small"
-                                            placeholder="请输入系统检查点间隔"
-                                            addonAfter={timeUnitSelector}
-                                        />
-                                    </Form.Item>
-                                </Col>
-                                <Col span={12}>
-                                    <Form.Item
-                                        label="两次系统检查点之间的最短时间间隔"
-                                        labelAlign="left"
-                                        extra={<><i>默认值:</i><code>-</code> 两次系统检查点之间的最短时间间隔，如果 Checkpoint 最大并行度是1，那么这个配置确保两个 Checkpoint 之间有一个最短时间间隔，如果不填写，将会使用作业引擎版本的默认值</>}
-                                    >
-                                        <InputNumber
-                                            size="small"
-                                            placeholder="请输入时间间隔"
-                                            addonAfter={timeUnitSelector}
-                                        />
-                                    </Form.Item>
-
-                                </Col>
-                                <Col span={12}>
-                                    <Form.Item
-                                        label="State 数据过期时间"
-                                        labelAlign="left"
-                                        extra={<><i>默认值:</i><code>-</code> 设定的 Flink 状态生存时间，状态服务每经过设置的时间就会清理当前存储的状态</>}
-                                    >
-                                        <InputNumber
-                                            size="small"
-                                            placeholder="请输入 State 数据过期时间"
-                                            addonAfter={timeUnitSelector}
-                                        />
-                                    </Form.Item>
-
-                                </Col>
-                            </>
-                        )
-                }
+                {props.onlyStrategy ? null : (
+                    <>
+                        <Col span={12}>
+                            <Form.Item
+                                label="系统检查点间隔"
+                                labelAlign="left"
+                                extra={
+                                    <>
+                                        <i>默认值:</i>
+                                        <code>-</code> 定时执行 Checkpoint
+                                        的时间间隔，如果不填写，将会使用作业引擎版本的默认值
+                                    </>
+                                }
+                            >
+                                <InputNumber
+                                    size="small"
+                                    placeholder="请输入系统检查点间隔"
+                                    addonAfter={timeUnitSelector}
+                                />
+                            </Form.Item>
+                        </Col>
+                        <Col span={12}>
+                            <Form.Item
+                                label="两次系统检查点之间的最短时间间隔"
+                                labelAlign="left"
+                                extra={
+                                    <>
+                                        <i>默认值:</i>
+                                        <code>-</code> 两次系统检查点之间的最短时间间隔，如果 Checkpoint
+                                        最大并行度是1，那么这个配置确保两个 Checkpoint
+                                        之间有一个最短时间间隔，如果不填写，将会使用作业引擎版本的默认值
+                                    </>
+                                }
+                            >
+                                <InputNumber
+                                    size="small"
+                                    placeholder="请输入时间间隔"
+                                    addonAfter={timeUnitSelector}
+                                />
+                            </Form.Item>
+                        </Col>
+                        <Col span={12}>
+                            <Form.Item
+                                label="State 数据过期时间"
+                                labelAlign="left"
+                                extra={
+                                    <>
+                                        <i>默认值:</i>
+                                        <code>-</code> 设定的 Flink
+                                        状态生存时间，状态服务每经过设置的时间就会清理当前存储的状态
+                                    </>
+                                }
+                            >
+                                <InputNumber
+                                    size="small"
+                                    placeholder="请输入 State 数据过期时间"
+                                    addonAfter={timeUnitSelector}
+                                />
+                            </Form.Item>
+                        </Col>
+                    </>
+                )}
 
                 <Col span={24}>
                     <Form.Item
@@ -206,9 +223,7 @@ const RuntimeSetting = (props: RuntimeSettingProps) => {
                             onSelect={strategyModuleChange}
                         />
                     </Form.Item>
-                    {
-                        strategyModule
-                    }
+                    {strategyModule}
                 </Col>
             </Row>
         </SettingCard>

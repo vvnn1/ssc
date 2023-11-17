@@ -1,5 +1,3 @@
-
-
 const SqlStructureGraph = () => {
     const data = {
         nodes: [
@@ -216,18 +214,17 @@ const SqlStructureGraph = () => {
             type: "polyline",
             endArrow: true,
         },
-        markerCfg: (cfg:any) => {
+        markerCfg: (cfg: any) => {
             return {
                 position: "bottom",
-                show: data.edges.filter((item) => item.source === cfg.id)?.length,
+                show: data.edges.filter(item => item.source === cfg.id)?.length,
             };
         },
         behaviors: ["drag-canvas", "zoom-canvas", "drag-node"],
     };
-    
+
     //   return <FlowAnalysisGraph data={data} />;
     return <></>;
 };
-
 
 export default SqlStructureGraph;

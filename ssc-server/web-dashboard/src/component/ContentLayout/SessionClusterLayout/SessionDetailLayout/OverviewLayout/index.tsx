@@ -2,7 +2,6 @@ import { Descriptions, DescriptionsProps, Tabs, TabsProps } from "antd";
 import "./index.sass";
 import MonacoEditor from "../../../../MonacoEditor";
 
-
 const xml = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Configuration xmlns="http://logging.apache.org/log4j/2.0/config" strict="true" monitorInterval="30">
     <Appenders>
@@ -67,43 +66,43 @@ const sessionItems: DescriptionsProps["items"] = [
         key: "1",
         label: "Deployment Target",
         children: "vvp-workload (8d8475c7-48e5-4cac-9436-3936fc0e4ad5)",
-        span: 3
+        span: 3,
     },
     {
         key: "2",
         label: "Desired State",
         children: "STOPPED",
-        span: 3
+        span: 3,
     },
     {
         key: "3",
         label: "Number of Task Managers",
         children: "1",
-        span: 3
+        span: 3,
     },
     {
         key: "4",
         label: "Job Manager CPU",
         children: "1",
-        span: 3
+        span: 3,
     },
     {
         key: "5",
         label: "Job Manager Memory",
         children: "4GiB",
-        span: 3
+        span: 3,
     },
     {
         key: "6",
         label: "Task Manager CPU",
         children: "2",
-        span: 3
+        span: 3,
     },
     {
         key: "7",
         label: "Task Manager Memory",
         children: "8GiB",
-        span: 3
+        span: 3,
     },
 ];
 
@@ -112,7 +111,7 @@ const artifactItems = [
         key: "1",
         label: "Engine Version",
         children: "vvr-8.0.1-flink-1.17",
-        span: 1
+        span: 1,
     },
 ];
 
@@ -121,25 +120,25 @@ const FlinkItems = [
         key: "1",
         label: "metrics.reporters",
         children: "promappmgr",
-        span: 3
+        span: 3,
     },
     {
         key: "2",
         label: "metrics.reporter.promappmgr.port",
         children: "9999",
-        span: 3
+        span: 3,
     },
     {
         key: "3",
         label: "metrics.reporter.promappmgr.factory.class",
         children: "org.apache.flink.metrics.prometheus.PrometheusReporterFactory",
-        span: 3
+        span: 3,
     },
     {
         key: "4",
         label: "restart-strategy",
         children: "none",
-        span: 3
+        span: 3,
     },
 ];
 
@@ -148,7 +147,7 @@ const loggingItems = [
         key: "1",
         label: "root",
         children: "INFO",
-        span: 3
+        span: 3,
     },
 ];
 
@@ -169,7 +168,7 @@ const OverviewLayout = () => {
             key: "36",
             label: "操作",
             children: "",
-            labelStyle: { visibility: "hidden", borderRight: "none" }
+            labelStyle: { visibility: "hidden", borderRight: "none" },
         },
         {
             key: "4",
@@ -192,17 +191,35 @@ const OverviewLayout = () => {
         {
             key: "1",
             label: " Session 集群配置 ",
-            children: <Descriptions bordered items={sessionItems} size="small" />,
+            children: (
+                <Descriptions
+                    bordered
+                    items={sessionItems}
+                    size="small"
+                />
+            ),
         },
         {
             key: "2",
             label: "Artifact 配置",
-            children: <Descriptions bordered items={artifactItems} size="small" />,
+            children: (
+                <Descriptions
+                    bordered
+                    items={artifactItems}
+                    size="small"
+                />
+            ),
         },
         {
             key: "3",
             label: "Flink 配置",
-            children: <Descriptions bordered items={FlinkItems} size="small" />,
+            children: (
+                <Descriptions
+                    bordered
+                    items={FlinkItems}
+                    size="small"
+                />
+            ),
         },
         {
             key: "4",
@@ -212,7 +229,7 @@ const OverviewLayout = () => {
                     language="xml"
                     options={{
                         minimap: {
-                            enabled: false
+                            enabled: false,
                         },
                         selectOnLineNumbers: true,
                         lineNumbersMinChars: 2,
@@ -220,7 +237,6 @@ const OverviewLayout = () => {
                         wordWrap: "on",
                         readOnly: false,
                         scrollBeyondLastLine: false,
-
                     }}
                     value={xml}
                     height={1052}
@@ -230,16 +246,30 @@ const OverviewLayout = () => {
         {
             key: "5",
             label: "Logging Level 配置",
-            children: <Descriptions bordered items={loggingItems} size="small" />,
+            children: (
+                <Descriptions
+                    bordered
+                    items={loggingItems}
+                    size="small"
+                />
+            ),
         },
     ];
 
     return (
         <div className="session-overview-layout">
             <div className="description">
-                <Descriptions bordered items={items} size="small" />
+                <Descriptions
+                    bordered
+                    items={items}
+                    size="small"
+                />
             </div>
-            <Tabs className="configuration-tabs" items={tabItems} defaultActiveKey="1" />
+            <Tabs
+                className="configuration-tabs"
+                items={tabItems}
+                defaultActiveKey="1"
+            />
         </div>
     );
 };

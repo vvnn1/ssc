@@ -1,6 +1,15 @@
 import { Button, Divider, Input, Popconfirm, Space, Table, Tooltip, Upload } from "antd";
 import "./index.sass";
-import { CloseOutlined, CopyOutlined, DeleteOutlined, DownloadOutlined, EditOutlined, FileTextOutlined, LoadingOutlined, WarningFilled } from "../../Icon";
+import {
+    CloseOutlined,
+    CopyOutlined,
+    DeleteOutlined,
+    DownloadOutlined,
+    EditOutlined,
+    FileTextOutlined,
+    LoadingOutlined,
+    WarningFilled,
+} from "../../Icon";
 import { useState } from "react";
 
 const { Search } = Input;
@@ -18,26 +27,24 @@ interface ResourceRecord {
 type TableProps = Parameters<typeof Table<ResourceRecord>>[0];
 type ColumnTypes = Exclude<TableProps["columns"], undefined>;
 
-
 const ResourceLayout = () => {
     const [data, setData] = useState<ResourceRecord[]>([
         {
             key: "1",
             name: "John Brown",
             createTime: "2023-08-14 11:44:03",
-            downlaoding: false
+            downlaoding: false,
         },
         {
             key: "2",
             name: "斯泰尔斯庄园奇案 The Mysterious Affair at Styles.txt",
-            type: "warning"
-
+            type: "warning",
         },
         {
             key: "3",
             name: "flink-doris-connector-1.15-1.2.0.jar",
-            type: "uploading"
-        }
+            type: "uploading",
+        },
     ]);
 
     const onDownloadClick = (record: ResourceRecord) => {
@@ -61,31 +68,41 @@ const ResourceLayout = () => {
                     <div>
                         <FileTextOutlined className="file-type" />
                         <span className="file-name">{value}</span>
-                        {type === "warning" ? <Tooltip title="文件名称格式不正确，只支持字母（大小写）、数字、下划线（_）、横杠（-）、点（.）"><WarningFilled className="file-name-warning" /></Tooltip> : null}
+                        {type === "warning" ? (
+                            <Tooltip title="文件名称格式不正确，只支持字母（大小写）、数字、下划线（_）、横杠（-）、点（.）">
+                                <WarningFilled className="file-name-warning" />
+                            </Tooltip>
+                        ) : null}
 
                         {type === "uploading" ? (
                             <>
-                                <Tooltip title="正在上传文件..."><LoadingOutlined className="file-uploading"/></Tooltip>
+                                <Tooltip title="正在上传文件...">
+                                    <LoadingOutlined className="file-uploading" />
+                                </Tooltip>
                                 <div className="progress" />
                             </>
                         ) : null}
-                        {type === "default" || !type ? <Tooltip title="prompt text"><CopyOutlined className="file-name-copy" /></Tooltip> : null}
+                        {type === "default" || !type ? (
+                            <Tooltip title="prompt text">
+                                <CopyOutlined className="file-name-copy" />
+                            </Tooltip>
+                        ) : null}
                     </div>
                 );
             },
             onCell: ({ type }) => {
                 if (type === "warning") {
                     return {
-                        colSpan: 2
+                        colSpan: 2,
                     };
                 }
                 if (type === "uploading") {
                     return {
-                        colSpan: 3
+                        colSpan: 3,
                     };
                 }
                 return {};
-            }
+            },
         },
         {
             title: "创建时间",
@@ -95,11 +112,11 @@ const ResourceLayout = () => {
             onCell: ({ type }) => {
                 if (type === "warning" || type === "uploading") {
                     return {
-                        colSpan: 0
+                        colSpan: 0,
                     };
                 }
                 return {};
-            }
+            },
         },
         {
             title: "操作",
@@ -109,33 +126,65 @@ const ResourceLayout = () => {
                 if (record.type === "warning") {
                     return (
                         <>
-                            <Button size="small" type="link" icon={<CloseOutlined />}>取消</Button>
+                            <Button
+                                size="small"
+                                type="link"
+                                icon={<CloseOutlined />}
+                            >
+                                取消
+                            </Button>
                             <Divider type="vertical" />
                             <Popconfirm
                                 okText="确认"
                                 cancelText="取消"
-                                title={<Input addonAfter="Str." style={{ width: 340 }} defaultValue={record.name} />}
+                                title={
+                                    <Input
+                                        addonAfter="Str."
+                                        style={{ width: 340 }}
+                                        defaultValue={record.name}
+                                    />
+                                }
                                 overlayClassName="ant-popover-rtl"
                                 icon={<></>}
                                 placement="left"
                             >
-                                <Button size="small" type="link" icon={<EditOutlined />}>重命名</Button>
+                                <Button
+                                    size="small"
+                                    type="link"
+                                    icon={<EditOutlined />}
+                                >
+                                    重命名
+                                </Button>
                             </Popconfirm>
-
                         </>
                     );
                 }
                 return (
                     <>
-                        <Button type="link" loading={record.downlaoding} icon={<DownloadOutlined />} size="small" onClick={onDownloadClick(record)}>下载</Button>
+                        <Button
+                            type="link"
+                            loading={record.downlaoding}
+                            icon={<DownloadOutlined />}
+                            size="small"
+                            onClick={onDownloadClick(record)}
+                        >
+                            下载
+                        </Button>
                         <Divider type="vertical" />
                         <Popconfirm
                             okText="确认"
                             cancelText="取消"
-                            title='是否要删除此文件？'
+                            title="是否要删除此文件？"
                             overlayClassName="ant-popover-rtl"
                         >
-                            <Button type="link" icon={<DeleteOutlined />} size="small" danger>删除</Button>
+                            <Button
+                                type="link"
+                                icon={<DeleteOutlined />}
+                                size="small"
+                                danger
+                            >
+                                删除
+                            </Button>
                         </Popconfirm>
                     </>
                 );
@@ -143,11 +192,11 @@ const ResourceLayout = () => {
             onCell: ({ type }) => {
                 if (type === "uploading") {
                     return {
-                        colSpan: 0
+                        colSpan: 0,
                     };
                 }
                 return {};
-            }
+            },
         },
     ];
 
@@ -158,14 +207,10 @@ const ResourceLayout = () => {
                 <div className="actions">
                     <Space>
                         <Upload>
-                            <Button type='primary'>上传资源</Button>
+                            <Button type="primary">上传资源</Button>
                         </Upload>
-                        <Search
-                            placeholder="搜索名称"
-                        />
-                        <div>
-                            可将文件拖到下方表格以上传
-                        </div>
+                        <Search placeholder="搜索名称" />
+                        <div>可将文件拖到下方表格以上传</div>
                     </Space>
                 </div>
             </div>
@@ -174,7 +219,7 @@ const ResourceLayout = () => {
                     columns={columns}
                     dataSource={data}
                     showSorterTooltip={false}
-                    size='small'
+                    size="small"
                 />
             </div>
         </div>

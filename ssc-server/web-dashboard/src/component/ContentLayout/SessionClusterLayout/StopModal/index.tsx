@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { ExclamationCircleOutlined } from "../../../Icon";
 
 const StopModal = (props: ModalProps) => {
-
     const [checked, setChecked] = useState<boolean>(false);
 
     useEffect(() => {
@@ -34,11 +33,22 @@ const StopModal = (props: ModalProps) => {
                         注意：停止 session 集群将导致在此集群上运行的所有作业停止，是否确认？
                         <br />
                         <br />
-                        <Checkbox checked={checked} onChange={onCheckedChange}>我已知晓</Checkbox>
+                        <Checkbox
+                            checked={checked}
+                            onChange={onCheckedChange}
+                        >
+                            我已知晓
+                        </Checkbox>
                     </div>
                 </div>
                 <div className="ant-modal-confirm-btns">
-                    <Button type="primary" disabled={!checked} onClick={props.onOk}>确定</Button>
+                    <Button
+                        type="primary"
+                        disabled={!checked}
+                        onClick={props.onOk}
+                    >
+                        确定
+                    </Button>
                 </div>
             </div>
         </Modal>

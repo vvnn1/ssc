@@ -4,7 +4,6 @@ import "./index.sass";
 
 const { Paragraph } = Typography;
 
-
 export interface CardProps {
     icon: React.ReactNode;
     title: string;
@@ -27,7 +26,9 @@ const DraftCard = (props: CardProps) => {
                     <span className="template-title">{props.title}</span>
                 </h4>
             </div>
-            <div className="content"><Paragraph ellipsis={{rows: 3}}>{props.content}</Paragraph></div>
+            <div className="content">
+                <Paragraph ellipsis={{ rows: 3 }}>{props.content}</Paragraph>
+            </div>
             <div className="footer">
                 <Space>
                     <span className="key">类别:</span>

@@ -39,53 +39,56 @@ const TableDescriptionPanel = (props: TableDescriptionPanelProps) => {
             <div className="header">
                 <span className="title">test_table</span>
                 <span className="action">
-                    <MinusOutlined onClick={props.onCancel}/>
+                    <MinusOutlined onClick={props.onCancel} />
                 </span>
             </div>
             <div className="content">
-                <Popover content={<TableFieldPopOverContent />} placement="right">
+                <Popover
+                    content={<TableFieldPopOverContent />}
+                    placement="right"
+                >
                     <div className="row">
                         <span className="name">
                             <InsertRowLeftOutlined /> id
                         </span>
-                        <span className="type">
-                            BIGINT
-                        </span>
+                        <span className="type">BIGINT</span>
                     </div>
                 </Popover>
 
-                <Popover content={<TableFieldPopOverContent />} placement="right">
+                <Popover
+                    content={<TableFieldPopOverContent />}
+                    placement="right"
+                >
                     <div className="row">
                         <span className="name">
                             <InsertRowLeftOutlined /> user_id
                         </span>
-                        <span className="type">
-                            BIGINT
-                        </span>
+                        <span className="type">BIGINT</span>
                     </div>
                 </Popover>
-                <Popover content={<TableFieldPopOverContent />} placement="right">
+                <Popover
+                    content={<TableFieldPopOverContent />}
+                    placement="right"
+                >
                     <div className="row">
                         <span className="name">
                             <InsertRowLeftOutlined /> product
                         </span>
-                        <span className="type">
-                            VARCHAR(2147483647)
-                        </span>
+                        <span className="type">VARCHAR(2147483647)</span>
                     </div>
                 </Popover>
 
-                <Popover content={<TableFieldPopOverContent />} placement="right">
+                <Popover
+                    content={<TableFieldPopOverContent />}
+                    placement="right"
+                >
                     <div className="row">
                         <span className="name">
                             <InsertRowLeftOutlined /> order_time
                         </span>
-                        <span className="type">
-                            TIMESTAMP(3)
-                        </span>
+                        <span className="type">TIMESTAMP(3)</span>
                     </div>
                 </Popover>
-
             </div>
         </div>
     );

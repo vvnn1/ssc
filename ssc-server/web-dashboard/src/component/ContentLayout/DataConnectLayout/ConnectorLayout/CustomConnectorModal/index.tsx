@@ -5,7 +5,6 @@ import "./index.sass";
 import StepModal from "../../../../StepModal";
 
 const CustomConnectorModal = (props: ModalProps) => {
-
     return (
         <StepModal
             modalProps={{
@@ -13,7 +12,7 @@ const CustomConnectorModal = (props: ModalProps) => {
                 title: "创建自定义连接器",
                 width: 800,
                 rootClassName: "custom-connector-modal",
-                destroyOnClose: true
+                destroyOnClose: true,
             }}
             stepsProps={{
                 size: "small",
@@ -24,19 +23,17 @@ const CustomConnectorModal = (props: ModalProps) => {
                     {
                         title: "查看连接器",
                     },
-                ]
+                ],
             }}
         >
-            {
-                (currentStep: number) => {
-                    return (
-                        <div className="steps-body">
-                            <Step1 hidden={currentStep !== 0} />
-                            <Step2 hidden={currentStep !== 1} />
-                        </div>
-                    );
-                }
-            }
+            {(currentStep: number) => {
+                return (
+                    <div className="steps-body">
+                        <Step1 hidden={currentStep !== 0} />
+                        <Step2 hidden={currentStep !== 1} />
+                    </div>
+                );
+            }}
         </StepModal>
     );
 };

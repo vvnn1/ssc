@@ -18,39 +18,64 @@ const LogLayout = () => {
             <div className="log-level-container">
                 <div>
                     <span>日志级别 :</span>
-                    <Select className="level-select" size="small" disabled={selectDisabled} />
-                    {
-                        selectDisabled ? (
-                            <Popconfirm
-                                title="该日志后续将以修改后类型输出"
-                                onConfirm={changeSelectDisabled(false)}
-                                okText="确认"
-                                cancelText="取消"
-                                style={{ width: 250 }}
-                                overlayClassName="ant-popover-rtl"
+                    <Select
+                        className="level-select"
+                        size="small"
+                        disabled={selectDisabled}
+                    />
+                    {selectDisabled ? (
+                        <Popconfirm
+                            title="该日志后续将以修改后类型输出"
+                            onConfirm={changeSelectDisabled(false)}
+                            okText="确认"
+                            cancelText="取消"
+                            style={{ width: 250 }}
+                            overlayClassName="ant-popover-rtl"
+                        >
+                            <Button
+                                type="link"
+                                size="small"
                             >
-                                <Button type="link" size="small">编辑</Button>
-                            </Popconfirm>
-                        ) : (
-                            <>
-                                <Button type="link" onClick={changeSelectDisabled(true)} size="small">确定</Button>
-                                <Button type="link" onClick={changeSelectDisabled(true)} size="small">取消</Button>
-                            </>
-                        )
-                    }
-
+                                编辑
+                            </Button>
+                        </Popconfirm>
+                    ) : (
+                        <>
+                            <Button
+                                type="link"
+                                onClick={changeSelectDisabled(true)}
+                                size="small"
+                            >
+                                确定
+                            </Button>
+                            <Button
+                                type="link"
+                                onClick={changeSelectDisabled(true)}
+                                size="small"
+                            >
+                                取消
+                            </Button>
+                        </>
+                    )}
                 </div>
                 <div className="actions">
-                    <Button size="small"><SyncOutlined /></Button>
-                    <Button size="small"><DownloadOutlined /></Button>
-                    <Button size="small" icon={<FullscreenOutlined />} />
+                    <Button size="small">
+                        <SyncOutlined />
+                    </Button>
+                    <Button size="small">
+                        <DownloadOutlined />
+                    </Button>
+                    <Button
+                        size="small"
+                        icon={<FullscreenOutlined />}
+                    />
                 </div>
             </div>
             <div className="log-preview">
                 <MonacoEditor
                     options={{
                         minimap: {
-                            enabled: false
+                            enabled: false,
                         },
                         selectOnLineNumbers: true,
                         lineNumbersMinChars: 5,
@@ -59,8 +84,7 @@ const LogLayout = () => {
                         readOnly: false,
                         scrollBeyondLastLine: false,
                     }}
-                    value={
-                        `2023-09-14 11:11:17,558 [main] INFO  org.apache.flink.runtime.taskexecutor.TaskManagerRunner      [] - --------------------------------------------------------------------------------
+                    value={`2023-09-14 11:11:17,558 [main] INFO  org.apache.flink.runtime.taskexecutor.TaskManagerRunner      [] - --------------------------------------------------------------------------------
 2023-09-14 11:11:17,564 [main] INFO  org.apache.flink.runtime.taskexecutor.TaskManagerRunner      [] -  Preconfiguration: 
 2023-09-14 11:11:17,564 [main] INFO  org.apache.flink.runtime.taskexecutor.TaskManagerRunner      [] - 
 
@@ -95,8 +119,7 @@ INFO  [] - Loading configuration property: high-availability, org.apache.flink.k
 INFO  [] - Loading configuration property: cluster.termination-message-path, /flink/log/termination.log
 INFO  [] - Loading configuration property: fs.oss.endpoint, https://oss-cn-hangzhou-internal.aliyuncs.com
 INFO  [] - Loading configuration property: restart-strategy, none
-INFO  [] - Loading configuration property: state.backend, com.alibaba.flink.statebackend.GeminiStateBackendFactory`
-                    }
+INFO  [] - Loading configuration property: state.backend, com.alibaba.flink.statebackend.GeminiStateBackendFactory`}
                 />
             </div>
         </div>

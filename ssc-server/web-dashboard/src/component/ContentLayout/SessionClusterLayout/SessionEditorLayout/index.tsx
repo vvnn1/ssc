@@ -37,7 +37,7 @@ metrics.reporter.promappmgr.factory.class: org.apache.flink.metrics.prometheus.P
             jmMemory: "2GiB",
             tmCpu: 1,
             tmMemory: "3GiB",
-            rootLogLevel: "INFO"
+            rootLogLevel: "INFO",
         });
     }, []);
 
@@ -45,7 +45,10 @@ metrics.reporter.promappmgr.factory.class: org.apache.flink.metrics.prometheus.P
         <div className="session-editor-layout">
             <div className="header">
                 <div className="title">
-                    <MyLink className="left-arrow" to={"../../list"}>
+                    <MyLink
+                        className="left-arrow"
+                        to={"../../list"}
+                    >
                         <ArrowLeftOutlined />
                     </MyLink>
                     编辑 Session 集群
@@ -54,7 +57,10 @@ metrics.reporter.promappmgr.factory.class: org.apache.flink.metrics.prometheus.P
             <ScrollPin containerRef={contentRef} />
             <div className="content">
                 <div className="form-wrapper">
-                    <div className="form-content" ref={contentRef}>
+                    <div
+                        className="form-content"
+                        ref={contentRef}
+                    >
                         <Form
                             layout="vertical"
                             size="small"
@@ -69,14 +75,17 @@ metrics.reporter.promappmgr.factory.class: org.apache.flink.metrics.prometheus.P
                     </div>
                     <div className="form-footer">
                         <Space>
-                            <Button type="primary" onClick={onSave}>保存</Button>
+                            <Button
+                                type="primary"
+                                onClick={onSave}
+                            >
+                                保存
+                            </Button>
                             <Button onClick={onCancel}>取消</Button>
                         </Space>
                     </div>
                 </div>
-
             </div>
-
         </div>
     );
 };

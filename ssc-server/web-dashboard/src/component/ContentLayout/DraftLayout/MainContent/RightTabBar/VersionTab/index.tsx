@@ -27,7 +27,11 @@ const VersionTab = () => {
             key: "version",
             fixed: "left",
             width: 100,
-            render: (value, recoerd) => <>{value} {recoerd.lock ? <LockFilled style={{color: "#fac800"}}/> : null}</>
+            render: (value, recoerd) => (
+                <>
+                    {value} {recoerd.lock ? <LockFilled style={{ color: "#fac800" }} /> : null}
+                </>
+            ),
         },
         {
             title: "提交时间",
@@ -41,13 +45,13 @@ const VersionTab = () => {
             dataIndex: "submitor",
             key: "submitor",
             width: 150,
-            render: (value) => <Tooltip title={value}>{value}</Tooltip>
+            render: value => <Tooltip title={value}>{value}</Tooltip>,
         },
         {
             title: "备注",
             dataIndex: "remark",
             key: "remark",
-            width: 150
+            width: 150,
         },
         {
             title: "操作",
@@ -57,35 +61,60 @@ const VersionTab = () => {
             render: () => {
                 return (
                     <span>
-                        <Button type="link" size="small" onClick={changeModalOpen(true, setDiffModalOpen)}>对比</Button>
+                        <Button
+                            type="link"
+                            size="small"
+                            onClick={changeModalOpen(true, setDiffModalOpen)}
+                        >
+                            对比
+                        </Button>
                         <Divider type="vertical" />
                         <Dropdown
                             menu={{
                                 items: [
                                     {
                                         key: "1",
-                                        label: <Tooltip title="The draft editor will be reverted to this particular version." placement="left">回滚</Tooltip>,
+                                        label: (
+                                            <Tooltip
+                                                title="The draft editor will be reverted to this particular version."
+                                                placement="left"
+                                            >
+                                                回滚
+                                            </Tooltip>
+                                        ),
                                         onClick: changeModalOpen(true, setRollBackModalOpen),
-
                                     },
                                     {
                                         key: "2",
-                                        label: <Tooltip title="Pinned versions cannot be overwritten if the total number of versions reaches limit." placement="left">锁定</Tooltip>
+                                        label: (
+                                            <Tooltip
+                                                title="Pinned versions cannot be overwritten if the total number of versions reaches limit."
+                                                placement="left"
+                                            >
+                                                锁定
+                                            </Tooltip>
+                                        ),
                                     },
                                     {
                                         key: "3",
                                         label: "删除",
                                         danger: true,
                                         onClick: changeModalOpen(true, setDeleteModalOpen),
-                                    }
-                                ]
+                                    },
+                                ],
                             }}
                         >
-                            <Button type="link" size="small">更多<DownOutlined /></Button>
+                            <Button
+                                type="link"
+                                size="small"
+                            >
+                                更多
+                                <DownOutlined />
+                            </Button>
                         </Dropdown>
                     </span>
                 );
-            }
+            },
         },
     ];
 
@@ -106,21 +135,30 @@ const VersionTab = () => {
                             dateTime: "10-19 14:24",
                             submitor: "1142765884572712",
                             remark: "-",
-                            lock: false
+                            lock: false,
                         },
                         {
                             version: "10",
                             dateTime: "10-14 14:24",
                             submitor: "1142765884572712",
                             remark: "-",
-                            lock: true
+                            lock: true,
                         },
                     ]}
                 />
             </div>
-            <CompareModal open={diffModalOpen} onCancel={changeModalOpen(false, setDiffModalOpen)} />
-            <RollBackModal open={rollBackModalOpen} onCancel={changeModalOpen(false, setRollBackModalOpen)} />
-            <DeleteModal open={deleteModalOpen} onCancel={changeModalOpen(false, setDeleteModalOpen)}/>
+            <CompareModal
+                open={diffModalOpen}
+                onCancel={changeModalOpen(false, setDiffModalOpen)}
+            />
+            <RollBackModal
+                open={rollBackModalOpen}
+                onCancel={changeModalOpen(false, setRollBackModalOpen)}
+            />
+            <DeleteModal
+                open={deleteModalOpen}
+                onCancel={changeModalOpen(false, setDeleteModalOpen)}
+            />
         </div>
     );
 };

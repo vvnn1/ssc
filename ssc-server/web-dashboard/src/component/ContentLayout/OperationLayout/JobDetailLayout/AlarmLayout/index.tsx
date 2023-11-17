@@ -7,19 +7,22 @@ import AlarmRule from "./AlarmRule";
 
 const items: MenuProps["items"] = [
     {
-        label: <MyLink to='events'>告警事件</MyLink>,
+        label: <MyLink to="events">告警事件</MyLink>,
         key: "events",
     },
     {
-        label: <MyLink to='rules'>告警规则</MyLink>,
+        label: <MyLink to="rules">告警规则</MyLink>,
         key: "rules",
     },
 ];
 
 const AlarmLayout = () => {
     const { pathname } = useLocation();
-    const pathMatch = matchPath("/workspace/:workspaceId/namespace/:namespaceId/operations/:jobType/:jobId/:detailTab/:key", pathname);
-    
+    const pathMatch = matchPath(
+        "/workspace/:workspaceId/namespace/:namespaceId/operations/:jobType/:jobId/:detailTab/:key",
+        pathname
+    );
+
     return (
         <div className="development-alarm-layout">
             <Menu
@@ -29,8 +32,14 @@ const AlarmLayout = () => {
             />
             <div className="detail-container">
                 <Routes>
-                    <Route path="events" element={<AlarmList />} />
-                    <Route path="rules" element={<AlarmRule />} />
+                    <Route
+                        path="events"
+                        element={<AlarmList />}
+                    />
+                    <Route
+                        path="rules"
+                        element={<AlarmRule />}
+                    />
                 </Routes>
             </div>
         </div>

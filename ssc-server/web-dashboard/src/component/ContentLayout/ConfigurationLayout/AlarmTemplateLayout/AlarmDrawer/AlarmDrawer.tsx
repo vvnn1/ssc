@@ -4,7 +4,7 @@ import AlarmRuleItem from "./AlarmRuleItem";
 import NotifiAvenueItem from "./NotifiAvenueItem";
 
 interface AlarmDrawerProps {
-    model?: "create-template" | "create-rule"
+    model?: "create-template" | "create-rule";
 }
 
 const AlarmDrawer = (props: DrawerProps & AlarmDrawerProps) => {
@@ -20,13 +20,18 @@ const AlarmDrawer = (props: DrawerProps & AlarmDrawerProps) => {
                 labelCol={{ span: 4 }}
                 wrapperCol={{ span: 20 }}
             >
-                <AlarmRuleItem strict={props.model === "create-rule"}/>
-                <NotifiAvenueItem strict={props.model === "create-rule"}/>
+                <AlarmRuleItem strict={props.model === "create-rule"} />
+                <NotifiAvenueItem strict={props.model === "create-rule"} />
             </Form>
 
             <div className="drawer-footer">
                 <Space size={16}>
-                    <Button type="primary" onClick={props.onClose}>确定</Button>
+                    <Button
+                        type="primary"
+                        onClick={props.onClose}
+                    >
+                        确定
+                    </Button>
                     <Button onClick={props.onClose}>取消</Button>
                 </Space>
             </div>

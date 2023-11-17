@@ -1,10 +1,36 @@
 import { Input, List, Select, Space, Tabs } from "antd";
-import { ClickHouseOutlined, DataHubOutlined, DatagenOutlined, ElasticsearchOutlined, FakerOutlined, HbaseOutlined, HologresOutlined, HudiOutlined, IcebergOutlined, InfluxDBOutlined, JdbcOutlined, KafkaOutlined, LindormOutlined, MaxcomputeOutlined, MongoDBOutlined, MySqlOutlined, OssOutlined, PaimonOutlined, PostgreSqlOutlined, PrintOutlined, RdsMysqlOutlined, RedisOutlined, RocketMQOutlined, SearchOutlined, SlsOutlined, StarRocksOutlined } from "../../../../../Icon";
+import {
+    ClickHouseOutlined,
+    DataHubOutlined,
+    DatagenOutlined,
+    ElasticsearchOutlined,
+    FakerOutlined,
+    HbaseOutlined,
+    HologresOutlined,
+    HudiOutlined,
+    IcebergOutlined,
+    InfluxDBOutlined,
+    JdbcOutlined,
+    KafkaOutlined,
+    LindormOutlined,
+    MaxcomputeOutlined,
+    MongoDBOutlined,
+    MySqlOutlined,
+    OssOutlined,
+    PaimonOutlined,
+    PostgreSqlOutlined,
+    PrintOutlined,
+    RdsMysqlOutlined,
+    RedisOutlined,
+    RocketMQOutlined,
+    SearchOutlined,
+    SlsOutlined,
+    StarRocksOutlined,
+} from "../../../../../Icon";
 import ConnectorCard, { CardProps } from "./ConnectorCard";
 import ScrollPin from "../../../../../ScrollPin";
 import { useRef, useState } from "react";
 import "./index.sass";
-
 
 interface CardExtra {
     classification: string;
@@ -21,8 +47,7 @@ const connectorItems: CardDetail[] = [
         type: ["结果表", "维表"],
         classification: "adb3.0",
         version: "无版本限制",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
@@ -31,7 +56,7 @@ WITH (
     'userName' = '<userName>',
     'password' = '<password>',
     'tableName' = '<tableName>'
-);`
+);`,
     },
     {
         icon: <PostgreSqlOutlined />,
@@ -39,8 +64,7 @@ WITH (
         type: ["结果表", "维表"],
         classification: "adbpg",
         version: "无版本限制",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
@@ -49,7 +73,7 @@ WITH (
     'userName' = '<userName>',
     'password' = '<password>',
     'tableName' = '<tableName>'
-);`
+);`,
     },
     {
         icon: <MySqlOutlined />,
@@ -57,13 +81,12 @@ WITH (
         type: ["结果表"],
         classification: "blackhole",
         version: "无版本限制",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
     'connector' = 'blackhole'
-);`
+);`,
     },
     {
         icon: <ClickHouseOutlined />,
@@ -71,8 +94,7 @@ WITH (
         type: ["结果表"],
         classification: "clickhouse",
         version: "无版本限制",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
@@ -81,7 +103,7 @@ WITH (
     'userName' = '<userName>',
     'password' = '<password>',
     'tableName' = '<tableName>'
-);`
+);`,
     },
     {
         icon: <HbaseOutlined />,
@@ -89,8 +111,7 @@ WITH (
         type: ["结果表", "维表"],
         classification: "cloudhbase",
         version: "无版本限制",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
@@ -98,7 +119,7 @@ WITH (
     'table-name' = '<table-name>',
     'zookeeper.quorum' = '<zookeeper.quorum>',
     'sink.sync-write' = '<sink.sync-write>'
-);`
+);`,
     },
     {
         icon: <MaxcomputeOutlined />,
@@ -106,8 +127,7 @@ WITH (
         type: ["源表"],
         classification: "continuous-odps",
         version: "无版本限制",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
@@ -118,7 +138,7 @@ WITH (
     'accessid' = '<accessid>',
     'accessKey' = '<accessKey>',
     'startpartition' = '<startpartition>'
-);`
+);`,
     },
     {
         icon: <DatagenOutlined />,
@@ -126,13 +146,12 @@ WITH (
         type: ["源表"],
         classification: "datagen",
         version: "无版本限制",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
     'connector' = 'datagen'
-);`
+);`,
     },
     {
         icon: <DataHubOutlined />,
@@ -140,8 +159,7 @@ WITH (
         type: ["源表", "结果表"],
         classification: "datahub",
         version: "无版本限制",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
@@ -151,7 +169,7 @@ WITH (
     'topic' = '<topic>',
     'accessId' = '<accessId>',
     'accessKey' = '<accessKey>'
-);`
+);`,
     },
     {
         icon: <ElasticsearchOutlined />,
@@ -159,15 +177,14 @@ WITH (
         type: ["源表", "结果表", "维表"],
         classification: "elasticsearch",
         version: "6.x & 7.x",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
     'connector' = 'elasticsearch',
     'indexName' = '<indexName>',
     'endPoint' = '<endPoint>'
-);`
+);`,
     },
     {
         icon: <ElasticsearchOutlined />,
@@ -175,8 +192,7 @@ WITH (
         type: ["源表", "结果表", "维表"],
         classification: "elasticsearch-6",
         version: "6.x",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
@@ -184,7 +200,7 @@ WITH (
     'hosts' = '<hosts>',
     'index' = '<index>',
     'document-type' = '<document-type>'
-);`
+);`,
     },
     {
         icon: <ElasticsearchOutlined />,
@@ -192,15 +208,14 @@ WITH (
         type: ["源表", "结果表", "维表"],
         classification: "elasticsearch-7",
         version: "7.x",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
     'connector' = 'elasticsearch-7',
     'hosts' = '<hosts>',
     'index' = '<index>'
-);`
+);`,
     },
     {
         icon: <FakerOutlined />,
@@ -208,13 +223,12 @@ WITH (
         type: ["源表", "维表"],
         classification: "faker",
         version: "无版本限制",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
     'connector' = 'faker'
-);`
+);`,
     },
     {
         icon: <OssOutlined />,
@@ -222,15 +236,14 @@ WITH (
         type: ["结果表", "维表"],
         classification: "filesystem",
         version: "无版本限制",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
     'connector' = 'filesystem',
     'path' = '<path>',
     'format' = '<format>'
-);`
+);`,
     },
     {
         icon: <HologresOutlined />,
@@ -238,8 +251,7 @@ WITH (
         type: ["源表", "结果表", "维表"],
         classification: "hologres",
         version: "无版本限制",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
@@ -249,7 +261,7 @@ WITH (
     'tablename' = '<tablename>',
     'username' = '<username>',
     'password' = '<password>'
-);`
+);`,
     },
     {
         icon: <HudiOutlined />,
@@ -257,14 +269,13 @@ WITH (
         type: ["源表", "结果表"],
         classification: "hudi",
         version: "无版本限制",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
     'connector' = 'hudi',
     'path' = '<path>'
-);`
+);`,
     },
     {
         icon: <IcebergOutlined />,
@@ -272,13 +283,12 @@ WITH (
         type: ["源表", "结果表"],
         classification: "iceberg",
         version: "无版本限制",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
     'connector' = 'iceberg'
-);`
+);`,
     },
     {
         icon: <InfluxDBOutlined />,
@@ -286,15 +296,14 @@ WITH (
         type: ["结果表"],
         classification: "influxdb",
         version: "1.x",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
     'connector' = 'influxdb',
     'database' = '<database>',
     'url' = '<url>'
-);`
+);`,
     },
     {
         icon: <JdbcOutlined />,
@@ -302,15 +311,14 @@ WITH (
         type: ["源表", "结果表", "维表"],
         classification: "jdbc",
         version: "无版本限制",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
     'connector' = 'jdbc',
     'url' = '<url>',
     'table-name' = '<table-name>'
-);`
+);`,
     },
     {
         icon: <KafkaOutlined />,
@@ -318,8 +326,7 @@ WITH (
         type: ["源表", "结果表"],
         classification: "kafka",
         version: "0.11+",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
@@ -329,7 +336,7 @@ WITH (
     'properties.group.id' = '<properties.group.id>',
     'format' = '<format>',
     'value.format' = '<value.format>'
-);`
+);`,
     },
     {
         icon: <LindormOutlined />,
@@ -337,8 +344,7 @@ WITH (
         type: ["结果表", "维表"],
         classification: "lindorm",
         version: "无版本限制",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
@@ -348,7 +354,7 @@ WITH (
     'namespace' = '<namespace>',
     'username' = '<username>',
     'password' = '<password>'
-);`
+);`,
     },
     {
         icon: <MongoDBOutlined />,
@@ -356,8 +362,7 @@ WITH (
         type: ["结果表"],
         classification: "mongodb",
         version: "无版本限制",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
@@ -365,7 +370,7 @@ WITH (
     'database' = '<database>',
     'collection' = '<collection>',
     'uri' = '<uri>'
-);`
+);`,
     },
     {
         icon: <RocketMQOutlined />,
@@ -373,8 +378,7 @@ WITH (
         type: ["源表", "结果表"],
         classification: "mq",
         version: "无版本限制",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
@@ -386,7 +390,7 @@ WITH (
     'accessKey' = '<accessKey>',
     'endpoint' = '<endpoint>',
     'producerGroup' = '<producerGroup>'
-);`
+);`,
     },
     {
         icon: <MySqlOutlined />,
@@ -394,8 +398,7 @@ WITH (
         type: ["结果表", "维表"],
         classification: "mysql",
         version: "5.6/5.7/8.0",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
@@ -405,7 +408,7 @@ WITH (
     'password' = '<password>',
     'database-name' = '<database-name>',
     'table-name' = '<table-name>'
-);`
+);`,
     },
     {
         icon: <MySqlOutlined />,
@@ -413,8 +416,7 @@ WITH (
         type: ["源表"],
         classification: "mysql-cdc",
         version: "5.6/5.7/8.0",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
@@ -424,7 +426,7 @@ WITH (
     'password' = '<password>',
     'database-name' = '<database-name>',
     'table-name' = '<table-name>'
-);`
+);`,
     },
     {
         icon: <MaxcomputeOutlined />,
@@ -432,8 +434,7 @@ WITH (
         type: ["源表", "结果表", "维表"],
         classification: "odps",
         version: "无版本限制",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
@@ -443,7 +444,7 @@ WITH (
     'tablename' = '<tablename>',
     'accessid' = '<accessid>',
     'accessKey' = '<accessKey>'
-);`
+);`,
     },
     {
         icon: <PaimonOutlined />,
@@ -451,8 +452,7 @@ WITH (
         type: ["源表", "结果表", "维表"],
         classification: "ots",
         version: "无版本限制",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
@@ -460,7 +460,7 @@ WITH (
     'instanceName' = '<instanceName>',
     'tableName' = '<tableName>',
     'endPoint' = '<endPoint>'
-);`
+);`,
     },
     {
         icon: <PaimonOutlined />,
@@ -468,13 +468,12 @@ WITH (
         type: ["源表", "结果表"],
         classification: "paimon",
         version: "无版本限制",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
 
-);`
+);`,
     },
     {
         icon: <PostgreSqlOutlined />,
@@ -482,8 +481,7 @@ WITH (
         type: ["源表"],
         classification: "postgres-cdc",
         version: "9.6+",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
@@ -494,7 +492,7 @@ WITH (
     'database-name' = '<database-name>',
     'schema-name' = '<schema-name>',
     'table-name' = '<table-name>'
-);`
+);`,
     },
     {
         icon: <PrintOutlined />,
@@ -502,13 +500,12 @@ WITH (
         type: ["结果表"],
         classification: "print",
         version: "无版本限制",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
     'connector' = 'print'
-);`
+);`,
     },
     {
         icon: <RdsMysqlOutlined />,
@@ -516,8 +513,7 @@ WITH (
         type: ["结果表", "维表"],
         classification: "rds",
         version: "无版本限制",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
@@ -526,7 +522,7 @@ WITH (
     'userName' = '<userName>',
     'password' = '<password>',
     'tableName' = '<tableName>'
-);`
+);`,
     },
     {
         icon: <RedisOutlined />,
@@ -534,14 +530,13 @@ WITH (
         type: ["结果表", "维表"],
         classification: "redis",
         version: "无版本限制",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
     'connector' = 'redis',
     'host' = '<host>'
-);`
+);`,
     },
     {
         icon: <SlsOutlined />,
@@ -549,8 +544,7 @@ WITH (
         type: ["源表", "结果表"],
         classification: "sls",
         version: "无版本限制",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
@@ -558,7 +552,7 @@ WITH (
     'endpoint' = '<endpoint>',
     'project' = '<project>',
     'logstore' = '<logstore>'
-);`
+);`,
     },
     {
         icon: <StarRocksOutlined />,
@@ -566,8 +560,7 @@ WITH (
         type: ["源表", "结果表"],
         classification: "starrocks",
         version: "无版本限制",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
@@ -577,7 +570,7 @@ WITH (
     'database-name' = '<database-name>',
     'username' = '<username>',
     'password' = '<password>'
-);`
+);`,
     },
     {
         icon: <KafkaOutlined />,
@@ -585,8 +578,7 @@ WITH (
         type: ["源表", "结果表"],
         classification: "upsert-kafka",
         version: "0.11+",
-        template: 
-`CREATE TEMPORARY TABLE <your_table_name> (
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
@@ -595,8 +587,8 @@ WITH (
     'properties.bootstrap.servers' = '<properties.bootstrap.servers>',
     'key.format' = '<key.format>',
     'value.format' = '<value.format>'
-);`
-    }
+);`,
+    },
 ];
 
 interface Step1Props {
@@ -607,7 +599,7 @@ const Step1 = (props: Step1Props) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [activeIndex, setActiveIndex] = useState<number>();
 
-    const onItemClick = (index:number) => {
+    const onItemClick = (index: number) => {
         return () => {
             props.onCardChange(connectorItems[index]);
             setActiveIndex(index);
@@ -624,32 +616,39 @@ const Step1 = (props: Step1Props) => {
                     },
                     {
                         key: "custom",
-                        label: "使用自定义连接器连接"
-                    }
+                        label: "使用自定义连接器连接",
+                    },
                 ]}
-                tabBarExtraContent={<>没有想要的连接器? <a>前往创建连接器</a></>}
+                tabBarExtraContent={
+                    <>
+                        没有想要的连接器? <a>前往创建连接器</a>
+                    </>
+                }
             />
             <ScrollPin containerRef={containerRef} />
-            <div className="connector-list-wrapper" ref={containerRef}>
+            <div
+                className="connector-list-wrapper"
+                ref={containerRef}
+            >
                 <Space className="search-bar">
                     <Space.Compact className="ant-input-group">
                         <span className="ant-input-group-addon">连接方式</span>
                         <Select
                             style={{ width: 220 }}
-                            defaultValue='all'
+                            defaultValue="all"
                             options={[
                                 {
                                     label: "全部",
-                                    value: "all"
+                                    value: "all",
                                 },
                                 {
                                     label: "源表",
-                                    value: "source"
+                                    value: "source",
                                 },
                                 {
                                     label: "结果表",
-                                    value: "result"
-                                }
+                                    value: "result",
+                                },
                             ]}
                         />
                     </Space.Compact>
@@ -657,7 +656,8 @@ const Step1 = (props: Step1Props) => {
                     <Input
                         placeholder="搜索连接器"
                         style={{ width: 300 }}
-                        suffix={<SearchOutlined />} />
+                        suffix={<SearchOutlined />}
+                    />
                 </Space>
 
                 <List
@@ -677,8 +677,7 @@ const Step1 = (props: Step1Props) => {
                             />
                         </List.Item>
                     )}
-                >
-                </List>
+                ></List>
             </div>
         </div>
     );

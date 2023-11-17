@@ -7,7 +7,7 @@ const MonacoEditor = (props: MonacoEditorProps) => {
     const observerRef = useRef<ResizeObserver>();
 
     const editorDidMount: EditorDidMount = (editor, monaco) => {
-        props.editorDidMount?.(editor,monaco);
+        props.editorDidMount?.(editor, monaco);
         observerRef.current = new ResizeObserver(() => {
             window.requestAnimationFrame(() => {
                 editor.layout();
@@ -16,22 +16,23 @@ const MonacoEditor = (props: MonacoEditorProps) => {
         observerRef.current.observe(editorContainer.current!);
     };
 
-    const editorWillUnmount:EditorWillUnmount = (editor, monaco) => {
+    const editorWillUnmount: EditorWillUnmount = (editor, monaco) => {
         props.editorWillUnmount?.(editor, monaco);
         observerRef.current?.disconnect();
         observerRef.current = undefined;
     };
 
-
     return (
-        <div className="resizable-editor-container" ref={editorContainer}>
+        <div
+            className="resizable-editor-container"
+            ref={editorContainer}
+        >
             <ReactMonacoEditor
                 {...props}
                 editorDidMount={editorDidMount}
                 editorWillUnmount={editorWillUnmount}
             />
         </div>
-
     );
 };
 

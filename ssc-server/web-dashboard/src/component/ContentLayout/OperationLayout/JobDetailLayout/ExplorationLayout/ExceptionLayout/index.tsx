@@ -15,64 +15,61 @@ const ExceptionLayout = () => {
     };
     return (
         <div className="job-detail-exploration-exceptions">
-            <div className="card-header">
-                异常信息
-            </div>
+            <div className="card-header">异常信息</div>
             <div className="panel main-top-panel panel-ltr panel-border-bottom">
                 <MonacoEditor
                     options={{
                         minimap: {
-                            enabled: false
+                            enabled: false,
                         },
                         lineDecorationsWidth: 0,
                         wordWrap: "on",
                     }}
-                    value='没有异常信息'
+                    value="没有异常信息"
                 />
             </div>
             <div className="card-header">
-                异常历史<Tooltip title="历史信息包含 7 天内产生的异常内容"><InfoCircleOutlined /></Tooltip>
+                异常历史
+                <Tooltip title="历史信息包含 7 天内产生的异常内容">
+                    <InfoCircleOutlined />
+                </Tooltip>
             </div>
             <div className="main-bottom-panel">
                 <Form
-                    layout='inline'
-                    size='small'
+                    layout="inline"
+                    size="small"
                 >
-                    <Form.Item
-                        label="名称"
-                    >
-                        <Input
-                            placeholder='请输入异常名称'
-                        />
+                    <Form.Item label="名称">
+                        <Input placeholder="请输入异常名称" />
                     </Form.Item>
-                    <Form.Item
-                        label="发生时间"
-                    >
+                    <Form.Item label="发生时间">
                         <DatePicker
                             renderExtraFooter={renderExtraFooter}
-                            disabledDate={(current) => {
-                                return current
-                                    && (current < dayjs().subtract(7, "day").endOf("day")
-                                        || current > dayjs().endOf("day"));
+                            disabledDate={current => {
+                                return (
+                                    current &&
+                                    (current < dayjs().subtract(7, "day").endOf("day") ||
+                                        current > dayjs().endOf("day"))
+                                );
                             }}
                         />
                     </Form.Item>
 
                     <Form.Item>
-                        <Button type='primary'>查询</Button>
+                        <Button type="primary">查询</Button>
                     </Form.Item>
                 </Form>
 
                 <Table
-                    size='small'
+                    size="small"
                     bordered
                     columns={[
                         {
-                            title: "首次发生时间"
+                            title: "首次发生时间",
                         },
                         {
                             title: "名称",
-                            sorter: (a, b) => a.name - b.name
+                            sorter: (a, b) => a.name - b.name,
                         },
                         {
                             title: "异常类型",
@@ -80,38 +77,38 @@ const ExceptionLayout = () => {
                             filters: [
                                 {
                                     text: "SQL_OPERATOR",
-                                    value: "SQL_OPERATOR"
+                                    value: "SQL_OPERATOR",
                                 },
                                 {
                                     text: "CONNECTOR",
-                                    value: "CONNECTOR"
+                                    value: "CONNECTOR",
                                 },
                                 {
                                     text: "STATE",
-                                    value: "STATE"
+                                    value: "STATE",
                                 },
                                 {
                                     text: "RUNTIME",
-                                    value: "RUNTIME"
+                                    value: "RUNTIME",
                                 },
                                 {
                                     text: "USER_CODE",
-                                    value: "USER_CODE"
+                                    value: "USER_CODE",
                                 },
                                 {
                                     text: "OTHER",
-                                    value: "OTHER"
-                                }
-                            ]
+                                    value: "OTHER",
+                                },
+                            ],
                         },
                         {
                             title: "异常发生次数",
-                            sorter: (a, b) => a.n - b.n
+                            sorter: (a, b) => a.n - b.n,
                         },
                         {
                             title: "操作",
-                            width: 100
-                        }
+                            width: 100,
+                        },
                     ]}
                 />
             </div>

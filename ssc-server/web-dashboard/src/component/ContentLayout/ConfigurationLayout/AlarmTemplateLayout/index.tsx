@@ -16,14 +16,13 @@ interface AlarmTemplate {
 }
 //规则模板已创建
 
-
 const data: AlarmTemplate[] = [
     {
         key: "1",
         name: "John Brown",
         indicator: "Restart Count in 1 Minute",
         description: "New York No. 1 Lake Park",
-        createTime: "2023-11-10 17:08:25"
+        createTime: "2023-11-10 17:08:25",
     },
 ];
 
@@ -59,7 +58,14 @@ const WarnTemplateLayout = () => {
             width: 160,
             render: () => (
                 <>
-                    <Button type="link" icon={<EditOutlined />} size="small" onClick={changeDrawerOpen(true)}>编辑</Button>
+                    <Button
+                        type="link"
+                        icon={<EditOutlined />}
+                        size="small"
+                        onClick={changeDrawerOpen(true)}
+                    >
+                        编辑
+                    </Button>
                     <Divider type="vertical" />
                     <Popconfirm
                         okText="确认"
@@ -68,10 +74,17 @@ const WarnTemplateLayout = () => {
                         overlayClassName="ant-popover-rtl"
                         placement="left"
                     >
-                        <Button type="link" icon={<DeleteOutlined />} size="small" danger>删除</Button>
+                        <Button
+                            type="link"
+                            icon={<DeleteOutlined />}
+                            size="small"
+                            danger
+                        >
+                            删除
+                        </Button>
                     </Popconfirm>
                 </>
-            )
+            ),
         },
     ];
 
@@ -91,11 +104,15 @@ const WarnTemplateLayout = () => {
                     columns={columns}
                     dataSource={data}
                     showSorterTooltip={false}
-                    size='small'
+                    size="small"
                 />
             </div>
 
-            <AlarmDrawer open={drawerOpen} onClose={changeDrawerOpen(false)} title="创建告警规则模板" />
+            <AlarmDrawer
+                open={drawerOpen}
+                onClose={changeDrawerOpen(false)}
+                title="创建告警规则模板"
+            />
         </div>
     );
 };

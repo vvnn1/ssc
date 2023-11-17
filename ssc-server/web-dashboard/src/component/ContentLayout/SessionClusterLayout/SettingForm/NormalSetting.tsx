@@ -26,10 +26,12 @@ const restartStrategyOptions = [
                             size="small"
                             placeholder="请输入时间间隔"
                             addonAfter={
-                                <TimeUnitSelect defaultValue="s"
+                                <TimeUnitSelect
+                                    defaultValue="s"
                                     size="small"
                                     popupMatchSelectWidth={52}
-                                    popupClassName="no-padding-select" />
+                                    popupClassName="no-padding-select"
+                                />
                             }
                         />
                     </Form.Item>
@@ -55,16 +57,18 @@ const restartStrategyOptions = [
                             size="small"
                             placeholder="请输入每次重启时间间隔"
                             addonAfter={
-                                <TimeUnitSelect defaultValue="s"
+                                <TimeUnitSelect
+                                    defaultValue="s"
                                     size="small"
                                     popupMatchSelectWidth={52}
-                                    popupClassName="no-padding-select" />
+                                    popupClassName="no-padding-select"
+                                />
                             }
                         />
                     </Form.Item>
                 </Col>
             </Row>
-        )
+        ),
     },
     {
         value: "lucy",
@@ -95,7 +99,10 @@ const restartStrategyOptions = [
                         extra={
                             <>
                                 <p>延迟重试意味着在执行失败后，重新执行不会立即开始，而只会在一定的延迟后开始</p>
-                                <p>当程序与外部系统进行交互（例如，连接或挂起的事务在尝试重新执行之前应达到超时）时，延迟重试可能会有所帮助。如果通过检查点激活，则使用 10s</p>
+                                <p>
+                                    当程序与外部系统进行交互（例如，连接或挂起的事务在尝试重新执行之前应达到超时）时，延迟重试可能会有所帮助。如果通过检查点激活，则使用
+                                    10s
+                                </p>
                             </>
                         }
                     >
@@ -107,13 +114,14 @@ const restartStrategyOptions = [
                                     defaultValue="s"
                                     size="small"
                                     popupMatchSelectWidth={52}
-                                    popupClassName="no-padding-select" />
+                                    popupClassName="no-padding-select"
+                                />
                             }
                         />
                     </Form.Item>
                 </Col>
             </Row>
-        )
+        ),
     },
     {
         value: "Yiminghe",
@@ -124,13 +132,11 @@ const restartStrategyOptions = [
             </>
         ),
         title: "No Restarts",
-        strategyModule: null
+        strategyModule: null,
     },
 ];
 
-
 const NormalSetting = () => {
-
     const [strategyModule, setStrategyModule] = useState<React.ReactElement | null>(null);
 
     const strategyModuleChange = (_: any, { strategyModule }: any) => {
@@ -138,18 +144,14 @@ const NormalSetting = () => {
     };
 
     return (
-        <SettingCard
-            title="配置"
-        >
+        <SettingCard title="配置">
             <Form.Item
                 label="引擎版本"
                 name="engineVersion"
             >
                 <EngineSelect placeholder="请选择引擎版本" />
             </Form.Item>
-            <Form.Item
-                label="Flink 重启策略配置"
-            >
+            <Form.Item label="Flink 重启策略配置">
                 <Select
                     options={restartStrategyOptions}
                     placeholder="请选择一个 Flink 重启策略"
@@ -158,9 +160,7 @@ const NormalSetting = () => {
                     popupClassName="custom-content"
                 />
             </Form.Item>
-            {
-                strategyModule
-            }
+            {strategyModule}
         </SettingCard>
     );
 };

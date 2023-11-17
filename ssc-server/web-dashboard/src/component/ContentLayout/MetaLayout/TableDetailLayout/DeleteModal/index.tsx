@@ -14,11 +14,20 @@ const DeleteModal = (props: ModalProps) => {
                     <QuestionCircleOutlined />
                     <div className="ant-modal-confirm-paragraph">
                         <span className="ant-modal-confirm-title">删除: datagen_kk_source</span>
-                        <div className="ant-modal-confirm-content">请注意，如果重新转换现有的 SQL 作业，则删除表可能会破坏现有的 SQL 作业，例如在暂停/恢复或自动调优更改作业配置时，都会发生这种情况。</div>
+                        <div className="ant-modal-confirm-content">
+                            请注意，如果重新转换现有的 SQL 作业，则删除表可能会破坏现有的 SQL
+                            作业，例如在暂停/恢复或自动调优更改作业配置时，都会发生这种情况。
+                        </div>
                     </div>
                 </div>
                 <div className="ant-modal-confirm-btns">
-                    <Button type="primary" danger onClick={props.onOk}>确定</Button>
+                    <Button
+                        type="primary"
+                        danger
+                        onClick={props.onOk}
+                    >
+                        确定
+                    </Button>
                     <Button onClick={props.onCancel}>取消</Button>
                 </div>
             </div>

@@ -1,5 +1,11 @@
 import { Tree, TreeDataNode, TreeProps, message } from "antd";
-import { CheckCircleOutlined, ContainerOutlined, FunctionOutlined, MinusSquareOutlined, PlusSquareOutlined } from "../../../../../../Icon";
+import {
+    CheckCircleOutlined,
+    ContainerOutlined,
+    FunctionOutlined,
+    MinusSquareOutlined,
+    PlusSquareOutlined,
+} from "../../../../../../Icon";
 import "./index.sass";
 import TreeTitle from "./TreeTitle";
 import { useState } from "react";
@@ -34,11 +40,11 @@ const treeData: TreeDataNode[] = [
                 icon: <FunctionOutlined />,
                 className: "function",
                 isLeaf: true,
-            }
+            },
         ],
-        switcherIcon: (node) => (node.expanded ? <MinusSquareOutlined /> : <PlusSquareOutlined />),
+        switcherIcon: node => (node.expanded ? <MinusSquareOutlined /> : <PlusSquareOutlined />),
         className: "jar",
-        isLeaf: false
+        isLeaf: false,
     },
     {
         title: "testfunc2",
@@ -65,17 +71,13 @@ const treeData: TreeDataNode[] = [
                 icon: <FunctionOutlined />,
                 className: "function",
                 isLeaf: true,
-
-            }
+            },
         ],
-        switcherIcon: (node) => (node.expanded ? <MinusSquareOutlined /> : <PlusSquareOutlined />),
+        switcherIcon: node => (node.expanded ? <MinusSquareOutlined /> : <PlusSquareOutlined />),
         className: "jar",
-        isLeaf: false
+        isLeaf: false,
     },
 ];
-
-
-
 
 const FuncTree = (props: TreeProps) => {
     const [dataSource, setDataSource] = useState<TreeDataNode[]>(treeData);
@@ -84,10 +86,9 @@ const FuncTree = (props: TreeProps) => {
     const [deleteModalOpen, setDeleteModalOpen] = useState<boolean>(false);
     const [messageApi, contextHolder] = message.useMessage();
 
-
     const onFunctionDrop = (dataNode: TreeDataNode) => {
         dataNode.className = "function unregister-function";
-        setDataSource((dataSource) => [...dataSource]);
+        setDataSource(dataSource => [...dataSource]);
     };
 
     const onManage = (/* dataNode: TreeDataNode */) => {
@@ -110,13 +111,25 @@ const FuncTree = (props: TreeProps) => {
         if (node.className?.includes("jar")) {
             onDrop = onJarDrop;
         }
-        return <TreeTitle dataNode={node} onDrop={onDrop} onManager={onManage} onUpdate={onUpdate} />;
+        return (
+            <TreeTitle
+                dataNode={node}
+                onDrop={onDrop}
+                onManager={onManage}
+                onUpdate={onUpdate}
+            />
+        );
     };
 
     const onCreateClick = () => {
         messageApi.success({
             icon: <></>,
-            content: <><CheckCircleOutlined color="#00a700" />创建成功</>
+            content: (
+                <>
+                    <CheckCircleOutlined color="#00a700" />
+                    创建成功
+                </>
+            ),
         });
         setManageModalOpen(false);
     };
@@ -124,7 +137,12 @@ const FuncTree = (props: TreeProps) => {
     const onDeleteClick = () => {
         messageApi.success({
             icon: <></>,
-            content: <><CheckCircleOutlined color="#00a700" />删除成功</>
+            content: (
+                <>
+                    <CheckCircleOutlined color="#00a700" />
+                    删除成功
+                </>
+            ),
         });
         setManageModalOpen(false);
     };
@@ -147,7 +165,7 @@ const FuncTree = (props: TreeProps) => {
                 onCreateClick={onCreateClick}
                 onDeleteClick={onDeleteClick}
             />
-            <UpdateModal 
+            <UpdateModal
                 open={updateModalOpen}
                 onOk={changeModalOpen(false, setUpdateModalOpen)}
                 onCancel={changeModalOpen(false, setUpdateModalOpen)}
@@ -158,7 +176,6 @@ const FuncTree = (props: TreeProps) => {
                 onCancel={changeModalOpen(false, setDeleteModalOpen)}
             />
         </>
-
     );
 };
 

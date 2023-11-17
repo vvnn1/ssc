@@ -8,28 +8,27 @@ const columns1: ColumnTypes = [
     {
         title: "Type",
         dataIndex: "type",
-        render: (value) => <strong>{value}</strong>
+        render: value => <strong>{value}</strong>,
     },
     {
         title: "Committed",
-        dataIndex: "committed"
+        dataIndex: "committed",
     },
     {
         title: "Used",
-        dataIndex: "used"
+        dataIndex: "used",
     },
     {
         title: "Maximum",
-        dataIndex: "maximum"
-    }
+        dataIndex: "maximum",
+    },
 ];
-
 
 const columns2: ColumnTypes = [
     {
         title: "Type",
         dataIndex: "type",
-        render: (value) => <strong>{value}</strong>
+        render: value => <strong>{value}</strong>,
     },
     {
         title: "Count",
@@ -37,23 +36,23 @@ const columns2: ColumnTypes = [
     },
     {
         title: "Used",
-        dataIndex: "used"
+        dataIndex: "used",
     },
     {
         title: "Capacity",
-        dataIndex: "capacity"
-    }
+        dataIndex: "capacity",
+    },
 ];
 
 const column3: ColumnTypes = [
     {
         title: "Type",
         dataIndex: "type",
-        render: (value) => <strong>{value}</strong>
+        render: value => <strong>{value}</strong>,
     },
     {
         title: "Count",
-        dataIndex: "count"
+        dataIndex: "count",
     },
 ];
 
@@ -61,16 +60,16 @@ const column4: ColumnTypes = [
     {
         title: "Collector",
         dataIndex: "collector",
-        render: (value) => <strong>{value}</strong>
+        render: value => <strong>{value}</strong>,
     },
     {
         title: "Count",
-        dataIndex: "count"
+        dataIndex: "count",
     },
     {
         title: "Time",
-        dataIndex: "time"
-    }
+        dataIndex: "time",
+    },
 ];
 
 const AdvancedTable = () => {
@@ -93,14 +92,14 @@ const AdvancedTable = () => {
                                 type: "Heap",
                                 committed: "3.34 GB",
                                 used: "35.8 MB",
-                                maximum: "3.34 GB"
+                                maximum: "3.34 GB",
                             },
                             {
                                 type: "Non-Heap",
                                 committed: "101 MB",
                                 used: "96.9 MB",
-                                maximum: "1.48 GB"
-                            }
+                                maximum: "1.48 GB",
+                            },
                         ]}
                     />
                 </Col>
@@ -116,19 +115,22 @@ const AdvancedTable = () => {
                                 type: "Direct",
                                 count: "22,794",
                                 used: "712 MB",
-                                capacity: "712 MB"
+                                capacity: "712 MB",
                             },
                             {
                                 type: "Mapped",
                                 count: "0",
                                 used: "0 B",
-                                capacity: "0 B"
-                            }
+                                capacity: "0 B",
+                            },
                         ]}
                     />
                 </Col>
             </Row>
-            <Row gutter={16} className="row-2">
+            <Row
+                gutter={16}
+                className="row-2"
+            >
                 <Col span={12}>
                     <Table
                         title={() => "Netty Shuffle Buffers"}
@@ -139,12 +141,12 @@ const AdvancedTable = () => {
                         dataSource={[
                             {
                                 type: "Available",
-                                count: "22,773"
+                                count: "22,773",
                             },
                             {
                                 type: "Total",
-                                count: "22,773"
-                            }
+                                count: "22,773",
+                            },
                         ]}
                     />
                 </Col>
@@ -159,13 +161,13 @@ const AdvancedTable = () => {
                             {
                                 collector: "ParNew",
                                 count: "36",
-                                time: "806"
+                                time: "806",
                             },
                             {
                                 collector: "ConcurrentMarkSweep",
                                 count: "4",
-                                time: "394"
-                            }
+                                time: "394",
+                            },
                         ]}
                     />
                 </Col>

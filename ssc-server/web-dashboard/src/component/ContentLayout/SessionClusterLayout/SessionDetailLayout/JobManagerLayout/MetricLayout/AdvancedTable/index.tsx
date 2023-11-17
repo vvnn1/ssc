@@ -8,27 +8,27 @@ const jvmMemoryColumns: ColumnTypes = [
     {
         title: "Type",
         dataIndex: "type",
-        render: (value) => <strong>{value}</strong>
+        render: value => <strong>{value}</strong>,
     },
     {
         title: "Committed",
-        dataIndex: "committed"
+        dataIndex: "committed",
     },
     {
         title: "Used",
-        dataIndex: "used"
+        dataIndex: "used",
     },
     {
         title: "Maximum",
-        dataIndex: "maximum"
-    }
+        dataIndex: "maximum",
+    },
 ];
 
 const outJvmMemoryColumns: ColumnTypes = [
     {
         title: "Type",
         dataIndex: "type",
-        render: (value) => <strong>{value}</strong>
+        render: value => <strong>{value}</strong>,
     },
     {
         title: "Count",
@@ -40,16 +40,15 @@ const outJvmMemoryColumns: ColumnTypes = [
     },
     {
         title: "Capacity",
-        dataIndex: "capacity"
-    }
+        dataIndex: "capacity",
+    },
 ];
-
 
 const garbageColumns: ColumnTypes = [
     {
         title: "Collector",
         dataIndex: "collector",
-        render: (value) => <strong>{value}</strong>
+        render: value => <strong>{value}</strong>,
     },
     {
         title: "Count",
@@ -57,8 +56,8 @@ const garbageColumns: ColumnTypes = [
     },
     {
         title: "Time",
-        dataIndex: "time"
-    }
+        dataIndex: "time",
+    },
 ];
 
 const AdvancedTable = () => {
@@ -80,17 +79,17 @@ const AdvancedTable = () => {
                                 type: "Heap",
                                 committed: "3.21 GB",
                                 used: "51.0 MB",
-                                maximum: "3.21 GB"
+                                maximum: "3.21 GB",
                             },
                             {
                                 type: "Non-Heap",
                                 committed: "102 MB",
                                 used: "98.0 MB",
-                                maximum: "1.48 GB"
-                            }
+                                maximum: "1.48 GB",
+                            },
                         ]}
                         pagination={false}
-                        rowKey='type'
+                        rowKey="type"
                     />
                 </Col>
                 <Col span={12}>
@@ -104,20 +103,23 @@ const AdvancedTable = () => {
                                 type: "Direct",
                                 count: "21",
                                 used: "571 KB",
-                                capacity: "572 KB"
+                                capacity: "572 KB",
                             },
                             {
                                 type: "Mapped",
                                 count: "0",
                                 used: "0 B",
-                                capacity: "0 B"
-                            }
+                                capacity: "0 B",
+                            },
                         ]}
                         pagination={false}
-                        rowKey='type'
+                        rowKey="type"
                     />
                 </Col>
-                <Col span={24} className="garbage-col">
+                <Col
+                    span={24}
+                    className="garbage-col"
+                >
                     <Table
                         bordered
                         title={() => "Garbage Collection"}
@@ -127,16 +129,16 @@ const AdvancedTable = () => {
                             {
                                 collector: "ConcurrentMarkSweep",
                                 count: "2",
-                                time: "139"
+                                time: "139",
                             },
                             {
                                 collector: "ParNew",
                                 count: "3",
-                                time: "396"
-                            }
+                                time: "396",
+                            },
                         ]}
                         pagination={false}
-                        rowKey='collector'
+                        rowKey="collector"
                     />
                 </Col>
             </Row>

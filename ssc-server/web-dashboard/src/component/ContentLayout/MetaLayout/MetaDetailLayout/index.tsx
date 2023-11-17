@@ -28,12 +28,17 @@ const columns: ColumnTypes = [
     },
     {
         title: "操作",
-        render: (_,{name}) => (
+        render: (_, { name }) => (
             <>
                 <MyLink to={`../${name}/list`}>查看</MyLink>
-                <Button type="link" size="small">删除</Button>
+                <Button
+                    type="link"
+                    size="small"
+                >
+                    删除
+                </Button>
             </>
-        )
+        ),
     },
 ];
 
@@ -55,8 +60,16 @@ const MetaDetailLayout = () => {
                 </div>
                 <div className="actions">
                     <Space>
-                        <Button type='primary' onClick={changeModalOpen(true, setModalOpen)}>创建 Catalog</Button>
-                        <Input suffix={<SearchOutlined />} placeholder="搜索…" />
+                        <Button
+                            type="primary"
+                            onClick={changeModalOpen(true, setModalOpen)}
+                        >
+                            创建 Catalog
+                        </Button>
+                        <Input
+                            suffix={<SearchOutlined />}
+                            placeholder="搜索…"
+                        />
                     </Space>
                 </div>
             </div>
@@ -66,10 +79,13 @@ const MetaDetailLayout = () => {
                     columns={columns}
                     dataSource={data}
                     showSorterTooltip={false}
-                    size='small'
+                    size="small"
                 />
             </div>
-            <CreateCatalogModal open={modalOpen} onCancel={changeModalOpen(false, setModalOpen)} />
+            <CreateCatalogModal
+                open={modalOpen}
+                onCancel={changeModalOpen(false, setModalOpen)}
+            />
         </div>
     );
 };

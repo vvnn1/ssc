@@ -18,39 +18,64 @@ const LogLayout = () => {
             <div className="log-level-container">
                 <div>
                     <span>日志级别 :</span>
-                    <Select className="level-select" size="small" disabled={selectDisabled} />
-                    {
-                        selectDisabled ? (
-                            <Popconfirm
-                                title="该日志后续将以修改后类型输出"
-                                onConfirm={changeSelectDisabled(false)}
-                                okText="确认"
-                                cancelText="取消"
-                                style={{ width: 250 }}
-                                overlayClassName="ant-popover-rtl"
+                    <Select
+                        className="level-select"
+                        size="small"
+                        disabled={selectDisabled}
+                    />
+                    {selectDisabled ? (
+                        <Popconfirm
+                            title="该日志后续将以修改后类型输出"
+                            onConfirm={changeSelectDisabled(false)}
+                            okText="确认"
+                            cancelText="取消"
+                            style={{ width: 250 }}
+                            overlayClassName="ant-popover-rtl"
+                        >
+                            <Button
+                                type="link"
+                                size="small"
                             >
-                                <Button type="link" size="small">编辑</Button>
-                            </Popconfirm>
-                        ) : (
-                            <>
-                                <Button type="link" onClick={changeSelectDisabled(true)} size="small">确定</Button>
-                                <Button type="link" onClick={changeSelectDisabled(true)} size="small">取消</Button>
-                            </>
-                        )
-                    }
-
+                                编辑
+                            </Button>
+                        </Popconfirm>
+                    ) : (
+                        <>
+                            <Button
+                                type="link"
+                                onClick={changeSelectDisabled(true)}
+                                size="small"
+                            >
+                                确定
+                            </Button>
+                            <Button
+                                type="link"
+                                onClick={changeSelectDisabled(true)}
+                                size="small"
+                            >
+                                取消
+                            </Button>
+                        </>
+                    )}
                 </div>
                 <div className="actions">
-                    <Button size="small"><SyncOutlined /></Button>
-                    <Button size="small"><DownloadOutlined /></Button>
-                    <Button size="small" icon={<FullscreenOutlined />} />
+                    <Button size="small">
+                        <SyncOutlined />
+                    </Button>
+                    <Button size="small">
+                        <DownloadOutlined />
+                    </Button>
+                    <Button
+                        size="small"
+                        icon={<FullscreenOutlined />}
+                    />
                 </div>
             </div>
             <div className="log-preview">
                 <MonacoEditor
                     options={{
                         minimap: {
-                            enabled: false
+                            enabled: false,
                         },
                         selectOnLineNumbers: true,
                         lineNumbersMinChars: 5,

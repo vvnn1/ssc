@@ -1,7 +1,5 @@
 const AutopilotLayout = () => {
-    return (
-        <></>
-    );
+    return <></>;
 };
 
 export default AutopilotLayout;

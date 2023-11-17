@@ -7,12 +7,14 @@ const EditModal = (props: ModalProps) => {
             {...props}
             title="编辑 Kerberos"
             width={520}
-
-            footer={(_, { OkBtn, CancelBtn }) => (<><OkBtn /><CancelBtn /></>)}
+            footer={(_, { OkBtn, CancelBtn }) => (
+                <>
+                    <OkBtn />
+                    <CancelBtn />
+                </>
+            )}
         >
-            <Form
-                layout="vertical"
-            >
+            <Form layout="vertical">
                 <Form.Item
                     label="Kerberos 集群名称"
                     required
@@ -28,16 +30,32 @@ const EditModal = (props: ModalProps) => {
                         optionLabelProp="value"
                         optionFilterProp="label"
                         showSearch
-                        suffixIcon={<Upload ><Tooltip title="选择或拖拽文件以上传" placement="left"><UploadOutlined /></Tooltip></Upload>}
+                        suffixIcon={
+                            <Upload>
+                                <Tooltip
+                                    title="选择或拖拽文件以上传"
+                                    placement="left"
+                                >
+                                    <UploadOutlined />
+                                </Tooltip>
+                            </Upload>
+                        }
                         popupClassName="addition-file-dropdown small"
                     >
-                        <Select.Option value="oss://ssc-bucket-v2/artifacts/namespaces/ssc-space-default/Final_Company.txt" label="Final_Company.txt">
+                        <Select.Option
+                            value="oss://ssc-bucket-v2/artifacts/namespaces/ssc-space-default/Final_Company.txt"
+                            label="Final_Company.txt"
+                        >
                             <div className="addition-file-item">
                                 <span className="file-name">Final_Company.txt</span>
                                 <span className="operator">
                                     <Space>
-                                        <Tooltip title="下载" ><DownloadOutlined /></Tooltip>
-                                        <Tooltip title="删除"><DeleteOutlined /></Tooltip>
+                                        <Tooltip title="下载">
+                                            <DownloadOutlined />
+                                        </Tooltip>
+                                        <Tooltip title="删除">
+                                            <DeleteOutlined />
+                                        </Tooltip>
                                     </Space>
                                 </span>
                             </div>
@@ -54,16 +72,32 @@ const EditModal = (props: ModalProps) => {
                         optionLabelProp="value"
                         optionFilterProp="label"
                         showSearch
-                        suffixIcon={<Upload ><Tooltip title="选择或拖拽文件以上传" placement="left"><UploadOutlined /></Tooltip></Upload>}
+                        suffixIcon={
+                            <Upload>
+                                <Tooltip
+                                    title="选择或拖拽文件以上传"
+                                    placement="left"
+                                >
+                                    <UploadOutlined />
+                                </Tooltip>
+                            </Upload>
+                        }
                         popupClassName="addition-file-dropdown small"
                     >
-                        <Select.Option value="oss://ssc-bucket-v2/artifacts/namespaces/ssc-space-default/Final_Company.txt" label="Final_Company.txt">
+                        <Select.Option
+                            value="oss://ssc-bucket-v2/artifacts/namespaces/ssc-space-default/Final_Company.txt"
+                            label="Final_Company.txt"
+                        >
                             <div className="addition-file-item">
                                 <span className="file-name">Final_Company.txt</span>
                                 <span className="operator">
                                     <Space>
-                                        <Tooltip title="下载" ><DownloadOutlined /></Tooltip>
-                                        <Tooltip title="删除"><DeleteOutlined /></Tooltip>
+                                        <Tooltip title="下载">
+                                            <DownloadOutlined />
+                                        </Tooltip>
+                                        <Tooltip title="删除">
+                                            <DeleteOutlined />
+                                        </Tooltip>
                                     </Space>
                                 </span>
                             </div>

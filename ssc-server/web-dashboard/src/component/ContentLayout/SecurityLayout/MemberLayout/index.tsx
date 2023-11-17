@@ -8,7 +8,6 @@ import EditorModal from "./EditorModal";
 
 const { Search } = Input;
 
-
 interface Member {
     key: React.Key;
     role: string;
@@ -19,8 +18,6 @@ interface Member {
 type TableProps = Parameters<typeof Table<Member>>[0];
 type ColumnTypes = Exclude<TableProps["columns"], undefined>;
 
-
-
 const data: Member[] = [
     {
         key: "1",
@@ -29,7 +26,6 @@ const data: Member[] = [
         memberName: "1840755998634838",
     },
 ];
-
 
 const MemberLayout = () => {
     const [addModalOpen, setAddModalOpen] = useState<boolean>(false);
@@ -41,28 +37,43 @@ const MemberLayout = () => {
             title: "角色",
             dataIndex: "role",
             width: 200,
-            render: (name) => (
+            render: name => (
                 <>
                     <TeamOutlined /> <span>{name}</span>
                 </>
-            )
+            ),
         },
         {
             title: "成员 ID",
             dataIndex: "memberId",
-            render: (memberId) => <Tooltip title={memberId}><Tag>{memberId}</Tag></Tooltip>
+            render: memberId => (
+                <Tooltip title={memberId}>
+                    <Tag>{memberId}</Tag>
+                </Tooltip>
+            ),
         },
         {
             title: "成员名",
             dataIndex: "memberName",
-            render: (memberName) => <Tooltip title={memberName}><Tag>{memberName}</Tag></Tooltip>
+            render: memberName => (
+                <Tooltip title={memberName}>
+                    <Tag>{memberName}</Tag>
+                </Tooltip>
+            ),
         },
         {
             title: "操作",
             width: 200,
             render: () => (
                 <>
-                    <Button type="link" size="small" onClick={changeModalOpen(true, setEditModalOpen)}><EditOutlined />编辑</Button>
+                    <Button
+                        type="link"
+                        size="small"
+                        onClick={changeModalOpen(true, setEditModalOpen)}
+                    >
+                        <EditOutlined />
+                        编辑
+                    </Button>
                     <Divider type="vertical" />
                     <Popconfirm
                         okText="确认"
@@ -70,10 +81,17 @@ const MemberLayout = () => {
                         title="确认要删除该成员？"
                         overlayClassName="ant-popover-rtl"
                     >
-                        <Button type="link" size="small" danger><DeleteOutlined />删除</Button>
+                        <Button
+                            type="link"
+                            size="small"
+                            danger
+                        >
+                            <DeleteOutlined />
+                            删除
+                        </Button>
                     </Popconfirm>
                 </>
-            )
+            ),
         },
     ];
 
@@ -81,7 +99,12 @@ const MemberLayout = () => {
         <div className="security-member-layout">
             <div className="actions">
                 <Space>
-                    <Button type='primary' onClick={changeModalOpen(true, setAddModalOpen)}>添加角色绑定</Button>
+                    <Button
+                        type="primary"
+                        onClick={changeModalOpen(true, setAddModalOpen)}
+                    >
+                        添加角色绑定
+                    </Button>
                     <Search
                         placeholder="搜索…"
                         onSearch={onSearch}
@@ -92,11 +115,17 @@ const MemberLayout = () => {
                 columns={columns}
                 dataSource={data}
                 showSorterTooltip={false}
-                size='small'
+                size="small"
             />
 
-            <EditorModal open={editModalOpen} onCancel={changeModalOpen(false, setEditModalOpen)} />
-            <AddModal open={addModalOpen} onCancel={changeModalOpen(false, setAddModalOpen)} />
+            <EditorModal
+                open={editModalOpen}
+                onCancel={changeModalOpen(false, setEditModalOpen)}
+            />
+            <AddModal
+                open={addModalOpen}
+                onCancel={changeModalOpen(false, setAddModalOpen)}
+            />
         </div>
     );
 };

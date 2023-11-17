@@ -16,7 +16,7 @@ const menuItems: TabsProps["items"] = [
     {
         label: "部署详情",
         key: "configuration",
-        children: "configuration"
+        children: "configuration",
     },
     {
         label: "状态总览",
@@ -62,10 +62,13 @@ const menuItems: TabsProps["items"] = [
 
 const JobDetailLayout = () => {
     const { pathname } = useLocation();
-    const pathMatch = matchPath("/workspace/:workspaceId/namespace/:namespaceId/operations/:jobType/:jobId/:key/*", pathname);
+    const pathMatch = matchPath(
+        "/workspace/:workspaceId/namespace/:namespaceId/operations/:jobType/:jobId/:key/*",
+        pathname
+    );
     const navigate = useNavigate();
 
-    const onTabClick: TabsProps["onTabClick"] = (activeKey) => {
+    const onTabClick: TabsProps["onTabClick"] = activeKey => {
         const link = menuItems.find(item => item.key === activeKey)?.children as string;
         navigate(link);
     };
@@ -74,36 +77,79 @@ const JobDetailLayout = () => {
         <div className="job-detail-layout">
             <div className="header">
                 <div className="title">
-                    <div className="name"><BuildOutlined /> Untitled-stream-sql</div>
-                    <div className="status"><CancelCircleFilled />已停止</div>
+                    <div className="name">
+                        <BuildOutlined /> Untitled-stream-sql
+                    </div>
+                    <div className="status">
+                        <CancelCircleFilled />
+                        已停止
+                    </div>
                 </div>
                 <div className="actions">
-                    <Space split={<Divider type='vertical' />} size={4}>
+                    <Space
+                        split={<Divider type="vertical" />}
+                        size={4}
+                    >
                         <Button type="link">启动</Button>
                         <Button type="link">创建快照</Button>
-                        <Button type="link" danger>删除</Button>
+                        <Button
+                            type="link"
+                            danger
+                        >
+                            删除
+                        </Button>
                     </Space>
-
                 </div>
             </div>
             <div className="content">
-                <Tabs items={menuItems} defaultActiveKey={pathMatch?.params.key} onTabClick={onTabClick} />
+                <Tabs
+                    items={menuItems}
+                    defaultActiveKey={pathMatch?.params.key}
+                    onTabClick={onTabClick}
+                />
                 <div className="detail-router">
                     <Routes>
-                        <Route path="configuration" element={<ConfigurationLayout />} />
-                        <Route path="overview" element={<OverviewLayout />} />
-                        <Route path="charts" element={<ChartLayout />} />
-                        <Route path="events" element={<EventLayout />} />
+                        <Route
+                            path="configuration"
+                            element={<ConfigurationLayout />}
+                        />
+                        <Route
+                            path="overview"
+                            element={<OverviewLayout />}
+                        />
+                        <Route
+                            path="charts"
+                            element={<ChartLayout />}
+                        />
+                        <Route
+                            path="events"
+                            element={<EventLayout />}
+                        />
                         <Route path="states">
-                            <Route path='*' element={<StateLayout />} />
+                            <Route
+                                path="*"
+                                element={<StateLayout />}
+                            />
                         </Route>
                         <Route path="exploration">
-                            <Route path='*' element={<ExplorationLayout />} />
+                            <Route
+                                path="*"
+                                element={<ExplorationLayout />}
+                            />
                         </Route>
-                        <Route path="autopilot" element={<AutopilotLayout />} />
-                        <Route path="diagnosis" element={<DiagnosisLayout />} />
+                        <Route
+                            path="autopilot"
+                            element={<AutopilotLayout />}
+                        />
+                        <Route
+                            path="diagnosis"
+                            element={<DiagnosisLayout />}
+                        />
                         <Route path="alarm">
-                            <Route path="*" element={<AlarmLayout />} />
+                            <Route
+                                path="*"
+                                element={<AlarmLayout />}
+                            />
                         </Route>
                     </Routes>
                 </div>

@@ -2,10 +2,7 @@ import * as perspective from "@finos/perspective";
 import "@finos/perspective-viewer";
 import "@finos/perspective-viewer-datagrid";
 import "@finos/perspective-viewer-d3fc";
-import {
-    PerspectiveViewerConfig,
-    HTMLPerspectiveViewerElement,
-} from "@finos/perspective-viewer";
+import { PerspectiveViewerConfig, HTMLPerspectiveViewerElement } from "@finos/perspective-viewer";
 import { useEffect, useRef } from "react";
 import "./index.sass";
 import "@finos/perspective-viewer/dist/css/themes.css";
@@ -38,11 +35,7 @@ const StreamResultTable = () => {
         }
     }, []);
 
-
-
-    return (
-        <perspective-viewer ref={viewer}></perspective-viewer>
-    );
+    return <perspective-viewer ref={viewer}></perspective-viewer>;
 };
 
 export default StreamResultTable;

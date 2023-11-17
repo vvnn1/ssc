@@ -16,49 +16,52 @@ const CatalogDetailLayout = () => {
             <Breadcrumb
                 items={[
                     {
-                        title: "Catalog 列表"
+                        title: "Catalog 列表",
                     },
                     {
-                        title: "vvp"
-                    }
+                        title: "vvp",
+                    },
                 ]}
             />
             <div className="header">
                 <div className="title">
-                    <ArrowLeftOutlined onClick={onBackClick}/>
-                    <span className='text'>vvp</span>
+                    <ArrowLeftOutlined onClick={onBackClick} />
+                    <span className="text">vvp</span>
                 </div>
                 <div className="actions">
-                    <Input suffix={<SearchOutlined />} placeholder='搜索…' />
+                    <Input
+                        suffix={<SearchOutlined />}
+                        placeholder="搜索…"
+                    />
                 </div>
             </div>
             <div className="content">
                 <Table
-                    size='small'
+                    size="small"
                     columns={[
                         {
                             title: "数据库名称",
                             width: "35%",
-                            dataIndex: "name"
+                            dataIndex: "name",
                         },
                         {
                             title: "备注",
                             width: "35%",
-                            dataIndex: "comment"
+                            dataIndex: "comment",
                         },
                         {
                             title: "操作",
                             width: "30%",
-                            render: (_, {name}) => {
+                            render: (_, { name }) => {
                                 return <MyLink to={`../${name}/list`}>查看</MyLink>;
-                            }
-                        }
+                            },
+                        },
                     ]}
                     dataSource={[
                         {
                             name: "default",
-                            comment: "The default database"
-                        }
+                            comment: "The default database",
+                        },
                     ]}
                 />
             </div>

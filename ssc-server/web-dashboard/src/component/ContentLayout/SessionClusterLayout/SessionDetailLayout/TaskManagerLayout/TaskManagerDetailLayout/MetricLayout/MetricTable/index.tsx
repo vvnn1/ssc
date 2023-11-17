@@ -6,7 +6,6 @@ type TableProps = Parameters<typeof Table>[0];
 type ColumnTypes = Exclude<TableProps["columns"], undefined>;
 
 const MetricGraph = () => {
-
     return (
         <div className="taskmanager-metric-graph">
             <div className="graph-title">Total Process Memory</div>
@@ -25,7 +24,10 @@ const MetricGraph = () => {
                     <span>Task Heap</span>
                     <code>3.22 GB</code>
                 </div>
-                <div className="progress" style={{ width: "4.65207%" }}></div>
+                <div
+                    className="progress"
+                    style={{ width: "4.65207%" }}
+                ></div>
             </div>
             <div className="inner-graph yellow">
                 <div className="graph-title">Off-Heap Memory</div>
@@ -52,12 +54,18 @@ const MetricGraph = () => {
                 <div className="graph-bar green">
                     <span>JVM Metaspace</span>
                     <code>74.0 MB / 256 MB</code>
-                    <div className="progress" style={{ width: "28.9145%" }}></div>
+                    <div
+                        className="progress"
+                        style={{ width: "28.9145%" }}
+                    ></div>
                 </div>
                 <div className="graph-bar green">
                     <span>JVM Overhead</span>
                     <code>410 MB</code>
-                    <div className="progress" style={{ width: "0%" }}></div>
+                    <div
+                        className="progress"
+                        style={{ width: "0%" }}
+                    ></div>
                 </div>
             </div>
             <div className="group"></div>
@@ -71,19 +79,26 @@ const columns: ColumnTypes = [
         colSpan: 2,
         width: 260,
         dataIndex: "graph",
-        onCell: (_, index) => index === 0 ? { rowSpan: 8 } : { rowSpan: 0 },
+        onCell: (_, index) => (index === 0 ? { rowSpan: 8 } : { rowSpan: 0 }),
     },
     {
         title: "Model Name",
         colSpan: 0,
         dataIndex: "name",
         width: 180,
-        className: "table-header"
+        className: "table-header",
     },
     {
-        title: <>Effective Configuration <Tooltip title="This column shows the values that are actually used by Flink. These may differ from the configured values; Flink may adjust them to fit the actual setup, and automatically derives values that were not explicitly configured."  ><InfoCircleOutlined /></Tooltip></>,
+        title: (
+            <>
+                Effective Configuration{" "}
+                <Tooltip title="This column shows the values that are actually used by Flink. These may differ from the configured values; Flink may adjust them to fit the actual setup, and automatically derives values that were not explicitly configured.">
+                    <InfoCircleOutlined />
+                </Tooltip>
+            </>
+        ),
         width: 180,
-        dataIndex: "total"
+        dataIndex: "total",
     },
     {
         title: "Metric",
@@ -96,15 +111,15 @@ const columns: ColumnTypes = [
                 return { rowSpan: 0 };
             }
             return { rowSpan: 1 };
-        }
-    }
+        },
+    },
 ];
 
 interface MetricDataType {
     name: string;
     total: string;
-    metric?: React.ReactNode,
-    graph?: React.ReactNode
+    metric?: React.ReactNode;
+    graph?: React.ReactNode;
 }
 
 const items: MetricDataType[] = [
@@ -113,8 +128,18 @@ const items: MetricDataType[] = [
         total: "128 MB",
         metric: (
             <>
-                <Progress strokeLinecap="butt" percent={4.65} size='small' style={{ width: "90%", display: "block" }} strokeColor='#0064c8' trailColor="#f5f5f5" />
-                153 MB / 3.21 GB <Tooltip title="The maximum heap displayed might differ from the configured values depending on the used GC algorithm for this process." ><InfoCircleOutlined /></Tooltip>
+                <Progress
+                    strokeLinecap="butt"
+                    percent={4.65}
+                    size="small"
+                    style={{ width: "90%", display: "block" }}
+                    strokeColor="#0064c8"
+                    trailColor="#f5f5f5"
+                />
+                153 MB / 3.21 GB{" "}
+                <Tooltip title="The maximum heap displayed might differ from the configured values depending on the used GC algorithm for this process.">
+                    <InfoCircleOutlined />
+                </Tooltip>
             </>
         ),
         graph: <MetricGraph />,
@@ -128,7 +153,14 @@ const items: MetricDataType[] = [
         total: "2.78 GB",
         metric: (
             <>
-                <Progress strokeLinecap="butt" percent={0} size='small' style={{ width: "90%", display: "block" }} strokeColor='#0064c8' trailColor="#f5f5f5" />
+                <Progress
+                    strokeLinecap="butt"
+                    percent={0}
+                    size="small"
+                    style={{ width: "90%", display: "block" }}
+                    strokeColor="#0064c8"
+                    trailColor="#f5f5f5"
+                />
                 0 B / 3.21 GB
             </>
         ),
@@ -136,7 +168,11 @@ const items: MetricDataType[] = [
     {
         name: "Framework Off-Heap",
         total: "128 MB",
-        metric: <Tooltip title="Metrics related to this configuration parameter cannot be monitored. Flink does not have full control over these memory pools." ><InfoCircleOutlined /></Tooltip>
+        metric: (
+            <Tooltip title="Metrics related to this configuration parameter cannot be monitored. Flink does not have full control over these memory pools.">
+                <InfoCircleOutlined />
+            </Tooltip>
+        ),
     },
     {
         name: "Task Off-Heap",
@@ -147,7 +183,14 @@ const items: MetricDataType[] = [
         total: "712 MB",
         metric: (
             <>
-                <Progress strokeLinecap="butt" percent={0} size='small' style={{ width: "90%", display: "block" }} strokeColor='#0064c8' trailColor="#f5f5f5" />
+                <Progress
+                    strokeLinecap="butt"
+                    percent={0}
+                    size="small"
+                    style={{ width: "90%", display: "block" }}
+                    strokeColor="#0064c8"
+                    trailColor="#f5f5f5"
+                />
                 0 B / 712 MB
             </>
         ),
@@ -157,7 +200,14 @@ const items: MetricDataType[] = [
         total: "256 MB",
         metric: (
             <>
-                <Progress strokeLinecap="butt" percent={28.91} size='small' style={{ width: "90%", display: "block" }} strokeColor='#0064c8' trailColor="#f5f5f5" />
+                <Progress
+                    strokeLinecap="butt"
+                    percent={28.91}
+                    size="small"
+                    style={{ width: "90%", display: "block" }}
+                    strokeColor="#0064c8"
+                    trailColor="#f5f5f5"
+                />
                 74.0 MB / 256 MB
             </>
         ),
@@ -165,12 +215,13 @@ const items: MetricDataType[] = [
     {
         name: "JVM Overhead",
         total: "410 MB",
-        metric: <Tooltip title="Metrics related to this configuration parameter cannot be monitored. Flink does not have full control over these memory pools." ><InfoCircleOutlined /></Tooltip>,
-    }
+        metric: (
+            <Tooltip title="Metrics related to this configuration parameter cannot be monitored. Flink does not have full control over these memory pools.">
+                <InfoCircleOutlined />
+            </Tooltip>
+        ),
+    },
 ];
-
-
-
 
 const MetricTable = () => {
     return (
@@ -187,7 +238,7 @@ const MetricTable = () => {
                 dataSource={items}
                 pagination={false}
                 style={{ borderColor: "#dedfe1" }}
-                rowKey='name'
+                rowKey="name"
             />
         </Card>
     );

@@ -23,14 +23,20 @@ const BottomTabBar = () => {
                 </Space>
             </div>
             <div className="edit-wrap">
-                <div className="cursor-position">
-                    1:1
-                </div>
+                <div className="cursor-position">1:1</div>
                 <div className="setting">
-                    <Button type="text" icon={<SettingOutlined />} size="small" onClick={changeModalOpen(true)}/>
+                    <Button
+                        type="text"
+                        icon={<SettingOutlined />}
+                        size="small"
+                        onClick={changeModalOpen(true)}
+                    />
                 </div>
             </div>
-            <EditorSettingsModal open={modalOpen} onCancel={changeModalOpen(false)}/>
+            <EditorSettingsModal
+                open={modalOpen}
+                onCancel={changeModalOpen(false)}
+            />
         </div>
     );
 };

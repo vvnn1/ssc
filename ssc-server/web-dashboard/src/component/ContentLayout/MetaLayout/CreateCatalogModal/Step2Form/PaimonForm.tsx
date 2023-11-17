@@ -4,7 +4,6 @@ import { useState } from "react";
 const PaimonForm = () => {
     const [dlfVisible, setDlfVisible] = useState<boolean>();
 
-
     const onSelectChange = (value: string) => {
         setDlfVisible(value === "dlf");
     };
@@ -36,7 +35,7 @@ const PaimonForm = () => {
                         {
                             value: "dlf",
                             label: "dlf",
-                        }
+                        },
                     ]}
                     onChange={onSelectChange}
                 />
@@ -50,54 +49,49 @@ const PaimonForm = () => {
                 <Input />
             </Form.Item>
 
+            {dlfVisible ? (
+                <>
+                    <Form.Item
+                        label="dlf.catalog.id"
+                        required
+                        extra="DLF 数据目录 ID"
+                    >
+                        <Input />
+                    </Form.Item>
 
-            {
-                dlfVisible ? (
-                    <>
-                        <Form.Item
-                            label="dlf.catalog.id"
-                            required
-                            extra="DLF 数据目录 ID"
-                        >
-                            <Input />
-                        </Form.Item>
+                    <Form.Item
+                        label="dlf.catalog.accessKeyId"
+                        required
+                        extra="访问 DLF 服务所需的 Access Key ID"
+                    >
+                        <Input />
+                    </Form.Item>
 
-                        <Form.Item
-                            label="dlf.catalog.accessKeyId"
-                            required
-                            extra="访问 DLF 服务所需的 Access Key ID"
-                        >
-                            <Input />
-                        </Form.Item>
+                    <Form.Item
+                        label="dlf.catalog.accessKeySecret"
+                        required
+                        extra="访问 DLF 服务所需的 Access Key Secret"
+                    >
+                        <Input />
+                    </Form.Item>
 
-                        <Form.Item
-                            label="dlf.catalog.accessKeySecret"
-                            required
-                            extra="访问 DLF 服务所需的 Access Key Secret"
-                        >
-                            <Input />
-                        </Form.Item>
+                    <Form.Item
+                        label="dlf.catalog.endpoint"
+                        required
+                        extra="DLF 服务的 endpoint"
+                    >
+                        <Input />
+                    </Form.Item>
 
-                        <Form.Item
-                            label="dlf.catalog.endpoint"
-                            required
-                            extra="DLF 服务的 endpoint"
-                        >
-                            <Input />
-                        </Form.Item>
-
-                        <Form.Item
-                            label="dlf.catalog.region"
-                            required
-                            extra="DLF 所在区域"
-                        >
-                            <Input />
-                        </Form.Item>
-                    </>
-                ) : null
-            }
-
-
+                    <Form.Item
+                        label="dlf.catalog.region"
+                        required
+                        extra="DLF 所在区域"
+                    >
+                        <Input />
+                    </Form.Item>
+                </>
+            ) : null}
         </Form>
     );
 };

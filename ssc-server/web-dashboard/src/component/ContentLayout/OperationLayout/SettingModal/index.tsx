@@ -1,11 +1,18 @@
 import { Col, Modal, ModalProps, Row } from "antd";
 import "./index.sass";
 import { MinusCircleOutlined, PlusCircleOutlined } from "../../../Icon";
-import { DndContext, DragEndEvent, MeasuringStrategy, PointerSensor, UniqueIdentifier, useSensor, useSensors } from "@dnd-kit/core";
+import {
+    DndContext,
+    DragEndEvent,
+    MeasuringStrategy,
+    PointerSensor,
+    UniqueIdentifier,
+    useSensor,
+    useSensors,
+} from "@dnd-kit/core";
 import { SortableContext, arrayMove, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { useState } from "react";
 import { CSS } from "@dnd-kit/utilities";
-
 
 interface DroppableProps {
     children: React.ReactNode;
@@ -14,7 +21,7 @@ interface DroppableProps {
 }
 
 const Droppable = (props: DroppableProps) => {
-    const { /* isOver,  */setNodeRef } = useSortable({
+    const { /* isOver,  */ setNodeRef } = useSortable({
         id: props.id,
     });
     const style: React.CSSProperties = {
@@ -22,7 +29,11 @@ const Droppable = (props: DroppableProps) => {
     };
 
     return (
-        <div className={props.className} ref={setNodeRef} style={style}>
+        <div
+            className={props.className}
+            ref={setNodeRef}
+            style={style}
+        >
             {props.children}
         </div>
     );
@@ -47,7 +58,13 @@ const Draggable = (props: DraggableProps) => {
     };
 
     return (
-        <div className={props.className} ref={setNodeRef} style={style} {...listeners} {...attributes}>
+        <div
+            className={props.className}
+            ref={setNodeRef}
+            style={style}
+            {...listeners}
+            {...attributes}
+        >
             {props.children}
         </div>
     );
@@ -59,29 +76,26 @@ interface ColSet {
     };
 }
 
-
 const SettingModal = (props: ModalProps) => {
-    const [colSets, setColSets] = useState<ColSet>(
-        {
-            showList: {
-                healthSorce: "健康分",
-                businessDelay: "业务延时",
-                cpu: "CPU",
-                memory: "内存",
-                editor: "修改人",
-            },
-            hiddenList: {
-                updateTime: "修改时间"
-            }
+    const [colSets, setColSets] = useState<ColSet>({
+        showList: {
+            healthSorce: "健康分",
+            businessDelay: "业务延时",
+            cpu: "CPU",
+            memory: "内存",
+            editor: "修改人",
         },
-    );
+        hiddenList: {
+            updateTime: "修改时间",
+        },
+    });
 
     const sensors = useSensors(
         useSensor(PointerSensor, {
             activationConstraint: {
                 distance: 1,
             },
-        }),
+        })
     );
 
     const findContainer = (id: UniqueIdentifier) => {
@@ -89,7 +103,7 @@ const SettingModal = (props: ModalProps) => {
             return id;
         }
 
-        return Object.keys(colSets).find((key) => id in colSets[key]);
+        return Object.keys(colSets).find(key => id in colSets[key]);
     };
 
     const cloneByKey = (obj: any, keyArr: UniqueIdentifier[]) => {
@@ -106,7 +120,6 @@ const SettingModal = (props: ModalProps) => {
         if (!activeId || !overId || activeId === overId) {
             return;
         }
-
 
         const activeContainer = findContainer(activeId);
         const overContainer = findContainer(overId);
@@ -134,7 +147,7 @@ const SettingModal = (props: ModalProps) => {
                 const newKeyArr = arrayMove(activeKeyArr, activeIndex, newIndex);
                 return {
                     ...sets,
-                    [activeContainer]: cloneByKey(sets[activeContainer], newKeyArr)
+                    [activeContainer]: cloneByKey(sets[activeContainer], newKeyArr),
                 };
             } else {
                 let newIndex: number;
@@ -147,25 +160,19 @@ const SettingModal = (props: ModalProps) => {
                 console.log(newIndex);
 
                 const newActiveKeyArr = activeKeyArr.filter(key => key !== activeId);
-                const newOverKeyArr = [
-                    ...overKeyArr.slice(0, newIndex),
-                    activeId,
-                    ...overKeyArr.slice(newIndex)
-                ];
+                const newOverKeyArr = [...overKeyArr.slice(0, newIndex), activeId, ...overKeyArr.slice(newIndex)];
 
                 return {
                     [activeContainer]: cloneByKey(sets[activeContainer], newActiveKeyArr),
                     [overContainer]: cloneByKey(
                         {
                             ...sets[activeContainer],
-                            ...sets[overContainer]
+                            ...sets[overContainer],
                         },
                         newOverKeyArr
-                    )
+                    ),
                 };
             }
-
-
         });
     };
 
@@ -176,20 +183,17 @@ const SettingModal = (props: ModalProps) => {
                 const hiddenKeyAry = Object.keys(sets["hiddenList"]);
 
                 const newShowKeyArr = showKeyAry.filter(key => key !== curKey);
-                const newHiddenKeyArr = [
-                    ...hiddenKeyAry,
-                    curKey,
-                ];
+                const newHiddenKeyArr = [...hiddenKeyAry, curKey];
 
                 return {
                     showList: cloneByKey(sets["showList"], newShowKeyArr),
                     hiddenList: cloneByKey(
                         {
                             ...sets["showList"],
-                            ...sets["hiddenList"]
+                            ...sets["hiddenList"],
                         },
                         newHiddenKeyArr
-                    )
+                    ),
                 };
             });
         };
@@ -201,21 +205,18 @@ const SettingModal = (props: ModalProps) => {
                 const showKeyAry = Object.keys(sets["showList"]);
                 const hiddenKeyAry = Object.keys(sets["hiddenList"]);
 
-                const newShowKeyArr = [
-                    ...showKeyAry,
-                    curKey
-                ];
+                const newShowKeyArr = [...showKeyAry, curKey];
                 const newHiddenKeyArr = hiddenKeyAry.filter(key => key !== curKey);
 
                 return {
                     showList: cloneByKey(
                         {
                             ...sets["showList"],
-                            ...sets["hiddenList"]
+                            ...sets["hiddenList"],
                         },
                         newShowKeyArr
                     ),
-                    hiddenList: cloneByKey(sets["hiddenList"], newHiddenKeyArr)
+                    hiddenList: cloneByKey(sets["hiddenList"], newHiddenKeyArr),
                 };
             });
         };
@@ -226,7 +227,11 @@ const SettingModal = (props: ModalProps) => {
             {...props}
             width={800}
             title="列表设置"
-            footer={(_, { OkBtn, CancelBtn }) => (<><OkBtn /> <CancelBtn /></>)}
+            footer={(_, { OkBtn, CancelBtn }) => (
+                <>
+                    <OkBtn /> <CancelBtn />
+                </>
+            )}
             className="deploy-table-setting-modal"
         >
             <DndContext
@@ -248,10 +253,21 @@ const SettingModal = (props: ModalProps) => {
                                 items={Object.keys(colSets["showList"])}
                                 strategy={verticalListSortingStrategy}
                             >
-                                <Droppable className="example-list" key="showList" id={"showList"} >
-                                    {
-                                        Object.keys(colSets["showList"]).map(item => <Draggable key={item} id={item} className="example-box">{colSets["showList"][item]}<MinusCircleOutlined onClick={onMinusClick(item)} /></Draggable>)
-                                    }
+                                <Droppable
+                                    className="example-list"
+                                    key="showList"
+                                    id={"showList"}
+                                >
+                                    {Object.keys(colSets["showList"]).map(item => (
+                                        <Draggable
+                                            key={item}
+                                            id={item}
+                                            className="example-box"
+                                        >
+                                            {colSets["showList"][item]}
+                                            <MinusCircleOutlined onClick={onMinusClick(item)} />
+                                        </Draggable>
+                                    ))}
                                 </Droppable>
                             </SortableContext>
                             <div className="example-box">操作</div>
@@ -264,19 +280,27 @@ const SettingModal = (props: ModalProps) => {
                                 items={Object.keys(colSets["hiddenList"])}
                                 strategy={verticalListSortingStrategy}
                             >
-                                <Droppable className="example-list" key="hiddenList" id={"hiddenList"}>
-                                    {
-                                        Object.keys(colSets["hiddenList"]).map(item => <Draggable key={item} id={item} className="example-box">{colSets["hiddenList"][item]}<PlusCircleOutlined onClick={onPlusClick(item)} /></Draggable>)
-                                    }
+                                <Droppable
+                                    className="example-list"
+                                    key="hiddenList"
+                                    id={"hiddenList"}
+                                >
+                                    {Object.keys(colSets["hiddenList"]).map(item => (
+                                        <Draggable
+                                            key={item}
+                                            id={item}
+                                            className="example-box"
+                                        >
+                                            {colSets["hiddenList"][item]}
+                                            <PlusCircleOutlined onClick={onPlusClick(item)} />
+                                        </Draggable>
+                                    ))}
                                 </Droppable>
                             </SortableContext>
-
                         </div>
                     </Col>
-
                 </Row>
             </DndContext>
-
         </Modal>
     );
 };

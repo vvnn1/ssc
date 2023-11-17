@@ -30,7 +30,7 @@ const SessionClusterLayout = () => {
             name: "ssc-session",
             status: "stoped",
             cpu: 2,
-            memory: 2
+            memory: 2,
         },
     ]);
 
@@ -47,7 +47,10 @@ const SessionClusterLayout = () => {
             ellipsis: true,
             render: (value, { id }) => (
                 <>
-                    <a><ClusterOutlined /> <Tooltip title={value}>{value}</Tooltip></a><br />
+                    <a>
+                        <ClusterOutlined /> <Tooltip title={value}>{value}</Tooltip>
+                    </a>
+                    <br />
                     <small>{id}</small>
                 </>
             ),
@@ -79,24 +82,40 @@ const SessionClusterLayout = () => {
             ],
             onFilter: (value: string | number | boolean, record) => record.status === value,
             width: 150,
-            render: (value) => {
+            render: value => {
                 if (value === "starting") {
-                    return <span className="state starting"><LoadingOutlined /> 启动中</span>;
+                    return (
+                        <span className="state starting">
+                            <LoadingOutlined /> 启动中
+                        </span>
+                    );
                 }
                 if (value === "running") {
-                    return <span><PlayCircleFilled /> 运行中</span>;
+                    return (
+                        <span>
+                            <PlayCircleFilled /> 运行中
+                        </span>
+                    );
                 }
                 if (value === "stoping") {
-                    return <span><LoadingOutlined /> 停止中</span>;
+                    return (
+                        <span>
+                            <LoadingOutlined /> 停止中
+                        </span>
+                    );
                 }
                 if (value === "stoped") {
-                    return <span><CancelCircleFilled /> 已停止</span>;
+                    return (
+                        <span>
+                            <CancelCircleFilled /> 已停止
+                        </span>
+                    );
                 }
                 if (value === "fail") {
                     return <></>;
                 }
                 return <></>;
-            }
+            },
         },
         {
             title: "CPU",
@@ -107,53 +126,82 @@ const SessionClusterLayout = () => {
             title: "内存",
             dataIndex: "memory",
             sorter: (a, b) => a.memory - b.memory,
-            render: (value) => (<>{value} GiB</>)
+            render: value => <>{value} GiB</>,
         },
         {
             title: "操作",
             width: 300,
             render: (_, { id, name, status }) => (
                 <>
-                    <Button type="link" size="small" disabled={["starting", "running"].includes(status)} onClick={onLaunchClick(id)}>启动</Button>
+                    <Button
+                        type="link"
+                        size="small"
+                        disabled={["starting", "running"].includes(status)}
+                        onClick={onLaunchClick(id)}
+                    >
+                        启动
+                    </Button>
                     <Divider type="vertical" />
-                    <Button type="link" size="small" disabled={["stoped", "stoping"].includes(status)} onClick={onStopClick(id)}>停止</Button>
+                    <Button
+                        type="link"
+                        size="small"
+                        disabled={["stoped", "stoping"].includes(status)}
+                        onClick={onStopClick(id)}
+                    >
+                        停止
+                    </Button>
                     <Divider type="vertical" />
-                    <Button type="link" size="small" onClick={onEditClick(name)}>编辑</Button>
+                    <Button
+                        type="link"
+                        size="small"
+                        onClick={onEditClick(name)}
+                    >
+                        编辑
+                    </Button>
                     <Divider type="vertical" />
-                    <Button type="link" size="small" danger disabled={["starting", "running", "stoping"].includes(status)}>删除</Button>
+                    <Button
+                        type="link"
+                        size="small"
+                        danger
+                        disabled={["starting", "running", "stoping"].includes(status)}
+                    >
+                        删除
+                    </Button>
                 </>
-            )
+            ),
         },
     ];
 
     const onEditClick = (name: string): ButtonProps["onClick"] => {
-        return (e) => {
+        return e => {
             e.stopPropagation();
             navigate(`../${name}/configure`);
         };
     };
 
     const onLaunchClick = (id: string): ButtonProps["onClick"] => {
-        return (e) => {
+        return e => {
             e.stopPropagation();
             setData(data => {
                 return [
-                    ...data.filter(item => item.id === id)
+                    ...data
+                        .filter(item => item.id === id)
                         .map(item => {
                             item.status = "starting";
                             return item;
-                        })
+                        }),
                 ];
             });
 
             setTimeout(() => {
                 setData(data => {
                     return [
-                        ...data.filter(item => item.id === id)
+                        ...data
+                            .filter(item => item.id === id)
                             .map(item => {
                                 item.status = "running";
                                 return item;
-                            })
+                            }),
                     ];
                 });
             }, 4000);
@@ -161,33 +209,35 @@ const SessionClusterLayout = () => {
     };
 
     const onStopClick = (id: string): ButtonProps["onClick"] => {
-        return (e) => {
+        return e => {
             e.stopPropagation();
             setStopModalProps({
                 onOk: () => {
                     setStopModalOpen(false);
                     setData(data => {
                         return [
-                            ...data.filter(item => item.id === id)
+                            ...data
+                                .filter(item => item.id === id)
                                 .map(item => {
                                     item.status = "stoping";
                                     return item;
-                                })
+                                }),
                         ];
                     });
 
                     setTimeout(() => {
                         setData(data => {
                             return [
-                                ...data.filter(item => item.id === id)
+                                ...data
+                                    .filter(item => item.id === id)
                                     .map(item => {
                                         item.status = "stoped";
                                         return item;
-                                    })
+                                    }),
                             ];
                         });
                     }, 4000);
-                }
+                },
             });
             setStopModalOpen(true);
         };
@@ -198,14 +248,19 @@ const SessionClusterLayout = () => {
             <div className="header">
                 <div className="title">
                     <div className="title">Session 集群</div>
-                    <div className="extra"><Tag>请勿生产使用</Tag></div>
+                    <div className="extra">
+                        <Tag>请勿生产使用</Tag>
+                    </div>
                 </div>
                 <div className="actions">
                     <Space>
-                        <Button type='primary' href={useHref("../create-session-cluster")}>创建 Session 集群</Button>
-                        <Search
-                            placeholder="搜索…"
-                        />
+                        <Button
+                            type="primary"
+                            href={useHref("../create-session-cluster")}
+                        >
+                            创建 Session 集群
+                        </Button>
+                        <Search placeholder="搜索…" />
                     </Space>
                 </div>
             </div>
@@ -214,13 +269,17 @@ const SessionClusterLayout = () => {
                     columns={columns}
                     dataSource={data}
                     showSorterTooltip={false}
-                    size='small'
+                    size="small"
                     onRow={({ name }) => ({
                         onClick: () => navigate(`../${name}/overview`),
                     })}
                 />
             </div>
-            <StopModal open={stopModalOpen} onCancel={changeModalOpen(false, setStopModalOpen)} {...stopModalProps} />
+            <StopModal
+                open={stopModalOpen}
+                onCancel={changeModalOpen(false, setStopModalOpen)}
+                {...stopModalProps}
+            />
         </div>
     );
 };

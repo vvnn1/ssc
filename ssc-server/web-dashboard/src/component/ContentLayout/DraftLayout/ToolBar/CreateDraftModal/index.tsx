@@ -28,16 +28,43 @@ const CreateDraftModal = (props: ModalProps) => {
 
     const step1Footer = (
         <>
-            <Button key="next-step" type="primary" onClick={nextClick}>下一步</Button>
-            <Button key="cancel" onClick={props.onCancel}>取消</Button>
+            <Button
+                key="next-step"
+                type="primary"
+                onClick={nextClick}
+            >
+                下一步
+            </Button>
+            <Button
+                key="cancel"
+                onClick={props.onCancel}
+            >
+                取消
+            </Button>
         </>
     );
 
     const step2Footer = (
         <>
-            <Button key="perv-step" onClick={prevClick}>上一步</Button>
-            <Button key="create" type="primary" onClick={onConfirm}>创建</Button>
-            <Button key="cancel" onClick={props.onCancel}>取消</Button>
+            <Button
+                key="perv-step"
+                onClick={prevClick}
+            >
+                上一步
+            </Button>
+            <Button
+                key="create"
+                type="primary"
+                onClick={onConfirm}
+            >
+                创建
+            </Button>
+            <Button
+                key="cancel"
+                onClick={props.onCancel}
+            >
+                取消
+            </Button>
         </>
     );
 
@@ -51,9 +78,15 @@ const CreateDraftModal = (props: ModalProps) => {
             rootClassName="create-draft-modal"
             footer={currentStep === 0 ? step1Footer : step2Footer}
         >
-
-            {currentStep === 0 ? <Step1 onTemplateSelected={setSelectedCardTemplate} /> : <Step2 form={form} onBackwardClick={prevClick} template={selectedCardTemplate} />}
-
+            {currentStep === 0 ? (
+                <Step1 onTemplateSelected={setSelectedCardTemplate} />
+            ) : (
+                <Step2
+                    form={form}
+                    onBackwardClick={prevClick}
+                    template={selectedCardTemplate}
+                />
+            )}
         </Modal>
     );
 };

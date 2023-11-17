@@ -8,24 +8,20 @@ import { HashRouter } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import zhCN from "antd/locale/zh_CN";
 
-
-
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
-
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
 root.render(
     <React.StrictMode>
         <HashRouter>
-            <ConfigProvider locale={zhCN} wave={{ disabled: true }}>
+            <ConfigProvider
+                locale={zhCN}
+                wave={{ disabled: true }}
+            >
                 <App />
             </ConfigProvider>
         </HashRouter>
     </React.StrictMode>
 );
-
-
 
 // window.addEventListener("load", () => {
 //     ReactDOM.render(

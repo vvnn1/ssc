@@ -9,7 +9,7 @@ import RunIdNavigate from "./RuntimeLogLayout/RunIdNavigate";
 
 const items: MenuProps["items"] = [
     {
-        label: <MyLink to='running'>运行日志</MyLink>,
+        label: <MyLink to="running">运行日志</MyLink>,
         key: "running",
     },
     {
@@ -18,29 +18,48 @@ const items: MenuProps["items"] = [
     },
     {
         label: <MyLink to="exceptions">异常信息</MyLink>,
-        key: "exceptions"
-    }
+        key: "exceptions",
+    },
 ];
 const ExplorationLayout = () => {
     const { pathname } = useLocation();
-    const pathMatch = matchPath("/workspace/:workspaceId/namespace/:namespaceId/operations/:jobType/:jobId/:detailTab/:key/*", pathname);
+    const pathMatch = matchPath(
+        "/workspace/:workspaceId/namespace/:namespaceId/operations/:jobType/:jobId/:detailTab/:key/*",
+        pathname
+    );
 
     return (
         <div className="development-exploration-layout">
-            <Menu className="vertical-mode" mode="inline" items={items} defaultSelectedKeys={pathMatch?.params.key ? [pathMatch?.params.key] : []} />
+            <Menu
+                className="vertical-mode"
+                mode="inline"
+                items={items}
+                defaultSelectedKeys={pathMatch?.params.key ? [pathMatch?.params.key] : []}
+            />
             <Routes>
-                <Route path='running' element={<RunIdNavigate />}>
-                    <Route path=':runId'>
+                <Route
+                    path="running"
+                    element={<RunIdNavigate />}
+                >
+                    <Route path=":runId">
                         <Route path="archives">
-                            <Route path='*' element={<RuntimeLogLayout />} />
+                            <Route
+                                path="*"
+                                element={<RuntimeLogLayout />}
+                            />
                         </Route>
                     </Route>
                 </Route>
 
-                <Route path='starting' element={<LaunchLogLayout />} />
-                <Route path='exceptions' element={<ExceptionLayout />} />
+                <Route
+                    path="starting"
+                    element={<LaunchLogLayout />}
+                />
+                <Route
+                    path="exceptions"
+                    element={<ExceptionLayout />}
+                />
             </Routes>
-
         </div>
     );
 };

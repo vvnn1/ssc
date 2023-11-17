@@ -4,7 +4,7 @@ import { Resizable, ResizeCallbackData } from "react-resizable";
 import { SearchOutlined } from "../../Icon";
 import { Input } from "antd";
 
-const ArchiveLayout =  () => {
+const ArchiveLayout = () => {
     const [reSize, setReSize] = useState<number>(220);
 
     const onResize = (_: any, { size }: ResizeCallbackData) => {
@@ -17,26 +17,23 @@ const ArchiveLayout =  () => {
                     width={reSize}
                     height={0}
                     onResize={onResize}
-                    axis='x'
+                    axis="x"
                 >
-                    <div className="tree-content panel panel-ttb" style={{ width: reSize + "px" }}>
+                    <div
+                        className="tree-content panel panel-ttb"
+                        style={{ width: reSize + "px" }}
+                    >
                         <div className="panel-bar searchbar panel panel-ltr panel-border-bottom">
                             <Input
                                 placeholder="搜索名称…"
-                                suffix={
-                                    <SearchOutlined />
-                                }
+                                suffix={<SearchOutlined />}
                             />
                         </div>
-                        <div className="panel draft-list panel-ttb">
-
-                        </div>
+                        <div className="panel draft-list panel-ttb"></div>
                     </div>
                 </Resizable>
             </div>
-            <div className="panel main-panel panel-ttb">
-
-            </div>
+            <div className="panel main-panel panel-ttb"></div>
         </div>
     );
 };

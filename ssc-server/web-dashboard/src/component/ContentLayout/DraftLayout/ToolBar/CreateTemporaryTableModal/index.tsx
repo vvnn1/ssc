@@ -5,7 +5,6 @@ import StepModal from "../../../../StepModal";
 import Step2 from "./Step2";
 import { useState } from "react";
 
-
 const CreateTemporaryTableModal = (props: ModalProps) => {
     const [selectedCard, setSelectedCard] = useState<CardDetail>();
 
@@ -17,9 +16,9 @@ const CreateTemporaryTableModal = (props: ModalProps) => {
                 title: "添加临时表",
                 width: 1000,
                 className: "create-temporary-table-modal",
-                okButtonProps:{
-                    disabled: !selectedCard
-                }
+                okButtonProps: {
+                    disabled: !selectedCard,
+                },
             }}
             stepsProps={{
                 items: [
@@ -27,19 +26,19 @@ const CreateTemporaryTableModal = (props: ModalProps) => {
                         title: "选择临时表类型",
                     },
                     {
-                        title: "构建临时表"
-                    }
+                        title: "构建临时表",
+                    },
                 ],
-                size: "small"
+                size: "small",
             }}
         >
-            {(currentStep) => {
+            {currentStep => {
                 if (currentStep === 0) {
-                    return <Step1 onCardChange={setSelectedCard}/>;
+                    return <Step1 onCardChange={setSelectedCard} />;
                 }
-                return <Step2 {...selectedCard!}/>;
+                return <Step2 {...selectedCard!} />;
             }}
-        </StepModal >
+        </StepModal>
     );
 };
 

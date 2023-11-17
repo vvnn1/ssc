@@ -9,7 +9,11 @@ const CustomSetting = () => {
             className="custom-flink-setting-card"
         >
             <Form.Item
-                extra={<>在此设置其他 Flink 配置。 例如：<code>taskmanager.numberOfTaskSlots: 1</code></>}
+                extra={
+                    <>
+                        在此设置其他 Flink 配置。 例如：<code>taskmanager.numberOfTaskSlots: 1</code>
+                    </>
+                }
                 className="custom-flink-configuration"
                 name="customConfig"
             >
@@ -18,14 +22,13 @@ const CustomSetting = () => {
                         height={200}
                         options={{
                             minimap: {
-                                enabled: false
+                                enabled: false,
                             },
                             lineNumbersMinChars: 3,
                             lineDecorationsWidth: 0,
                         }}
                     />
                 </div>
-
             </Form.Item>
         </SettingCard>
     );

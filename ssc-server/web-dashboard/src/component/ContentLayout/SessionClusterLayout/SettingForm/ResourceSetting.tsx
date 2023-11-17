@@ -5,9 +5,7 @@ import MemoryInputNumber from "../../../InputNumber/MemoryInputNumber";
 
 const ResourceSetting = () => {
     return (
-        <SettingCard
-            title="资源配置"
-        >
+        <SettingCard title="资源配置">
             <Row gutter={24}>
                 <Col span={24}>
                     <Form.Item
@@ -40,15 +38,19 @@ const ResourceSetting = () => {
                     <Form.Item
                         required
                         label="JobManager Memory"
-                        extra={<>推荐值:<code>4GiB</code>最小值：1GiB。建议使用 GiB/MiB 单位，例如：1024MiB，1.5GiB</>}
+                        extra={
+                            <>
+                                推荐值:<code>4GiB</code>最小值：1GiB。建议使用 GiB/MiB 单位，例如：1024MiB，1.5GiB
+                            </>
+                        }
                         name="jmMemory"
                     >
                         <MemoryInputNumber
                             inputProps={{
-                                placeholder: "请输入 Job Manager 内存"
+                                placeholder: "请输入 Job Manager 内存",
                             }}
                             selectProps={{
-                                defaultValue: "GiB"
+                                defaultValue: "GiB",
                             }}
                         />
                     </Form.Item>
@@ -71,16 +73,19 @@ const ResourceSetting = () => {
                     <Form.Item
                         required
                         label="TaskManager Memory"
-                        extra={<>推荐值:<code>8GiB</code>最小值：1GiB。建议使用 GiB/MiB 单位，例如：1024MiB，1.5GiB</>}
+                        extra={
+                            <>
+                                推荐值:<code>8GiB</code>最小值：1GiB。建议使用 GiB/MiB 单位，例如：1024MiB，1.5GiB
+                            </>
+                        }
                         name="tmMemory"
                     >
-
                         <MemoryInputNumber
                             inputProps={{
-                                placeholder: "请输入 Task Manager 内存"
+                                placeholder: "请输入 Task Manager 内存",
                             }}
                             selectProps={{
-                                defaultValue: "GiB"
+                                defaultValue: "GiB",
                             }}
                         />
                     </Form.Item>

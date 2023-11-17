@@ -11,8 +11,6 @@ interface TreeTitleProps {
     editingCallback: (editing: boolean) => void;
 }
 
-
-
 const TreeTitle = (props: TreeTitleProps) => {
     const [editing, setEditing] = useState<boolean>(false);
     const { dataNode, expandCallback, changedCallback, editingCallback } = props;
@@ -22,7 +20,7 @@ const TreeTitle = (props: TreeTitleProps) => {
         editingCallback(editing);
         if (editing) {
             inputRef.current?.focus({
-                cursor: "all"
+                cursor: "all",
             });
 
             inputRef.current?.input?.addEventListener("blur", () => {
@@ -34,14 +32,14 @@ const TreeTitle = (props: TreeTitleProps) => {
         }
     }, [editing]);
 
-    const onFileAddClick: MouseEventHandler<HTMLAnchorElement> & MouseEventHandler<HTMLButtonElement> = (event) => {
+    const onFileAddClick: MouseEventHandler<HTMLAnchorElement> & MouseEventHandler<HTMLButtonElement> = event => {
         event.stopPropagation();
         if (dataNode.isLeaf) {
             return;
         }
     };
 
-    const onFloderAddClick: MouseEventHandler<HTMLAnchorElement> & MouseEventHandler<HTMLButtonElement> = (event) => {
+    const onFloderAddClick: MouseEventHandler<HTMLAnchorElement> & MouseEventHandler<HTMLButtonElement> = event => {
         event.stopPropagation();
         if (dataNode.isLeaf) {
             return;
@@ -54,23 +52,25 @@ const TreeTitle = (props: TreeTitleProps) => {
                 title: "test",
                 key: dataNode.key + "-" + dataNode.children.length,
                 isLeaf: false,
-                switcherIcon: (node) => (node.expanded ? <FloderOpenColorOutlined /> : <FloderClosedColorOutlined />),
-                children: []
+                switcherIcon: node => (node.expanded ? <FloderOpenColorOutlined /> : <FloderClosedColorOutlined />),
+                children: [],
             });
         } else {
-            dataNode.children = [{
-                title: "test",
-                key: dataNode.key + "-0",
-                isLeaf: false,
-                switcherIcon: (node) => (node.expanded ? <FloderOpenColorOutlined /> : <FloderClosedColorOutlined />),
-                children: []
-            }];
+            dataNode.children = [
+                {
+                    title: "test",
+                    key: dataNode.key + "-0",
+                    isLeaf: false,
+                    switcherIcon: node => (node.expanded ? <FloderOpenColorOutlined /> : <FloderClosedColorOutlined />),
+                    children: [],
+                },
+            ];
         }
 
         changedCallback();
     };
 
-    const onRenameClick: MouseEventHandler<HTMLAnchorElement> & MouseEventHandler<HTMLButtonElement> = (event) => {
+    const onRenameClick: MouseEventHandler<HTMLAnchorElement> & MouseEventHandler<HTMLButtonElement> = event => {
         event.stopPropagation();
         dataNode.className = "edit-node";
         changedCallback();
@@ -79,70 +79,54 @@ const TreeTitle = (props: TreeTitleProps) => {
 
     return (
         <>
-            {
-                editing
-                    ? (
-                        <Input
-                            onClick={(event) => event.stopPropagation()}
-                            onDoubleClick={(event) => event.stopPropagation()}
+            {editing ? (
+                <Input
+                    onClick={event => event.stopPropagation()}
+                    onDoubleClick={event => event.stopPropagation()}
+                    size="small"
+                    className="rename-input"
+                    defaultValue={dataNode.title as string}
+                    ref={inputRef}
+                />
+            ) : (
+                <span className="title">{dataNode.title as React.ReactNode}</span>
+            )}
+
+            {dataNode.isLeaf || editing ? null : (
+                <div className="actions">
+                    <Tooltip title="新建作业草稿">
+                        <Button
+                            className="action"
+                            type="text"
                             size="small"
-                            className="rename-input"
-                            defaultValue={dataNode.title as string}
-                            ref={inputRef} />
-                    )
-                    : (
-                        <span className="title">
-                            {dataNode.title as React.ReactNode}
-                        </span>
-                    )
-            }
-
-            {
-
-                dataNode.isLeaf || editing
-                    ? null
-                    : (
-                        <div className="actions">
-                            <Tooltip
-                                title="新建作业草稿"
-                            >
-                                <Button
-                                    className="action"
-                                    type='text'
-                                    size='small'
-                                    onClick={onFileAddClick}
-                                >
-                                    <FileAddOutlined />
-                                </Button>
-                            </Tooltip>
-                            <Tooltip
-                                title="新建文件夹"
-                            >
-                                <Button
-                                    className="action"
-                                    type='text'
-                                    size='small'
-                                    onClick={onFloderAddClick}
-                                >
-                                    <FolderAddOutlined />
-                                </Button>
-                            </Tooltip>
-                            <Tooltip
-                                title="重命名"
-                            >
-                                <Button
-                                    className="action"
-                                    type='text'
-                                    size='small'
-                                    style={{ display: dataNode.key === "0" ? "none" : "inline-block" }}
-                                    onClick={onRenameClick}
-                                >
-                                    <EditOutlined />
-                                </Button>
-                            </Tooltip>
-                        </div>
-                    )
-            }
+                            onClick={onFileAddClick}
+                        >
+                            <FileAddOutlined />
+                        </Button>
+                    </Tooltip>
+                    <Tooltip title="新建文件夹">
+                        <Button
+                            className="action"
+                            type="text"
+                            size="small"
+                            onClick={onFloderAddClick}
+                        >
+                            <FolderAddOutlined />
+                        </Button>
+                    </Tooltip>
+                    <Tooltip title="重命名">
+                        <Button
+                            className="action"
+                            type="text"
+                            size="small"
+                            style={{ display: dataNode.key === "0" ? "none" : "inline-block" }}
+                            onClick={onRenameClick}
+                        >
+                            <EditOutlined />
+                        </Button>
+                    </Tooltip>
+                </div>
+            )}
         </>
     );
 };

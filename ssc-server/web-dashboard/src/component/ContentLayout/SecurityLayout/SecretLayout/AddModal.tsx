@@ -6,11 +6,14 @@ const AddModal = (props: ModalProps) => {
             {...props}
             title="新增密钥"
             width={600}
-            footer={(_, { OkBtn, CancelBtn }) => (<><OkBtn /><CancelBtn /></>)}
+            footer={(_, { OkBtn, CancelBtn }) => (
+                <>
+                    <OkBtn />
+                    <CancelBtn />
+                </>
+            )}
         >
-            <Form
-                layout="vertical"
-            >
+            <Form layout="vertical">
                 <Form.Item
                     label="密钥名称"
                     required

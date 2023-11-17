@@ -7,16 +7,12 @@ const tabItems: TabsProps["items"] = [
     {
         key: "1",
         label: "流作业",
-        children: (
-            <StreamWorkTab />
-        ),
+        children: <StreamWorkTab />,
     },
     {
         key: "2",
         label: "批作业",
-        children: (
-            <BatchWorkTab />
-        ),
+        children: <BatchWorkTab />,
     },
 ];
 
@@ -27,7 +23,7 @@ const WorkSettingLayout = () => {
             defaultActiveKey="1"
             items={tabItems}
             size="small"
-            style={{height: "100%"}}
+            style={{ height: "100%" }}
         />
     );
 };

@@ -8,7 +8,13 @@ type ColumnTypes = Exclude<TableProps["columns"], undefined>;
 const columns: ColumnTypes = [
     {
         title: "Path, ID",
-        render: (_, record) => <MyLink to={`${record.ip}/metrics`}><span>{record.ip}</span><br/><span>{record.url}</span></MyLink>,
+        render: (_, record) => (
+            <MyLink to={`${record.ip}/metrics`}>
+                <span>{record.ip}</span>
+                <br />
+                <span>{record.url}</span>
+            </MyLink>
+        ),
         ellipsis: true,
     },
     {
@@ -34,7 +40,6 @@ const columns: ColumnTypes = [
         title: "Physical MEM",
         dataIndex: "physicalMem",
         sorter: () => 1,
-        
     },
     {
         title: "JVM Heap",
@@ -45,15 +50,15 @@ const columns: ColumnTypes = [
         title: "Managed MEM",
         dataIndex: "managedMem",
         sorter: () => 1,
-    }
+    },
 ];
 
 const TaskManagerLayout = () => {
     return (
         <div className="taskmanager-layout">
-            <Table 
+            <Table
                 columns={columns}
-                size='small'
+                size="small"
                 dataSource={[
                     {
                         id: <></>,
@@ -65,16 +70,17 @@ const TaskManagerLayout = () => {
                         cores: "2",
                         physicalMem: "8.2 GB",
                         heap: "3.34 GB",
-                        managedMem: "2.78 GB"
-                    }
+                        managedMem: "2.78 GB",
+                    },
                 ]}
                 pagination={false}
                 rowKey={"port"}
-                getPopupContainer={() => document.body.getElementsByClassName("cdk-overlay-container")[0] as HTMLDivElement}
+                getPopupContainer={() =>
+                    document.body.getElementsByClassName("cdk-overlay-container")[0] as HTMLDivElement
+                }
             />
         </div>
     );
 };
-
 
 export default TaskManagerLayout;

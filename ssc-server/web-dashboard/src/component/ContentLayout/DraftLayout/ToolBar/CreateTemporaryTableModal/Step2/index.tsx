@@ -17,8 +17,14 @@ const Step2 = (props: Step2Props) => {
     return (
         <div className="create-temporary-table-modal-step-2">
             <Row className="demo-platform">
-                <Col className="left-panel" span={9}>
-                    <Paragraph className="title" ellipsis={{ rows: 3 }}>
+                <Col
+                    className="left-panel"
+                    span={9}
+                >
+                    <Paragraph
+                        className="title"
+                        ellipsis={{ rows: 3 }}
+                    >
                         {props.desc}
                     </Paragraph>
                     <div className="properties">
@@ -32,31 +38,38 @@ const Step2 = (props: Step2Props) => {
                     <div className="properties">
                         <span className="key">文档:</span>
                         <span className="value">
-                            {
-                                props.type?.map((t, index) => (<a key={index}>{t} <NewTabOutlined /></a>))
-                                    .reduce((accu, elem) => {
-                                        return <>
+                            {props.type
+                                ?.map((t, index) => (
+                                    <a key={index}>
+                                        {t} <NewTabOutlined />
+                                    </a>
+                                ))
+                                .reduce((accu, elem) => {
+                                    return (
+                                        <>
                                             {accu}
                                             <Divider type="vertical" />
                                             {elem}
-                                        </>;
-                                    })
-                            }
+                                        </>
+                                    );
+                                })}
                         </span>
                     </div>
                 </Col>
-                <Col className="right-panel" span={15}>
+                <Col
+                    className="right-panel"
+                    span={15}
+                >
                     <MonacoEditor
                         options={{
                             minimap: {
-                                enabled: false
+                                enabled: false,
                             },
 
                             lineNumbersMinChars: 5,
                             lineDecorationsWidth: 0,
                         }}
-                        value={
-                            `CREATE TEMPORARY TABLE <your_table_name> (
+                        value={`CREATE TEMPORARY TABLE <your_table_name> (
     ...
 ) 
 WITH (
@@ -65,8 +78,7 @@ WITH (
     'userName' = '<userName>',
     'password' = '<password>',
     'tableName' = '<tableName>'
-);`
-                        }
+);`}
                     />
                 </Col>
             </Row>

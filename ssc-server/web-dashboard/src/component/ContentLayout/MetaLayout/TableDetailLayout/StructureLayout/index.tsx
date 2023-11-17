@@ -28,8 +28,8 @@ const StructureLayout = () => {
                     {
                         key: "4",
                         label: "备注",
-                        children: "-"
-                    }
+                        children: "-",
+                    },
                 ]}
             />
             <div className="divider">表属性</div>
@@ -40,20 +40,20 @@ const StructureLayout = () => {
                 columns={[
                     {
                         title: "参数名称",
-                        dataIndex:"name",
-                        width: "50%"
+                        dataIndex: "name",
+                        width: "50%",
                     },
                     {
                         title: "参数值",
                         dataIndex: "value",
-                        width: "50%"
-                    }
+                        width: "50%",
+                    },
                 ]}
                 dataSource={[
                     {
                         name: "connector",
-                        value: "datagen"
-                    }
+                        value: "datagen",
+                    },
                 ]}
             />
             <div className="divider">表字段</div>
@@ -65,33 +65,33 @@ const StructureLayout = () => {
                     {
                         title: "字段名称",
                         dataIndex: "name",
-                        width: "20%"
+                        width: "20%",
                     },
                     {
                         title: "字段类型",
                         dataIndex: "type",
-                        width: "20%"
+                        width: "20%",
                     },
                     {
                         title: "表达式",
                         dataIndex: "expression",
-                        width: "20%"
+                        width: "20%",
                     },
                     {
                         title: "是否主键",
                         dataIndex: "primary",
-                        width: "10%"
+                        width: "10%",
                     },
                     {
                         title: "可为空",
                         dataIndex: "nullable",
-                        width: "10%"
+                        width: "10%",
                     },
                     {
                         title: "Watermark",
                         dataIndex: "watermark",
-                        width: "20%"
-                    }
+                        width: "20%",
+                    },
                 ]}
                 dataSource={[
                     {
@@ -100,7 +100,7 @@ const StructureLayout = () => {
                         expression: "-",
                         primary: "否",
                         nullable: "是",
-                        watermark: "-"
+                        watermark: "-",
                     },
                     {
                         name: "score",
@@ -108,8 +108,8 @@ const StructureLayout = () => {
                         expression: "-",
                         primary: "否",
                         nullable: "是",
-                        watermark: "-"
-                    }
+                        watermark: "-",
+                    },
                 ]}
             />
             <div className="divider">分区字段</div>
@@ -119,28 +119,28 @@ const StructureLayout = () => {
                 columns={[
                     {
                         title: "字段名称",
-                        width: "20%"
+                        width: "20%",
                     },
                     {
                         title: "字段类型",
-                        width: "20%"
+                        width: "20%",
                     },
                     {
                         title: "表达式",
-                        width: "20%"
+                        width: "20%",
                     },
                     {
                         title: "是否是主键",
-                        width: "10%"
+                        width: "10%",
                     },
                     {
                         title: "可为空",
-                        width: "10%"
+                        width: "10%",
                     },
                     {
                         title: "Watermark",
-                        width: "20%"
-                    }
+                        width: "20%",
+                    },
                 ]}
             />
         </div>

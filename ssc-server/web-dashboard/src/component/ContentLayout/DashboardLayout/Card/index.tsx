@@ -12,16 +12,15 @@ interface TemplateCardProps {
 const Card = (props: TemplateCardProps) => {
     return (
         <div className="template-item">
-            <div className="image starter" style={{backgroundImage: `url(${props.backgroundImageUrl})`}}></div>
-            <div className="title">
-                {props.title}
-            </div>
-            <div className="intro">
-                {props.intro}
-            </div>
+            <div
+                className="image starter"
+                style={{ backgroundImage: `url(${props.backgroundImageUrl})` }}
+            ></div>
+            <div className="title">{props.title}</div>
+            <div className="intro">{props.intro}</div>
             <Button
                 block
-                type='link'
+                type="link"
             >
                 {props.buttonIcon}
                 <span>{props.buttonText}</span>

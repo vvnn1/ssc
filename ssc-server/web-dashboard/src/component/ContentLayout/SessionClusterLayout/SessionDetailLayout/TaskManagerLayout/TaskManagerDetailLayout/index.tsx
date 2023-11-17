@@ -11,13 +11,12 @@ import StdoutLayout from "./StdoutLayout";
 import LogListLayout from "./LogListLayout";
 import LogDetailLayout from "./LogListLayout/LogDetailLayout";
 
-
 const items: DescriptionsProps["items"] = [
     {
         key: "1",
         label: "Path",
         children: "akka.tcp://flink@192.168.12.8:36357/user/rpc/taskmanager_0",
-        span: 2
+        span: 2,
     },
     {
         key: "2",
@@ -58,27 +57,26 @@ const items: DescriptionsProps["items"] = [
 
 const items2: MenuProps["items"] = [
     {
-        label: <MyLink to='metrics'>Metrics</MyLink>,
+        label: <MyLink to="metrics">Metrics</MyLink>,
         key: "metrics",
     },
     {
-        label: <MyLink to='logs'>日志</MyLink>,
+        label: <MyLink to="logs">日志</MyLink>,
         key: "logs",
-
     },
     {
-        label: <MyLink to='thread-dump'>Thread Dump</MyLink>,
+        label: <MyLink to="thread-dump">Thread Dump</MyLink>,
         key: "thread-dump",
     },
 
     {
-        label: <MyLink to='stdout'>Stdout</MyLink>,
+        label: <MyLink to="stdout">Stdout</MyLink>,
         key: "stdout",
     },
     {
-        label: <MyLink to='log-list'>日志列表</MyLink>,
-        key: "log-list"
-    }
+        label: <MyLink to="log-list">日志列表</MyLink>,
+        key: "log-list",
+    },
 ];
 
 const TaskManagerDetailLayout = () => {
@@ -90,7 +88,10 @@ const TaskManagerDetailLayout = () => {
 
     useEffect(() => {
         const defaultSelectedKey: string[] = [];
-        const pathMatch = matchPath("/workspace/:workspaceId/namespace/:namespaceId/session-clusters/debug-session/taskmanager/:taskmanager/:key", pathname);
+        const pathMatch = matchPath(
+            "/workspace/:workspaceId/namespace/:namespaceId/session-clusters/debug-session/taskmanager/:taskmanager/:key",
+            pathname
+        );
         if (pathMatch?.params.key) {
             defaultSelectedKey.push(pathMatch.params.key);
         }
@@ -98,7 +99,7 @@ const TaskManagerDetailLayout = () => {
         setSelectKeys(defaultSelectedKey);
     }, [pathname]);
 
-    const onClick: MenuProps["onClick"] = (e) => {
+    const onClick: MenuProps["onClick"] = e => {
         setSelectKeys([e.key]);
     };
 
@@ -106,24 +107,42 @@ const TaskManagerDetailLayout = () => {
         setShowDescription(!showDescription);
     };
 
-
     return (
         <div className="taskmanager-detail-layout">
             <div className="taskmanager-breadcrumb">
                 <Breadcrumb
                     items={[
                         {
-                            title: <><LeftSquareFilled /> TaskManagers</>,
+                            title: (
+                                <>
+                                    <LeftSquareFilled /> TaskManagers
+                                </>
+                            ),
                         },
                         {
                             title: taskManagerName,
                         },
                     ]}
-
                 />
-                {showDescription ? (<DownOutlined className="toggle-overview" onClick={switchDescription} />) : (<UpOutlined className="toggle-overview" onClick={switchDescription} />)}
+                {showDescription ? (
+                    <DownOutlined
+                        className="toggle-overview"
+                        onClick={switchDescription}
+                    />
+                ) : (
+                    <UpOutlined
+                        className="toggle-overview"
+                        onClick={switchDescription}
+                    />
+                )}
             </div>
-            {showDescription ? (<Descriptions bordered items={items} size="small" />) : null}
+            {showDescription ? (
+                <Descriptions
+                    bordered
+                    items={items}
+                    size="small"
+                />
+            ) : null}
             <div className="taskmanager-detail-container">
                 <Menu
                     className="taskmanager-menu"
@@ -134,13 +153,31 @@ const TaskManagerDetailLayout = () => {
                 />
                 <div className="taskmanager-content">
                     <Routes>
-                        <Route path="metrics" element={<MetricLayout />} />
-                        <Route path="logs" element={<LogLayout />} />
-                        <Route path="thread-dump" element={<ThreadDumpLayout />} />
-                        <Route path="stdout" element={<StdoutLayout />} />
+                        <Route
+                            path="metrics"
+                            element={<MetricLayout />}
+                        />
+                        <Route
+                            path="logs"
+                            element={<LogLayout />}
+                        />
+                        <Route
+                            path="thread-dump"
+                            element={<ThreadDumpLayout />}
+                        />
+                        <Route
+                            path="stdout"
+                            element={<StdoutLayout />}
+                        />
                         <Route path="log-list">
-                            <Route path="" element={<LogListLayout />} />
-                            <Route path=":logName" element={<LogDetailLayout />} />
+                            <Route
+                                path=""
+                                element={<LogListLayout />}
+                            />
+                            <Route
+                                path=":logName"
+                                element={<LogDetailLayout />}
+                            />
                         </Route>
                     </Routes>
                 </div>

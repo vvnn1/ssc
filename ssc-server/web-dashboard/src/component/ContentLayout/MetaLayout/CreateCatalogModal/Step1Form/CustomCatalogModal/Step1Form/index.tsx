@@ -25,11 +25,8 @@ const props: UploadProps = {
     },
 };
 
-
 const uploadFileModule = (
-    <Form.Item
-        label="上传文件"
-    >
+    <Form.Item label="上传文件">
         <Upload {...props}>
             <Button icon={<UploadOutlined />}>选择文件</Button>
         </Upload>
@@ -37,14 +34,12 @@ const uploadFileModule = (
 );
 
 const urlFileModule = (
-    <Form.Item
-        label="外部 URL"
-    >
+    <Form.Item label="外部 URL">
         <Input />
     </Form.Item>
 );
 
-const Step1Form = (props: {hidden: boolean}) => {
+const Step1Form = (props: { hidden: boolean }) => {
     const [fileModule, setFileModule] = useState<React.ReactElement>(uploadFileModule);
 
     const onRadioChange = ({ target: { value } }: RadioChangeEvent) => {
@@ -54,23 +49,23 @@ const Step1Form = (props: {hidden: boolean}) => {
             setFileModule(urlFileModule);
         }
     };
-    
+
     return (
         <Form
-            labelCol={{span: 4}}
-            wrapperCol={{span: 17}}
+            labelCol={{ span: 4 }}
+            wrapperCol={{ span: 17 }}
             hidden={props.hidden}
         >
-            <Form.Item
-                label="注册 JAR"
-            >
-
-                <Radio.Group options={options} onChange={onRadioChange} defaultValue="uploadFile" optionType="button" />
+            <Form.Item label="注册 JAR">
+                <Radio.Group
+                    options={options}
+                    onChange={onRadioChange}
+                    defaultValue="uploadFile"
+                    optionType="button"
+                />
             </Form.Item>
 
-            {
-                fileModule
-            }
+            {fileModule}
         </Form>
     );
 };

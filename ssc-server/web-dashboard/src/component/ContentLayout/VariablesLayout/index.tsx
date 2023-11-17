@@ -2,7 +2,6 @@ import { Button, Space, Table } from "antd";
 import "./index.sass";
 import { PlusOutlined } from "../../Icon";
 
-
 interface DataType {
     key: React.Key;
     name: string;
@@ -65,8 +64,8 @@ const VariablesLayout = () => {
                 <div className="actions">
                     <Space>
                         <Button
-                            type='primary'
-                            icon={<PlusOutlined /> }
+                            type="primary"
+                            icon={<PlusOutlined />}
                         >
                             <span>新增变量</span>
                         </Button>
@@ -78,7 +77,7 @@ const VariablesLayout = () => {
                     columns={columns}
                     dataSource={data}
                     showSorterTooltip={false}
-                    size='small'
+                    size="small"
                 />
             </div>
         </div>

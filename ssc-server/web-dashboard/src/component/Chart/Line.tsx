@@ -3,7 +3,6 @@ import { FullscreenOutlined, InfoCircleOutlined } from "../Icon";
 import { Line as AntLine, LineConfig } from "@ant-design/plots";
 import "./index.sass";
 
-
 interface LineProps {
     title: string;
     tooltip: string;
@@ -18,7 +17,9 @@ const Line = (props: LineProps) => {
                     <div className="chart-panel-header">
                         <div className="chart-panel-header-title">
                             <span>{props.title}</span>
-                            <Tooltip title={props.tooltip}><InfoCircleOutlined /></Tooltip>
+                            <Tooltip title={props.tooltip}>
+                                <InfoCircleOutlined />
+                            </Tooltip>
                         </div>
                         <FullscreenOutlined />
                     </div>
@@ -30,16 +31,7 @@ const Line = (props: LineProps) => {
                                 height={180}
                             />
                         </div>
-                        {
-                            props.lineConfig?.data.length
-                                ? null
-                                : (
-                                    <div className="datapoints-warning">
-                                        无数据
-                                    </div>
-                                )
-                        }
-
+                        {props.lineConfig?.data.length ? null : <div className="datapoints-warning">无数据</div>}
                     </div>
                 </div>
             </Spin>

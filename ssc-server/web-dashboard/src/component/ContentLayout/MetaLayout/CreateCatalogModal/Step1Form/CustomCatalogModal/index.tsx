@@ -13,7 +13,7 @@ const CustomCatalogModal = (props: ModalProps) => {
                 title: "创建自定义 Catalog 类型",
                 width: 900,
                 rootClassName: "custom-catalog-modal",
-                destroyOnClose: true
+                destroyOnClose: true,
             }}
             stepsProps={{
                 items: [
@@ -23,19 +23,17 @@ const CustomCatalogModal = (props: ModalProps) => {
                     {
                         title: "参数配置",
                     },
-                ]
+                ],
             }}
         >
-            {
-                (currentStep: number) => {
-                    return (
-                        <div className="steps-body">
-                            <Step1Form hidden={currentStep !== 0} />
-                            <Step2Form hidden={currentStep !== 1} />
-                        </div>
-                    );
-                }
-            }
+            {(currentStep: number) => {
+                return (
+                    <div className="steps-body">
+                        <Step1Form hidden={currentStep !== 0} />
+                        <Step2Form hidden={currentStep !== 1} />
+                    </div>
+                );
+            }}
         </StepModal>
     );
 };

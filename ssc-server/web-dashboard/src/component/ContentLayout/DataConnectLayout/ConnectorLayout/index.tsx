@@ -1,5 +1,26 @@
 import ConnectorCard, { CardProps } from "../Card";
-import { ClickHouseOutlined, DataHubOutlined, DatagenOutlined, ElasticsearchOutlined, FakerOutlined, HbaseOutlined, HudiOutlined, IcebergOutlined, InfluxDBOutlined, JdbcOutlined, KafkaOutlined, MongoDBOutlined, MySqlOutlined, OssOutlined, PaimonOutlined, PostgreSqlOutlined, RedisOutlined, RocketMQOutlined, SearchOutlined, StarRocksOutlined } from "../../../Icon";
+import {
+    ClickHouseOutlined,
+    DataHubOutlined,
+    DatagenOutlined,
+    ElasticsearchOutlined,
+    FakerOutlined,
+    HbaseOutlined,
+    HudiOutlined,
+    IcebergOutlined,
+    InfluxDBOutlined,
+    JdbcOutlined,
+    KafkaOutlined,
+    MongoDBOutlined,
+    MySqlOutlined,
+    OssOutlined,
+    PaimonOutlined,
+    PostgreSqlOutlined,
+    RedisOutlined,
+    RocketMQOutlined,
+    SearchOutlined,
+    StarRocksOutlined,
+} from "../../../Icon";
 import { Button, Empty, Input, List, Select, Space, Tabs, TabsProps } from "antd";
 import "./index.sass";
 import CustomConnectorModal from "./CustomConnectorModal";
@@ -10,97 +31,97 @@ const connectorItems: CardProps[] = [
     {
         icon: <MySqlOutlined />,
         desc: "MySQL",
-        type: ["结果表", "维表"]
+        type: ["结果表", "维表"],
     },
     {
         icon: <PostgreSqlOutlined />,
         desc: "PostgreSQL",
-        type: ["结果表", "维表"]
+        type: ["结果表", "维表"],
     },
     {
         icon: <ClickHouseOutlined />,
         desc: "ClickHouse",
-        type: ["结果表", "维表"]
+        type: ["结果表", "维表"],
     },
     {
         icon: <HbaseOutlined />,
         desc: "Hbase",
-        type: ["结果表", "维表"]
+        type: ["结果表", "维表"],
     },
     {
         icon: <DatagenOutlined />,
         desc: "Datagen",
-        type: ["结果表", "维表"]
+        type: ["结果表", "维表"],
     },
     {
         icon: <DataHubOutlined />,
         desc: "DataHub",
-        type: ["结果表", "维表"]
+        type: ["结果表", "维表"],
     },
     {
         icon: <ElasticsearchOutlined />,
         desc: "Elasticsearch",
-        type: ["结果表", "维表"]
+        type: ["结果表", "维表"],
     },
     {
         icon: <FakerOutlined />,
         desc: "Faker",
-        type: ["结果表", "维表"]
+        type: ["结果表", "维表"],
     },
     {
         icon: <OssOutlined />,
         desc: "OSS",
-        type: ["结果表", "维表"]
+        type: ["结果表", "维表"],
     },
     {
         icon: <HudiOutlined />,
         desc: "Hudi",
-        type: ["结果表", "维表"]
+        type: ["结果表", "维表"],
     },
     {
         icon: <IcebergOutlined />,
         desc: "Iceberg",
-        type: ["结果表", "维表"]
+        type: ["结果表", "维表"],
     },
     {
         icon: <InfluxDBOutlined />,
         desc: "InfluxDB",
-        type: ["结果表", "维表"]
+        type: ["结果表", "维表"],
     },
     {
         icon: <JdbcOutlined />,
         desc: "JDBC",
-        type: ["结果表", "维表"]
+        type: ["结果表", "维表"],
     },
     {
         icon: <KafkaOutlined />,
         desc: "Kafka",
-        type: ["结果表", "维表"]
+        type: ["结果表", "维表"],
     },
     {
         icon: <MongoDBOutlined />,
         desc: "MongoDB",
-        type: ["结果表", "维表"]
+        type: ["结果表", "维表"],
     },
     {
         icon: <RocketMQOutlined />,
         desc: "RocketMQ",
-        type: ["结果表", "维表"]
+        type: ["结果表", "维表"],
     },
     {
         icon: <PaimonOutlined />,
         desc: "Paimon",
-        type: ["结果表", "维表"]
+        type: ["结果表", "维表"],
     },
     {
         icon: <RedisOutlined />,
         desc: "Redis",
-        type: ["结果表", "维表"]
+        type: ["结果表", "维表"],
     },
     {
         icon: <StarRocksOutlined />,
         desc: "StarRocks",
-        type: ["结果表", "维表"]
+        type: ["结果表", "维表"],
     },
 ];
 
@@ -113,7 +134,7 @@ const tabItems: TabsProps["items"] = [
                 <List
                     grid={{ gutter: 16, column: 3 }}
                     dataSource={connectorItems}
-                    renderItem={(item) => (
+                    renderItem={item => (
                         <List.Item>
                             <ConnectorCard
                                 icon={item.icon}
@@ -123,7 +144,6 @@ const tabItems: TabsProps["items"] = [
                         </List.Item>
                     )}
                 />
-
             </div>
         ),
     },
@@ -133,7 +153,6 @@ const tabItems: TabsProps["items"] = [
         children: <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />,
     },
 ];
-
 
 const ConnectorLayout = () => {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -161,34 +180,43 @@ const ConnectorLayout = () => {
                         <Select
                             options={[
                                 {
-                                    label: "全部"
+                                    label: "全部",
                                 },
                                 {
-                                    label: "源表"
+                                    label: "源表",
                                 },
                                 {
-                                    label: "结果表"
-                                }
+                                    label: "结果表",
+                                },
                             ]}
                         />
                     </Space.Compact>
 
                     <Input
                         placeholder="搜索连接器"
-                        suffix={
-                            <SearchOutlined />
-                        }
+                        suffix={<SearchOutlined />}
                     />
                 </Space>
             </div>
 
             <Tabs
-                tabBarExtraContent={<Button size='small' type="primary" onClick={changeModalOpen(true)}>创建自定义连接器</Button>}
+                tabBarExtraContent={
+                    <Button
+                        size="small"
+                        type="primary"
+                        onClick={changeModalOpen(true)}
+                    >
+                        创建自定义连接器
+                    </Button>
+                }
                 defaultActiveKey="1"
                 items={tabItems}
             />
 
-            <CustomConnectorModal open={modalOpen} onCancel={changeModalOpen(false)} />
+            <CustomConnectorModal
+                open={modalOpen}
+                onCancel={changeModalOpen(false)}
+            />
         </div>
     );
 };

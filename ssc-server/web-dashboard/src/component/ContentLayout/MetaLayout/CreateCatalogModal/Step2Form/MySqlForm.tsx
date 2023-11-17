@@ -4,8 +4,8 @@ const MySqlForm = () => {
     return (
         <Form
             size="small"
-            labelCol={{span: 6}}
-            wrapperCol={{span: 14}}
+            labelCol={{ span: 6 }}
+            wrapperCol={{ span: 14 }}
         >
             <Form.Item
                 label="catalog name"
@@ -26,7 +26,10 @@ const MySqlForm = () => {
                 label="port"
                 extra="连接到服务器的端口"
             >
-                <InputNumber defaultValue={"3306"} style={{width: "90px"}}/>
+                <InputNumber
+                    defaultValue={"3306"}
+                    style={{ width: "90px" }}
+                />
             </Form.Item>
 
             <Form.Item

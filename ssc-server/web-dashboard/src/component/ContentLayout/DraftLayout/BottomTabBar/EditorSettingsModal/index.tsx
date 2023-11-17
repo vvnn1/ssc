@@ -1,26 +1,37 @@
-import { Checkbox, CheckboxProps, Col, Divider, Form, InputNumber, Modal, ModalProps, Row, Select, Tooltip } from "antd";
+import {
+    Checkbox,
+    CheckboxProps,
+    Col,
+    Divider,
+    Form,
+    InputNumber,
+    Modal,
+    ModalProps,
+    Row,
+    Select,
+    Tooltip,
+} from "antd";
 import "./index.sass";
 import MonacoEditor from "../../../../MonacoEditor";
 import { QuestionCircleOutlined } from "../../../../Icon";
 import { useState } from "react";
 
-
 const lineBreakSelect = [
     {
         label: "Off",
-        value: "off"
+        value: "off",
     },
     {
         label: "On",
-        value: "on"
+        value: "on",
     },
     {
         label: "Word",
-        value: "word"
+        value: "word",
     },
     {
         label: "Bounded",
-        value: "bounded"
+        value: "bounded",
     },
 ];
 
@@ -35,28 +46,33 @@ const EditorSettingsModal = (props: ModalProps) => {
             onCheckedChange(checked);
         };
     };
-    
+
     return (
         <Modal
             {...props}
             title="设置"
             width={800}
             className="editor-settings-modal"
-            footer={(_, { CancelBtn, OkBtn }) => <><OkBtn/><CancelBtn /></>}
+            footer={(_, { CancelBtn, OkBtn }) => (
+                <>
+                    <OkBtn />
+                    <CancelBtn />
+                </>
+            )}
             okText="应用"
             cancelText="关闭"
         >
-            <Divider orientation='left' orientationMargin={0} className="title-divider">编辑器</Divider>
-            <Row
-
+            <Divider
+                orientation="left"
+                orientationMargin={0}
+                className="title-divider"
             >
-                <Col flex='2 1 0%'>
-                    <Form
-                        size='small'
-                    >
-                        <Form.Item
-                            label='字体大小'
-                        >
+                编辑器
+            </Divider>
+            <Row>
+                <Col flex="2 1 0%">
+                    <Form size="small">
+                        <Form.Item label="字体大小">
                             <InputNumber
                                 value={fontSize}
                                 style={{ width: 100 }}
@@ -64,47 +80,65 @@ const EditorSettingsModal = (props: ModalProps) => {
                             />
                         </Form.Item>
 
-                        <Form.Item
-                            label='自动折行'
-                        >
+                        <Form.Item label="自动折行">
                             <Select
                                 options={lineBreakSelect}
                                 style={{ width: 100 }}
-                                defaultValue='off'
+                                defaultValue="off"
                             />
                         </Form.Item>
 
                         <Form.Item>
-                            <Checkbox checked={showLineNumber} onChange={checkedChangeWrapper(setShowLineNumber)}>显示行号</Checkbox>
+                            <Checkbox
+                                checked={showLineNumber}
+                                onChange={checkedChangeWrapper(setShowLineNumber)}
+                            >
+                                显示行号
+                            </Checkbox>
                         </Form.Item>
 
                         <Form.Item>
-                            <Checkbox checked={showMiniMap} onChange={checkedChangeWrapper(setShowMiniMap)} >显示 minimap</Checkbox>
+                            <Checkbox
+                                checked={showMiniMap}
+                                onChange={checkedChangeWrapper(setShowMiniMap)}
+                            >
+                                显示 minimap
+                            </Checkbox>
                         </Form.Item>
 
                         <Form.Item>
-                            <Checkbox checked={autoSave} onChange={checkedChangeWrapper(setAutoSave)} >开启自动保存</Checkbox>
+                            <Checkbox
+                                checked={autoSave}
+                                onChange={checkedChangeWrapper(setAutoSave)}
+                            >
+                                开启自动保存
+                            </Checkbox>
                         </Form.Item>
 
-                        {
-                            autoSave
-                                ? (
-                                    <Form.Item
-                                        label={<>自动保存时间&nbsp;<Tooltip title="检测到上次保存时间间隔超过 1 分钟时，我们将为您额外进行一次自动保存。"><QuestionCircleOutlined /></Tooltip></>}
-                                    >
-                                        <InputNumber
-                                            value={3000}
-                                            addonAfter="ms"
-                                            style={{ width: 140 }}
-                                        />
-                                    </Form.Item>
-                                ) : (
-                                    null
-                                )
-                        }
+                        {autoSave ? (
+                            <Form.Item
+                                label={
+                                    <>
+                                        自动保存时间&nbsp;
+                                        <Tooltip title="检测到上次保存时间间隔超过 1 分钟时，我们将为您额外进行一次自动保存。">
+                                            <QuestionCircleOutlined />
+                                        </Tooltip>
+                                    </>
+                                }
+                            >
+                                <InputNumber
+                                    value={3000}
+                                    addonAfter="ms"
+                                    style={{ width: 140 }}
+                                />
+                            </Form.Item>
+                        ) : null}
                     </Form>
                 </Col>
-                <Col flex='3 1 0%' className='editor-preview'>
+                <Col
+                    flex="3 1 0%"
+                    className="editor-preview"
+                >
                     <MonacoEditor
                         options={{
                             fontSize: fontSize!,
@@ -112,12 +146,10 @@ const EditorSettingsModal = (props: ModalProps) => {
                             lineDecorationsWidth: 0,
                             lineNumbers: showLineNumber ? "on" : "off",
                             minimap: {
-                                enabled: showMiniMap
-                            }
-
+                                enabled: showMiniMap,
+                            },
                         }}
-                        value={
-                            `-- A source table stored in a filesystem
+                        value={`-- A source table stored in a filesystem
 CREATE TABLE Orders_in_file (
     user BIGINT,
     product STRING,
@@ -143,9 +175,7 @@ LIKE Orders_in_file (
     -- We do not want to have the partitions or filesystem options as those do not apply to kafka.
     EXCLUDING ALL
     INCLUDING GENERATED
-);`
-                        }
-
+);`}
                     />
                 </Col>
             </Row>

@@ -12,8 +12,8 @@ const StopModal = (props: ModalProps) => {
         setShowMore(showMore => !showMore);
     };
 
-    const onSnapshotCheckboxChange = (checked:boolean) => {
-        if (!checked){
+    const onSnapshotCheckboxChange = (checked: boolean) => {
+        if (!checked) {
             console.log("aa");
             setOutputData(false);
         }
@@ -30,24 +30,45 @@ const StopModal = (props: ModalProps) => {
             <div className="title">
                 <QuestionCircleOutlined /> 停止作业
             </div>
-            <div className="confirm-content">
-                确认要停止作业 Untitled-stream-sql？
-            </div>
-            <div className="collapse" onClick={onShowMoreClick}>
+            <div className="confirm-content">确认要停止作业 Untitled-stream-sql？</div>
+            <div
+                className="collapse"
+                onClick={onShowMoreClick}
+            >
                 更多设置 {showMore ? <UpOutlined /> : <DownOutlined />}
             </div>
-            {
-                showMore ? (
-                    <div className="content">
-                        <Checkbox onChange={checkedChangeWrapper(onSnapshotCheckboxChange)} checked={snapshot}>停止前创建一次快照</Checkbox>
-                        <Checkbox disabled={!snapshot} checked={outputData} onChange={checkedChangeWrapper(setOutputData)}>输出窗口数据（Drain）</Checkbox>
-                    </div>
-                ) : null
-            }
+            {showMore ? (
+                <div className="content">
+                    <Checkbox
+                        onChange={checkedChangeWrapper(onSnapshotCheckboxChange)}
+                        checked={snapshot}
+                    >
+                        停止前创建一次快照
+                    </Checkbox>
+                    <Checkbox
+                        disabled={!snapshot}
+                        checked={outputData}
+                        onChange={checkedChangeWrapper(setOutputData)}
+                    >
+                        输出窗口数据（Drain）
+                    </Checkbox>
+                </div>
+            ) : null}
 
             <div className="ant-modal-footer">
-                <Button type="primary" onClick={props.onOk} {...props.okButtonProps}>确认</Button>
-                <Button onClick={props.onCancel} {...props.cancelButtonProps}>取消</Button>
+                <Button
+                    type="primary"
+                    onClick={props.onOk}
+                    {...props.okButtonProps}
+                >
+                    确认
+                </Button>
+                <Button
+                    onClick={props.onCancel}
+                    {...props.cancelButtonProps}
+                >
+                    取消
+                </Button>
             </div>
         </Modal>
     );

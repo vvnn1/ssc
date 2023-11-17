@@ -10,12 +10,11 @@ import { EditorDidMount } from "react-monaco-editor";
 import { editor, Uri } from "monaco-editor";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
-
 export interface Draft {
     id: string;
     name: string;
     content: string;
-    type: "sql",
+    type: "sql";
 }
 
 const sql1 = `CREATE TEMPORARY TABLE orders_dataset (
@@ -205,16 +204,15 @@ const draftList: Draft[] = [
         id: "e65309f5-7e94-4c8f-aa2e-8c8fe19869f6",
         name: "db2kafka",
         content: sql3,
-        type: "sql"
+        type: "sql",
     },
     {
         id: "4ed06c1a-1fb3-4727-9607-e6a2ec38f9ef",
         name: "order2kafka",
         content: sql4,
-        type: "sql"
-    }
+        type: "sql",
+    },
 ];
-
 
 const MainContent = () => {
     const [rightPanel, setRightPanel] = useState<React.ReactNode>();
@@ -225,7 +223,6 @@ const MainContent = () => {
     const { draftId } = useParams();
     const { pathname } = useLocation();
     const navigate = useNavigate();
-
 
     useEffect(() => {
         const draft = getDraftById(draftId);
@@ -251,24 +248,24 @@ const MainContent = () => {
         setCurDraft(draft);
     }, [draftId]);
 
-
     const getDraftById = (id: string | undefined): Draft | undefined => {
         return draftList.find(draft => draft.id === id);
     };
 
-    const editorDidMount: EditorDidMount = (editor) => {
+    const editorDidMount: EditorDidMount = editor => {
         monacoEditor.current = editor;
     };
 
     return (
         <>
             <div className="panel-bar panel panel-ltr panel-border-bottom">
-                <ToolBar isOpenFile={true} onPanelChange={setBottomPanel} />
+                <ToolBar
+                    isOpenFile={true}
+                    onPanelChange={setBottomPanel}
+                />
             </div>
             <div className="panel-bar navigation-bar panel panel-ltr panel-border-bottom">
-                <NavTab
-                    selectedItem={curDraft ? { id: curDraft.id, name: curDraft.name } : undefined}
-                />
+                <NavTab selectedItem={curDraft ? { id: curDraft.id, name: curDraft.name } : undefined} />
             </div>
             <div className="editor-main-content panel panel-ttb">
                 <div className="panel main-top-panel panel-ltr">
@@ -280,21 +277,18 @@ const MainContent = () => {
                                     selectOnLineNumbers: true,
                                 }}
                                 editorDidMount={editorDidMount}
-
                             />
                         </div>
-                        {
-                            rightPanel ? (
-                                <Resizable
-                                    size={500}
-                                    axis='x'
-                                    className='resizable-panel panel panel-rtl panel-border-right'
-                                    resizeHandle='w'
-                                >
-                                    {rightPanel}
-                                </Resizable>
-                            ) : null
-                        }
+                        {rightPanel ? (
+                            <Resizable
+                                size={500}
+                                axis="x"
+                                className="resizable-panel panel panel-rtl panel-border-right"
+                                resizeHandle="w"
+                            >
+                                {rightPanel}
+                            </Resizable>
+                        ) : null}
 
                         <div className="panel-tabs-bar panel-tabs-bar-small panel-tabs-bar-right panel panel-ttb">
                             <RightTabBar onPanelChange={setRightPanel} />
@@ -302,24 +296,21 @@ const MainContent = () => {
                     </div>
                 </div>
 
-                {
-                    bottomPanel ? (
-                        <Resizable
-                            className='resizable-panel panel panel-border-top'
-                            axis='y'
-                            resizeHandle='n'
-                            size={280}
-                        >
-                            {bottomPanel}
-                        </Resizable>
-                    ) : null
-                }
+                {bottomPanel ? (
+                    <Resizable
+                        className="resizable-panel panel panel-border-top"
+                        axis="y"
+                        resizeHandle="n"
+                        size={280}
+                    >
+                        {bottomPanel}
+                    </Resizable>
+                ) : null}
 
                 <div className="panel-tabs-bar panel-tabs-bar-small panel-tabs-bar-bottom panel panel-ltr panel-border-top">
                     <BottomTabBar onPanelChange={setBottomPanel} />
                 </div>
             </div>
-
         </>
     );
 };

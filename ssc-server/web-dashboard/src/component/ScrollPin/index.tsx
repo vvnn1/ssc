@@ -20,7 +20,10 @@ const ScrollPin = (props: ScollPinProps) => {
     }, []);
 
     return (
-        <div className="scroll-pin-decoration scroll-pin-decoration-top" style={showScollPin ? { display: "block" } : { display: "none" }}></div>
+        <div
+            className="scroll-pin-decoration scroll-pin-decoration-top"
+            style={showScollPin ? { display: "block" } : { display: "none" }}
+        ></div>
     );
 };
 
