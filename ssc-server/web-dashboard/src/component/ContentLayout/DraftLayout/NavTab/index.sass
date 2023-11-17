@@ -1,0 +1,41 @@
+.editor-nav-tab
+    width: 100%
+    .ant-tabs-nav:before
+        // border-bottom-color: transparent
+    .ant-tabs-nav
+        margin: initial
+        height: 32px
+        .ant-tabs-tab
+            border: none
+            border-bottom: 1px solid #ebebeb
+            .ant-tabs-tab-btn
+                .draft-name
+                    font-size: 12px
+                    vertical-align: text-top
+                .draft-type
+                    position: relative
+                    top: 1px
+                    .anticon
+                        margin-right: 14px
+            .ant-tabs-tab-remove
+                margin-left: 11px
+            
+        .ant-tabs-nav-add
+            border: none
+            border-bottom: 1px solid #ebebeb
+            height: 32px
+            min-height: initial
+            font-size: 12px
+        .ant-tabs-tab.ant-tabs-tab-active
+            background-color: transparent
+            .ant-tabs-tab-btn
+                color: #333
+        .ant-tabs-tab.ant-tabs-tab-active:before
+            content: ""
+            width: 100%
+            height: 2px
+            position: absolute
+            right: 0
+            top: 30px
+            background: #0064c8
+            

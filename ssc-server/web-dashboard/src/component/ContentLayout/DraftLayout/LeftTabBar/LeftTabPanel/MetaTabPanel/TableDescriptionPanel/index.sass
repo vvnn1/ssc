@@ -1,0 +1,48 @@
+.table-description-panel
+    height: 100%
+    display: flex
+    flex-direction: column
+    .header
+        display: flex
+        padding: 4px 8px
+        .title
+            min-width: 108px
+            text-overflow: ellipsis
+            white-space: nowrap
+            cursor: default
+            overflow: hidden
+        .action
+            margin-left: auto
+            cursor: pointer
+    .content
+        overflow: auto
+        .row:hover
+            background-color: #ebebeb
+        .row
+            display: flex
+            justify-content: space-between
+            padding: 0 8px
+            font-size: 12px
+            cursor: pointer
+            .name
+                min-width: 36px
+                text-overflow: ellipsis
+                white-space: nowrap
+                overflow: hidden
+                .anticon
+                    margin-right: 2px
+                    color: #0064c8
+            .type
+                color: #666
+                font-style: italic
+                white-space: nowrap
+                transform: scale(.9)
+                transform-origin: right center
+.table-field-popover-content
+    .item
+        display: flex
+        font-size: 12px
+        width: 200px
+        opacity: .7
+        .value
+            margin-left: auto

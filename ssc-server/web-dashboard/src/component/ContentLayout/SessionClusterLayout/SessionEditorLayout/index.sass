@@ -1,0 +1,33 @@
+.session-editor-layout
+    height: 100%
+    .header
+        display: flex
+        height: 72px
+        padding: 16px 24px
+        align-items: center
+        .title
+            height: 40px
+            font-weight: 400
+            font-size: 28px
+            line-height: 40px
+            white-space: nowrap
+            .left-arrow
+                margin-right: 8px
+                color: inherit
+                cursor: pointer
+    .content
+        padding: 0 24px
+        height: calc( 100% - 72px )
+        .form-wrapper
+            height: 100%
+            .form-content
+                height: calc( 100% - 57px )
+                overflow-x: hidden
+                overflow-y: auto
+                padding-right: 16px
+            .form-footer
+                display: flex
+                align-items: center
+                height: 56px
+                border-top: 1px solid #ebebeb
+                line-height: 56px

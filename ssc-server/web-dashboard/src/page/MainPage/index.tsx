@@ -1,27 +1,21 @@
-import React from "react";
-import {Layout} from "antd";
-import "./index.sass"
+import Layout, { Content } from "antd/es/layout/layout";
+import "./index.sass";
 import MenuSider from "../../component/MenuSider";
-import FileBar from "../../component/OperationBar/FileBar"
-const {Sider, Header, Content} = Layout
+import TopHeader from "../../component/TopHeader";
+import ContentLayout from "../../component/ContentLayout";
 
-const MainPage:React.FC = () => {
+const MainPage = (): React.ReactElement => {
     return (
         <Layout className="base-layout">
-            <Header className="header">Header</Header>
-            <Layout className="work-layout">
-                <Sider className="active-bar" collapsed collapsedWidth={44}>
-                    <MenuSider/>
-                </Sider>
-                <Content className="work-content">
-                    <div className="side-bar">
-                        <FileBar/>
-                    </div>
-                    <div className="edit-layout">dash-board</div>
+            <TopHeader />
+            <Layout hasSider>
+                <MenuSider />
+                <Content>
+                    <ContentLayout />
                 </Content>
             </Layout>
         </Layout>
-    )
-}
+    );
+};
 
 export default MainPage;

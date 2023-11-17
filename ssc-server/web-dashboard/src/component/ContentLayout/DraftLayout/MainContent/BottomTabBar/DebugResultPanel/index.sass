@@ -1,0 +1,49 @@
+.debug-result-panel
+    .result
+        flex-grow: 1
+        .print-tabs.ant-tabs-small
+            height: 100%
+            >.ant-tabs-nav
+                margin-bottom: 0px
+                .ant-tabs-tab
+                    font-size: 12px
+                    margin: 0
+                    padding: 7px 16px
+            .ant-tabs-content
+                height: 100%
+    .control-actions
+        display: flex
+        flex: 0 1 32px
+        flex-direction: column
+        border-right: 1px solid #dedede
+        .action
+            width: 31px
+            height: 32px
+            padding: 0
+            border: 0
+            background-color: transparent
+            line-height: 32px
+            text-align: center
+            cursor: pointer
+        .action:hover
+            background-color: #dedede
+        .resume
+            color: #00a700
+            .anticon
+                transform: scale(1.3) /* translate(-.2px) */
+        .pause
+            color: #666
+            .anticon
+                transform: scale(0.8)
+        .stop
+            color: #c80000
+            .anticon
+                transform: scale(0.8)
+        .flink
+            color: #0064c8
+            .anticon
+                transform: scale(0.7)
+        .expand
+            color: #0064c8
+            .anticon
+                transform: scale(0.7)

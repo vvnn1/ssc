@@ -1,0 +1,47 @@
+.taskmanager-detail-layout
+    display: flex
+    flex-direction: column
+    height: 100%
+    position: relative
+    .taskmanager-breadcrumb
+        display: flex
+        flex: 0 0 40px
+        flex-flow: row nowrap
+        border-bottom: 1px solid #ebebeb
+        .ant-breadcrumb
+            flex: 1
+            padding: 0 16px
+            line-height: 40px
+        .toggle-overview
+            display: flex
+            align-items: center
+            justify-content: center
+            padding: 12px
+            cursor: pointer
+            background-color: #fafafa
+            border-left: 1px solid #ebebeb
+            border-right: 1px solid #ebebeb
+        .toggle-overview:hover
+            background-color: #0064c8
+            color: #fff
+    .ant-descriptions
+        .ant-descriptions-view
+            border-width: 0 0 1px 0
+            th,td
+                font-size: 12px
+    .taskmanager-detail-container
+        display: flex
+        flex-direction: column
+        flex: auto
+        position: relative
+        overflow: hidden
+        .taskmanager-menu.ant-menu
+            flex: 0 0 39px
+            border-bottom: 1px solid #ebebeb
+            line-height: 39px
+            transition: none
+            .ant-menu-item
+                padding: 0 16px
+        .taskmanager-content
+            overflow: hidden
+            height: calc( 100% - 39px )

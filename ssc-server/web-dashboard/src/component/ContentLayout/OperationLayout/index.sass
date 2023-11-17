@@ -1,0 +1,85 @@
+.development-layout
+    background-color: #fff
+    height: 100%
+    .header
+        padding: 16px 24px
+        height: 120px
+        .title
+            height: 40px
+            line-height: 40px
+            font-weight: 400
+            font-size: 28px
+        .actions
+            height: 32px
+            margin-top: 16px
+            line-height: 32px
+            display: flex
+            .ant-btn
+                margin-left: auto
+    .content
+        padding: 0 24px
+        height: calc( 100% - 120px )
+        .ant-table-wrapper
+            .ant-table
+                th:first-child,td:first-child
+                    padding-left: 24px
+                th,td
+                    overflow: hidden
+                    white-space: nowrap
+                .ant-table-tbody
+                    tr
+                        cursor: pointer
+                        td
+                            .type
+                                position: relative
+                                top: -1px
+                                display: inline-block
+                                vertical-align: middle
+                                overflow: hidden
+                                width: 36px
+                                padding: 2px 6px
+                                border: 1px solid #0064c8
+                                background: rgba(0,100,200,.2)
+                                color: #333
+                                font-weight: 500
+                                font-size: 12px
+                                line-height: 12px
+                                text-align: center
+                                white-space: nowrap
+                                word-break: keep-all
+                                transform: scale(.7)
+                                transform-origin: left center
+                            .source-circle
+                                display: inline-flex
+                                align-items: center
+                                justify-content: center
+                                min-width: 39px
+                                height: 20px
+                                padding: 0 7px
+                                border-width: 1px
+                                border-style: solid
+                                border-radius: 20px
+                                font-weight: 500
+                                font-size: 12px
+                                line-height: 20px
+                                white-space: nowrap
+                                cursor: pointer
+                                transform: scale(.9)
+                            .high
+                                border-color: #00a700
+                                background: rgba(0,167,0,.2)
+                                color: #00a700
+                            .disabled
+                                color: #ccc
+                                cursor: not-allowed
+                            .unknown
+                                color: #ccc
+                                cursor: not-allowed
+                            .anticon-cancel
+                                color: #33333380
+                            .anticon-play-circle
+                                color: #00a700
+                            .anticon-spin
+                                color: #0064c8
+                            .anticon-check-circle
+                                color: #33333380

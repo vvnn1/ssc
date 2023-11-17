@@ -1,0 +1,45 @@
+.deployment-dconfiguration-layout
+    padding: 16px
+    .ant-collapse
+        .ant-collapse-item
+            .ant-collapse-header
+                padding: 0 16px
+                height: 39px
+                line-height: 39px
+                align-items: center
+                .ant-collapse-expand-icon
+                    padding-inline-start: 0px
+            .ant-collapse-content
+                .basic-configuration
+                    .resizable-editor-container
+                        border: 1px solid #ebebeb
+                        border-bottom: none
+                .log-configuration
+                    .resizable-editor-container
+                        border: 1px solid #ebebeb
+                        border-top: none
+                .resource-configuration-descriptions,.runtime-configuration-descriptions,.log-configuration-descriptions
+                    .ant-input-number-group-wrapper
+                        width: 100%
+                    .ant-form-item
+                        margin: initial
+                        .ant-form-item-control-input
+                            min-height: initial
+                        .ant-form-item-extra
+                            font-size: 12px
+                        .ant-input-number-input,.ant-select-selector
+                            font-size: 12px
+                    .ant-form-item.monaco-editor-item
+                        .ant-form-item-control-input
+                            border: 1px solid #dedede
+                .log-configuration
+                    .template-container
+                        position: relative
+                        .logging-action
+                            position: absolute
+                            top: 8px
+                            right: 16px
+                            z-index: 999
+                            background: #ebebeb
+                            .ant-btn
+                                font-size: 12px

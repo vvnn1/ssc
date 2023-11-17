@@ -1,0 +1,43 @@
+.session-layout
+    height: 100%
+    .header
+        padding: 16px 24px
+        height: 120px
+        .title
+            display: flex
+            height: 40px
+            line-height: 40px
+            .title
+                font-weight: 400
+                font-size: 28px
+            .extra
+                margin-left: 16px
+        .actions
+            height: 32px
+            margin-top: 16px
+            line-height: 32px
+            .ant-input-search
+                width: 270px
+    .content
+        padding: 0 24px
+        height: calc( 100% - 120px )
+        .ant-table
+            .ant-table-tbody
+                tr:first-child
+                    .anticon-cluster
+                        margin-right: 8px
+                        color: #666
+                tr:last-child
+                    .ant-btn
+                        padding: 0
+                tr:nth-child(1)
+                    .anticon-cancel
+                        color: #33333380
+                    .anticon-play-circle
+                        color: #00a700
+                    .anticon-spin
+                        color: #0064c8
+                    .anticon-check-circle
+                        color: #33333380
+                tr
+                    cursor: pointer

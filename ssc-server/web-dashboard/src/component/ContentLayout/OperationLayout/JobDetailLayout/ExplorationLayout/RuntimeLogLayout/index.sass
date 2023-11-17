@@ -1,0 +1,27 @@
+.runtime-log-layout
+    flex: 1
+    >.header
+        width: 100%
+        display: flex
+        flex-flow: row nowrap
+        align-items: center
+        justify-content: space-between
+        box-sizing: border-box
+        min-height: 40px
+        padding: 8px 16px
+        border-bottom: 1px solid #ebebeb
+        background-color: #fafafa
+        font-size: 14px
+        .ant-select
+            width: 250px
+            margin-left: 8px
+        .anticon-copy
+            margin-left: 8px
+            cursor: pointer
+    >.content
+        height: calc( 100% - 41px )
+        width: 100%
+        overflow: auto
+        padding: 12px 16px
+        .tab-content
+            height: calc( 100% - 38px )

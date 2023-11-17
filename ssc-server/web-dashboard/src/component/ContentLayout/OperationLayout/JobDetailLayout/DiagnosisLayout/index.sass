@@ -1,0 +1,42 @@
+.development-diagnosis-layout
+    padding: 16px
+    overflow: hidden auto
+    height: 100%
+    .meta
+        height: 54px
+        line-height: 54px
+        padding: 0 16px
+        align-items: baseline
+        border: 1px solid #dedede
+        border-radius: 4px
+        display: flex
+        span
+            flex: 1
+            .hightlight
+                color: #00a700
+                font-size: 16px
+                font-weight: 500
+    .actions
+        display: flex
+        margin-top: 16px
+        .download-button
+            margin-left: auto
+
+    .diagnosis-content
+        margin-top: 16px
+        .overview
+            margin-bottom: 12px
+            .anticon-check-circle
+                color: #00a700
+                margin-right: 8px
+        .ant-spin-blur
+            .passed
+                visibility: hidden
+        .ant-collapse
+            background-color: #fff
+            >.ant-collapse-item
+                border: 0
+                margin-bottom: 2px
+                .ant-collapse-header
+                    height: 40px
+                    background-color: #fafafa

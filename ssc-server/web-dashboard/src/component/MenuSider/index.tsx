@@ -1,22 +1,24 @@
-import React from 'react';
+import React, { useState } from "react";
+import { ConfigProvider, MenuProps } from "antd";
+import { Menu } from "antd";
+import Sider from "antd/es/layout/Sider";
+import "./index.sass";
+import { MenuUnfoldOutlined } from "@ant-design/icons";
 import {
-    AppstoreOutlined,
-    ContainerOutlined,
-    DesktopOutlined,
-    MailOutlined,
-    PieChartOutlined,
-} from '@ant-design/icons';
-import type { MenuProps } from 'antd';
-import { Menu } from 'antd';
+    HomeOutlined, ConsoleSqlOutlined, BuildOutlined, FileZipOutlined, ShareAltOutlined, DatabaseOutlined,
+    ClusterOutlined, SafetyOutlined, ControlOutlined
+} from "../Icon";
+import MyLink from "../MyLink";
+import { matchPath, useLocation } from "react-router-dom";
 
-type MenuItem = Required<MenuProps>['items'][number];
+type MenuItem = Required<MenuProps>["items"][number];
 
 function getItem(
     label: React.ReactNode,
     key: React.Key,
     icon?: React.ReactNode,
     children?: MenuItem[],
-    type?: 'group',
+    type?: "group",
 ): MenuItem {
     return {
         key,
@@ -28,37 +30,69 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-    getItem('Option 1', '1', <PieChartOutlined />),
-    getItem('Option 2', '2', <DesktopOutlined />),
-    getItem('Option 3', '3', <ContainerOutlined />),
-
-    getItem('Navigation One', 'sub1', <MailOutlined />, [
-        getItem('Option 5', '5'),
-        getItem('Option 6', '6'),
-        getItem('Option 7', '7'),
-        getItem('Option 8', '8'),
-    ]),
-
-    getItem('Navigation Two', 'sub2', <AppstoreOutlined />, [
-        getItem('Option 9', '9'),
-        getItem('Option 10', '10'),
-
-        getItem('Submenu', 'sub3', null, [getItem('Option 11', '11'), getItem('Option 12', '12')]),
-    ]),
+    getItem(<MyLink to="/workspace/:workspaceId/namespace/:namespaceId/dashboard">系统概览</MyLink>, "dashboard", <HomeOutlined />),
+    getItem(<MyLink to="/workspace/:workspaceId/namespace/:namespaceId/draft">SQL开发</MyLink>, "draft", <ConsoleSqlOutlined />),
+    getItem(<MyLink to="/workspace/:workspaceId/namespace/:namespaceId/operations/stream">作业运维</MyLink>, "operations", <BuildOutlined />),
+    getItem(<MyLink to="/workspace/:workspaceId/namespace/:namespaceId/resource">资源管理</MyLink>, "resource", <FileZipOutlined />),
+    getItem(<MyLink to="/workspace/:workspaceId/namespace/:namespaceId/connectors/connector">数据连接</MyLink>, "connectors", <ShareAltOutlined />),
+    getItem(<MyLink to="/workspace/:workspaceId/namespace/:namespaceId/metadata/list">元数据管理</MyLink>, "metadata", <DatabaseOutlined />),
+    getItem(<MyLink to="/workspace/:workspaceId/namespace/:namespaceId/session-clusters/list">Session 集群</MyLink>, "session-clusters", <ClusterOutlined />),
+    getItem(<MyLink to="/workspace/:workspaceId/namespace/:namespaceId/security/member">安全中心</MyLink>, "security", <SafetyOutlined />),
+    getItem(<MyLink to="/workspace/:workspaceId/namespace/:namespaceId/configurations/deployment-defaults">配置管理</MyLink>, "configurations", <ControlOutlined />),
+    // getItem(<MyLink to="/workspace/:workspaceId/namespace/:namespaceId/migration">作业归档</MyLink>, 'migration', <FileDoneOutlined />),
 ];
 
+const MenuSider = () => {
+    const [collapsed, setCollapsed] = useState<boolean>(false);
+    const { pathname } = useLocation();
+    const pathMatch = matchPath("/workspace/:workspaceId/namespace/:namespaceId/:key/*", pathname);
 
-const MenuBar:React.FC = () => {
     return (
-        <Menu
-            defaultSelectedKeys={['1']}
-            defaultOpenKeys={['sub1']}
-            mode="inline"
-            theme="light"
-            inlineCollapsed
-            items={items}
-        />
-    );
-}
+        <Sider
+            collapsible
+            collapsed={collapsed}
+            onCollapse={setCollapsed}
+            trigger={<MenuUnfoldOutlined />}
+            collapsedWidth={64}
+        >
+            <ConfigProvider prefixCls='side' theme={{
+                token: {
 
-export default MenuBar;
+                },
+                components: {
+                    Table: {
+                        colorInfoBgHover: "f7f9fa"
+                    }
+                }
+            }}>
+                <Menu
+                    mode="inline"
+                    items={items}
+                    inlineIndent={12}
+                    selectedKeys={pathMatch?.params.key ? [pathMatch?.params.key] : []}
+                />
+            </ConfigProvider>
+            {
+                collapsed
+                    ? null
+                    : (
+                        <div className="compute_resource">
+                            <div className="cpu">
+                                CPU
+                                <div className="value">0 / -</div>
+                                <div className="progress"></div>
+                            </div>
+                            <div className="memory">
+                                Memory
+                                <div className="value">0 iB / -</div>
+                                <div className="progress" style={{ width: "0%" }}></div>
+                            </div>
+                        </div>
+                    )
+            }
+        </Sider>
+
+    );
+};
+
+export default MenuSider;

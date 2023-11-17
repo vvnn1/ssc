@@ -1,0 +1,50 @@
+.sql-structure-tree.ant-tree
+    padding: 16px 32px 0 24px
+    .ant-tree-treenode-motion
+        width: 100%
+    .ant-tree-treenode
+        padding: 0 0 8px
+        width: 100%
+        .ant-tree-switcher
+            line-height: 34px
+        .ant-tree-indent-unit
+            width: 18px
+        .ant-tree-node-content-wrapper
+            overflow: hidden
+            box-sizing: content-box
+            height: 32px
+            background: transparent
+            border: 1px solid #dedede
+            line-height: 32px
+            flex-grow: 1
+            .ant-tree-title
+                .tree-node-text
+                    padding-left: 16px
+                    font-size: 12px
+                    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace
+                    display: flex
+                    .tree-node-text-type
+                        color: #333
+                        font-weight: 600
+                    .tree-node-text-detail
+                        overflow: hidden
+                        margin-left: 12px
+                        color: #666
+                        text-overflow: ellipsis
+                        white-space: nowrap
+        .ant-tree-node-content-wrapper:before
+            content: ""
+            position: absolute
+            top: 0
+            bottom: 0
+            left: 0
+            width: 8px
+            background: #2281d4
+        .ant-tree-node-content-wrapper:hover
+            background-color: #f5f5f5 !important
+    .ant-tree-treenode.sink
+        .ant-tree-node-content-wrapper
+            background-color: #ff7a45
+    .ant-tree-treenode.source
+        .ant-tree-node-content-wrapper
+            background-color: #73d13d

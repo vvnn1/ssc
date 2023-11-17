@@ -1,0 +1,92 @@
+.sub-screen-container
+    position: fixed
+    top: 0
+    left: 0
+    visibility: visible
+    z-index: 98
+    min-width: 240px
+    min-height: 400px
+    max-width: 9.0072e+15px
+    max-height: 9.0072e+15px
+    .sub-screen
+        box-sizing: border-box
+        box-shadow: rgba(0, 0, 0, 0.21) 0px 4px 16px 0px
+        background-color: rgb(255, 255, 255)
+        transition: all 0.3s ease-in 0s
+        height: 100%
+        .browser-tool-bar
+            display: flex
+            padding: 0px 4px 0 0
+            box-sizing: border-box
+            background-color: rgb(0, 0, 0)
+            height: 16px
+            color: rgb(255, 255, 255)
+            align-items: center
+            .blank
+                flex: 1
+                cursor: move
+                height: 100%
+            .anticon-close
+                opacity: 0.8
+                width: 20px
+                height: 100%
+                color: rgb(255, 255, 255)
+        .browser-content
+            height: calc( 100% - 16px )
+            .ant-tabs
+                width: 100%
+                height: 36px
+                background-color: rgb(51, 51, 51)
+                cursor: move
+                .ant-tabs-nav
+                    margin-top: 4px
+                    margin-bottom: 0px
+                    .ant-tabs-tab
+                        padding: 4px 16px
+                        transition: initial
+                        .ant-tabs-tab-btn,.ant-tabs-tab-remove
+                            transition: initial
+                    .ant-tabs-nav-wrap
+                        padding: 0 16px
+                .ant-tabs-tab.ant-tabs-tab-active
+                    .ant-tabs-tab-btn
+                        color: rgb(51, 51, 51)
+            .content
+                display: flex
+                flex-direction: column
+                height: calc( 100% - 36px )
+                .header
+                    display: flex
+                    -webkit-box-align: center
+                    align-items: center
+                    padding: 4px 12px 4px 0px
+                    box-sizing: border-box
+                    min-height: 36px
+                    background-color: var(--cb-color-bg-tertiary,#eee)
+                    border-bottom: 1px solid var(--cb-color-border-tertiary,#ebebeb)
+                    .ant-btn.ant-btn-sm
+                        padding: 0 12px
+                        color: #666
+                        transition: initial
+                    .ant-input-affix-wrapper
+                        transition: initial
+                .ant-breadcrumb
+                    font-size: 12px
+                    padding: 8px 16px
+                .document-container
+                    overflow: hidden auto
+                    .document
+                        padding: 16px
+                        ul,ol,dl
+                            margin: 1em 0 1em 2em
+                            padding: 0
+                            line-height: 1.5 !important
+                            font-size: inherit
+                            color: inherit
+                .footer
+                    height: 40px
+                    padding: 0px 16px
+                    line-height: 40px
+                    box-shadow: 0 -1px 2px 0 var(--cb-color-shadow,rgba(0,0,0,0.16))
+                    .ant-btn
+                        transition: initial

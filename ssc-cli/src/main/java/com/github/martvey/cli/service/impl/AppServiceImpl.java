@@ -26,6 +26,7 @@ import java.io.*;
 import java.net.URI;
 import java.nio.file.Files;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -47,7 +48,9 @@ public class AppServiceImpl implements AppService {
 
     @Override
     public void createApp(String appName, String appType, File appFile, String projectId) {
-        String content = appFile == null ? vimOperator.openVimAndReceive(null) : FileUtils.copyToString(appFile);
+        String content = appFile == null && Objects.equals("SQL", appType)
+                ? vimOperator.openVimAndReceive(null)
+                : FileUtils.copyToString(appFile);
         if (ObjectUtils.isEmpty(content)) {
             throw new SscCliException("未定义内容");
         }

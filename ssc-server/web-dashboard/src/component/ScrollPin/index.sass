@@ -1,0 +1,21 @@
+.scroll-pin-decoration
+    position: sticky
+    z-index: 1
+    display: none
+
+
+.scroll-pin-decoration-top
+    top: 0
+    left: 0
+    width: 100%
+    height: 0
+
+
+.scroll-pin-decoration-top:after
+    content: " "
+    position: absolute
+    top: 0
+    right: 0
+    left: 0
+    height: 6px
+    box-shadow: rgba(0,0,0,.15) 0 6px 6px -6px inset

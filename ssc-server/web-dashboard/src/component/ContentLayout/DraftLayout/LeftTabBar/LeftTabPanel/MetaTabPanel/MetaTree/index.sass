@@ -1,0 +1,85 @@
+.meta-tree
+    height: 100%
+    background-color: transparent
+    .ant-tree-list
+        .ant-tree-treenode.table
+            .ant-tree-switcher
+                display: none
+        .ant-tree-treenode
+            font-size: 12px
+            width: 100%
+            padding: 0
+            margin-bottom: 4px
+            .ant-tree-switcher
+                span
+                    transform: translate(2px)
+            .ant-tree-node-content-wrapper
+                padding: initial
+                flex: 1
+                overflow: hidden
+                .ant-tree-icon__customize
+                    width: 12px
+                    margin-right: 4px
+                .ant-tree-title
+                    .tree-title
+                        width: calc(100% - 16px)
+                        display: inline-flex
+                        align-items: center
+                        .actions
+                            display: none
+                            text-align: end
+                            margin-right: 8px
+                        .title-wrapper
+                            overflow: hidden
+                            white-space: nowrap
+                            flex: 1
+                            display: flex
+                            .extra
+                                font-size: 10px
+                                margin-left: 4px
+                                opacity: .4
+                                // transform: scale(.8) translateY(2px)
+                                transform-origin: left center
+                                text-overflow: ellipsis
+                                flex: 0 1 auto
+                                overflow: hidden
+                            .tag
+                                margin-left: 4px
+                                color: #0064c8
+                                font-weight: 500
+                                font-style: italic
+                                transform: scale(.8) translateY(1px)
+        .ant-tree-treenode:hover:not(.ant-tree-treenode-selected)
+            background-color: #ebebeb
+            .ant-tree-node-content-wrapper
+                .ant-tree-title
+                    .actions
+                        display: block
+        .ant-tree-treenode:not(.ant-tree-treenode-selected)
+            .ant-tree-node-content-wrapper
+                .ant-tree-icon__customize
+                    .anticon-container
+                        color: #722ed1
+                    .anticon-database
+                        color: #004ba1
+                    .anticon-table
+                        color: #004ba1
+        .ant-tree-treenode-selected
+            background-color: #0064c8 !important
+            color: #fff
+            .ant-tree-node-content-wrapper
+                .ant-tree-title
+                    .tree-title
+                        .actions
+                            display: block
+.meta-popover-content
+    .item
+        display: flex
+        font-size: 12px
+        width: 200px
+        opacity: .7
+        .value
+            flex: 1
+            overflow: hidden
+            text-align: end
+            text-overflow: ellipsis
