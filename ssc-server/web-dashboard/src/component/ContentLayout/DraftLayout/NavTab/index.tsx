@@ -29,7 +29,7 @@ const NavTab: React.FC<NavTabProps> = ({ selectedItem }) => {
                     return [...items];
                 }
                 return [...items, selectedItem];
-            })
+            });
         }
     }, [selectedItem?.id]);
 
