@@ -34,7 +34,9 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepare": "cd ../../ && husky install ssc-server/web-dashboard/.husky",
+    "lint": "eslint src/**/*.tsx"
   },
   "eslintConfig": {
     "extends": [
@@ -65,11 +67,12 @@
     "@types/react-copy-to-clipboard": "^5.0.5",
     "@types/react-dom": "^18.0.10",
     "@types/react-resizable": "^3.0.4",
-    "@typescript-eslint/parser": "^5.62.0",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.62.0",
     "customize-cra": "^1.0.0",
     "eslint": "^8.53.0",
     "eslint-plugin-react": "^7.33.2",
+    "husky": "^8.0.3",
     "react-app-rewired": "^2.2.1",
     "sass": "^1.58.0",
     "ts-loader": "^9.4.2",
