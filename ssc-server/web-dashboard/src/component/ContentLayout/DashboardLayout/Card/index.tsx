@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button, ButtonProps } from "antd";
 import "./index.sass";
 
 interface TemplateCardProps {
@@ -7,6 +7,7 @@ interface TemplateCardProps {
     intro: string;
     buttonIcon: React.ReactNode;
     buttonText: string;
+    buttonClick?: ButtonProps["onClick"];
 }
 
 const Card = (props: TemplateCardProps) => {
@@ -21,6 +22,7 @@ const Card = (props: TemplateCardProps) => {
             <Button
                 block
                 type="link"
+                onClick={props.buttonClick}
             >
                 {props.buttonIcon}
                 <span>{props.buttonText}</span>

@@ -10,8 +10,12 @@ import {
 } from "../../Icon";
 import "./index.sass";
 import Card from "./Card";
+import { useHref } from "react-router-dom";
+import { useContext } from "react";
+import { DocumentContext } from "../../../page/MainPage";
 
 const DashboardLayout = () => {
+    const setDocumentOpen = useContext(DocumentContext);
     return (
         <div className="dashboard-layout">
             <div className="header">
@@ -30,21 +34,30 @@ const DashboardLayout = () => {
                 </div>
                 <Divider />
                 <div className="operators">
-                    <Button type="link">
+                    <Button
+                        type="link"
+                        href={useHref("../draft")}
+                    >
                         <DesktopOutlined />
                         <span>作业开发</span>
                     </Button>
 
                     <Divider type="vertical" />
 
-                    <Button type="link">
+                    <Button
+                        type="link"
+                        href={useHref("../operations/stream")}
+                    >
                         <BuildOutlined />
                         <span>作业运维</span>
                     </Button>
 
                     <Divider type="vertical" />
 
-                    <Button type="link">
+                    <Button
+                        type="link"
+                        href={useHref("../resource")}
+                    >
                         <FileZipOutlined />
                         <span>资源上传</span>
                     </Button>
@@ -64,6 +77,7 @@ const DashboardLayout = () => {
                     intro="一步步实现第一个 Flink 作业"
                     buttonIcon={<TutorialOutlined />}
                     buttonText="开始新手教程"
+                    buttonClick={() => setDocumentOpen(true)}
                 />
                 <Card
                     backgroundImageUrl="//g.alicdn.com/computing-frontend/neo/0.14.63/zh/tutorial-simple.4d5bd8a4bbcf2fbc.svg"

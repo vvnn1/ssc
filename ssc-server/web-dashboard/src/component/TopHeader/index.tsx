@@ -1,6 +1,6 @@
 import { Header } from "antd/es/layout/layout";
 import "./index.sass";
-import { Dropdown, MenuProps, Select } from "antd";
+import { Dropdown, MenuProps, Select, Tooltip } from "antd";
 import {
     ApiOutlined,
     BellOutlined,
@@ -12,6 +12,11 @@ import {
     SkinOutlined,
     UserOutlined,
 } from "../Icon";
+import NetDetectModal from "./NetDetectModal";
+import { useContext, useState } from "react";
+import { changeModalOpen } from "../../util";
+import NotificationDropdown from "./NotificationDropdown";
+import { DocumentContext } from "../../page/MainPage";
 
 const onChange = (value: string) => {
     console.log(`selected ${value}`);
@@ -51,6 +56,8 @@ const items: MenuProps["items"] = [
 ];
 
 const TopHeader = () => {
+    const [netModalOpen, setNetModalOpen] = useState<boolean>(false);
+    const setDocumentOpen = useContext(DocumentContext);
     return (
         <Header className="layout-header">
             <div className="header-logo">
@@ -89,19 +96,31 @@ const TopHeader = () => {
                 <div className="right">
                     <ul>
                         <li>
-                            <ApiOutlined />
+                            <Tooltip title="网络探测">
+                                <ApiOutlined onClick={changeModalOpen(true, setNetModalOpen)} />
+                            </Tooltip>
                         </li>
                         <li>
-                            <NotificationOutlined />
+                            <Tooltip title="公告">
+                                <NotificationOutlined />
+                            </Tooltip>
                         </li>
                         <li>
-                            <BellOutlined />
+                            <NotificationDropdown>
+                                <Tooltip title="消息通知">
+                                    <BellOutlined />
+                                </Tooltip>
+                            </NotificationDropdown>
                         </li>
                         <li>
-                            <QuestionCircleOutlined />
+                            <Tooltip title="帮助文档">
+                                <QuestionCircleOutlined onClick={() => setDocumentOpen(true)} />
+                            </Tooltip>
                         </li>
                         <li>
-                            <SkinOutlined />
+                            <Tooltip title="切换主题">
+                                <SkinOutlined />
+                            </Tooltip>
                         </li>
                     </ul>
                     <Dropdown
@@ -117,6 +136,10 @@ const TopHeader = () => {
                     </Dropdown>
                 </div>
             </div>
+            <NetDetectModal
+                open={netModalOpen}
+                onCancel={changeModalOpen(false, setNetModalOpen)}
+            />
         </Header>
     );
 };

@@ -3,7 +3,7 @@ import { NewTabOutlined } from "../../../Icon";
 import "./index.sass";
 import Paragraph from "antd/es/typography/Paragraph";
 import { useContext } from "react";
-import { DocumentContext } from "../..";
+import { DocumentContext } from "../../../../page/MainPage";
 
 type ConnectorType = "结果表" | "源表" | "维表";
 
