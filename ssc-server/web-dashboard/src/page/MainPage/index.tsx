@@ -1,8 +1,8 @@
 import Layout, { Content } from "antd/es/layout/layout";
 import "./index.sass";
-import MenuSider from "../../component/MenuSider";
-import TopHeader from "../../component/TopHeader";
-import ContentLayout from "../../component/ContentLayout";
+import Sider from "./Sider";
+import Header from "./Header";
+import ContentLayout from "./ContentLayout";
 import { FloatButton } from "antd";
 import { FileSearchOutlined } from "../../component/Icon";
 import DocumentLayout from "../../component/DocumentLayout";
@@ -22,9 +22,9 @@ const MainPage = (): React.ReactElement => {
     return (
         <DocumentContext.Provider value={setOpen}>
             <Layout className="base-layout">
-                <TopHeader />
+                <Header />
                 <Layout hasSider>
-                    <MenuSider />
+                    <Sider />
                     <Content>
                         <ContentLayout />
                     </Content>
