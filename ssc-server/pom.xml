@@ -163,19 +163,39 @@
         </dependency>
     </dependencies>
 
-
     <build>
         <resources>
             <resource>
-                <directory>web-dashboard</directory>
-                <includes>
-                    <include>web/**</include>
-                </includes>
+                <directory>web-dashboard/build</directory>
+                <targetPath>web</targetPath>
             </resource>
             <resource>
                 <directory>src/main/resources</directory>
             </resource>
         </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>npm-build</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${project.basedir}/web-dashboard</workingDirectory>
+                            <executable>npm</executable>
+                            <arguments>
+                                <argument>run</argument>
+                                <argument>build</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
 
     <profiles>
@@ -204,6 +224,10 @@
                     <resource>
                         <directory>${project.basedir}/dist/config</directory>
                         <targetPath>${project.build.directory}/config</targetPath>
+                    </resource>
+                    <resource>
+                        <directory>${project.basedir}/web-dashboard/build</directory>
+                        <targetPath>${project.build.directory}/config/web</targetPath>
                     </resource>
                 </resources>
 
