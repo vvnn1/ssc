@@ -1,6 +1,6 @@
 import { Select, SelectProps } from "antd";
 
-export type TimeUnit = "d"|"h"|"min"|"s"|"ms"|"us"|"ns";
+export type TimeUnit = "d" | "h" | "min" | "s" | "ms" | "us" | "ns";
 
 const TimeUnitSelect = (props: SelectProps) => {
     return (

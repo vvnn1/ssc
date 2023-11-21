@@ -6,9 +6,10 @@ interface SorceBadgeProps {
 }
 
 const SorceBadge = (props: SorceBadgeProps) => {
-
     return (
-        <span className={`sorce-badge ${props.model === "healthy" ? "hight" : "disabled"}`}>{props.model === "disabled" ? "-" : props.sorce}</span>
+        <span className={`sorce-badge ${props.model === "healthy" ? "hight" : "disabled"}`}>
+            {props.model === "disabled" ? "-" : props.sorce}
+        </span>
     );
 };
 

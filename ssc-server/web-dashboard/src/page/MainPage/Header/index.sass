@@ -1,0 +1,34 @@
+.ant-layout-header.layout-header
+    .header-menu
+        .left
+            .ant-select-single:not(.ant-select-customize-input)
+                .ant-select-selector
+                    width: 170px
+            .ant-select:not(.ant-select-customize-input)
+                .ant-select-selector
+                    border: initial
+            .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input)
+                .ant-select-selector
+                    box-shadow: initial
+        .right
+            display: flex
+            ul
+                list-style: none
+                margin: 0
+                padding: 0
+                li
+                    display: inline-block
+                    padding: 0 10px
+                    height: 49px
+                    line-height: 49px
+                    cursor: pointer
+                    color: rgba(0,0,0,.65)
+                    font-size: 18px
+                    font-weight: 400
+                li:last-child
+                    font-size: 18px
+                    svg
+                        position: relative
+                        top: 1px
+                li:hover
+                    background-color: rgba(0,0,0,.1)

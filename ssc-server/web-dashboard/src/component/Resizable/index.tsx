@@ -15,7 +15,7 @@ type ResizableProps = {
 const Resizable = (props: ResizableProps) => {
     const [reSize, setReSize] = useState<number>(props.size);
 
-    const onResize:ResizableProps2["onResize"] = (_, { size }) => {
+    const onResize: ResizableProps2["onResize"] = (_, { size }) => {
         if (props.axis === "x") {
             setReSize(adequateSize(size.width));
         } else if (props.axis === "y") {
@@ -23,9 +23,8 @@ const Resizable = (props: ResizableProps) => {
         }
     };
 
-
     const adequateSize = (curSize: number): number => {
-        if(props.minSize && props.minSize > curSize) {
+        if (props.minSize && props.minSize > curSize) {
             return props.minSize;
         }
 
@@ -43,12 +42,14 @@ const Resizable = (props: ResizableProps) => {
             height={props.axis === "y" ? reSize : undefined}
             onResize={onResize}
             axis={props.axis}
-            className={props.className ? [props.resizeHandle + "-border-resizable", props.className].join(" ") : props.resizeHandle + "-border-resizable"}
+            className={
+                props.className
+                    ? [props.resizeHandle + "-border-resizable", props.className].join(" ")
+                    : props.resizeHandle + "-border-resizable"
+            }
             resizeHandles={[props.resizeHandle]}
         >
-            <div style={{ flexBasis: reSize + "px" }}>
-                {props.children}
-            </div>
+            <div style={{ flexBasis: reSize + "px" }}>{props.children}</div>
         </ReactResizable>
     );
 };

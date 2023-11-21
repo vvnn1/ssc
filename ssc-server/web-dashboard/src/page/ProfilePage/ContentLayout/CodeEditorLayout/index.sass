@@ -1,0 +1,36 @@
+.code-editor-layout
+    >.header
+        height: 120px
+        padding: 16px 24px
+        .title
+            height: 40px
+            font-weight: 400
+            font-size: 28px
+            line-height: 40px
+        .actions
+            margin-top: 16px
+    >.content
+        padding: 0 24px
+        h4
+            margin-bottom: 8px
+            font-size: 14px
+            span
+                position: relative
+                z-index: 1
+                padding-right: 8px
+                background: #fff
+        h4:after
+            content: " "
+            display: block
+            width: 100%
+            border-bottom: 1px solid #dedede
+            transform: translateY(-10px)
+        .ant-form
+            .ant-form-item
+                margin-bottom: 12px
+                .align-right-container
+                    float: right
+        .editor-preview
+            margin: 0 12px
+            border-left: 1px solid #dedede
+            height: 256px

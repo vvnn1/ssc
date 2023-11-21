@@ -1,6 +1,5 @@
 import { Select, SelectProps } from "antd";
 
-
 export type MemoryUnit = "MiB" | "GiB";
 
 const MemoryUnitSelect = (props: SelectProps) => {

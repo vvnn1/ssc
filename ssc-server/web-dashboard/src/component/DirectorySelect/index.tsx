@@ -9,8 +9,7 @@ interface DirectorySelectProps {
     onChange?: (selectedKey: Key | undefined) => void;
 }
 
-const demoData: TreeDataNode =
-{
+const demoData: TreeDataNode = {
     title: "作业草稿",
     key: "0",
     children: [
@@ -18,10 +17,10 @@ const demoData: TreeDataNode =
             title: "母婴订单实时查询",
             key: "0-0",
             isLeaf: false,
-            switcherIcon: (node) => (node.expanded ? <FloderOpenColorOutlined /> : <FloderClosedColorOutlined />),
+            switcherIcon: node => (node.expanded ? <FloderOpenColorOutlined /> : <FloderClosedColorOutlined />),
         },
     ],
-    switcherIcon: (node) => (node.expanded ? <FloderOpenColorOutlined /> : <FloderClosedColorOutlined />),
+    switcherIcon: node => (node.expanded ? <FloderOpenColorOutlined /> : <FloderClosedColorOutlined />),
 };
 
 const tracePath = (targetKey: React.Key | undefined, node: TreeDataNode, selectedPath: string[]) => {
@@ -74,7 +73,11 @@ const DirectorySelect = (props: DirectorySelectProps) => {
 
     return (
         <div className="directory-select">
-            <Input className="directory-input" disabled value={inputPath(selectedKey)} />
+            <Input
+                className="directory-input"
+                disabled
+                value={inputPath(selectedKey)}
+            />
             <div className="tree-container">
                 <DirectoryTree
                     treeData={[demoData]}

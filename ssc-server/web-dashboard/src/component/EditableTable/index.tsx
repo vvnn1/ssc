@@ -31,15 +31,38 @@ const EditableCell: React.FC<EditableCellProps<any>> = ({
     };
 
     if (editType === Checkbox) {
-        return <td {...restProps}><Checkbox defaultChecked={getField(record, dataIndex)} onChange={({ target: { checked } }) => setField(record, dataIndex, checked)} /></td>;
+        return (
+            <td {...restProps}>
+                <Checkbox
+                    defaultChecked={getField(record, dataIndex)}
+                    onChange={({ target: { checked } }) => setField(record, dataIndex, checked)}
+                />
+            </td>
+        );
     }
 
     if (editType === Input) {
-        return <td {...restProps}><Input size='small' defaultValue={getField(record, dataIndex)} onChange={({ target: { value } }) => setField(record, dataIndex, value)} /></td>;
+        return (
+            <td {...restProps}>
+                <Input
+                    size="small"
+                    defaultValue={getField(record, dataIndex)}
+                    onChange={({ target: { value } }) => setField(record, dataIndex, value)}
+                />
+            </td>
+        );
     }
 
     if (editType === TooltipInput) {
-        return <td {...restProps}><TooltipInput size='small' defaultValue={getField(record, dataIndex)} onChange={({ target: { value } }) => setField(record, dataIndex, value)} /></td>;
+        return (
+            <td {...restProps}>
+                <TooltipInput
+                    size="small"
+                    defaultValue={getField(record, dataIndex)}
+                    onChange={({ target: { value } }) => setField(record, dataIndex, value)}
+                />
+            </td>
+        );
     }
 
     return <td {...restProps}>{children}</td>;
@@ -49,20 +72,24 @@ export const TooltipInput = (props: InputProps) => {
     const [title, setTitle] = useState<string>(props.defaultValue as string);
     const onInputChanged = (event: any) => {
         props.onChange?.(event);
-        const { target: { value } } = event;
+        const {
+            target: { value },
+        } = event;
         setTitle(value);
     };
     return (
         <Tooltip title={title}>
             <div>
-                <Input {...props} onChange={onInputChanged} />
+                <Input
+                    {...props}
+                    onChange={onInputChanged}
+                />
             </div>
         </Tooltip>
     );
 };
 
-export type EditColumType = (ColumnTypes[number] & { editType?: EditTypes; dataIndex: string; });
-
+export type EditColumType = ColumnTypes[number] & { editType?: EditTypes; dataIndex: string };
 
 interface EditabhleProps<RecordType> {
     dataSource: RecordType[];
@@ -74,7 +101,7 @@ const EditableTable = <RecordType extends Record<PropertyKey, any>>(props: Edita
     const [editIndex, setEditIndex] = useState<number>(-1);
     const onRow = (_: any, index: number | undefined): React.HTMLAttributes<any> | React.TdHTMLAttributes<any> => {
         return {
-            onClick: () => setEditIndex(index!)
+            onClick: () => setEditIndex(index!),
         };
     };
 
@@ -93,8 +120,7 @@ const EditableTable = <RecordType extends Record<PropertyKey, any>>(props: Edita
         },
     };
 
-
-    const columns = props.columns.map((col) => {
+    const columns = props.columns.map(col => {
         if (!col.editType) {
             return col;
         }
@@ -116,10 +142,14 @@ const EditableTable = <RecordType extends Record<PropertyKey, any>>(props: Edita
             rowClassName={onRowClassName(editIndex)}
             dataSource={props.dataSource}
             columns={columns as ColumnTypes}
-            size='small'
+            size="small"
             onRow={onRow}
             footer={() => (
-                <Button onClick={props.handleAdd} type="primary" size='small'>
+                <Button
+                    onClick={props.handleAdd}
+                    type="primary"
+                    size="small"
+                >
                     添加 Property
                 </Button>
             )}
