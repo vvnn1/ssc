@@ -5,7 +5,7 @@ import ConfigurationLayout from "./ConfigurationLayout";
 import LogLayout from "./LogLayout";
 import LogListLayout from "./LogListLayout";
 import StdoutLayout from "./StdoutLayout";
-import { Route, Routes, matchPath, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, matchPath, useLocation } from "react-router-dom";
 import MyLink from "../../../../../../component/MyLink";
 import LogDetailLayout from "./LogListLayout/LogDetailLayout";
 
@@ -75,6 +75,10 @@ const JobManagerLayout = () => {
                             element={<LogDetailLayout />}
                         />
                     </Route>
+                    <Route
+                        path="*"
+                        element={<Navigate to="metrics" />}
+                    />
                 </Routes>
             </div>
         </div>

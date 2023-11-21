@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import ArchiveLayout from "./ArchiveLayout";
 import ConfigurationLayout from "./ConfigurationLayout";
 import DashboardLayout from "./DashboardLayout";
@@ -90,6 +90,10 @@ const ContentLayout = () => {
             <Route
                 path="migration"
                 element={<ArchiveLayout />}
+            />
+            <Route
+                path="*"
+                element={<Navigate to="dashboard" />}
             />
         </Routes>
     );

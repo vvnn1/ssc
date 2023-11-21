@@ -1,6 +1,6 @@
 import { Menu } from "antd";
 import "./index.sass";
-import { Route, Routes, matchPath, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, matchPath, useLocation } from "react-router-dom";
 import OverviewLayout from "./OverviewLayout";
 import HistoryLayout from "./HistoryLayout";
 import ConfigureLayout from "./ConfigureLayout";
@@ -48,6 +48,10 @@ const StateLayout = () => {
                     <Route
                         path="configure"
                         element={<ConfigureLayout />}
+                    />
+                    <Route
+                        path="*"
+                        element={<Navigate to="overview" />}
                     />
                 </Routes>
             </div>

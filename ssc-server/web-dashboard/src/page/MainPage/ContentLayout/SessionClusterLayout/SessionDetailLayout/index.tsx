@@ -1,4 +1,4 @@
-import { Route, Routes, useParams, useHref } from "react-router-dom";
+import { Route, Routes, useParams, useHref, Navigate } from "react-router-dom";
 import { ArrowLeftOutlined, CheckCircleFilled } from "../../../../../component/Icon";
 import TabMenu from "../../../../../component/TabMenu";
 import { Button, Divider, MenuProps, Popconfirm, Space } from "antd";
@@ -117,34 +117,36 @@ const SessionDetailLayout = () => {
                     ref={contentRef}
                 >
                     <Routes>
-                        <Route>
+                        <Route
+                            path="overview"
+                            element={<OverviewLayout />}
+                        />
+                        <Route
+                            path="event"
+                            element={<EventLayout />}
+                        />
+                        <Route path="jobmanager">
                             <Route
-                                path="overview"
-                                element={<OverviewLayout />}
+                                path="*"
+                                element={<JobManagerLayout />}
                             />
+                        </Route>
+                        <Route path="taskmanager">
                             <Route
-                                path="event"
-                                element={<EventLayout />}
+                                path=""
+                                element={<TaskManagerLayout />}
                             />
-                            <Route path="jobmanager">
+                            <Route path=":taskmanager">
                                 <Route
                                     path="*"
-                                    element={<JobManagerLayout />}
+                                    element={<TaskManagerDetailLayout />}
                                 />
-                            </Route>
-                            <Route path="taskmanager">
-                                <Route
-                                    path=""
-                                    element={<TaskManagerLayout />}
-                                />
-                                <Route path=":taskmanager">
-                                    <Route
-                                        path="*"
-                                        element={<TaskManagerDetailLayout />}
-                                    />
-                                </Route>
                             </Route>
                         </Route>
+                        <Route
+                            path="*"
+                            element={<Navigate to="overview" />}
+                        />
                     </Routes>
                 </div>
             </div>

@@ -2,7 +2,7 @@ import { MenuProps } from "antd";
 import "./index.sass";
 import MemberLayout from "./MemberLayout";
 import SecretLayout from "./SecretLayout";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import MyLink from "../../../../component/MyLink";
 import TabMenu from "../../../../component/TabMenu";
 import KerberoLayout from "./KerberoLayout";
@@ -46,6 +46,10 @@ const SecurityLayout = () => {
                         <Route
                             path="secret"
                             element={<SecretLayout />}
+                        />
+                        <Route
+                            path="*"
+                            element={<Navigate to="member" />}
                         />
                     </Routes>
                 </div>

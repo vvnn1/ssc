@@ -4,7 +4,7 @@ import "./index.sass";
 import MyLink from "../../../../../../../component/MyLink";
 import MetricLayout from "./MetricLayout";
 import { useEffect, useState } from "react";
-import { Route, Routes, matchPath, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, matchPath, useLocation } from "react-router-dom";
 import LogLayout from "./LogLayout";
 import ThreadDumpLayout from "./ThreadDumpLayout";
 import StdoutLayout from "./StdoutLayout";
@@ -179,6 +179,10 @@ const TaskManagerDetailLayout = () => {
                                 element={<LogDetailLayout />}
                             />
                         </Route>
+                        <Route
+                            path="*"
+                            element={<Navigate to="metrics" />}
+                        />
                     </Routes>
                 </div>
             </div>

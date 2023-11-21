@@ -2,7 +2,7 @@ import { Button, Divider, Space, Tabs, TabsProps } from "antd";
 import "./index.sass";
 import { BuildOutlined, CancelCircleFilled } from "../../../../../component/Icon";
 import ConfigurationLayout from "./ConfigurationLayout";
-import { Route, Routes, matchPath, useLocation, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes, matchPath, useLocation, useNavigate } from "react-router-dom";
 import AlarmLayout from "./AlarmLayout";
 import DiagnosisLayout from "./DiagnosisLayout";
 import AutopilotLayout from "./AutopilotLayout";
@@ -151,6 +151,10 @@ const JobDetailLayout = () => {
                                 element={<AlarmLayout />}
                             />
                         </Route>
+                        <Route
+                            path="*"
+                            element={<Navigate to="configuration" />}
+                        />
                     </Routes>
                 </div>
             </div>

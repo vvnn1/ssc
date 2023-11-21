@@ -1,7 +1,7 @@
 import { Menu, MenuProps } from "antd";
 import MyLink from "../../../../../../component/MyLink";
 import "./index.sass";
-import { Route, Routes, matchPath, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, matchPath, useLocation } from "react-router-dom";
 import AlarmList from "./AlarmList";
 import AlarmRule from "./AlarmRule";
 
@@ -39,6 +39,10 @@ const AlarmLayout = () => {
                     <Route
                         path="rules"
                         element={<AlarmRule />}
+                    />
+                    <Route
+                        path="*"
+                        element={<Navigate to="events" />}
                     />
                 </Routes>
             </div>

@@ -2,7 +2,7 @@ import { Select, Tooltip } from "antd";
 import "./index.sass";
 import { CopyOutlined } from "../../../../../../../component/Icon";
 import TabMenu from "../../../../../../../component/TabMenu";
-import { Route, Routes, useParams } from "react-router-dom";
+import { Navigate, Route, Routes, useParams } from "react-router-dom";
 import MyLink from "../../../../../../../component/MyLink";
 import JobManagerLogTable from "./JobManagerLogTable";
 import LogDetailLayout from "./LogDetailLayout";
@@ -94,6 +94,10 @@ const RuntimeLogLayout = () => {
                                 element={<TaskManagerList />}
                             />
                         </Route>
+                        <Route
+                            path="*"
+                            element={<Navigate to="jobmanager" />}
+                        />
                     </Routes>
                 </div>
             </div>

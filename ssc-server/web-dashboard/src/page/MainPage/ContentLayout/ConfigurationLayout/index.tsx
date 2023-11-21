@@ -3,7 +3,7 @@ import "./index.sass";
 import WorkSettingLayout from "./WorkSettingLayout";
 import AlarmTemplateLayout from "./AlarmTemplateLayout";
 import MyLink from "../../../../component/MyLink";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import TabMenu from "../../../../component/TabMenu";
 
 const menuItems: MenuProps["items"] = [
@@ -37,6 +37,10 @@ const ConfigurationLayout = () => {
                         <Route
                             path="alarm-rules"
                             element={<AlarmTemplateLayout />}
+                        />
+                        <Route
+                            path="*"
+                            element={<Navigate to="deployment-defaults" />}
                         />
                     </Routes>
                 </div>

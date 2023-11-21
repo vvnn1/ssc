@@ -4,7 +4,7 @@ import { useRef } from "react";
 import ConnectorLayout from "./ConnectorLayout";
 import DataFormatLayout from "./DataFormatLayout";
 import ScrollPin from "../../../../component/ScrollPin";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import MyLink from "../../../../component/MyLink";
 import TabMenu from "../../../../component/TabMenu";
 
@@ -45,6 +45,10 @@ const DataConnectLayout = () => {
                         <Route
                             path="format"
                             element={<DataFormatLayout />}
+                        />
+                        <Route
+                            path="*"
+                            element={<Navigate to="connector" />}
                         />
                     </Routes>
                 </div>

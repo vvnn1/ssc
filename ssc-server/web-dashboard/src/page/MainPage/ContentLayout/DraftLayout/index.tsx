@@ -6,7 +6,7 @@ import { useState } from "react";
 import Resizable from "../../../../component/Resizable";
 import BottomTabBar from "./BottomTabBar";
 import WelcomeContent from "./WelcomeContent";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 const DraftLayout = () => {
     const [tabPanel, setTabPanel] = useState<React.ReactNode>(<DraftTabPanel />);
@@ -40,6 +40,10 @@ const DraftLayout = () => {
                                 <Route
                                     path="sql"
                                     element={<MainContent />}
+                                />
+                                <Route
+                                    path="*"
+                                    element={<Navigate to="sql" />}
                                 />
                             </Route>
                         </Routes>
