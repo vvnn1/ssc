@@ -34,7 +34,7 @@ const MainPage = (): React.ReactElement => {
             <FloatButton
                 type="primary"
                 icon={<FileSearchOutlined />}
-                onClick={changeDocumentOpen(true)}
+                onClick={changeDocumentOpen(!open)}
             />
             <DocumentLayout
                 open={open}
