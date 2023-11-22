@@ -27,8 +27,8 @@ const DocumentLayout: React.FC<DocumentProps> = ({ open, onCancel }) => {
     const [documentWindow, setDocumentWindow] = useState<DocumentWindow>({
         width: 420,
         height: 680,
-        x: window.document.documentElement.clientWidth - 465,
-        y: window.document.documentElement.clientHeight - 745,
+        x: Math.max(window.document.documentElement.clientWidth - 465, 0),
+        y: Math.max(window.document.documentElement.clientHeight - 745, 0),
     });
 
     const onStart = (_: DraggableEvent, uiData: DraggableData) => {

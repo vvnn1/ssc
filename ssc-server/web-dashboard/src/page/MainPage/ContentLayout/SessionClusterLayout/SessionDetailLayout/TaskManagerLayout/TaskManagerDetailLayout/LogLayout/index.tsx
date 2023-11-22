@@ -119,7 +119,7 @@ INFO  [] - Loading configuration property: high-availability, org.apache.flink.k
 INFO  [] - Loading configuration property: cluster.termination-message-path, /flink/log/termination.log
 INFO  [] - Loading configuration property: fs.oss.endpoint, https://oss-cn-hangzhou-internal.aliyuncs.com
 INFO  [] - Loading configuration property: restart-strategy, none
-INFO  [] - Loading configuration property: state.backend, com.alibaba.flink.statebackend.GeminiStateBackendFactory`}
+INFO  [] - Loading configuration property: state.backend, com.flink.statebackend.GeminiStateBackendFactory`}
                 />
             </div>
         </div>

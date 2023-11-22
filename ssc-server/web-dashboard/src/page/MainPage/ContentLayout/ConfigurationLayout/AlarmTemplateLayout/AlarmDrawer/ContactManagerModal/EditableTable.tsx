@@ -51,7 +51,7 @@ const EditableTable = <RecordType extends Record<PropertyKey, any>>(
     const isEditing = (record: any) => record.key === editingKey;
 
     const edit = (record: Partial<any> & { key: React.Key }) => {
-        form.setFieldsValue({ [record.key]: "", ...record });
+        form.setFieldsValue({ [record.key as string]: "", ...record });
         setEditingKey(record.key as string);
     };
 

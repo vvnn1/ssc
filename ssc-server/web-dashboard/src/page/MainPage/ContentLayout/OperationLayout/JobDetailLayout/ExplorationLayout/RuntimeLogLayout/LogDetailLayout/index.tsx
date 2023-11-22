@@ -88,7 +88,7 @@ INFO  [] - Loading configuration property: cluster.termination-message-path, /fl
 INFO  [] - Loading configuration property: kubernetes.jobmanager.cpu, 1.0
 INFO  [] - Loading configuration property: web.submit.enable, false
 INFO  [] - Loading configuration property: table.exec.legacy-cast-behaviour, enabled
-INFO  [] - Loading configuration property: state.backend, com.alibaba.flink.statebackend.GeminiStateBackendFactory
+INFO  [] - Loading configuration property: state.backend, com.flink.statebackend.GeminiStateBackendFactory
 INFO  [] - Loading configuration property: kubernetes.jobmanager.service-account, vvp
 INFO  [] - Loading configuration property: kubernetes.pod-template-file.jobmanager, /vvp/data/appmanager/12cb8683-786f-4d78-a813-15d24019cee5/jm.yaml
 INFO  [] - Loading configuration property: blob.server.port, 6124
@@ -152,7 +152,7 @@ INFO  [] -     JVM Overhead:       192.000mb (201326592 bytes)
 2023-09-27 09:52:24,311 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  OS current user: flink
 2023-09-27 09:52:24,608 WARN  org.apache.hadoop.util.NativeCodeLoader                      [] - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 2023-09-27 09:52:24,684 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  Current Hadoop/Kerberos user: flink
-2023-09-27 09:52:24,684 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  JVM: OpenJDK 64-Bit Server VM - "Alibaba" - 1.8/25.102-b52
+2023-09-27 09:52:24,684 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  JVM: OpenJDK 64-Bit Server VM - 1.8/25.102-b52
 2023-09-27 09:52:24,689 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  Arch: amd64
 2023-09-27 09:52:24,689 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  Maximum heap size: 436 MiBytes
 2023-09-27 09:52:24,690 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  JAVA_HOME: /usr/lib/ajdk-8_2_4-b52
@@ -244,7 +244,7 @@ INFO  [] -     JVM Overhead:       192.000mb (201326592 bytes)
 2023-09-27 09:52:24,786 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: kubernetes.jobmanager.cpu, 1.0
 2023-09-27 09:52:24,786 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: web.submit.enable, false
 2023-09-27 09:52:24,787 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: table.exec.legacy-cast-behaviour, enabled
-2023-09-27 09:52:24,787 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: state.backend, com.alibaba.flink.statebackend.GeminiStateBackendFactory
+2023-09-27 09:52:24,787 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: state.backend, com.flink.statebackend.GeminiStateBackendFactory
 2023-09-27 09:52:24,787 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: kubernetes.jobmanager.service-account, vvp
 2023-09-27 09:52:24,787 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: kubernetes.pod-template-file.jobmanager, /vvp/data/appmanager/12cb8683-786f-4d78-a813-15d24019cee5/jm.yaml
 2023-09-27 09:52:24,787 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: blob.server.port, 6124
@@ -475,7 +475,7 @@ INFO  [] -     JVM Overhead:       192.000mb (201326592 bytes)
 2023-09-27 09:52:29,300 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: kubernetes.jobmanager.cpu, 1.0
 2023-09-27 09:52:29,300 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: web.submit.enable, false
 2023-09-27 09:52:29,300 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: table.exec.legacy-cast-behaviour, enabled
-2023-09-27 09:52:29,300 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: state.backend, com.alibaba.flink.statebackend.GeminiStateBackendFactory
+2023-09-27 09:52:29,300 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: state.backend, com.flink.statebackend.GeminiStateBackendFactory
 2023-09-27 09:52:29,300 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: kubernetes.jobmanager.service-account, vvp
 2023-09-27 09:52:29,300 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: kubernetes.pod-template-file.jobmanager, /vvp/data/appmanager/12cb8683-786f-4d78-a813-15d24019cee5/jm.yaml
 2023-09-27 09:52:29,301 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: blob.server.port, 6124
@@ -596,7 +596,7 @@ INFO  [] -     JVM Overhead:       192.000mb (201326592 bytes)
 2023-09-27 09:52:30,548 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: kubernetes.jobmanager.cpu, 1.0
 2023-09-27 09:52:30,548 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: web.submit.enable, false
 2023-09-27 09:52:30,548 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: table.exec.legacy-cast-behaviour, enabled
-2023-09-27 09:52:30,548 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: state.backend, com.alibaba.flink.statebackend.GeminiStateBackendFactory
+2023-09-27 09:52:30,548 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: state.backend, com.flink.statebackend.GeminiStateBackendFactory
 2023-09-27 09:52:30,548 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: kubernetes.jobmanager.service-account, vvp
 2023-09-27 09:52:30,548 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: kubernetes.pod-template-file.jobmanager, /vvp/data/appmanager/12cb8683-786f-4d78-a813-15d24019cee5/jm.yaml
 2023-09-27 09:52:30,548 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: blob.server.port, 6124
@@ -666,7 +666,7 @@ INFO  [] -     JVM Overhead:       192.000mb (201326592 bytes)
 2023-09-27 09:52:30,893 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Using application-defined state backend: BundledGeminiStateBackend{checkpointStreamBackend=File State Backend (checkpoints: 'oss://ssc-b/flink-jobs/namespaces/ssc-m-default/deployments/9ddc3745-7453-4d4b-96ee-965d8b2d5f05/checkpoints/jobs/0e4eb4ec-61d8-4ae9-bf0e-dcaee4b7db5f', savepoints: 'oss://ssc-b/flink-savepoints/namespaces/ssc-m-default/deployments/9ddc3745-7453-4d4b-96ee-965d8b2d5f05, fileStateThreshold: 20480), realGeminiStateBackend=null
 2023-09-27 09:52:30,894 INFO  org.apache.flink.runtime.state.StateBackendLoader            [] - State backend loader loads the state backend as BundledGeminiStateBackend
 2023-09-27 09:52:30,905 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Using legacy state backend BundledGeminiStateBackend{checkpointStreamBackend=File State Backend (checkpoints: 'oss://ssc-b/flink-jobs/namespaces/ssc-m-default/deployments/9ddc3745-7453-4d4b-96ee-965d8b2d5f05/checkpoints/jobs/0e4eb4ec-61d8-4ae9-bf0e-dcaee4b7db5f', savepoints: 'oss://ssc-b/flink-savepoints/namespaces/ssc-m-default/deployments/9ddc3745-7453-4d4b-96ee-965d8b2d5f05, fileStateThreshold: 20480), realGeminiStateBackend=null as Job checkpoint storage
-2023-09-27 09:52:30,905 WARN  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Checkpoint storage passed via StreamExecutionEnvironment is ignored because legacy state backend 'com.alibaba.flink.statebackend.BundledGeminiStateBackend' is used. Legacy state backends can also be used as checkpoint storage and take precedence for backward-compatibility reasons.
+2023-09-27 09:52:30,905 WARN  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Checkpoint storage passed via StreamExecutionEnvironment is ignored because legacy state backend 'com.flink.statebackend.BundledGeminiStateBackend' is used. Legacy state backends can also be used as checkpoint storage and take precedence for backward-compatibility reasons.
 2023-09-27 09:52:31,166 INFO  org.apache.flink.runtime.checkpoint.CheckpointCoordinator    [] - No checkpoint found during restore.
 2023-09-27 09:52:31,184 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Using failover strategy org.apache.flink.runtime.executiongraph.failover.flip1.RestartPipelinedRegionFailoverStrategy@1fe4fab8 for eefef8ed-6597-4099-abe2-ffd3b880146a (0e4eb4ec61d84ae9bf0edcaee4b7db5f).
 2023-09-27 09:52:31,262 INFO  org.apache.flink.kubernetes.kubeclient.resources.KubernetesConfigMapSharedInformer [] - Starting to watch for vvp-workload/job-0e4eb4ec-61d8-4ae9-bf0e-dcaee4b7db5f-cluster-config-map, watching id:a5cf1ba3-9d1a-49aa-9f83-d6cc161ae5e1
