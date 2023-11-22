@@ -225,7 +225,7 @@ INSERT INTO print_sink SELECT id,score from datagen_source;`}
                                     {
                                         key: "25",
                                         label: "state.backend",
-                                        children: "com.alibaba.flink.statebackend.GeminiStateBackendFactory",
+                                        children: "com.flink.statebackend.GeminiStateBackendFactory",
                                     },
                                     { key: "26", label: "metrics.reporter.jmx.port", children: "10000-10240" },
                                     { key: "27", label: "jobmanager.execution.failover-strategy", children: "region" },

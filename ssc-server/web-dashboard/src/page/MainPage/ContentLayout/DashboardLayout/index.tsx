@@ -23,9 +23,9 @@ const DashboardLayout = () => {
                     <div className="detail">
                         <div className="head">实时计算</div>
                         <div className="desc">
-                            实时计算 Flink 版（Alibaba Cloud Realtime Compute for Apache Flink，Powered by
-                            Ververica）是阿里云基于 Apache Flink 构建的企业级、高性能实时大数据处理系统，由 Apache Flink
-                            创始团队官方出品，拥有全球统一商业化品牌，完全兼容开源 Flink API，提供丰富的企业级增值功能。
+                            实时计算 Flink 版（Realtime Compute for Apache Flink，Powered by Melon Wang）是基于 Apache
+                            Flink 构建的企业级、高性能实时大数据处理系统，完全兼容开源 Flink
+                            API，提供丰富的企业级增值功能。
                         </div>
                     </div>
                     <div className="background">

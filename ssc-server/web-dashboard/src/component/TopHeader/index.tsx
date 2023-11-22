@@ -17,7 +17,12 @@ const TopHeader = (props: TopHeaderProps) => {
                     <span className="avatar">
                         <ProjectLogoOutlined />
                     </span>
-                    <div className="star-inserted"></div>
+                    <div
+                        className="star-inserted"
+                        style={{
+                            WebkitMaskImage: `url(${process.env.PUBLIC_URL}/image/platform-logo.svg)`,
+                        }}
+                    ></div>
                 </div>
             </div>
             <div className="header-menu">

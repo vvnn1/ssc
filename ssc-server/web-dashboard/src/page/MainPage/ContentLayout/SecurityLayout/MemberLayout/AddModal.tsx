@@ -32,7 +32,7 @@ const AddModal = (props: ModalProps) => {
                 <Form.Item
                     required
                     label="成员信息"
-                    extra="填写阿里云账号 UID、RAM 用户账号 UID 、RAM 角色账号扮演的阿里云主账号 UID"
+                    extra="填写账号 UID、RAM 用户账号 UID 、RAM 角色账号扮演的主账号 UID"
                     validateStatus="success"
                     hasFeedback
                 >

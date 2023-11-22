@@ -108,7 +108,7 @@ const ConfigurationLayout = () => {
                         { key: "rest.port", value: "8081" },
                         { key: "restart-strategy", value: "none" },
                         { key: "security.delegation.token.provider.hbase.enabled", value: "******" },
-                        { key: "state.backend", value: "com.alibaba.flink.statebackend.GeminiStateBackendFactory" },
+                        { key: "state.backend", value: "com.flink.statebackend.GeminiStateBackendFactory" },
                         { key: "state.backend.gemini.snapshot.close.file", value: "true" },
                         {
                             key: "state.checkpoints.dir",
@@ -140,7 +140,7 @@ const ConfigurationLayout = () => {
                     dataSource={[
                         {
                             key: "version",
-                            value: 'OpenJDK 64-Bit Server VM - "Alibaba" - 1.8/25.102-b52',
+                            value: "OpenJDK 64-Bit Server VM - 1.8/25.102-b52",
                         },
                         {
                             key: "arch",
