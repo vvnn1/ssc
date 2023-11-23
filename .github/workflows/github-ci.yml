@@ -37,7 +37,7 @@ jobs:
     - name: Upload build artifacts (上传构建产物)
       uses: actions/upload-pages-artifact@v2
       with:
-        path: ./build
+        path: ssc-server/web-dashboard/build
 
   deploy:
     needs: build
