@@ -31092,7 +31092,7 @@ perspective-date-column-style,perspective-datetime-column-style,perspective-numb
     --contexify-menu-shadow: 0 3px 6px -4px rgba(0, 0, 0, .12),
     0 6px 16px rgba(0, 0, 0, .08),
     0 9px 28px 8px rgba(0, 0, 0, .05);
-    --contexify-menu-negatePadding: var(--contexify-menu-padding);
+    --contexify-menu-negatePadding: 0px;
     --contexify-separator-color: #ebebeb;
     --contexify-separator-margin: 2px 0px;
     --contexify-itemContent-padding: 3px 12px;
