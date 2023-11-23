@@ -8,11 +8,6 @@ on:
 
   workflow_dispatch:
 
-permissions:
-  contents: write
-  pages: write
-  id-token: write
-
 jobs:
   set-up:
     runs-on: ubuntu-latest
@@ -42,11 +37,16 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
     steps:
     - name: Upload build artifacts (上传构建产物)
       uses: actions/upload-pages-artifact@v2
       with:
-        path: "ssc-server/web-dashboard/build"
+        path: ./build
+      working-directory: ssc-server/web-dashboard
 
     - name: Deploy to Github Pages （部署）
       uses: actions/deploy-pages@v2
