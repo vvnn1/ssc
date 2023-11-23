@@ -20,7 +20,7 @@ ssc系统是基于[Apache Flink](https://flink.apache.org) 、YARN封装的一�
 * 参照hadoop官方`core-site.xml`,`hdfs-site.xml`,`yarn-site.xml`于项目 resource/hadoop 目录下配置
 * 其他可在IDE正常编译运行，打包指令 mvn package -P sit
 * `ssc-server`包含项目后端+前端(暂未对接)，`ssc-cli`为项目命令行客户端
-### 2、网页客户端功能介绍
+### 2、网页客户端功能介绍([在线演示](https://vvnn1.github.io/ssc/index.html#/workspace/:workspace/namespace/:namespace/dashboard))
 运行`ssc-server`后，可通过
 [本地地址](http://localhost:9704/web/123123/zh#/workspace/:workspaceId/namespace/:namespace/dashboard)
 访问前端页面。  
