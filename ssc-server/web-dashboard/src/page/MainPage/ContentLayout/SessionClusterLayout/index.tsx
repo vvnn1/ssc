@@ -80,7 +80,7 @@ const SessionClusterLayout = () => {
                     value: "fail",
                 },
             ],
-            onFilter: (value: string | number | boolean, record) => record.status === value,
+            onFilter: (value: React.Key | boolean, record) => record.status === value,
             width: 150,
             render: value => {
                 if (value === "starting") {
