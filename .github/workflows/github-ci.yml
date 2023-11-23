@@ -1,28 +1,36 @@
 name: Github CI
 
 on:
-  workflow_dispatch:
   push:
     branches: [ "github-ci" ]
   pull_request:
     branches: [ "github-ci" ]
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+  workflow_dispatch:
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  set-up:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x]
-
+        node-version: [ 18.x ]
     steps:
-    - uses: actions/checkout@v3
-
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
     - name: Install (安装依赖)
       run: npm install
       working-directory: ssc-server/web-dashboard
@@ -30,13 +38,16 @@ jobs:
     - name: Build (项目构建)
       run: npm run build
       working-directory: ssc-server/web-dashboard
-      
-    - name:  Upload build artifacts (上传构建产物)
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Upload build artifacts (上传构建产物)
       uses: actions/upload-pages-artifact@v2
       with:
         path: "ssc-server/web-dashboard/build"
-      
+
     - name: Deploy to Github Pages （部署）
       uses: actions/deploy-pages@v2
       with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
