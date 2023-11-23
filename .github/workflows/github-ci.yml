@@ -26,8 +26,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
   build:
+    needs: set-up
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
 
@@ -40,6 +40,7 @@ jobs:
       working-directory: ssc-server/web-dashboard
 
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: Upload build artifacts (上传构建产物)
