@@ -7,4 +7,3 @@ dependency-reduced-pom.xml
 # dependencies
 ssc-server/web-dashboard/node_modules
 ssc-server/web-dashboard/build
-ssc-server/web-dashboard/package-lock.json
