@@ -30353,26 +30353,6 @@ nz-spin {
     border-bottom-width: 0
 }
 
-.neo-loading {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 100;
-    display: flex!important;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: solid;
-    background-size: cover
-}
-
-.neo-loading svg {
-    width: 120px;
-    height: 120px
-}
-
 .ant-tooltip-inner {
     min-height: initial!important;
     font-size: 12px

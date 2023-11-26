@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import ArchiveLayout from "./ArchiveLayout";
 import ConfigurationLayout from "./ConfigurationLayout";
@@ -6,13 +7,17 @@ import DataConnectLayout from "./DataConnectLayout";
 import DraftLayout from "./DraftLayout";
 import MetaLayout from "./MetaLayout";
 import OperationLayout from "./OperationLayout";
-import JobDetailLayout from "./OperationLayout/JobDetailLayout";
 import ResourceLayout from "./ResourceLayout";
 import SecurityLayout from "./SecurityLayout";
 import SessionClusterLayout from "./SessionClusterLayout";
-import SessionCreateLayout from "./SessionClusterLayout/SessionCreateLayout";
-import SessionDetailLayout from "./SessionClusterLayout/SessionDetailLayout";
-import SessionEditorLayout from "./SessionClusterLayout/SessionEditorLayout";
+import SessionDetailLoadingLayout from "./SessionClusterLayout/SessionDetailLayout/LoadingLayout";
+import SessionCreateLoadingLayout from "./SessionClusterLayout/SessionCreateLayout/LoadingLayout";
+import SessionEditorLoadingLayout from "./SessionClusterLayout/SessionEditorLayout/LoadingLayout";
+import JobDetailLoadingLayout from "./OperationLayout/JobDetailLayout/LoadingLayout";
+const JobDetailLayout = lazy(() => import("./OperationLayout/JobDetailLayout"));
+const SessionCreateLayout = lazy(() => import("./SessionClusterLayout/SessionCreateLayout"));
+const SessionDetailLayout = lazy(() => import("./SessionClusterLayout/SessionDetailLayout"));
+const SessionEditorLayout = lazy(() => import("./SessionClusterLayout/SessionEditorLayout"));
 
 const ContentLayout = () => {
     return (
@@ -31,10 +36,15 @@ const ContentLayout = () => {
                         path=""
                         element={<OperationLayout />}
                     />
+
                     <Route path=":jobId">
                         <Route
                             path="*"
-                            element={<JobDetailLayout />}
+                            element={
+                                <Suspense fallback={<JobDetailLoadingLayout />}>
+                                    <JobDetailLayout />
+                                </Suspense>
+                            }
                         />
                     </Route>
                 </Route>
@@ -62,16 +72,28 @@ const ContentLayout = () => {
                 />
                 <Route
                     path="create-session-cluster"
-                    element={<SessionCreateLayout />}
+                    element={
+                        <Suspense fallback={<SessionCreateLoadingLayout />}>
+                            <SessionCreateLayout />
+                        </Suspense>
+                    }
                 />
                 <Route path=":sessionName">
                     <Route
                         path="configure"
-                        element={<SessionEditorLayout />}
+                        element={
+                            <Suspense fallback={<SessionEditorLoadingLayout />}>
+                                <SessionEditorLayout />
+                            </Suspense>
+                        }
                     />
                     <Route
                         path="*"
-                        element={<SessionDetailLayout />}
+                        element={
+                            <Suspense fallback={<SessionDetailLoadingLayout />}>
+                                <SessionDetailLayout />
+                            </Suspense>
+                        }
                     />
                 </Route>
             </Route>
