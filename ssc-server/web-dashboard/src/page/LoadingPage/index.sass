@@ -1,0 +1,54 @@
+.loading-layout
+    position: fixed
+    top: 0
+    left: 0
+    z-index: 9999
+    display: flex!important
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    width: 100%
+    height: 100%
+    background: #fff
+    text-align: center
+
+    h2
+        margin: 0
+        padding: 2px
+        color: #333
+        font-size: 12px
+        letter-spacing: 2px
+
+    span
+        display: inline-block
+        vertical-align: middle
+        width: 10px
+        height: 10px
+        margin: 4px
+        border-radius: 50%
+        background: #0070cc
+        animation: loading .8s infinite alternate
+
+    span:not(:first-child)
+        background: #428bea
+
+    span:nth-of-type(2)
+        animation-delay: .2s
+
+    span:nth-of-type(3)
+        animation-delay: .4s
+
+    span:nth-of-type(4)
+        animation-delay: .6s
+
+    span:nth-of-type(5)
+        animation-delay: .8s
+
+    span:nth-of-type(6)
+        animation-delay: 1s
+
+@keyframes loading
+    0%
+        opacity: 0
+    to
+        opacity: 1

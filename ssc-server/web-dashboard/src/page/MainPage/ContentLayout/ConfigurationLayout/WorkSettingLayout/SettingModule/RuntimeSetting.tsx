@@ -189,6 +189,25 @@ const RuntimeSetting = (props: RuntimeSettingProps) => {
                         </Col>
                         <Col span={12}>
                             <Form.Item
+                                label="系统检查点超时时间"
+                                labelAlign="left"
+                                extra={
+                                    <>
+                                        <i>默认值:</i>
+                                        <code>-</code>{" "}
+                                        系统检查点超时时间，默认值为10min，到达默认之后系统检查点将生成失败
+                                    </>
+                                }
+                            >
+                                <InputNumber
+                                    size="small"
+                                    placeholder="请输入系统检查点超时时间"
+                                    addonAfter={timeUnitSelector}
+                                />
+                            </Form.Item>
+                        </Col>
+                        <Col span={12}>
+                            <Form.Item
                                 label="State 数据过期时间"
                                 labelAlign="left"
                                 extra={
