@@ -5,6 +5,7 @@ import AlarmTemplateLayout from "./AlarmTemplateLayout";
 import MyLink from "../../../../component/MyLink";
 import { Navigate, Route, Routes } from "react-router-dom";
 import TabMenu from "../../../../component/TabMenu";
+import StreamWorkTab from "./WorkSettingLayout/StreamWorkTab";
 
 const menuItems: MenuProps["items"] = [
     {
@@ -32,7 +33,7 @@ const ConfigurationLayout = () => {
                     <Routes>
                         <Route
                             path="deployment-defaults"
-                            element={<WorkSettingLayout />}
+                            element={<StreamWorkTab />}
                         />
                         <Route
                             path="alarm-rules"
