@@ -1,6 +1,5 @@
 import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
-// import ReactDOM from "react-dom";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { HashRouter } from "react-router-dom";
@@ -25,18 +24,5 @@ root.render(
         </HashRouter>
     </React.StrictMode>
 );
-
-// window.addEventListener("load", () => {
-//     ReactDOM.render(
-//         <React.StrictMode>
-//             <HashRouter>
-//                 <ConfigProvider locale={zhCN} wave={{ disabled: true }}>
-//                     <App />
-//                 </ConfigProvider>
-//             </HashRouter>
-//         </React.StrictMode>
-//         ,
-//         document.getElementById("root"));
-// });
 
 reportWebVitals();
