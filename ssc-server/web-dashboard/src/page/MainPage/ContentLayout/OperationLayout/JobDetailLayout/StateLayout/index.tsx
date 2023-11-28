@@ -9,15 +9,15 @@ import MyLink from "../../../../../../component/MyLink";
 const menuItems = [
     {
         key: "overview",
-        label: <MyLink to="overview">总览</MyLink>,
+        label: <MyLink to="../overview">总览</MyLink>,
     },
     {
         key: "history",
-        label: <MyLink to="history">历史</MyLink>,
+        label: <MyLink to="../history">历史</MyLink>,
     },
     {
         key: "configure",
-        label: <MyLink to="configure">配置</MyLink>,
+        label: <MyLink to="../configure">配置</MyLink>,
     },
 ];
 

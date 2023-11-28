@@ -15,19 +15,19 @@ import StopModal from "../StopModal";
 
 const menuItems: MenuProps["items"] = [
     {
-        label: <MyLink to="overview">集群总览</MyLink>,
+        label: <MyLink to="../overview">集群总览</MyLink>,
         key: "overview",
     },
     {
-        label: <MyLink to="event">运行事件</MyLink>,
+        label: <MyLink to="../event">运行事件</MyLink>,
         key: "event",
     },
     {
-        label: <MyLink to="jobmanager/metrics">Job Manager</MyLink>,
+        label: <MyLink to="../jobmanager/metrics">Job Manager</MyLink>,
         key: "jobmanager",
     },
     {
-        label: <MyLink to="taskmanager">Task Manager</MyLink>,
+        label: <MyLink to="../taskmanager">Task Manager</MyLink>,
         key: "taskmanager",
     },
 ];

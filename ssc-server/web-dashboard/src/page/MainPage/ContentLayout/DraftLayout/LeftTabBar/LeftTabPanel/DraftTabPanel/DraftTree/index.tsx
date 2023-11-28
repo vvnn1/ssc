@@ -215,7 +215,11 @@ const DraftTree = () => {
             return;
         }
 
-        navigate(`${node.key}/sql`);
+        if (pathMatch?.params.draftId) {
+            navigate(`../../${node.key}/sql`, { relative: "path" });
+        } else {
+            navigate(`${node.key}/sql`);
+        }
     };
 
     return (

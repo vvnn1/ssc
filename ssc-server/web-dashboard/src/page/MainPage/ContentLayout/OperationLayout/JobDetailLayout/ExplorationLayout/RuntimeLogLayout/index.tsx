@@ -64,11 +64,11 @@ const RuntimeLogLayout = () => {
                     menuItems={[
                         {
                             key: "jobmanager",
-                            label: <MyLink to="jobmanager">Job Manager</MyLink>,
+                            label: <MyLink to="../jobmanager">Job Manager</MyLink>,
                         },
                         {
                             key: "taskmanagers",
-                            label: <MyLink to="taskmanagers">Task Managers</MyLink>,
+                            label: <MyLink to="../taskmanagers">Task Managers</MyLink>,
                         },
                     ]}
                     keyPath="/workspace/:workspaceId/namespace/:namespaceId/operations/:jobType/:jobId/:detailTab/:subTab/:runId/archives/:key/*"

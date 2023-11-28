@@ -1,6 +1,5 @@
 import { MenuProps } from "antd";
 import "./index.sass";
-import WorkSettingLayout from "./WorkSettingLayout";
 import AlarmTemplateLayout from "./AlarmTemplateLayout";
 import MyLink from "../../../../component/MyLink";
 import { Navigate, Route, Routes } from "react-router-dom";
@@ -9,11 +8,11 @@ import StreamWorkTab from "./WorkSettingLayout/StreamWorkTab";
 
 const menuItems: MenuProps["items"] = [
     {
-        label: <MyLink to="deployment-defaults">作业默认配置</MyLink>,
+        label: <MyLink to="../deployment-defaults">作业默认配置</MyLink>,
         key: "deployment-defaults",
     },
     {
-        label: <MyLink to="alarm-rules">告警规则模板</MyLink>,
+        label: <MyLink to="../alarm-rules">告警规则模板</MyLink>,
         key: "alarm-rules",
     },
 ];
