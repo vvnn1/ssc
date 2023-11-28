@@ -10,11 +10,11 @@ import TabMenu from "../../../../component/TabMenu";
 
 const menuItems: MenuProps["items"] = [
     {
-        label: <MyLink to="connector">连接器</MyLink>,
+        label: <MyLink to="../connector">连接器</MyLink>,
         key: "connector",
     },
     {
-        label: <MyLink to="format">数据格式</MyLink>,
+        label: <MyLink to="../format">数据格式</MyLink>,
         key: "format",
     },
 ];

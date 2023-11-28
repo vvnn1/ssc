@@ -7,11 +7,11 @@ import AlarmRule from "./AlarmRule";
 
 const items: MenuProps["items"] = [
     {
-        label: <MyLink to="events">告警事件</MyLink>,
+        label: <MyLink to="../events">告警事件</MyLink>,
         key: "events",
     },
     {
-        label: <MyLink to="rules">告警规则</MyLink>,
+        label: <MyLink to="../rules">告警规则</MyLink>,
         key: "rules",
     },
 ];

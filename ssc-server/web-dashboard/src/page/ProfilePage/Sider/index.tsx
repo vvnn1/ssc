@@ -30,7 +30,7 @@ const items: MenuItem[] = [
         "项目空间",
         "project",
         undefined,
-        [getItem(<MyLink to="namespaces">项目空间列表</MyLink>, "namespaces", <UnorderedListOutlined />)],
+        [getItem(<MyLink to="../namespaces">项目空间列表</MyLink>, "namespaces", <UnorderedListOutlined />)],
         "group"
     ),
 
@@ -39,8 +39,8 @@ const items: MenuItem[] = [
         "setting",
         undefined,
         [
-            getItem(<MyLink to="timezone">时区设置</MyLink>, "timezone", <GlobalOutlined />),
-            getItem(<MyLink to="code-editor">编辑器设置</MyLink>, "code-editor", <CodeOutlined />),
+            getItem(<MyLink to="../timezone">时区设置</MyLink>, "timezone", <GlobalOutlined />),
+            getItem(<MyLink to="../code-editor">编辑器设置</MyLink>, "code-editor", <CodeOutlined />),
         ],
         "group"
     ),

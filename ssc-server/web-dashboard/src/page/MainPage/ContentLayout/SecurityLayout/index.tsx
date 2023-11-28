@@ -9,15 +9,15 @@ import KerberoLayout from "./KerberoLayout";
 
 const menuItems: MenuProps["items"] = [
     {
-        label: <MyLink to="member">成员管理</MyLink>,
+        label: <MyLink to="../member">成员管理</MyLink>,
         key: "member",
     },
     {
-        label: <MyLink to="kerbero">Hive Kerberos</MyLink>,
+        label: <MyLink to="../kerbero">Hive Kerberos</MyLink>,
         key: "kerbero",
     },
     {
-        label: <MyLink to="secret">密钥托管</MyLink>,
+        label: <MyLink to="../secret">密钥托管</MyLink>,
         key: "secret",
     },
 ];

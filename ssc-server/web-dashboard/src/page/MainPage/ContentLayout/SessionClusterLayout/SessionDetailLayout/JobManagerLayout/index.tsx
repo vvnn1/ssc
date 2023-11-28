@@ -11,23 +11,23 @@ import LogDetailLayout from "./LogListLayout/LogDetailLayout";
 
 const items: MenuProps["items"] = [
     {
-        label: <MyLink to="metrics">Metrics</MyLink>,
+        label: <MyLink to="../metrics">Metrics</MyLink>,
         key: "metrics",
     },
     {
-        label: <MyLink to="configuration">配置</MyLink>,
+        label: <MyLink to="../configuration">配置</MyLink>,
         key: "configuration",
     },
     {
-        label: <MyLink to="logs">日志</MyLink>,
+        label: <MyLink to="../logs">日志</MyLink>,
         key: "logs",
     },
     {
-        label: <MyLink to="stdout">Stdout</MyLink>,
+        label: <MyLink to="../stdout">Stdout</MyLink>,
         key: "stdout",
     },
     {
-        label: <MyLink to="log-list">日志列表</MyLink>,
+        label: <MyLink to="../log-list">日志列表</MyLink>,
         key: "log-list",
     },
 ];

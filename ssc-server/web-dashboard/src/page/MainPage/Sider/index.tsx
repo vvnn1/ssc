@@ -36,15 +36,19 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-    getItem(<MyLink to="dashboard">系统概览</MyLink>, "dashboard", <HomeOutlined />),
-    getItem(<MyLink to="draft">SQL开发</MyLink>, "draft", <ConsoleSqlOutlined />),
-    getItem(<MyLink to="operations/stream">作业运维</MyLink>, "operations", <BuildOutlined />),
-    getItem(<MyLink to="resource">资源管理</MyLink>, "resource", <FileZipOutlined />),
-    getItem(<MyLink to="connectors/connector">数据连接</MyLink>, "connectors", <ShareAltOutlined />),
-    getItem(<MyLink to="metadata/list">元数据管理</MyLink>, "metadata", <DatabaseOutlined />),
-    getItem(<MyLink to="session-clusters/list">Session 集群</MyLink>, "session-clusters", <ClusterOutlined />),
-    getItem(<MyLink to="security/member">安全中心</MyLink>, "security", <SafetyOutlined />),
-    getItem(<MyLink to="configurations/deployment-defaults">配置管理</MyLink>, "configurations", <ControlOutlined />),
+    getItem(<MyLink to="../dashboard">系统概览</MyLink>, "dashboard", <HomeOutlined />),
+    getItem(<MyLink to="../draft">SQL开发</MyLink>, "draft", <ConsoleSqlOutlined />),
+    getItem(<MyLink to="../operations/stream">作业运维</MyLink>, "operations", <BuildOutlined />),
+    getItem(<MyLink to="../resource">资源管理</MyLink>, "resource", <FileZipOutlined />),
+    getItem(<MyLink to="../connectors/connector">数据连接</MyLink>, "connectors", <ShareAltOutlined />),
+    getItem(<MyLink to="../metadata/list">元数据管理</MyLink>, "metadata", <DatabaseOutlined />),
+    getItem(<MyLink to="../session-clusters/list">Session 集群</MyLink>, "session-clusters", <ClusterOutlined />),
+    getItem(<MyLink to="../security/member">安全中心</MyLink>, "security", <SafetyOutlined />),
+    getItem(
+        <MyLink to="../configurations/deployment-defaults">配置管理</MyLink>,
+        "configurations",
+        <ControlOutlined />
+    ),
 ];
 
 const Sider = () => {

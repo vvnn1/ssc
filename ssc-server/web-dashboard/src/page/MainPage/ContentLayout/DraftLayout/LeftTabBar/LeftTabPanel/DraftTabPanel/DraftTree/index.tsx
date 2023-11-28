@@ -120,16 +120,14 @@ const DraftTree = () => {
 
     useEffect(() => {
         const draftId = pathMatch?.params.draftId;
-        if (draftId) {
-            doOnLeafNode(treeData, data => {
-                if (data.key === draftId) {
-                    data.className = "ant-tree-treenode-focused";
-                } else {
-                    data.className = undefined;
-                }
-            });
-            setTreeData([...treeData]);
-        }
+        doOnLeafNode(treeData, data => {
+            if (data.key === draftId) {
+                data.className = "ant-tree-treenode-focused";
+            } else {
+                data.className = undefined;
+            }
+        });
+        setTreeData([...treeData]);
     }, [pathMatch?.params.draftId]);
 
     const titleRender = (dataNode: TreeDataNode) => {
@@ -215,7 +213,11 @@ const DraftTree = () => {
             return;
         }
 
-        navigate(`${node.key}/sql`);
+        if (pathMatch?.params.draftId) {
+            navigate(`../../${node.key}/sql`, { relative: "path" });
+        } else {
+            navigate(`${node.key}/sql`);
+        }
     };
 
     return (

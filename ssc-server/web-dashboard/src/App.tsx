@@ -7,14 +7,18 @@ import ProfilePage from "./page/ProfilePage";
 const App: React.FC = () => {
     return (
         <Routes>
-            <Route
-                path="/workspace/:workspaceId/namespace/:namespaceId/*"
-                element={<MainPage />}
-            />
-            <Route
-                path="/profile/*"
-                element={<ProfilePage />}
-            />
+            <Route path="/workspace/:workspaceId/namespace/:namespaceId">
+                <Route
+                    path="*"
+                    element={<MainPage />}
+                />
+            </Route>
+            <Route path="/profile">
+                <Route
+                    path="*"
+                    element={<ProfilePage />}
+                />
+            </Route>
         </Routes>
     );
 };

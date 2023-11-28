@@ -16,47 +16,47 @@ const menuItems: TabsProps["items"] = [
     {
         label: "部署详情",
         key: "configuration",
-        children: "configuration",
+        children: "../configuration",
     },
     {
         label: "状态总览",
         key: "overview",
-        children: "overview",
+        children: "../overview",
     },
     {
         label: "数据曲线",
         key: "charts",
-        children: "charts",
+        children: "../charts",
     },
     {
         label: "运行事件",
         key: "events",
-        children: "events",
+        children: "../events",
     },
     {
         label: "状态集管理",
         key: "states",
-        children: "states/overview",
+        children: "../states/overview",
     },
     {
         label: "作业探查",
         key: "exploration",
-        children: "exploration/running",
+        children: "../exploration/running",
     },
     {
         label: "自动调优",
         key: "autopilot",
-        children: "autopilot",
+        children: "../autopilot",
     },
     {
         label: "智能诊断",
         key: "diagnosis",
-        children: "diagnosis",
+        children: "../diagnosis",
     },
     {
         label: "告警配置",
         key: "alarm",
-        children: "alarm/events",
+        children: "../alarm/events",
     },
 ];
 

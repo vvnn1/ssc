@@ -57,24 +57,24 @@ const items: DescriptionsProps["items"] = [
 
 const items2: MenuProps["items"] = [
     {
-        label: <MyLink to="metrics">Metrics</MyLink>,
+        label: <MyLink to="../metrics">Metrics</MyLink>,
         key: "metrics",
     },
     {
-        label: <MyLink to="logs">日志</MyLink>,
+        label: <MyLink to="../logs">日志</MyLink>,
         key: "logs",
     },
     {
-        label: <MyLink to="thread-dump">Thread Dump</MyLink>,
+        label: <MyLink to="../thread-dump">Thread Dump</MyLink>,
         key: "thread-dump",
     },
 
     {
-        label: <MyLink to="stdout">Stdout</MyLink>,
+        label: <MyLink to="../stdout">Stdout</MyLink>,
         key: "stdout",
     },
     {
-        label: <MyLink to="log-list">日志列表</MyLink>,
+        label: <MyLink to="../log-list">日志列表</MyLink>,
         key: "log-list",
     },
 ];
