@@ -25092,9 +25092,6 @@ cdk-virtual-scroll-viewport.ant-table-body {
     visibility: hidden
 }
 
-.ant-tabs-card.ant-tabs-top>.ant-tabs-nav .ant-tabs-tab+.ant-tabs-tab,.ant-tabs-card.ant-tabs-bottom>.ant-tabs-nav .ant-tabs-tab+.ant-tabs-tab,.ant-tabs-card.ant-tabs-top>div>.ant-tabs-nav .ant-tabs-tab+.ant-tabs-tab,.ant-tabs-card.ant-tabs-bottom>div>.ant-tabs-nav .ant-tabs-tab+.ant-tabs-tab {
-    margin-left: -1px
-}
 
 .ant-tabs-card.ant-tabs-top>.ant-tabs-nav .ant-tabs-tab,.ant-tabs-card.ant-tabs-top>div>.ant-tabs-nav .ant-tabs-tab {
     border-radius: 0

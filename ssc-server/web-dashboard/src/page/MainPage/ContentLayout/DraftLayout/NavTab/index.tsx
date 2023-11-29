@@ -1,5 +1,5 @@
 import { Tabs, TabsProps } from "antd";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import "./index.sass";
 import { StreamDraftOutlined } from "../../../../../component/Icon";
 import { useNavigate } from "react-router-dom";
@@ -88,7 +88,7 @@ const NavTab: React.FC<NavTabProps> = ({ selectedItem }) => {
             } else {
                 newActiveId = newPanes[0].id;
             }
-            navigate(`../../${newActiveId}/sql`);
+            navigate(`../../${newActiveId}/sql`, { replace: true });
         }
     };
 
