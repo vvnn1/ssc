@@ -1,4 +1,4 @@
-import { Table } from "antd";
+import { Table, Tooltip } from "antd";
 import "./index.sass";
 import MyLink from "../../../../../../component/MyLink";
 
@@ -10,9 +10,13 @@ const columns: ColumnTypes = [
         title: "Path, ID",
         render: (_, record) => (
             <MyLink to={`${record.ip}/metrics`}>
-                <span>{record.ip}</span>
+                <Tooltip title="192.168.0.187:43945-f87d5f">
+                    <span>{record.ip}</span>
+                </Tooltip>
                 <br />
-                <span>{record.url}</span>
+                <Tooltip title="akka.tcp://flink@192.168.0.187:43945/user/rpc/taskmanager_0">
+                    <span>{record.url}</span>
+                </Tooltip>
             </MyLink>
         ),
         ellipsis: true,
@@ -75,9 +79,6 @@ const TaskManagerLayout = () => {
                 ]}
                 pagination={false}
                 rowKey={"port"}
-                getPopupContainer={() =>
-                    document.body.getElementsByClassName("cdk-overlay-container")[0] as HTMLDivElement
-                }
             />
         </div>
     );
