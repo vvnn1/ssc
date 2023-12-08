@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.BadCredentialsException;
+//import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -33,7 +33,7 @@ public class SscExceptionHandler {
         return builder.body(SscResult.code(SscErrorCode.SYSTEM_ERROR, "未知异常"));
     }
 
-    @ExceptionHandler({BadCredentialsException.class, SscClientException.class, BindException.class, MethodArgumentNotValidException.class, IllegalStateException.class})
+    @ExceptionHandler({/*BadCredentialsException.class,*/ SscClientException.class, BindException.class, MethodArgumentNotValidException.class, IllegalStateException.class})
     public ResponseEntity<SscResult> clientExceptionHandler(Exception e){
         ResponseEntity.BodyBuilder builder = ResponseEntity.badRequest();
 
