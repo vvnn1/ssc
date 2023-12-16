@@ -4,8 +4,8 @@ package com.github.martvey.ssc.entity.result.type;
 import org.apache.flink.api.common.typeutils.TypeSerializer;
 
 public class BasicTypeInfoHolder<T> implements TypeInfoHolder<T> {
-    private String sinkName;
-    private TypeSerializer<T> typeSerializer;
+    private final String sinkName;
+    private final TypeSerializer<T> typeSerializer;
 
     public BasicTypeInfoHolder(String sinkName, TypeSerializer<T> typeSerializer) {
         this.sinkName = sinkName;

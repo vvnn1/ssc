@@ -23,10 +23,8 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 @Slf4j
-public class CollectStreamResult<T> implements AbstractCollectResult<T>{
-
+public class StreamResultCollector<T> implements ResultCollector {
     private static final int CHANGE_RECORD_BUFFER_SIZE = 5_000;
-    private final ExecutorService executorService;
     private final List<ResultRetrievalThread> resultRetrievalThreadList;
     private final Map<String, List<T>> changeRecordBuffer;
     private CompletableFuture<JobExecutionResult> jobExecutionResultFuture;
@@ -34,38 +32,23 @@ public class CollectStreamResult<T> implements AbstractCollectResult<T>{
     protected final Object resultLock;
     protected AtomicReference<SqlExecutionException> executionException = new AtomicReference<>();
 
-    public CollectStreamResult(List<SocketHolderWrapper<T>> informationHolderList) {
+    public StreamResultCollector(List<SocketHolderWrapper<T>> informationHolderList) {
         this.changeRecordBuffer = new HashMap<>();
         this.resultLock = new Object();
-
-        int threadLength = informationHolderList.size();
-        this.executorService = threadLength == 0
-                ? Executors.newCachedThreadPool()
-                : Executors.newFixedThreadPool(threadLength);
 
         this.resultRetrievalThreadList = informationHolderList
                 .stream()
                 .map(holder -> {
-                    TypeSerializer<T> serializer = holder.getTypeSerializer();
                     String resultName = holder.getName();
-                    InetAddress inetAddress = holder.getInetAddress();
-                    int port = holder.getPort();
-
-                    try {
-                        SocketStreamIterator<T> iterator = new SocketStreamIterator<>(port, inetAddress, serializer);
-                        holder.setInetAddress(iterator.getBindAddress());
-                        holder.setPort(iterator.getPort());
-                        return new ResultRetrievalThread(resultName, iterator);
-                    } catch (IOException e) {
-                        throw new SqlClientException("Could not start socket for result retrieval.", e);
-                    }
+                    SocketStreamIterator<T> iterator = holder.getStreamIterator();
+                    return new ResultRetrievalThread(resultName, iterator);
                 })
                 .collect(Collectors.toList());
     }
 
     @Override
     public void startRetrieval(JobClient jobClient) {
-        resultRetrievalThreadList.forEach(executorService::submit);
+        resultRetrievalThreadList.forEach(Thread::start);
 
         jobExecutionResultFuture = jobClient.getJobExecutionResult()
                 .whenComplete((unused, throwable) -> {
@@ -79,7 +62,7 @@ public class CollectStreamResult<T> implements AbstractCollectResult<T>{
     }
 
     @Override
-    public boolean isJobRunning() {
+    public boolean isCollectorRunning() {
         return !jobExecutionResultFuture.isDone();
     }
 
@@ -88,13 +71,12 @@ public class CollectStreamResult<T> implements AbstractCollectResult<T>{
         for (ResultRetrievalThread resultRetrievalThread : resultRetrievalThreadList) {
             resultRetrievalThread.isRunning = false;
         }
-        executorService.shutdownNow();
     }
 
     public TypedResult<List<T>> retrieveStreamResult(String tableName) {
         synchronized (resultLock) {
             List<T> resultList = changeRecordBuffer.get(tableName);
-            if (isRetrieving(tableName) && executionException.get() == null && isJobRunning()) {
+            if (isRetrieving(tableName) && executionException.get() == null && isCollectorRunning()) {
                 if (resultList == null || resultList.isEmpty()) {
                     return TypedResult.empty();
                 } else {
@@ -138,7 +120,7 @@ public class CollectStreamResult<T> implements AbstractCollectResult<T>{
             throw executionException.get();
         }
 
-        if (isJobRunning()) {
+        if (isCollectorRunning()) {
             return TypedResult.empty();
         }
 
@@ -156,7 +138,7 @@ public class CollectStreamResult<T> implements AbstractCollectResult<T>{
 
     // --------------------------------------------------------------------------------------------
 
-    private class ResultRetrievalThread implements Runnable {
+    private class ResultRetrievalThread extends Thread {
 
         private final String tableName;
         private final SocketStreamIterator<T> iterator;

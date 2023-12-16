@@ -4,7 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.apache.flink.api.common.typeutils.TypeSerializer;
+import org.apache.flink.streaming.experimental.SocketStreamIterator;
+import org.apache.flink.table.client.SqlClientException;
 
+import java.io.IOException;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -14,17 +17,15 @@ import java.net.UnknownHostException;
 @ToString
 public class SocketHolderWrapper<T> implements TypeInfoHolder<T> {
     private final TypeInfoHolder<T> holder;
-    private InetAddress inetAddress;
-    private int port;
+    private final SocketStreamIterator<T> streamIterator;
 
     public SocketHolderWrapper(TypeInfoHolder<T> holder) {
-        this.holder = holder;
         try {
-            this.inetAddress = Inet4Address.getLocalHost();
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
+            this.streamIterator = new SocketStreamIterator<>(0, Inet4Address.getLocalHost(), holder.getTypeSerializer());
+        } catch (IOException e) {
+            throw new SqlClientException("Could not start socket.", e);
         }
-        this.port = 0;
+        this.holder = holder;
     }
 
 
@@ -36,5 +37,13 @@ public class SocketHolderWrapper<T> implements TypeInfoHolder<T> {
     @Override
     public TypeSerializer<T> getTypeSerializer() {
         return holder.getTypeSerializer();
+    }
+
+    public int getPort() {
+        return this.streamIterator.getPort();
+    }
+
+    public InetAddress getInetAddress() {
+        return this.streamIterator.getBindAddress();
     }
 }

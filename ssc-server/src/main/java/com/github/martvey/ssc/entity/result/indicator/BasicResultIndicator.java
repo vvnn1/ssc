@@ -1,5 +1,7 @@
-package com.github.martvey.ssc.entity.result.view;
+package com.github.martvey.ssc.entity.result.indicator;
 
+import com.github.martvey.ssc.entity.result.collector.ResultCollector;
+import com.github.martvey.ssc.entity.result.collector.StreamResultCollector;
 import com.github.martvey.ssc.entity.result.type.TypeInfoHolder;
 import org.apache.flink.table.client.gateway.SqlExecutionException;
 import org.apache.flink.table.client.gateway.TypedResult;
@@ -11,10 +13,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 
-public class BasicResultView<T> extends AbstractResultView<T>{
-    public BasicResultView(PrintWriter writer, ResultCollectorOperator<T> operator, List<TypeInfoHolder<T>> typeInfoHolders) {
-        super(writer, operator, typeInfoHolders);
+public class BasicResultIndicator<T> extends AbstractResultIndicator<T> {
+    public BasicResultIndicator(PrintWriter writer,
+                                ResultCollector collector,
+                                List<TypeInfoHolder<T>> typeInfoHolders,
+                                Supplier<Boolean> isRunning) {
+        super(writer, collector, typeInfoHolders, isRunning);
     }
 
     @Override
@@ -39,7 +45,7 @@ public class BasicResultView<T> extends AbstractResultView<T>{
 
     @Override
     protected void printStreamResults(Map<String, Integer> receiveCount) {
-        while(true){
+        while(isDisplayRunning()){
             if (CollectionUtils.isEmpty(typeInfoHolderList)){
                 return;
             }
@@ -53,7 +59,7 @@ public class BasicResultView<T> extends AbstractResultView<T>{
             for (int i = typeInfoHolderList.size() - 1; i >= 0; i--){
                 TypeInfoHolder<T> typeInfoHolder = typeInfoHolderList.get(i);
                 String sinkName = typeInfoHolder.getName();
-                TypedResult<List<T>> result = operator.retrieveStreamResult(sinkName);
+                TypedResult<List<T>> result = ((StreamResultCollector<T>) collector).retrieveStreamResult(sinkName);
 
                 switch (result.getType()){
                     case EMPTY:

@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-public class CollectBatchResult<T> implements AbstractCollectResult<T>{
+public class BatchResultCollector<T> implements ResultCollector {
 
     private final Object resultLock;
     private final Map<String, TypeSerializer<T>> typeSerializerMap;
@@ -27,7 +27,7 @@ public class CollectBatchResult<T> implements AbstractCollectResult<T>{
     private CompletableFuture<Void> jobExecutionResultFuture;
 
 
-    public CollectBatchResult(List<TypeInfoHolder<T>> typeInfoHolderList) {
+    public BatchResultCollector(List<TypeInfoHolder<T>> typeInfoHolderList) {
         this.resultLock = new Object();
         this.typeSerializerMap = typeInfoHolderList
                 .stream()
@@ -49,7 +49,7 @@ public class CollectBatchResult<T> implements AbstractCollectResult<T>{
     }
 
     @Override
-    public boolean isJobRunning() {
+    public boolean isCollectorRunning() {
         return !jobExecutionResultFuture.isDone();
     }
 
@@ -86,7 +86,7 @@ public class CollectBatchResult<T> implements AbstractCollectResult<T>{
     private class ResultRetrievalHandler implements Consumer<JobExecutionResult> {
         @Override
         public void accept(JobExecutionResult jobExecutionResult) {
-            CollectBatchResult.this.resultTableMap = typeSerializerMap
+            BatchResultCollector.this.resultTableMap = typeSerializerMap
                     .entrySet()
                     .stream()
                     .collect(Collectors.toMap(Map.Entry::getKey, entry -> {

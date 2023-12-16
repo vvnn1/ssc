@@ -4,30 +4,31 @@ import com.github.martvey.core.validator.SqlMetadata;
 import com.github.martvey.debug.exception.UserProgramException;
 import com.github.martvey.debug.util.SinkNameSelector;
 import com.github.martvey.ssc.constant.AppEnum;
-import com.github.martvey.ssc.entity.result.collector.AbstractCollectResult;
-import com.github.martvey.ssc.entity.result.collector.CollectBatchResult;
-import com.github.martvey.ssc.entity.result.collector.CollectStreamResult;
+import com.github.martvey.ssc.entity.result.collector.ResultCollector;
+import com.github.martvey.ssc.entity.result.collector.BatchResultCollector;
+import com.github.martvey.ssc.entity.result.collector.StreamResultCollector;
 import com.github.martvey.ssc.entity.result.type.*;
-import com.github.martvey.ssc.entity.result.view.*;
-import com.github.martvey.ssc.exception.SscDebugException;
+import com.github.martvey.ssc.entity.result.indicator.*;
+import com.github.martvey.ssc.util.FlinkConfigurationUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.flink.api.common.ExecutionConfig;
 import org.apache.flink.api.dag.Pipeline;
 import org.apache.flink.client.ClientUtils;
+import org.apache.flink.client.deployment.application.ApplicationConfiguration;
 import org.apache.flink.client.program.*;
-import org.apache.flink.configuration.Configuration;
-import org.apache.flink.configuration.DeploymentOptions;
+import org.apache.flink.configuration.*;
 import org.apache.flink.core.execution.DefaultExecutorServiceLoader;
 import org.apache.flink.core.execution.JobClient;
 import org.apache.flink.core.execution.PipelineExecutorFactory;
 import org.apache.flink.optimizer.CompilerException;
+import org.apache.flink.runtime.util.ConfigurationParserUtils;
 import org.apache.flink.table.api.TableSchema;
+import org.apache.flink.table.client.config.ConfigUtil;
 import org.apache.flink.table.client.config.Environment;
 import org.apache.flink.table.client.gateway.SqlExecutionException;
 import org.apache.flink.table.operations.ddl.CreateDebugOperation;
 import org.apache.flink.util.ExceptionUtils;
 import org.apache.flink.util.TemporaryClassLoaderContext;
-import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Nullable;
 import java.io.PrintWriter;
@@ -36,6 +37,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -57,7 +59,7 @@ public class ResultExecutor {
     private final Configuration configuration;
     private final List<URL> classPathList;
     private final String entryPointClassName;
-
+    private final Supplier<Boolean> isRunning;
 
     private ResultExecutor(Configuration configuration,
                            List<URL> classPathList,
@@ -65,46 +67,48 @@ public class ResultExecutor {
                            Environment environment,
                            PrintWriter writer,
                            AppEnum appType,
+                           Supplier<Boolean> isRunning,
                            @Nullable String sqlContent) {
         this.classPathList = classPathList;
         this.entryPointClassName = entryPointClassName;
         this.environment = environment;
         this.configuration = configuration;
         this.writer = writer;
+        this.isRunning = isRunning;
         this.sqlContent = sqlContent;
         this.appType = appType;
         this.inStreamMode = environment.getExecution().inStreamingMode();
     }
 
-    @SuppressWarnings("all")
     public void printResult() throws ProgramInvocationException {
         List<TypeInfoHolder<?>> typeInfoHolderList = buildTypeInfoHolderList();
 
         String[] args;
+        ResultCollector collector;
 
-        AbstractCollectResult<?> result;
         if (inStreamMode) {
             List<SocketHolderWrapper<?>> socketList = convert2Socket(typeInfoHolderList);
-            result = new CollectStreamResult(socketList);
+            collector = new StreamResultCollector(socketList);
             args = buildProgramArgs(socketList);
         } else {
-            result = new CollectBatchResult(typeInfoHolderList);
+            collector = new BatchResultCollector(typeInfoHolderList);
             args = buildBaseArgs();
         }
 
-        ResultCollectorOperator<?> operator = new ResultCollectorOperator<>(result);
-
-        JobClient jobClient = runJob(args);
-        operator.startRetrieval(jobClient);
-
-        boolean isSingle = typeInfoHolderList.size() == 1;
-        if (appType == AppEnum.SQL) {
-            receiveSqlResult(isSingle, operator, typeInfoHolderList);
-        } else if (appType == AppEnum.JAR) {
-            receiveJarResult(operator, typeInfoHolderList);
+        if(!isRunning.get()){
+            return;
         }
 
-        if (operator.isJobRunning()) {
+        JobClient jobClient = runJob(args);
+        collector.startRetrieval(jobClient);
+
+        if (appType == AppEnum.SQL) {
+            receiveSqlResult(collector, typeInfoHolderList);
+        } else if (appType == AppEnum.JAR) {
+            receiveJarResult(collector, typeInfoHolderList);
+        }
+
+        if (collector.isCollectorRunning()) {
             jobClient.cancel();
         }
     }
@@ -165,9 +169,8 @@ public class ResultExecutor {
                 .build();
     }
 
-    @SuppressWarnings("all")
-    private void receiveJarResult(ResultCollectorOperator<?> operator, List<TypeInfoHolder<?>> typeInfoHolderList) {
-        BasicResultView<? extends Serializable> resultView = new BasicResultView(writer, operator, typeInfoHolderList);
+    private void receiveJarResult(ResultCollector collector, List<TypeInfoHolder<?>> typeInfoHolderList) {
+        BasicResultIndicator<? extends Serializable> resultView = new BasicResultIndicator(writer, collector, typeInfoHolderList, isRunning);
         if (inStreamMode) {
             resultView.displayStreamResults();
         } else {
@@ -175,25 +178,28 @@ public class ResultExecutor {
         }
     }
 
-    @SuppressWarnings("all")
-    private void receiveSqlResult(Boolean isSingle, ResultCollectorOperator<?> operator, List<TypeInfoHolder<?>> typeInfoHolderList) {
+    private void receiveSqlResult(ResultCollector collector, List<TypeInfoHolder<?>> typeInfoHolderList) {
         if (inStreamMode) {
-            ResultView resultView = isSingle
-                    ? new SqlTableauResultView(writer, operator, typeInfoHolderList)
-                    : new SqlChangelogResultView(writer, operator, typeInfoHolderList);
-            resultView.displayStreamResults();
+            ResultIndicator resultIndicator = typeInfoHolderList.size() == 1
+                    ? new SqlTableauResultIndicator(writer, collector, typeInfoHolderList, isRunning)
+                    : new SqlChangelogResultIndicator(writer, collector, typeInfoHolderList, isRunning);
+            resultIndicator.displayStreamResults();
         } else {
-            ResultView resultView = new SqlTableauResultView(writer, operator, typeInfoHolderList);
-            resultView.displayBatchResults();
+            ResultIndicator resultIndicator = new SqlTableauResultIndicator(writer, collector, typeInfoHolderList, isRunning);
+            resultIndicator.displayBatchResults();
         }
     }
 
     private String[] buildBaseArgs() {
-        return new String[]{OPT_D, String.format(DEBUG_ENABLE, Boolean.TRUE)};
+        List<String> argsList = ConfigUtils.decodeListFromConfig(configuration, ApplicationConfiguration.APPLICATION_ARGS, String::new);
+        argsList.add(OPT_D);
+        argsList.add(String.format(DEBUG_ENABLE, Boolean.TRUE));
+        return argsList.toArray(new String[0]);
     }
 
     private String[] buildProgramArgs(List<SocketHolderWrapper<?>> socketList) {
-        String[] debugArgs = Arrays.copyOf(buildBaseArgs(), 2 + 4 * socketList.size());
+        String[] baseArgs = buildBaseArgs();
+        String[] debugArgs = Arrays.copyOf(baseArgs, baseArgs.length + 4 * socketList.size());
 
         String[] socketArgs = socketList.stream()
                 .flatMap(socket ->
@@ -216,11 +222,13 @@ public class ResultExecutor {
     }
 
     private List<TypeInfoHolder<?>> getTypeInfoHolderFromProgram() throws CompilerException, ProgramInvocationException {
-        String[] args = Arrays.copyOf(buildBaseArgs(), 4);
-        args[2] = OPT_D;
-        args[3] = String.format(COLLECT_ENABLE, "true");
+        String[] baseArgs = buildBaseArgs();
+        String[] complementArgs = {OPT_D, String.format(COLLECT_ENABLE, "true")};
 
-        PackagedProgram packagedProgram = buildPackagedProgram(args);
+        String[] debugArgs = Arrays.copyOf(baseArgs, baseArgs.length + complementArgs.length);
+        System.arraycopy(complementArgs, 0, debugArgs, baseArgs.length, complementArgs.length);
+
+        PackagedProgram packagedProgram = buildPackagedProgram(debugArgs);
         ClassLoader userCodeClassLoader = packagedProgram.getUserCodeClassLoader();
 
         OptimizerPlanEnvironment benv = new OptimizerPlanEnvironment(configuration, userCodeClassLoader, 1);
@@ -244,7 +252,7 @@ public class ResultExecutor {
                 if (t instanceof ProgramInvocationException) {
                     Throwable cause = t.getCause();
                     if (cause instanceof UserProgramException) {
-                        throw new SscDebugException(cause.getMessage());
+                        throw (UserProgramException)cause;
                     }
                     throw t;
                 }
@@ -272,6 +280,8 @@ public class ResultExecutor {
         private Environment environment;
         private Configuration configuration;
         private AppEnum appType;
+
+        private Supplier<Boolean> isRunning;
 
         public Builder writer(PrintWriter writer) {
             this.writer = writer;
@@ -313,6 +323,11 @@ public class ResultExecutor {
             return this;
         }
 
+        public Builder isRunning(Supplier<Boolean> isRunning) {
+            this.isRunning = isRunning;
+            return this;
+        }
+
         private List<URL> mergeJarUrlAndClassPath() {
             LinkedList<URL> list = new LinkedList<>();
             list.addAll(classPathList == null ? Collections.emptyList() : classPathList);
@@ -321,13 +336,16 @@ public class ResultExecutor {
         }
 
         public ResultExecutor build() throws URISyntaxException, ProgramInvocationException {
-            return new ResultExecutor(configuration,
+            return new ResultExecutor(
+                    configuration,
                     mergeJarUrlAndClassPath(),
                     entryPointClassName,
                     environment,
                     writer,
                     appType,
-                    sqlContent);
+                    isRunning,
+                    sqlContent
+            );
         }
     }
 }
