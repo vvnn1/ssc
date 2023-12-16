@@ -40,39 +40,39 @@ public class LoginShellApplicationRunner extends DefaultShellApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        Object username = getOptionValueByName("username", args);
-        if (!ObjectUtils.isEmpty(username)) {
-            this.username = String.valueOf(username);
-            args = removeOptionByName("username", args);
-        }
-
-        Object password = getOptionValueByName("password", args);
-        if (!ObjectUtils.isEmpty(password)) {
-            this.password = String.valueOf(password);
-            args = removeOptionByName("password", args);
-        }
-
-        while (true) {
-            try {
-                while (ObjectUtils.isEmpty(this.username)) {
-                    this.username = lineReader.readLine("请输入用户名称:");
-                    this.password = null;
-                }
-
-                while (ObjectUtils.isEmpty(this.password)) {
-                    this.password = lineReader.readLine("请输入用户密码:", '*');
-                }
-
-                userService.login(this.username, this.password);
-                break;
-            } catch (UserInterruptException e) {
-                System.exit(0);
-            } catch (SscCliException e) {
-                lineReader.printAbove(new AttributedString(e.getMessage(), AttributedStyle.DEFAULT.foreground(AttributedStyle.RED)));
-                this.username = null;
-                this.password = null;
-            }
-        }
+//        Object username = getOptionValueByName("username", args);
+//        if (!ObjectUtils.isEmpty(username)) {
+//            this.username = String.valueOf(username);
+//            args = removeOptionByName("username", args);
+//        }
+//
+//        Object password = getOptionValueByName("password", args);
+//        if (!ObjectUtils.isEmpty(password)) {
+//            this.password = String.valueOf(password);
+//            args = removeOptionByName("password", args);
+//        }
+//
+//        while (true) {
+//            try {
+//                while (ObjectUtils.isEmpty(this.username)) {
+//                    this.username = lineReader.readLine("请输入用户名称:");
+//                    this.password = null;
+//                }
+//
+//                while (ObjectUtils.isEmpty(this.password)) {
+//                    this.password = lineReader.readLine("请输入用户密码:", '*');
+//                }
+//
+//                userService.login(this.username, this.password);
+//                break;
+//            } catch (UserInterruptException e) {
+//                System.exit(0);
+//            } catch (SscCliException e) {
+//                lineReader.printAbove(new AttributedString(e.getMessage(), AttributedStyle.DEFAULT.foreground(AttributedStyle.RED)));
+//                this.username = null;
+//                this.password = null;
+//            }
+//        }
 
         super.run(args);
     }
