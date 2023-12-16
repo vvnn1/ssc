@@ -1,5 +1,7 @@
-package com.github.martvey.ssc.entity.result.view;
+package com.github.martvey.ssc.entity.result.indicator;
 
+import com.github.martvey.ssc.entity.result.collector.ResultCollector;
+import com.github.martvey.ssc.entity.result.collector.StreamResultCollector;
 import com.github.martvey.ssc.entity.result.type.SqlTypeInfoHolder;
 import com.github.martvey.ssc.entity.result.type.TypeInfoHolder;
 import lombok.extern.slf4j.Slf4j;
@@ -18,19 +20,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 @Slf4j
-public class SqlTableauResultView<T> extends AbstractResultView<T>{
+public class SqlTableauResultIndicator<T> extends AbstractResultIndicator<T> {
 
     private static final int DEFAULT_COLUMN_WIDTH = 20;
     private static final String CHANGEFLAG_COLUMN_NAME = "+/-";
 
-    public SqlTableauResultView(
+    public SqlTableauResultIndicator(
             PrintWriter writer,
-            ResultCollectorOperator<T> operator,
-            List<TypeInfoHolder<T>> typeInfoHolderList) {
-        super(writer, operator, typeInfoHolderList);
+            ResultCollector collector,
+            List<TypeInfoHolder<T>> typeInfoHolderList,
+            Supplier<Boolean> isRunning) {
+        super(writer, collector, typeInfoHolderList, isRunning);
     }
 
     @Override
@@ -69,7 +73,6 @@ public class SqlTableauResultView<T> extends AbstractResultView<T>{
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     protected void printStreamResults(Map<String, Integer> receiveCount) {
         Preconditions.checkArgument(typeInfoHolderList.size() == 1, "只能包含一个输出类型信息");
 
@@ -93,8 +96,8 @@ public class SqlTableauResultView<T> extends AbstractResultView<T>{
         PrintUtils.printSingleRow(colWidths, columnNames, writer);
         writer.println(borderline);
 
-        while (true) {
-            final TypedResult<List<T>> result = operator.retrieveStreamResult(tableName);
+        while (isDisplayRunning()) {
+            final TypedResult<List<T>> result = ((StreamResultCollector<T>) collector).retrieveStreamResult(tableName);
             try {
                 TimeUnit.MILLISECONDS.sleep(500);
             } catch (InterruptedException e) {

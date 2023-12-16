@@ -1,5 +1,7 @@
-package com.github.martvey.ssc.entity.result.view;
+package com.github.martvey.ssc.entity.result.indicator;
 
+import com.github.martvey.ssc.entity.result.collector.ResultCollector;
+import com.github.martvey.ssc.entity.result.collector.StreamResultCollector;
 import com.github.martvey.ssc.entity.result.type.SqlTypeInfoHolder;
 import com.github.martvey.ssc.entity.result.type.TypeInfoHolder;
 import lombok.extern.slf4j.Slf4j;
@@ -16,26 +18,27 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 
 @Slf4j
-public class SqlChangelogResultView<T> extends AbstractResultView<T>{
+public class SqlChangelogResultIndicator<T> extends AbstractResultIndicator<T> {
 
-    public SqlChangelogResultView(
+    public SqlChangelogResultIndicator(
             PrintWriter writer,
-            ResultCollectorOperator<T> operator,
-            List<TypeInfoHolder<T>> typeInfoHolderList) {
-        super(writer, operator, typeInfoHolderList);
+            ResultCollector collector,
+            List<TypeInfoHolder<T>> typeInfoHolderList,
+            Supplier<Boolean> isRunning) {
+        super(writer, collector, typeInfoHolderList, isRunning);
     }
 
     @Override
-    @SuppressWarnings("unchecked")
-    protected void printBatchResults(){
+    protected void printBatchResults() {
         for (int i = 0; i < typeInfoHolderList.size(); i++) {
-            SqlTypeInfoHolder<T> sqlTypeInfoHolder = (SqlTypeInfoHolder<T>)typeInfoHolderList.get(i);
+            SqlTypeInfoHolder<T> sqlTypeInfoHolder = (SqlTypeInfoHolder<T>) typeInfoHolderList.get(i);
             String tableName = sqlTypeInfoHolder.getName();
             List<Row> resultRows = (List<Row>) waitBatchResults(tableName);
 
-            if (i > 0){
+            if (i > 0) {
                 writer.println();
             }
             writer.println(tableName + ":");
@@ -50,10 +53,9 @@ public class SqlChangelogResultView<T> extends AbstractResultView<T>{
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     protected void printStreamResults(Map<String, Integer> receiveCount) {
-        while (true) {
-            if (CollectionUtils.isEmpty(typeInfoHolderList)){
+        while (isDisplayRunning()) {
+            if (CollectionUtils.isEmpty(typeInfoHolderList)) {
                 return;
             }
 
@@ -66,7 +68,7 @@ public class SqlChangelogResultView<T> extends AbstractResultView<T>{
             for (int i = typeInfoHolderList.size() - 1; i >= 0; i--) {
                 SqlTypeInfoHolder<T> sqlTypeInfoHolder = (SqlTypeInfoHolder<T>) typeInfoHolderList.get(i);
                 String tableName = sqlTypeInfoHolder.getName();
-                TypedResult<List<T>> result = operator.retrieveStreamResult(tableName);
+                TypedResult<List<T>> result = ((StreamResultCollector) collector).retrieveStreamResult(tableName);
 
                 switch (result.getType()) {
                     case EMPTY:
@@ -86,8 +88,8 @@ public class SqlChangelogResultView<T> extends AbstractResultView<T>{
                             writer.println(tableName + ":> " + Arrays.toString(row));
                         }
 
-                        receiveCount.compute(tableName, (key, value)-> {
-                            if (value == null){
+                        receiveCount.compute(tableName, (key, value) -> {
+                            if (value == null) {
                                 return changes.size();
                             }
                             return value + changes.size();
@@ -102,7 +104,7 @@ public class SqlChangelogResultView<T> extends AbstractResultView<T>{
 
     @Override
     protected void totalPrint(String name, Integer total) {
-        if (total == null){
+        if (total == null) {
             total = 0;
         }
         writer.println(name + ":> 总计 " + total + " 条记录");
