@@ -198,7 +198,7 @@ SELECT martvey_pre(id) AS id, dt, temperature FROM sensor_source;
 
 调试专用语句CREATE DEBUG ... AS ...，可以在客户端打印出调试内容，可以看到客户端和kafka接受的内容，id已经成功加上前缀。ctrl+c提前终止
 
-![客户端运行](https://img-blog.csdnimg.cn/210da2427da54fdc83f4df204e21bd40.png)
+![客户端运行](https://img-blog.csdnimg.cn/direct/fc332c45ecdc4d33b5ec761d94405062.gif)
 
 ![kafka发送](https://img-blog.csdnimg.cn/037f14c6780e4f45ae647f514e983b0a.png)
 
