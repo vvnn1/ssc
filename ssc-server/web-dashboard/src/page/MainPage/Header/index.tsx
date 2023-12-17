@@ -14,9 +14,11 @@ import NotificationDropdown from "./NotificationDropdown";
 import { DocumentContext } from "../index";
 import TopHeader from "../../../component/TopHeader";
 import UserDropdown from "../../../component/UserDropdown";
+import ThemeModal from "./ThemeModal";
 
 const Header = () => {
     const [netModalOpen, setNetModalOpen] = useState<boolean>(false);
+    const [complexionModalOpen, setComplexionModalOpen] = useState<boolean>(false);
     const setDocumentOpen = useContext(DocumentContext);
     return (
         <>
@@ -46,9 +48,9 @@ const Header = () => {
                 rightNode={
                     <>
                         <ul>
-                            <li>
+                            <li onClick={changeModalOpen(true, setNetModalOpen)}>
                                 <Tooltip title="网络探测">
-                                    <ApiOutlined onClick={changeModalOpen(true, setNetModalOpen)} />
+                                    <ApiOutlined />
                                 </Tooltip>
                             </li>
                             <li>
@@ -56,19 +58,19 @@ const Header = () => {
                                     <NotificationOutlined />
                                 </Tooltip>
                             </li>
-                            <li>
-                                <NotificationDropdown>
+                            <NotificationDropdown>
+                                <li>
                                     <Tooltip title="消息通知">
                                         <BellOutlined />
                                     </Tooltip>
-                                </NotificationDropdown>
-                            </li>
-                            <li>
+                                </li>
+                            </NotificationDropdown>
+                            <li onClick={() => setDocumentOpen(true)}>
                                 <Tooltip title="帮助文档">
-                                    <QuestionCircleOutlined onClick={() => setDocumentOpen(true)} />
+                                    <QuestionCircleOutlined />
                                 </Tooltip>
                             </li>
-                            <li>
+                            <li onClick={changeModalOpen(true, setComplexionModalOpen)}>
                                 <Tooltip title="切换主题">
                                     <SkinOutlined />
                                 </Tooltip>
@@ -81,6 +83,10 @@ const Header = () => {
             <NetDetectModal
                 open={netModalOpen}
                 onCancel={changeModalOpen(false, setNetModalOpen)}
+            />
+            <ThemeModal
+                open={complexionModalOpen}
+                onCancel={changeModalOpen(false, setComplexionModalOpen)}
             />
         </>
     );
