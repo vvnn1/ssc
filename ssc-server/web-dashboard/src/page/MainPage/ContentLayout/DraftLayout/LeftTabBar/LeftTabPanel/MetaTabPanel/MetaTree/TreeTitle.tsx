@@ -1,9 +1,8 @@
-import { Divider, Popover, Space, Tooltip } from "antd";
+import { Divider, Popover, Space, Tooltip, TreeDataNode } from "antd";
 import { CopyOutlined, ReloadOutlined } from "../../../../../../../../component/Icon";
-import { DataNode } from "antd/es/tree";
 
 interface TreeTitleProps {
-    dataNode: DataNode;
+    dataNode: TreeDataNode;
 }
 
 interface MetaDescriptionProps {

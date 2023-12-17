@@ -1,11 +1,10 @@
 import { FileAddOutlined, FolderAddOutlined, EditOutlined } from "@ant-design/icons";
-import { Input, Button, InputRef, Tooltip } from "antd";
+import { Input, Button, InputRef, Tooltip, TreeDataNode } from "antd";
 import { MouseEventHandler, useEffect, useRef, useState } from "react";
 import { FloderOpenColorOutlined, FloderClosedColorOutlined } from "../../../../../../../../../component/Icon";
-import { DataNode } from "antd/es/tree";
 
 interface TreeTitleProps {
-    dataNode: DataNode;
+    dataNode: TreeDataNode;
     expandCallback: () => void;
     changedCallback: () => void;
     editingCallback: (editing: boolean) => void;

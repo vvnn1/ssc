@@ -1,4 +1,4 @@
-import { Button, ButtonProps, Divider, Select, Space, Table, message } from "antd";
+import { Button, ButtonProps, Divider, Input, Select, Space, Table, message } from "antd";
 import "./index.sass";
 import {
     CancelCircleFilled,
@@ -10,7 +10,6 @@ import {
     SettingOutlined,
 } from "../../../../component/Icon";
 import { useState } from "react";
-import Search from "antd/es/input/Search";
 import { useNavigate, useParams } from "react-router-dom";
 import { changeModalOpen } from "../../../../util";
 import DeployModal from "./DeployModal";
@@ -20,6 +19,8 @@ import StopModal from "./StopModal";
 import dayjs from "dayjs";
 
 type Status = "starting" | "running" | "stoping" | "stoped" | "finished" | "fail";
+
+const { Search } = Input;
 
 interface Job {
     id: string;

@@ -1,7 +1,6 @@
-import { Card, Divider, Space } from "antd";
+import { Card, Divider, Space, Typography } from "antd";
 import { NewTabOutlined } from "../../../../../component/Icon";
 import "./index.sass";
-import Paragraph from "antd/es/typography/Paragraph";
 import { useContext } from "react";
 import { DocumentContext } from "../../../index";
 
@@ -13,6 +12,8 @@ export interface CardProps {
     type?: ConnectorType[];
     hoverable?: boolean;
 }
+
+const { Paragraph } = Typography;
 
 const Card2 = (props: CardProps) => {
     const setDocumentOpen = useContext(DocumentContext);
