@@ -1,4 +1,4 @@
-import { Tree, TreeProps } from "antd";
+import { Tree, TreeDataNode, TreeProps } from "antd";
 import {
     ContainerOutlined,
     DatabaseOutlined,
@@ -6,12 +6,11 @@ import {
     PlusSquareOutlined,
     TableOutlined,
 } from "../../../../../../../../component/Icon";
-import { DataNode } from "antd/es/tree";
 import "./index.sass";
 import TreeTitle from "./TreeTitle";
 import { Key, useState } from "react";
 
-const treeData: DataNode[] = [
+const treeData: TreeDataNode[] = [
     {
         title: (
             <>
@@ -51,7 +50,7 @@ const treeData: DataNode[] = [
     },
 ];
 
-const titleRender = (node: DataNode) => {
+const titleRender = (node: TreeDataNode) => {
     return <TreeTitle dataNode={node} />;
 };
 

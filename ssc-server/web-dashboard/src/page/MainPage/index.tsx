@@ -1,14 +1,15 @@
-import Layout, { Content } from "antd/es/layout/layout";
 import "./index.sass";
 import Sider from "./Sider";
 import Header from "./Header";
 import ContentLayout from "./ContentLayout";
-import { FloatButton } from "antd";
+import { FloatButton, Layout } from "antd";
 import { FileSearchOutlined } from "../../component/Icon";
 import DocumentLayout from "../../component/DocumentLayout";
 import { createContext, useState } from "react";
 
 export const DocumentContext = createContext((_: boolean) => {});
+
+const { Content } = Layout;
 
 const MainPage = (): React.ReactElement => {
     const [open, setOpen] = useState<boolean>(false);

@@ -1,5 +1,4 @@
-import { Card, Divider, Space } from "antd";
-import Paragraph from "antd/es/typography/Paragraph";
+import { Card, Divider, Space, Typography } from "antd";
 import { NewTabOutlined } from "../../../../../../../component/Icon";
 
 type ConnectorType = "结果表" | "源表" | "维表";
@@ -10,6 +9,8 @@ export interface CardProps {
     type?: ConnectorType[];
     hoverable?: boolean;
 }
+
+const { Paragraph } = Typography;
 
 const ConnectorCard = (props: CardProps) => {
     return (

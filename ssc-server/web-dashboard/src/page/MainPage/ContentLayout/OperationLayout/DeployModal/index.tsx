@@ -1,8 +1,9 @@
 import { Checkbox, Form, Input, Modal, ModalProps, Radio, RadioChangeEvent, Select, Switch } from "antd";
 import "./index.sass";
 import { UploadOutlined } from "@ant-design/icons";
-import TextArea from "antd/es/input/TextArea";
 import { useState } from "react";
+
+const { TextArea } = Input;
 
 const DeployModal = (props: ModalProps) => {
     const [jobType, setJobType] = useState<"JAR" | "PYTHON">("JAR");
