@@ -3,9 +3,11 @@ import { ArrowLeftOutlined } from "../../../component/Icon";
 import "./index.sass";
 import UserDropdown from "../../../component/UserDropdown";
 import TopHeader from "../../../component/TopHeader";
-import { useHref } from "react-router-dom";
+import { useHref, useParams } from "react-router-dom";
+import { restoreUrl } from "../../../util";
 
 const Header = () => {
+    const params = useParams();
     return (
         <TopHeader
             leftNode={
@@ -13,7 +15,7 @@ const Header = () => {
                     type="link"
                     size="small"
                     icon={<ArrowLeftOutlined />}
-                    href={useHref("/workspace/:workspace/namespace/:namespace/dashboard")}
+                    href={useHref(restoreUrl("/workspace/:workspaceId/namespace/:namespaceId/dashboard", params))}
                 >
                     返回
                 </Button>

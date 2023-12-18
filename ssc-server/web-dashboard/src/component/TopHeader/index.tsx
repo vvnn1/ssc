@@ -1,6 +1,8 @@
 import { Layout } from "antd";
 import { ProjectLogoOutlined } from "../Icon";
 import "./index.sass";
+import { useNavigate, useParams } from "react-router-dom";
+import { restoreUrl } from "../../util";
 
 const { Header } = Layout;
 
@@ -10,9 +12,19 @@ interface TopHeaderProps {
 }
 
 const TopHeader = (props: TopHeaderProps) => {
+    const navigate = useNavigate();
+    const params = useParams();
+    const toHome = () => {
+        console.log(params);
+        navigate(restoreUrl("/workspace/:workspaceId/namespace/:namespaceId/dashboard", params));
+    };
+
     return (
         <Header className="layout-header">
-            <div className="header-logo">
+            <div
+                className="header-logo"
+                onClick={toHome}
+            >
                 <div className="logo">
                     <span className="avatar">
                         <ProjectLogoOutlined />
