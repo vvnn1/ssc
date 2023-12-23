@@ -1,230 +1,252 @@
-const SqlStructureGraph = () => {
-    const data = {
-        nodes: [
-            {
-                id: "-3",
-                value: {
-                    title: "来源页面A",
-                    items: [
-                        {
-                            text: "曝光PV",
-                            value: "10.30万",
-                            icon: "https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png",
-                        },
-                    ],
-                },
+import { FlowAnalysisGraph, FlowAnalysisGraphConfig } from "@ant-design/graphs";
+import "./index.sass";
+import { useEffect, useRef, useState } from "react";
+
+const titleColor = (title: string) => {
+    switch (title) {
+        case "SOURCE":
+        case "SOURCE_DB":
+            return { fill: "#52c41a" };
+        case "SINK":
+        case "SINK_DB":
+            return { fill: "#fa541c" };
+        case "DIM":
+            return { fill: "#faad14" };
+        case "UDTF":
+            return { fill: "#eb2f96" };
+        case "VIEW":
+            return { fill: "#fa8c16" };
+        case "JOIN":
+        case "CORRELATE":
+        case "INTERSECT":
+        case "EXCEPT":
+        case "UNION":
+            return { fill: "#2f54eb" };
+        default:
+            return { fill: "#0070cc" };
+    }
+};
+
+const labelColor = (title: string) => {
+    switch (title) {
+        case "SOURCE":
+        case "SOURCE_DB":
+            return { fill: "#52c41a1a" };
+        case "SINK":
+        case "SINK_DB":
+            return { fill: "#fa541c1a" };
+        case "DIM":
+            return { fill: "#faad141a" };
+        case "UDTF":
+            return { fill: "#eb2f961a" };
+        case "VIEW":
+            return { fill: "#fa8c161a" };
+        case "JOIN":
+        case "CORRELATE":
+        case "INTERSECT":
+        case "EXCEPT":
+        case "UNION":
+            return { fill: "#2f54eb1a" };
+        default:
+            return { fill: "#0070cc1a" };
+    }
+};
+
+const data: FlowAnalysisGraphConfig["data"] = {
+    nodes: [
+        {
+            id: "-2",
+            value: {
+                title: "SOURCE",
+                items: [
+                    {
+                        text: "order_table",
+                    },
+                ],
             },
-            {
-                id: "-2",
-                value: {
-                    title: "来源页面B",
-                    items: [
-                        {
-                            text: "点击UV",
-                            value: "10.30万",
-                            icon: "https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png",
-                        },
-                    ],
-                },
+        },
+        {
+            id: "-1",
+            value: {
+                title: "JOIN",
             },
-            {
-                id: "-1",
-                value: {
-                    title: "来源页面C",
-                    items: [
-                        {
-                            text: "访问页面UV",
-                        },
-                    ],
-                },
+        },
+        {
+            id: "0",
+            value: {
+                title: "SELECT",
+                items: [
+                    {
+                        text: "select t1.order_id as orde…",
+                    },
+                ],
             },
-            {
-                id: "0",
-                value: {
-                    title: "活动页面",
-                    items: [
-                        {
-                            text: "访问页面UV",
-                        },
-                    ],
-                },
+        },
+
+        {
+            id: "2",
+            value: {
+                title: "SOURCE",
+                items: [
+                    {
+                        text: "price_dim_table FOR SYSTEM_T…",
+                    },
+                ],
             },
-            {
-                id: "1",
-                value: {
-                    title: "去向页面A",
-                    items: [
-                        {
-                            text: "访问页面UV",
-                        },
-                    ],
-                },
+        },
+        {
+            id: "5",
+            value: {
+                title: "SINK",
+                items: [
+                    {
+                        text: "insert into print_sink selec…",
+                    },
+                ],
             },
-            {
-                id: "2",
-                value: {
-                    title: "去向页面B",
-                    items: [
-                        {
-                            text: "访问页面UV",
-                        },
-                    ],
-                },
+        },
+        {
+            id: "6",
+            value: {
+                title: "DIM",
+                items: [
+                    {
+                        text: "price_dim_table FOR SYSTEM_T…",
+                    },
+                ],
             },
-            {
-                id: "3",
-                value: {
-                    title: "去向页面C",
-                    items: [
-                        {
-                            text: "访问页面UV",
-                        },
-                    ],
-                },
-            },
-            {
-                id: "4",
-                value: {
-                    title: "去向页面D",
-                    items: [
-                        {
-                            text: "访问页面UV",
-                        },
-                    ],
-                },
-            },
-            {
-                id: "5",
-                value: {
-                    title: "去向页面E",
-                    items: [
-                        {
-                            text: "访问页面UV",
-                        },
-                    ],
-                },
-            },
-            {
-                id: "6",
-                value: {
-                    title: "去向页面F",
-                    items: [
-                        {
-                            text: "访问页面UV",
-                        },
-                    ],
-                },
-            },
-            {
-                id: "6",
-                value: {
-                    title: "去向页面F",
-                    items: [
-                        {
-                            text: "访问页面UV",
-                        },
-                    ],
-                },
-            },
-            {
-                id: "7",
-                value: {
-                    title: "去向页面G",
-                    items: [
-                        {
-                            text: "访问页面UV",
-                        },
-                    ],
-                },
-            },
-            {
-                id: "8",
-                value: {
-                    title: "去向页面H",
-                    items: [
-                        {
-                            text: "访问页面UV",
-                        },
-                    ],
-                },
-            },
+        },
+    ],
+    edges: [
+        {
+            source: "-2",
+            target: "0",
+        },
+        {
+            source: "-1",
+            target: "0",
+        },
+
+        {
+            source: "6",
+            target: "-1",
+        },
+
+        {
+            source: "0",
+            target: "5",
+        },
+        {
+            source: "2",
+            target: "6",
+        },
+    ],
+};
+
+const config: FlowAnalysisGraphConfig = {
+    data,
+    //@ts-ignore
+    layout: {
+        rankdir: "TB",
+        ranksepFunc: () => 15,
+        nodesepFunc: () => 5,
+    },
+    nodeCfg: {
+        anchorPoints: [
+            [0.5, 0],
+            [0.5, 1],
         ],
-        edges: [
-            {
-                source: "-3",
-                target: "0",
-                value: "来源A",
+
+        title: {
+            containerStyle: (node: any) => {
+                const fill = titleColor(node.value.title);
+                return {
+                    ...fill,
+                };
             },
-            {
-                source: "-2",
-                target: "0",
-                value: "来源B",
-            },
-            {
-                source: "-1",
-                target: "0",
-                value: "来源C",
-            },
-            {
-                source: "0",
-                target: "1",
-            },
-            {
-                source: "0",
-                target: "2",
-            },
-            {
-                source: "0",
-                target: "3",
-            },
-            {
-                source: "0",
-                target: "4",
-            },
-            {
-                source: "0",
-                target: "5",
-            },
-            {
-                source: "2",
-                target: "6",
-            },
-            {
-                source: "3",
-                target: "7",
-            },
-            {
-                source: "4",
-                target: "8",
-            },
-        ],
-    };
-    const config = {
-        layout: {
-            rankdir: "TB",
-            ranksepFunc: () => 20,
+            autoEllipsis: true,
         },
-        nodeCfg: {
-            anchorPoints: [
-                [0.5, 0],
-                [0.5, 1],
-            ],
+        label: {
+            style: {
+                fontSize: 12,
+            },
         },
-        edgeCfg: {
-            type: "polyline",
-            endArrow: true,
-        },
-        markerCfg: (cfg: any) => {
+        size: [200, 20],
+        style: (node: any) => {
+            const fill = labelColor(node.value.title);
             return {
-                position: "bottom",
-                show: data.edges.filter(item => item.source === cfg.id)?.length,
+                ...fill,
+                stroke: "#0064c8",
+                lineWidth: 2,
+                strokeOpacity: 0.5,
             };
         },
-        behaviors: ["drag-canvas", "zoom-canvas", "drag-node"],
-    };
+        nodeStateStyles: {
+            hover: {
+                strokeOpacity: 1,
+            },
+        },
+        padding: 8,
+    },
+    edgeCfg: {
+        type: "cubic-vertical",
+        endArrow: {
+            show: true,
+            type: "triangle",
+            stroke: "transparent",
+            fill: "#72bced",
+            fillOpacity: 0.5,
+            d: -1,
+        },
+        style: () => {
+            return {
+                stroke: "#0064c8",
+                lineWidth: 2,
+                strokeOpacity: 0.5,
+            };
+        },
+        edgeStateStyles: {
+            hover: {
+                strokeOpacity: 1,
+                lineDash: [10, 5],
+            },
+        },
+    },
+    behaviors: ["drag-canvas", "zoom-canvas"],
+};
 
-    //   return <FlowAnalysisGraph data={data} />;
-    return <></>;
+const SqlStructureGraph = () => {
+    const graphContainer = useRef<HTMLDivElement>(null);
+    const observerRef = useRef<ResizeObserver>();
+    const [graphConfig, setGraphConfig] = useState<FlowAnalysisGraphConfig>(config);
+
+    useEffect(() => {
+        observerRef.current = new ResizeObserver(() => {
+            window.requestAnimationFrame(() => {
+                setGraphConfig(config => {
+                    return {
+                        ...config,
+                        height: graphContainer.current!.clientHeight,
+                        width: graphContainer.current?.clientWidth,
+                    };
+                });
+            });
+        });
+        observerRef.current.observe(graphContainer.current!);
+        return () => {
+            observerRef.current?.disconnect();
+            observerRef.current = undefined;
+        };
+    }, []);
+
+    return (
+        <div
+            className="resizable-graph-container"
+            ref={graphContainer}
+        >
+            <FlowAnalysisGraph {...graphConfig} />
+        </div>
+    );
 };
 
 export default SqlStructureGraph;
