@@ -24,7 +24,12 @@ const demoData: TreeDataNode[] = [
                 switcherIcon: node => (node.expanded ? <FloderOpenColorOutlined /> : <FloderClosedColorOutlined />),
                 children: [
                     {
-                        title: "实时查询",
+                        title: (
+                            <div>
+                                <span className="name">实时查询2</span>
+                                <span className="extra">开发人员A 锁定于 11-19 14:27</span>
+                            </div>
+                        ),
                         key: "2ca189d0-e96c-4389-8422-24ad910a6dc1",
                         isLeaf: true,
                         switcherIcon: (
@@ -36,7 +41,12 @@ const demoData: TreeDataNode[] = [
                         ),
                     },
                     {
-                        title: "实时大屏",
+                        title: (
+                            <div>
+                                <span>实时大屏</span>
+                                <span className="extra">开发人员A 锁定于 11-19 14:27</span>
+                            </div>
+                        ),
                         key: "96b2af76-27a3-46f2-a1c9-b7a7e7df73d4",
                         isLeaf: true,
                         switcherIcon: (
