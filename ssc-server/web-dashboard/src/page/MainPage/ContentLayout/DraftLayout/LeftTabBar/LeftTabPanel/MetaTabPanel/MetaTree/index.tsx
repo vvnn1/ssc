@@ -13,10 +13,10 @@ import { Key, useState } from "react";
 const treeData: TreeDataNode[] = [
     {
         title: (
-            <>
+            <div>
                 <span className="title">vvp</span>
                 <span className="extra">数据更新于 06-24 13:46</span>
-            </>
+            </div>
         ),
         key: "0-0",
         icon: <ContainerOutlined />,
