@@ -26,7 +26,7 @@ const demoData: TreeDataNode[] = [
                     {
                         title: (
                             <div>
-                                <span className="name">实时查询2</span>
+                                <span className="name">实时查询</span>
                                 <span className="extra">开发人员A 锁定于 11-19 14:27</span>
                             </div>
                         ),
@@ -223,11 +223,7 @@ const DraftTree = () => {
             return;
         }
 
-        if (pathMatch?.params.draftId) {
-            navigate(`../../${node.key}/sql`, { relative: "path" });
-        } else {
-            navigate(`${node.key}/sql`);
-        }
+        navigate(`${node.key}/sql`);
     };
 
     return (
