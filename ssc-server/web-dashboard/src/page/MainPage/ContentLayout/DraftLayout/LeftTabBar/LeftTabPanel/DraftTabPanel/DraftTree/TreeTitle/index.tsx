@@ -1,41 +1,26 @@
 import { FileAddOutlined, FolderAddOutlined, EditOutlined } from "@ant-design/icons";
-import { Input, Button, InputRef, Tooltip, TreeDataNode } from "antd";
-import { MouseEventHandler, useEffect, useRef, useState } from "react";
-import { FloderOpenColorOutlined, FloderClosedColorOutlined } from "../../../../../../../../../component/Icon";
+import { Input, Button, InputRef, Tooltip, TreeDataNode, InputProps } from "antd";
+import { MouseEventHandler, createRef, useEffect, useRef, useState } from "react";
 
 interface TreeTitleProps {
     dataNode: TreeDataNode;
-    expandCallback: () => void;
+    title: React.ReactNode;
     changedCallback: () => void;
-    editingCallback: (editing: boolean) => void;
+    onFileAddClick: () => void;
+    onFloderAddClick: () => void;
 }
 
 const TreeTitle = (props: TreeTitleProps) => {
-    const [editing, setEditing] = useState<boolean>(false);
-    const { dataNode, expandCallback, changedCallback, editingCallback } = props;
+    const { dataNode, changedCallback } = props;
     const inputRef = useRef<InputRef | null>(null);
-
-    useEffect(() => {
-        editingCallback(editing);
-        if (editing) {
-            inputRef.current?.focus({
-                cursor: "all",
-            });
-
-            inputRef.current?.input?.addEventListener("blur", () => {
-                setEditing(false);
-                dataNode.className = undefined;
-                dataNode.title = inputRef.current?.input?.value;
-                changedCallback();
-            });
-        }
-    }, [editing]);
+    const editing = dataNode.className === "edit-node";
 
     const onFileAddClick: MouseEventHandler<HTMLAnchorElement> & MouseEventHandler<HTMLButtonElement> = event => {
         event.stopPropagation();
         if (dataNode.isLeaf) {
             return;
         }
+        props.onFileAddClick();
     };
 
     const onFloderAddClick: MouseEventHandler<HTMLAnchorElement> & MouseEventHandler<HTMLButtonElement> = event => {
@@ -44,51 +29,50 @@ const TreeTitle = (props: TreeTitleProps) => {
             return;
         }
 
-        expandCallback();
-
-        if (dataNode.children) {
-            dataNode.children.push({
-                title: "test",
-                key: dataNode.key + "-" + dataNode.children.length,
-                isLeaf: false,
-                switcherIcon: node => (node.expanded ? <FloderOpenColorOutlined /> : <FloderClosedColorOutlined />),
-                children: [],
-            });
-        } else {
-            dataNode.children = [
-                {
-                    title: "test",
-                    key: dataNode.key + "-0",
-                    isLeaf: false,
-                    switcherIcon: node => (node.expanded ? <FloderOpenColorOutlined /> : <FloderClosedColorOutlined />),
-                    children: [],
-                },
-            ];
-        }
-
-        changedCallback();
+        props.onFloderAddClick();
     };
 
     const onRenameClick: MouseEventHandler<HTMLAnchorElement> & MouseEventHandler<HTMLButtonElement> = event => {
         event.stopPropagation();
         dataNode.className = "edit-node";
         changedCallback();
-        setEditing(true);
+    };
+
+    const onKeyDownEnter: InputProps["onKeyDown"] = e => {
+        if (e.key === "Enter") {
+            inputRef.current?.blur();
+        }
+    };
+
+    const onBlur: InputProps["onBlur"] = p => {
+        dataNode.className = undefined;
+        dataNode.title = p.target.value;
+        changedCallback();
+    };
+
+    const onFocuse: InputProps["onFocus"] = p => {
+        const length = p.target.value.length;
+        p.target.setSelectionRange(0, length);
     };
 
     return (
         <>
             {editing ? (
                 <Input
+                    autoFocus
+                    onFocus={onFocuse}
+                    id={Math.random().toString()}
                     onClick={event => event.stopPropagation()}
                     onDoubleClick={event => event.stopPropagation()}
                     size="small"
-                    className="rename-input"
+                    className={`rename-input ${dataNode.key}`}
                     defaultValue={dataNode.title as string}
                     ref={inputRef}
+                    onKeyDown={onKeyDownEnter}
+                    onBlur={onBlur}
                 />
             ) : (
-                <span className="title">{dataNode.title as React.ReactNode}</span>
+                <span className="title">{props.title}</span>
             )}
 
             {dataNode.isLeaf || editing ? null : (
