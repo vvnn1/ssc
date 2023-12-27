@@ -121,14 +121,14 @@ const ConfigurationTab = () => {
                             placeholder="如果你需要添加更多依赖文件，请选择或输入任意合法的文件地址"
                             optionLabelProp="label"
                             suffixIcon={
-                                <Upload>
-                                    <Tooltip
-                                        title="选择或拖拽文件以上传"
-                                        placement="left"
-                                    >
+                                <Tooltip
+                                    title="选择或拖拽文件以上传"
+                                    placement="left"
+                                >
+                                    <Upload>
                                         <UploadOutlined />
-                                    </Tooltip>
-                                </Upload>
+                                    </Upload>
+                                </Tooltip>
                             }
                             // suffixIcon={<Tooltip title="选择或拖拽文件以上传" placement="left"><UploadOutlined /></Tooltip>}
                             popupClassName="addition-file-dropdown small"
