@@ -33,10 +33,18 @@ const CreateTemporaryTableModal = (props: ModalProps) => {
             }}
         >
             {currentStep => {
-                if (currentStep === 0) {
-                    return <Step1 onCardChange={setSelectedCard} />;
-                }
-                return <Step2 {...selectedCard!} />;
+                return (
+                    <>
+                        <Step1
+                            hidden={currentStep !== 0}
+                            onCardChange={setSelectedCard}
+                        />
+                        <Step2
+                            hidden={currentStep !== 1}
+                            {...selectedCard!}
+                        />
+                    </>
+                );
             }}
         </StepModal>
     );
