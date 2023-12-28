@@ -14,6 +14,7 @@ import { Modal, Tooltip, Tree, TreeDataNode, TreeProps, message } from "antd";
 import { matchPath, useLocation, useNavigate } from "react-router-dom";
 import { changeModalOpen } from "../../../../../../../../util";
 import MoveDraftModal from "../MoveDraftModal";
+import { doOnNode } from "../../../../../../../../util/tree";
 
 const demoData: TreeDataNode[] = [
     {
@@ -104,15 +105,6 @@ const doOnLeafNode = (treeData: TreeDataNode[], callback: (data: TreeDataNode) =
             callback(data);
         }
     });
-};
-
-const doOnNode = (treeData: TreeDataNode[], callback: (data: TreeDataNode) => void) => {
-    for (let i = 0; i < treeData.length; i++) {
-        callback(treeData[i]);
-        if (treeData[i].children) {
-            doOnNode(treeData[i].children!, callback);
-        }
-    }
 };
 
 const findLastIndex = <T,>(array: T[], predicate: (value: T, index: number, array: T[]) => boolean): number => {
