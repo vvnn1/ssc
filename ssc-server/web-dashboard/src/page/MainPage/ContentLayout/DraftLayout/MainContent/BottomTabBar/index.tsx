@@ -4,6 +4,7 @@ import "./index.sass";
 import DebugResultPanel from "./DebugResultPanel";
 import ProblemPanel from "./ProblemPanel";
 import AnalysePanel from "./AnalysePanel";
+import { Badge } from "antd";
 
 interface BottomTabBarProps {
     onPanelChange: (panel: React.ReactNode) => void;
@@ -64,7 +65,9 @@ const BottomTabBar = (props: BottomTabBarProps) => {
                 <span className="tabs-bar-tab-icon">
                     <ExclamationCircleOutlined />
                 </span>
-                <span className="tabs-bar-tab-title">问题</span>
+                <Badge dot={activeLabel !== "problem"}>
+                    <span className="tabs-bar-tab-title">问题</span>
+                </Badge>
             </div>
             <div
                 className={`tabs-bar-bottom-label analyse ${
