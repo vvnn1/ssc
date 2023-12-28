@@ -64,17 +64,17 @@ const ToolBar = (props: ToolBarProps) => {
 
     const onCheckClick = () => {
         setChecking(true);
+        document.dispatchEvent(
+            new CustomEvent("top-tool-click", {
+                detail: {
+                    label: "analyse",
+                },
+            })
+        );
         const id = setInterval(() => {
             setChecking(false);
             clearInterval(id);
-            document.dispatchEvent(
-                new CustomEvent("bottom-label-change", {
-                    detail: {
-                        label: "problem",
-                    },
-                })
-            );
-        }, 3000);
+        }, 2000);
     };
 
     const onDebugClick = () => {
