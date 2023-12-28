@@ -115,6 +115,15 @@ const doOnNode = (treeData: TreeDataNode[], callback: (data: TreeDataNode) => vo
     }
 };
 
+const findLastIndex = <T,>(array: T[], predicate: (value: T, index: number, array: T[]) => boolean): number => {
+    for (let i = array.length; i > 0; i--) {
+        if (predicate(array[i - 1], i, array)) {
+            return i;
+        }
+    }
+    return -1;
+};
+
 const DraftTree = () => {
     const [treeData, setTreeData] = useState<TreeDataNode[]>(demoData);
     const [expandedKeys, setExpandedKeys] = useState<Key[]>(["0"]);
@@ -165,7 +174,7 @@ const DraftTree = () => {
 
         const onFloderAddClick = () => {
             if (dataNode.children) {
-                const lastIndex = dataNode.children.findLastIndex(node => !node.isLeaf);
+                const lastIndex = findLastIndex(dataNode.children, node => !node.isLeaf);
                 dataNode.children.splice(lastIndex + 1, 0, {
                     title: "新建文件夹",
                     key: dataNode.key + "-" + dataNode.children.length,
