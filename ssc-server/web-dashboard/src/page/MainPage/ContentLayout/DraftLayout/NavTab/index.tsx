@@ -10,6 +10,7 @@ type TargetKey = React.MouseEvent | React.KeyboardEvent | string;
 export interface TabItem {
     id: string;
     name: string;
+    hasErr?: boolean;
 }
 
 interface NavTabProps {
@@ -42,7 +43,7 @@ const NavTab: React.FC<NavTabProps> = ({ selectedItem }) => {
                         <span className="draft-type type offline">
                             <StreamDraftOutlined />
                         </span>
-                        <span className="draft-name">{item.name}</span>
+                        <span className={`draft-name ${item.hasErr ? "has-error" : ""}`}>{item.name}</span>
                     </>
                 ),
             };

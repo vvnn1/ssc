@@ -265,7 +265,17 @@ const MainContent = () => {
                 />
             </div>
             <div className="panel-bar navigation-bar panel panel-ltr panel-border-bottom">
-                <NavTab selectedItem={curDraft ? { id: curDraft.id, name: curDraft.name } : undefined} />
+                <NavTab
+                    selectedItem={
+                        curDraft
+                            ? {
+                                  id: curDraft.id,
+                                  name: curDraft.name,
+                                  hasErr: curDraft.id === "2ca189d0-e96c-4389-8422-24ad910a6dc1",
+                              }
+                            : undefined
+                    }
+                />
             </div>
             <div className="editor-main-content panel panel-ttb">
                 <div className="panel main-top-panel panel-ltr">

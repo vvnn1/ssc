@@ -6,7 +6,7 @@
         margin: initial
         height: 32px
         .ant-tabs-tab+.ant-tabs-tab
-            margin-left: 0px  !important
+            margin-left: 0px !important
         .ant-tabs-tab
             border: none
             border-bottom: 1px solid #ebebeb
@@ -14,6 +14,11 @@
                 .draft-name
                     font-size: 12px
                     vertical-align: text-top
+                .draft-name.has-error
+                    -webkit-text-decoration: #c80000 wavy underline
+                    text-decoration: #c80000 wavy underline
+                    -webkit-text-decoration-skip-ink: none
+                    text-decoration-skip-ink: none
                 .draft-type
                     position: relative
                     top: 1px
@@ -21,7 +26,7 @@
                         margin-right: 14px
             .ant-tabs-tab-remove
                 margin-left: 11px
-            
+
         .ant-tabs-nav-add
             border: none
             border-bottom: 1px solid #ebebeb
@@ -40,4 +45,3 @@
             right: 0
             top: 30px
             background: #0064c8
-            
