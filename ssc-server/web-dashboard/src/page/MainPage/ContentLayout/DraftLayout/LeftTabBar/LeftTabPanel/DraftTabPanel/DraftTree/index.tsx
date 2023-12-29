@@ -105,6 +105,18 @@ const demoData: TreeDataNode[] = [
                             </Tooltip>
                         ),
                     },
+                    {
+                        title: "批任务",
+                        key: "6f8aa897-bcff-4fff-888e-79d96f0129ec",
+                        isLeaf: true,
+                        switcherIcon: (
+                            <Tooltip title="未部署">
+                                <span className="type offline">
+                                    <BatchDraftOutlined />
+                                </span>
+                            </Tooltip>
+                        ),
+                    },
                 ],
             },
         ],

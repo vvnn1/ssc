@@ -1,7 +1,7 @@
 import { Tabs, TabsProps } from "antd";
 import { useEffect, useState } from "react";
 import "./index.sass";
-import { StreamDraftOutlined } from "../../../../../component/Icon";
+import { BatchDraftOutlined, StreamDraftOutlined } from "../../../../../component/Icon";
 import { useNavigate } from "react-router-dom";
 import CreateDraftModal from "../ToolBar/CreateDraftModal";
 
@@ -11,6 +11,8 @@ export interface TabItem {
     id: string;
     name: string;
     hasErr?: boolean;
+    hasDeploy?: boolean;
+    type: "s" | "b";
 }
 
 interface NavTabProps {
@@ -40,8 +42,9 @@ const NavTab: React.FC<NavTabProps> = ({ selectedItem }) => {
                 key: item.id,
                 label: (
                     <>
-                        <span className="draft-type type offline">
-                            <StreamDraftOutlined />
+                        <span className={`draft-type type ${item.hasDeploy ? "" : "offline"}`}>
+                            {item.type === "s" ? <StreamDraftOutlined /> : null}
+                            {item.type === "b" ? <BatchDraftOutlined /> : null}
                         </span>
                         <span className={`draft-name ${item.hasErr ? "has-error" : ""}`}>{item.name}</span>
                     </>
