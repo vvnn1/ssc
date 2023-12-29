@@ -1,8 +1,10 @@
-import { Key, useEffect, useState } from "react";
+import { Key, forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import {
+    BatchDraftOutlined,
     CheckCircleOutlined,
     FloderClosedColorOutlined,
     FloderOpenColorOutlined,
+    LoadingOutlined,
     QuestionCircleOutlined,
     StreamDraftOutlined,
 } from "../../../../../../../../component/Icon";
@@ -90,9 +92,31 @@ const demoData: TreeDataNode[] = [
                 key: "0-2",
                 isLeaf: false,
                 switcherIcon: node => (node.expanded ? <FloderOpenColorOutlined /> : <FloderClosedColorOutlined />),
+                children: [
+                    {
+                        title: "实时价格",
+                        key: "4cc43af1-01c9-4218-a394-2eaab808d92c",
+                        isLeaf: true,
+                        switcherIcon: (
+                            <Tooltip title="已部署">
+                                <span className="type">
+                                    <StreamDraftOutlined />
+                                </span>
+                            </Tooltip>
+                        ),
+                    },
+                ],
             },
         ],
         switcherIcon: node => (node.expanded ? <FloderOpenColorOutlined /> : <FloderClosedColorOutlined />),
+    },
+];
+
+const refreshData: TreeDataNode[] = [
+    {
+        title: "作业草稿",
+        key: "0",
+        switcherIcon: <LoadingOutlined />,
     },
 ];
 
@@ -116,7 +140,44 @@ const findLastIndex = <T,>(array: T[], predicate: (value: T, index: number, arra
     return -1;
 };
 
-const DraftTree = () => {
+const removeNode = (treeData: TreeDataNode[], key: string) => {
+    for (let i = 0; i < treeData.length; i++) {
+        if (treeData[i].key === key) {
+            treeData.splice(i, 1);
+        } else if (treeData[i].children) {
+            removeNode(treeData[i].children!, key);
+        }
+    }
+};
+
+const locateNode = (treeData: TreeDataNode[], pickedKeys: Key[], key: string) => {
+    for (let i = 0; i < treeData.length; i++) {
+        const nodeKey = treeData[i].key;
+        pickedKeys.push(nodeKey);
+        if (nodeKey === key) {
+            return;
+        }
+
+        if (!!treeData[i].children?.length) {
+            locateNode(treeData[i].children!, pickedKeys, key);
+            if (pickedKeys[pickedKeys.length - 1] === key) {
+                return;
+            }
+        }
+        pickedKeys.pop();
+    }
+};
+
+interface DraftTreeProps {
+    onSelectedKeys?: (keys: Key[]) => void;
+}
+
+export interface DraftTreeElement {
+    refreshTree: () => void;
+    locateOpenedDraft: () => void;
+}
+
+const DraftTree = forwardRef((props: DraftTreeProps, ref) => {
     const [treeData, setTreeData] = useState<TreeDataNode[]>(demoData);
     const [expandedKeys, setExpandedKeys] = useState<Key[]>(["0"]);
     const [selectedKeys, setSelectedKeys] = useState<Key[]>([]);
@@ -130,6 +191,23 @@ const DraftTree = () => {
 
     const { pathname } = useLocation();
     const pathMatch = matchPath("/workspace/:workspaceId/namespace/:namespaceId/draft/:draftId/sql", pathname);
+
+    let editing = false;
+
+    doOnNode(treeData, treeNode => {
+        if (treeNode.className === "edit-node") {
+            editing = true;
+        }
+    });
+
+    useImperativeHandle(ref, () => ({
+        refreshTree,
+        locateOpenedDraft,
+    }));
+
+    useEffect(() => {
+        props.onSelectedKeys?.(selectedKeys);
+    }, [selectedKeys]);
 
     useEffect(() => {
         const draftId = pathMatch?.params.draftId;
@@ -292,16 +370,6 @@ const DraftTree = () => {
     };
 
     const onDeleteClick = ({ props: node }: any) => {
-        const removeNode = (treeData: TreeDataNode[], key: string) => {
-            for (let i = 0; i < treeData.length; i++) {
-                if (treeData[i].key === key) {
-                    treeData.splice(i, 1);
-                } else if (treeData[i].children) {
-                    removeNode(treeData[i].children!, key);
-                }
-            }
-        };
-
         deleteModal.confirm({
             icon: <QuestionCircleOutlined />,
             title: `删除${node.isLeaf ? "作业草稿" : "文件夹"}：${node.title}`,
@@ -327,13 +395,35 @@ const DraftTree = () => {
         });
     };
 
-    let editing = false;
+    const refreshTree = () => {
+        setTreeData(refreshData);
+        const id = setInterval(() => {
+            setTreeData(demoData);
+            setExpandedKeys(["0"]);
+            setSelectedKeys([]);
+            clearInterval(id);
+        }, 2000);
+    };
 
-    doOnNode(treeData, treeNode => {
-        if (treeNode.className === "edit-node") {
-            editing = true;
+    const locateOpenedDraft = () => {
+        const openedKey = pathMatch?.params.draftId;
+        if (!openedKey) {
+            return;
         }
-    });
+
+        const pickedKeys: Key[] = [];
+        locateNode(treeData, pickedKeys, openedKey);
+        if (pickedKeys.length > 0) {
+            pickedKeys.forEach(key => {
+                if (expandedKeys.includes(key)) {
+                    return;
+                }
+                expandedKeys.push(key);
+            });
+            setExpandedKeys([...expandedKeys]);
+            setSelectedKeys([pickedKeys[pickedKeys.length - 1]]);
+        }
+    };
 
     return (
         <>
@@ -429,6 +519,6 @@ const DraftTree = () => {
             {contextHolder}
         </>
     );
-};
+});
 
 export default DraftTree;

@@ -1,12 +1,26 @@
 import { Button, Input, Tooltip } from "antd";
 import { AimOutlined, DeleteOutlined, ReloadOutlined, SearchOutlined } from "../../../../../../../component/Icon";
 import ScrollPin from "../../../../../../../component/ScrollPin";
-import DraftTree from "./DraftTree";
-import { useRef } from "react";
+import DraftTree, { DraftTreeElement } from "./DraftTree";
+import { Key, useRef, useState } from "react";
 import "./index.sass";
 
 const DraftTabPanel = () => {
-    const treeRef = useRef<HTMLDivElement>(null);
+    const [deletable, setDeletable] = useState<boolean>(false);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const treeRef = useRef<DraftTreeElement>(null);
+
+    const onSelectedKeysChange = (keys: Key[]) => {
+        setDeletable(keys.length > 0);
+    };
+
+    const onRefreshClick = () => {
+        treeRef.current?.refreshTree();
+    };
+
+    const onLocateClick = () => {
+        treeRef.current?.locateOpenedDraft();
+    };
 
     return (
         <div className="draft-panel-panel tab-panel">
@@ -18,6 +32,7 @@ const DraftTabPanel = () => {
                             className="ant-btn-icon-only"
                             type="text"
                             size="small"
+                            onClick={onLocateClick}
                         >
                             <AimOutlined />
                         </Button>
@@ -27,6 +42,7 @@ const DraftTabPanel = () => {
                             className="ant-btn-icon-only"
                             type="text"
                             size="small"
+                            disabled={!deletable}
                         >
                             <DeleteOutlined />
                         </Button>
@@ -36,6 +52,7 @@ const DraftTabPanel = () => {
                             className="ant-btn-icon-only"
                             type="text"
                             size="small"
+                            onClick={onRefreshClick}
                         >
                             <ReloadOutlined />
                         </Button>
@@ -49,12 +66,15 @@ const DraftTabPanel = () => {
                 />
             </div>
             <div className="panel draft-list panel-ttb">
-                <ScrollPin containerRef={treeRef} />
+                <ScrollPin containerRef={containerRef} />
                 <div
                     className="draft-tree-container"
-                    ref={treeRef}
+                    ref={containerRef}
                 >
-                    <DraftTree />
+                    <DraftTree
+                        ref={treeRef}
+                        onSelectedKeys={onSelectedKeysChange}
+                    />
                 </div>
             </div>
         </div>
