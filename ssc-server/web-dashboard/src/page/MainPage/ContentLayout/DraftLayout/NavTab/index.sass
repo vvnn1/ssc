@@ -1,5 +1,7 @@
 .editor-nav-tab
     width: 100%
+    .tab-context-menu
+        line-height: initial
     .ant-tabs-nav:before
         // border-bottom-color: transparent
     .ant-tabs-nav
@@ -11,19 +13,28 @@
             border: none
             border-bottom: 1px solid #ebebeb
             .ant-tabs-tab-btn
-                .draft-name
-                    font-size: 12px
-                    vertical-align: text-top
-                .draft-name.has-error
-                    -webkit-text-decoration: #c80000 wavy underline
-                    text-decoration: #c80000 wavy underline
-                    -webkit-text-decoration-skip-ink: none
-                    text-decoration-skip-ink: none
-                .draft-type
-                    position: relative
-                    top: 1px
-                    .anticon
-                        margin-right: 14px
+                .custom-draft-tab
+                    margin-right: -30px
+                    padding-right: 30px
+                    margin-left: -16px
+                    padding-left: 16px
+                    padding-top: 5px
+                    margin-top: -5px
+                    margin-bottom: -3px
+                    padding-bottom: 3px
+                    .draft-name
+                        font-size: 12px
+                        vertical-align: text-top
+                    .draft-name.has-error
+                        -webkit-text-decoration: #c80000 wavy underline
+                        text-decoration: #c80000 wavy underline
+                        -webkit-text-decoration-skip-ink: none
+                        text-decoration-skip-ink: none
+                    .draft-type
+                        position: relative
+                        top: 1px
+                        .anticon
+                            margin-right: 14px
             .ant-tabs-tab-remove
                 margin-left: 11px
 
