@@ -284,6 +284,13 @@ const sql6 = `--****************************************************************
 
 `;
 
+const sql7 = `--********************************************************************--
+-- Author:         1840755998634838
+-- Created Time:   2023-12-29 14:43:00
+-- Description:    Write your description here
+-- Hints:          You can use SET statements to modify the configuration
+--********************************************************************--`;
+
 const draftList: Draft[] = [
     {
         id: "2ca189d0-e96c-4389-8422-24ad910a6dc1",
@@ -326,6 +333,13 @@ const draftList: Draft[] = [
         content: sql6,
         hasDeploy: false,
         type: "b",
+    },
+    {
+        id: "2aa0e831-2b04-407e-b47c-d30afc3c2070",
+        name: "空任务",
+        content: sql7,
+        hasDeploy: false,
+        type: "s",
     },
 ];
 

@@ -1,28 +1,46 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import SqlStructureGraph from "./SqlStructureGraph";
-import { Radio, RadioChangeEvent, Tooltip } from "antd";
+import { Empty, Radio, RadioChangeEvent, Tooltip } from "antd";
 import SqlStructureTree from "./SqlStructureTree";
 import { BlockOutlined, RotateRightOutlined } from "../../../../../../../component/Icon";
 import "./index.sass";
+import { useParams } from "react-router-dom";
 
 const StructureTab = () => {
-    const [structureNode, setStructureNode] = useState<React.ReactNode>(<SqlStructureGraph />);
+    const [rotate, setRotate] = useState<boolean>(false);
+    const [radioValue, setRadioValue] = useState<string>("graph");
+    const { draftId } = useParams();
 
     const onRadioChange = ({ target: { value } }: RadioChangeEvent) => {
-        if (value === "graph") {
-            setStructureNode(<SqlStructureGraph />);
-        } else if (value === "tree") {
-            setStructureNode(<SqlStructureTree />);
-        }
+        setRadioValue(value);
     };
 
+    const getStructureNode = () => {
+        if (radioValue === "graph") {
+            return <SqlStructureGraph />;
+        } else if (radioValue === "tree") {
+            return <SqlStructureTree />;
+        }
+        return null;
+    };
+
+    const isActionsDisabled = () => {
+        return radioValue === "tree";
+    };
+
+    const onRotateClick = () => {
+        setRotate(!rotate);
+    };
     return (
         <div className="draft-struct">
             <div className="title">
                 <span>代码结构</span>
-                <span className="actions">
+                <span className={`actions ${isActionsDisabled() ? "disabled" : ""}`}>
                     <Tooltip title="切换视图布局方向">
-                        <RotateRightOutlined />
+                        <RotateRightOutlined
+                            onClick={onRotateClick}
+                            className={`rotate-right-icon anticon-rotate-right ${rotate ? "lr" : "tb"}`}
+                        />
                     </Tooltip>
                     <Tooltip title="自适应缩放">
                         <BlockOutlined />
@@ -32,7 +50,7 @@ const StructureTab = () => {
             <div className="content-wrapper">
                 <div className="structure-switch">
                     <Radio.Group
-                        defaultValue="graph"
+                        defaultValue={radioValue}
                         size="small"
                         buttonStyle="solid"
                         onChange={onRadioChange}
@@ -41,7 +59,9 @@ const StructureTab = () => {
                         <Radio.Button value="tree">树状结构图</Radio.Button>
                     </Radio.Group>
                 </div>
-                <div className="structure">{structureNode}</div>
+                <div className="structure">
+                    {draftId === "2aa0e831-2b04-407e-b47c-d30afc3c2070" ? <Empty /> : getStructureNode()}
+                </div>
             </div>
         </div>
     );

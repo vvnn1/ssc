@@ -55,7 +55,7 @@ const labelColor = (title: string) => {
 const data: FlowAnalysisGraphConfig["data"] = {
     nodes: [
         {
-            id: "-2",
+            id: "-4",
             value: {
                 title: "SOURCE",
                 items: [
@@ -65,10 +65,33 @@ const data: FlowAnalysisGraphConfig["data"] = {
                 ],
             },
         },
+
+        {
+            id: "-3",
+            value: {
+                title: "DIM",
+                items: [
+                    {
+                        text: "price_dim_table FOR SYSTEM_T…",
+                    },
+                ],
+            },
+        },
+        {
+            id: "-2",
+            value: {
+                title: "JOIN",
+            },
+        },
         {
             id: "-1",
             value: {
-                title: "JOIN",
+                title: "SOURCE",
+                items: [
+                    {
+                        text: "price_dim_table FOR SYSTEM_T…",
+                    },
+                ],
             },
         },
         {
@@ -82,20 +105,8 @@ const data: FlowAnalysisGraphConfig["data"] = {
                 ],
             },
         },
-
         {
-            id: "2",
-            value: {
-                title: "SOURCE",
-                items: [
-                    {
-                        text: "price_dim_table FOR SYSTEM_T…",
-                    },
-                ],
-            },
-        },
-        {
-            id: "5",
+            id: "1",
             value: {
                 title: "SINK",
                 items: [
@@ -105,40 +116,29 @@ const data: FlowAnalysisGraphConfig["data"] = {
                 ],
             },
         },
-        {
-            id: "6",
-            value: {
-                title: "DIM",
-                items: [
-                    {
-                        text: "price_dim_table FOR SYSTEM_T…",
-                    },
-                ],
-            },
-        },
     ],
+
     edges: [
         {
-            source: "-2",
-            target: "0",
+            source: "-4",
+            target: "-3",
+        },
+        {
+            source: "-3",
+            target: "-2",
         },
         {
             source: "-1",
             target: "0",
         },
-
         {
-            source: "6",
-            target: "-1",
+            source: "-2",
+            target: "0",
         },
 
         {
             source: "0",
-            target: "5",
-        },
-        {
-            source: "2",
-            target: "6",
+            target: "1",
         },
     ],
 };

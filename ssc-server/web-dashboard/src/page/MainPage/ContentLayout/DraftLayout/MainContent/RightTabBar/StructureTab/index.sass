@@ -4,10 +4,20 @@
         justify-content: space-between
         .actions
             transform: translateY(-1px)
-            >span:first-child
+            .anticon.rotate-right-icon.tb
                 transform: translate(-4px) rotate(90deg) scaleY(-1)
+            .anticon.rotate-right-icon.lr
+                transform: translate(-4px) rotate(0) scaleY(1)
+            .anticon.rotate-right-icon
+                transition: transform .3s ease-in
             span
                 padding: 0 4px
+            .anticon
+                cursor: pointer
+        .actions.disabled
+            .anticon
+                color: #ccc
+                cursor: not-allowed
     .content-wrapper
         height: calc( 100% - 32px )
         .structure-switch
@@ -21,3 +31,8 @@
         .structure
             width: 100%
             height: calc( 100% - 40px )
+        .ant-empty
+            height: 100%
+            display: flex
+            flex-direction: column
+            justify-content: center
