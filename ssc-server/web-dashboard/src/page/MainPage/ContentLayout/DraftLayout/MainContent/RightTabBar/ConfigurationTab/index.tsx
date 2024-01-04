@@ -1,6 +1,7 @@
 import { Form, Select, Space, Tag, Tooltip, Upload } from "antd";
 import { CheckOutlined, DeleteOutlined, DownloadOutlined, UploadOutlined } from "../../../../../../../component/Icon";
 import "./index.sass";
+import FileSelect from "../../../../../../../component/Select/FileSelect";
 
 const { Option } = Select;
 
@@ -115,48 +116,7 @@ const ConfigurationTab = () => {
                         />
                     </Form.Item>
                     <Form.Item label="附加依赖文件">
-                        <Select
-                            mode="multiple"
-                            style={{ width: "100%" }}
-                            placeholder="如果你需要添加更多依赖文件，请选择或输入任意合法的文件地址"
-                            optionLabelProp="label"
-                            suffixIcon={
-                                <Tooltip
-                                    title="选择或拖拽文件以上传"
-                                    placement="left"
-                                >
-                                    <Upload>
-                                        <UploadOutlined />
-                                    </Upload>
-                                </Tooltip>
-                            }
-                            // suffixIcon={<Tooltip title="选择或拖拽文件以上传" placement="left"><UploadOutlined /></Tooltip>}
-                            popupClassName="addition-file-dropdown small"
-                            menuItemSelectedIcon={
-                                <span className="ant-select-selected-icon">
-                                    <CheckOutlined />
-                                </span>
-                            }
-                        >
-                            <Option
-                                value="china"
-                                label="Final_Company.txt"
-                            >
-                                <div className="addition-file-item">
-                                    <span className="file-name">Final_Company.txt</span>
-                                    <span className="operator">
-                                        <Space>
-                                            <Tooltip title="下载">
-                                                <DownloadOutlined />
-                                            </Tooltip>
-                                            <Tooltip title="删除">
-                                                <DeleteOutlined />
-                                            </Tooltip>
-                                        </Space>
-                                    </span>
-                                </div>
-                            </Option>
-                        </Select>
+                        <FileSelect />
                     </Form.Item>
                 </Form>
             </div>
