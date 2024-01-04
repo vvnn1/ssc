@@ -22,9 +22,16 @@
                     height: 49px
                     line-height: 49px
                     cursor: pointer
-                    color: rgba(0,0,0,.65)
-                    font-size: 18px
-                    font-weight: 400
+                    .badge-icon
+                        top: -6px
+                        right: -8px
+                        transform: scale(.75)
+                    .badge-icon.cancelled
+                        color: #fac800
+                    .anticon
+                        color: rgba(0,0,0,.65)
+                        font-weight: 400
+                        font-size: 18px
                 li:last-child
                     font-size: 18px
                     svg

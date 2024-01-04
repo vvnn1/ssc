@@ -1,6 +1,14 @@
 import { Card, Dropdown, DropdownProps, Empty, Select, Space, Tooltip } from "antd";
 import "./index.sass";
-import { CaretDownFilled, CaretUpFilled, FilterFilled, FilterOutlined } from "../../../../component/Icon";
+import {
+    CaretDownFilled,
+    CaretUpFilled,
+    CloseOutlined,
+    ExclamationCircleFilled,
+    EyeOutlined,
+    FilterFilled,
+    FilterOutlined,
+} from "../../../../component/Icon";
 import { useState } from "react";
 
 const NotificationDropdown = (props: DropdownProps) => {
@@ -66,10 +74,31 @@ const NotificationDropdown = (props: DropdownProps) => {
                     }
                     size="small"
                 >
-                    <Empty
-                        image={Empty.PRESENTED_IMAGE_SIMPLE}
-                        description="当前没有可展示的消息"
-                    />
+                    <div className="task-list">
+                        <div className="task-row">
+                            <div className="task-item">
+                                <div className="item-content">
+                                    <span>
+                                        <ExclamationCircleFilled className="cancelled" />
+                                    </span>
+                                    <span className="title-time">3:45 PM:</span>
+                                    <span> 任务取消: 从作业 'test_kk_f4e935e6-4d28-4fc6-b1fb-3e3079e5f8d3' 启动</span>
+                                </div>
+                                <div className="item-actions">
+                                    <EyeOutlined />
+                                    <CloseOutlined />
+                                </div>
+                                <div
+                                    className="progress cancelled"
+                                    style={{ width: "100%" }}
+                                ></div>
+                            </div>
+                        </div>
+                        {/* <Empty
+                            image={Empty.PRESENTED_IMAGE_SIMPLE}
+                            description="当前没有可展示的消息"
+                        /> */}
+                    </div>
                     <div className="task-footer">
                         <span>进行中：0</span>
                         <Tooltip title="清除所有通知">
