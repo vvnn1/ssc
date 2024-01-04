@@ -29,7 +29,7 @@ const options = [
                 value: "stable-1.15",
                 label: (
                     <>
-                        vvr-6.0.7-flink-1.15{" "}
+                        vvr-6.0.7-flink-1.15
                         <Tag
                             className="ant-select-item-option-content-tag"
                             color="#0064c8cc"
@@ -44,7 +44,7 @@ const options = [
                 value: "stable-1.13",
                 label: (
                     <>
-                        vvr-4.0.18-flink-1.13{" "}
+                        vvr-4.0.18-flink-1.13
                         <Tag
                             className="ant-select-item-option-content-tag"
                             color="#0064c8cc"
@@ -64,7 +64,7 @@ const options = [
                 value: "normal-1.15",
                 label: (
                     <>
-                        vvr-6.0.6-flink-1.15{" "}
+                        vvr-6.0.6-flink-1.15
                         <Tag
                             className="ant-select-item-option-content-tag"
                             color="#0064c8cc"
@@ -79,7 +79,7 @@ const options = [
                 value: "normal-1.14",
                 label: (
                     <>
-                        vvr-6.0.5-flink-1.15{" "}
+                        vvr-6.0.5-flink-1.15
                         <Tag
                             className="ant-select-item-option-content-tag"
                             color="#0064c8cc"
@@ -99,7 +99,7 @@ const options = [
                 value: "eos-1.15",
                 label: (
                     <>
-                        vvr-4.0.15-flink-1.13{" "}
+                        vvr-4.0.15-flink-1.13
                         <Tag
                             className="ant-select-item-option-content-tag"
                             color="#c80000cc"
