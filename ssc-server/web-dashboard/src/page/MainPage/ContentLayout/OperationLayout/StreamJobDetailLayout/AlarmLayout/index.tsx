@@ -4,6 +4,7 @@ import "./index.sass";
 import { Navigate, Route, Routes, matchPath, useLocation } from "react-router-dom";
 import AlarmList from "./AlarmList";
 import AlarmRule from "./AlarmRule";
+import TabMenu from "../../../../../../component/TabMenu";
 
 const items: MenuProps["items"] = [
     {
@@ -31,18 +32,12 @@ const items: MenuProps["items"] = [
 ];
 
 const AlarmLayout = () => {
-    const { pathname } = useLocation();
-    const pathMatch = matchPath(
-        "/workspace/:workspaceId/namespace/:namespaceId/operations/:jobType/:jobId/:detailTab/:key",
-        pathname
-    );
-
     return (
         <div className="development-alarm-layout">
-            <Menu //TODO 兼容至TabMenu
-                mode="horizontal"
-                items={items}
-                defaultSelectedKeys={pathMatch?.params.key ? [pathMatch?.params.key] : []}
+            <TabMenu
+                type="menu"
+                menuItems={items}
+                keyPath="/workspace/:workspaceId/namespace/:namespaceId/operations/:jobType/:jobId/:detailTab/:key"
             />
             <div className="detail-container">
                 <Routes>
