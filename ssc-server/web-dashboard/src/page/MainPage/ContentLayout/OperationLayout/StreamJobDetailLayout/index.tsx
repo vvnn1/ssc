@@ -11,6 +11,8 @@ import StateLayout from "./StateLayout";
 import EventLayout from "./EventLayout";
 import ChartLayout from "./ChartLayout";
 import OverviewLayout from "./OverviewLayout";
+import { useMineNavigate } from "../../../../../util/navigate";
+import MineNavigate from "../../../../../component/MineNavigate";
 
 const menuItems: TabsProps["items"] = [
     {
@@ -66,7 +68,7 @@ const JobDetailLayout = () => {
         "/workspace/:workspaceId/namespace/:namespaceId/operations/:jobType/:jobId/:key/*",
         pathname
     );
-    const navigate = useNavigate();
+    const navigate = useMineNavigate();
 
     const onTabClick: TabsProps["onTabClick"] = activeKey => {
         const link = menuItems.find(item => item.key === activeKey)?.children as string;
@@ -153,7 +155,7 @@ const JobDetailLayout = () => {
                         </Route>
                         <Route
                             path="*"
-                            element={<Navigate to="configuration" />}
+                            element={<MineNavigate to="configuration" />}
                         />
                     </Routes>
                 </div>

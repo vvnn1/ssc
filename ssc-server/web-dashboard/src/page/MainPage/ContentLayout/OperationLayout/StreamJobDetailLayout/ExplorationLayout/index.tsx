@@ -9,15 +9,36 @@ import RunIdNavigate from "./RuntimeLogLayout/RunIdNavigate";
 
 const items: MenuProps["items"] = [
     {
-        label: <MyLink to="../running">运行日志</MyLink>,
+        label: (
+            <MyLink
+                to="../running"
+                withSearch
+            >
+                运行日志
+            </MyLink>
+        ),
         key: "running",
     },
     {
-        label: <MyLink to="../starting">启动日志</MyLink>,
+        label: (
+            <MyLink
+                to="../starting"
+                withSearch
+            >
+                启动日志
+            </MyLink>
+        ),
         key: "starting",
     },
     {
-        label: <MyLink to="../exceptions">异常信息</MyLink>,
+        label: (
+            <MyLink
+                to="../exceptions"
+                withSearch
+            >
+                异常信息
+            </MyLink>
+        ),
         key: "exceptions",
     },
 ];

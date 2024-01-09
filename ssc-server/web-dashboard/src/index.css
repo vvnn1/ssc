@@ -25673,7 +25673,7 @@ tr.ant-table-expanded-row .ant-descriptions-view table {
 }
 
 .ant-tooltip-placement-top .ant-tooltip-arrow,.ant-tooltip-placement-topLeft .ant-tooltip-arrow,.ant-tooltip-placement-topRight .ant-tooltip-arrow {
-    bottom: -5.07106781px
+    /* bottom: -5.07106781px */
 }
 
 .ant-tooltip-placement-top .ant-tooltip-arrow-content,.ant-tooltip-placement-topLeft .ant-tooltip-arrow-content,.ant-tooltip-placement-topRight .ant-tooltip-arrow-content {

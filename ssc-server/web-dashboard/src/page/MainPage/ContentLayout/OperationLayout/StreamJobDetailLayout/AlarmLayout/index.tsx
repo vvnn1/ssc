@@ -7,11 +7,25 @@ import AlarmRule from "./AlarmRule";
 
 const items: MenuProps["items"] = [
     {
-        label: <MyLink to="../events">告警事件</MyLink>,
+        label: (
+            <MyLink
+                to="../events"
+                withSearch
+            >
+                告警事件
+            </MyLink>
+        ),
         key: "events",
     },
     {
-        label: <MyLink to="../rules">告警规则</MyLink>,
+        label: (
+            <MyLink
+                to="../rules"
+                withSearch
+            >
+                告警规则
+            </MyLink>
+        ),
         key: "rules",
     },
 ];
@@ -25,7 +39,7 @@ const AlarmLayout = () => {
 
     return (
         <div className="development-alarm-layout">
-            <Menu
+            <Menu //TODO 兼容至TabMenu
                 mode="horizontal"
                 items={items}
                 defaultSelectedKeys={pathMatch?.params.key ? [pathMatch?.params.key] : []}

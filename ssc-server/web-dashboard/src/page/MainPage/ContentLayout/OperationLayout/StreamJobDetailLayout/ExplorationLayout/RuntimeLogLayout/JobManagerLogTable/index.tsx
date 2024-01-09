@@ -15,14 +15,17 @@ const JobManagerLogTable = () => {
                         dataIndex: "name",
                         sorter: (a, b) => a.name.localeCompare(b.name),
                         render: value => (
-                            <MyLink to={value}>
-                                <Tooltip
-                                    title="oss://ssc-b/logs/ssc-m-default/9ddc3745-7453-4d4b-96ee-965d8b2d5f05/0e4eb4ec-61d8-4ae9-bf0e-dcaee4b7db5f/jobmanager-548ffb9547-zmtjn/20230927_095224-0"
-                                    placement="right"
+                            <Tooltip
+                                title="oss://ssc-b/logs/ssc-m-default/9ddc3745-7453-4d4b-96ee-965d8b2d5f05/0e4eb4ec-61d8-4ae9-bf0e-dcaee4b7db5f/jobmanager-548ffb9547-zmtjn/20230927_095224-0"
+                                placement="right"
+                            >
+                                <MyLink
+                                    to={value}
+                                    withSearch
                                 >
                                     {value}
-                                </Tooltip>
-                            </MyLink>
+                                </MyLink>
+                            </Tooltip>
                         ),
                     },
                     {

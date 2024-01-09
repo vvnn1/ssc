@@ -2,7 +2,7 @@ import { Breadcrumb, Pagination } from "antd";
 import "./index.sass";
 import { LeftSquareFilled } from "../../../../../../../../component/Icon";
 import MonacoEditor from "../../../../../../../../component/MonacoEditor";
-import { useHref } from "react-router-dom";
+import MyLink from "../../../../../../../../component/MyLink";
 
 const LogDetailLayout = () => {
     return (
@@ -12,11 +12,13 @@ const LogDetailLayout = () => {
                     items={[
                         {
                             title: (
-                                <>
+                                <MyLink
+                                    to="../."
+                                    withSearch
+                                >
                                     <LeftSquareFilled /> 日志列表
-                                </>
+                                </MyLink>
                             ),
-                            href: useHref("../."),
                         },
                         {
                             title: "20230927_095224-0",

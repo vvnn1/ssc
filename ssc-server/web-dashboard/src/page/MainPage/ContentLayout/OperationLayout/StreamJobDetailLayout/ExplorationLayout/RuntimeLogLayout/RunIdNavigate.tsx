@@ -1,4 +1,5 @@
-import { Navigate, Outlet, matchPath, useLocation } from "react-router-dom";
+import { Outlet, matchPath, useLocation } from "react-router-dom";
+import MineNavigate from "../../../../../../../component/MineNavigate";
 
 const RunIdNavigate = () => {
     const { pathname } = useLocation();
@@ -9,7 +10,7 @@ const RunIdNavigate = () => {
     return pathMatch?.params.runId ? (
         <Outlet />
     ) : (
-        <Navigate to="0e4eb4ec-61d8-4ae9-bf0e-dcaee4b7db5f/archives/jobmanager" />
+        <MineNavigate to="0e4eb4ec-61d8-4ae9-bf0e-dcaee4b7db5f/archives/jobmanager" />
     );
 };
 

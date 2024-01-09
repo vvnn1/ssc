@@ -2,12 +2,13 @@ import { Select, Tooltip } from "antd";
 import "./index.sass";
 import { CopyOutlined } from "../../../../../../../component/Icon";
 import TabMenu from "../../../../../../../component/TabMenu";
-import { Navigate, Route, Routes, useParams } from "react-router-dom";
+import { Route, Routes, useParams } from "react-router-dom";
 import MyLink from "../../../../../../../component/MyLink";
 import JobManagerLogTable from "./JobManagerLogTable";
 import LogDetailLayout from "./LogDetailLayout";
 import TaskManagerList from "./TaskManagerList";
 import TmIdNavigate from "./TaskManagerList/TmIdNavigate";
+import MineNavigate from "../../../../../../../component/MineNavigate";
 
 const RuntimeLogLayout = () => {
     const { runId } = useParams();
@@ -64,11 +65,25 @@ const RuntimeLogLayout = () => {
                     menuItems={[
                         {
                             key: "jobmanager",
-                            label: <MyLink to="../jobmanager">Job Manager</MyLink>,
+                            label: (
+                                <MyLink
+                                    to="../jobmanager"
+                                    withSearch
+                                >
+                                    Job Manager
+                                </MyLink>
+                            ),
                         },
                         {
                             key: "taskmanagers",
-                            label: <MyLink to="../taskmanagers">Task Managers</MyLink>,
+                            label: (
+                                <MyLink
+                                    to="../taskmanagers"
+                                    withSearch
+                                >
+                                    Task Managers
+                                </MyLink>
+                            ),
                         },
                     ]}
                     keyPath="/workspace/:workspaceId/namespace/:namespaceId/operations/:jobType/:jobId/:detailTab/:subTab/:runId/archives/:key/*"
@@ -96,7 +111,7 @@ const RuntimeLogLayout = () => {
                         </Route>
                         <Route
                             path="*"
-                            element={<Navigate to="jobmanager" />}
+                            element={<MineNavigate to="jobmanager" />}
                         />
                     </Routes>
                 </div>
