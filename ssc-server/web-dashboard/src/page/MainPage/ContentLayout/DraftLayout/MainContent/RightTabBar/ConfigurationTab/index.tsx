@@ -1,10 +1,7 @@
-import { Form, Select, Space, Tag, Tooltip, Upload } from "antd";
-import { CheckOutlined, DeleteOutlined, DownloadOutlined, UploadOutlined } from "../../../../../../../component/Icon";
+import { Form, Select } from "antd";
 import "./index.sass";
 import FileSelect from "../../../../../../../component/Select/FileSelect";
 import EngineSelect from "../../../../../../../component/Select/EngineSelect";
-
-const { Option } = Select;
 
 const ConfigurationTab = () => {
     return (
@@ -22,7 +19,7 @@ const ConfigurationTab = () => {
                         <EngineSelect />
                     </Form.Item>
                     <Form.Item label="附加依赖文件">
-                        <FileSelect />
+                        <FileSelect showUpload />
                     </Form.Item>
                 </Form>
             </div>

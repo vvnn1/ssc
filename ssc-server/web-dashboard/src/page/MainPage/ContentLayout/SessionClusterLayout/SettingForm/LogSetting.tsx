@@ -4,6 +4,7 @@ import { BarsOutlined, DeleteOutlined, DownOutlined, UpOutlined } from "../../..
 import LogLevelSelect from "../../../../../component/Select/LogLevelSelect";
 import { useState } from "react";
 import MonacoEditor from "../../../../../component/MonacoEditor";
+import TwigAlert from "../../../../../component/Alert/TwigAlert";
 
 const defaultLog = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Configuration xmlns="http://logging.apache.org/log4j/2.0/config" strict="true" monitorInterval="30">
@@ -235,22 +236,7 @@ const LogSetting = () => {
                 </Col>
                 {templateModel === "custom" ? (
                     <Col span={24}>
-                        <Alert
-                            style={{ marginBottom: 12 }}
-                            type="info"
-                            message="可用的 Twig 变量："
-                            description={
-                                <ul style={{ marginLeft: 24 }}>
-                                    <li>namespace:作业所属的项目空间</li>
-                                    <li>sessionClusterId:Session 集群 ID</li>
-                                    <li>sessionClusterName:Session 集群名称</li>
-                                    <li>rootLoggerLogLevel:root logger 的日志级别</li>
-                                    <li>
-                                        userConfiguredLoggers:用户配置的日志级别的键值映射（键:记录器，值:日志级别）
-                                    </li>
-                                </ul>
-                            }
-                        />
+                        <TwigAlert />
                     </Col>
                 ) : null}
             </Row>

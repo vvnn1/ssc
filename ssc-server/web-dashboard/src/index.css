@@ -15473,6 +15473,14 @@ textarea.ant-input-number-affix-wrapper {
     width: 100%
 }
 
+.ant-input-number-group-wrapper-sm .ant-input-number-sm {
+    font-size: 12px;
+}
+
+.ant-input-number-group-wrapper-sm .ant-input-number-group .ant-input-number-group-addon {
+    font-size: 12px;
+}
+
 .ant-input-number {
     box-sizing: border-box;
     font-variant: tabular-nums;
@@ -15918,7 +15926,8 @@ textarea.ant-input-number {
 .ant-input-number-group-wrapper {
     display: inline-block;
     text-align: start;
-    vertical-align: top
+    vertical-align: top;
+    width: 100%;
 }
 
 .ant-input-number-handler {
@@ -16959,6 +16968,10 @@ textarea.ant-input-number {
 
 .ant-form-small .ant-form-item-control-input {
     min-height: 24px
+}
+
+.ant-form-small .ant-form-item-extra {
+    font-size: 12px;
 }
 
 .ant-form-large .ant-form-item-label>label {
@@ -21259,8 +21272,12 @@ span.ant-radio+* {
     height: 38px
 }
 
+.ant-select-single.ant-select-sm .ant-select-selector {
+    font-size: 12px;
+}
+
 .ant-select-single.ant-select-sm:not(.ant-select-customize-input) .ant-select-selector {
-    height: 24px
+    height: 24px;
 }
 
 .ant-select-single.ant-select-sm:not(.ant-select-customize-input) .ant-select-selector:after,.ant-select-single.ant-select-sm:not(.ant-select-customize-input) .ant-select-selector .ant-select-selection-item,.ant-select-single.ant-select-sm:not(.ant-select-customize-input) .ant-select-selector .ant-select-selection-placeholder {
@@ -21469,6 +21486,10 @@ span.ant-radio+* {
 .ant-select-multiple.ant-select-lg .ant-select-selection-search-input,.ant-select-multiple.ant-select-lg .ant-select-selection-search-mirror {
     height: 28px;
     line-height: 26px
+}
+
+.ant-select-multiple.ant-select-sm{
+    font-size: 12px
 }
 
 .ant-select-multiple.ant-select-sm .ant-select-selector:after {
@@ -29839,6 +29860,10 @@ div.ant-typography-edit-content.ant-typography-rtl {
 
 .no-padding-select.ant-select-dropdown {
     padding: 0;
+}
+
+.ant-select-dropdown.small .ant-select-item {
+    font-size: 12px;
 }
 
 .ant-select-dropdown .ant-select-item .ant-select-selected-icon {

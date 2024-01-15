@@ -1,3 +1,5 @@
+import { MouseEventHandler } from "react";
+
 export function restoreUrl(url: string, urlParams: any): string {
     if (url) {
         const link: string = url;
@@ -46,6 +48,13 @@ export function checkedChangeWrapper(onCheckedChange: (chcked: boolean) => void)
 export function radioChangeWrapper(onRadioChange: (value: string) => void) {
     return ({ target: { value } }: any) => {
         onRadioChange(value);
+    };
+}
+
+export function stopPropagationClickWrapper(func: MouseEventHandler): MouseEventHandler {
+    return e => {
+        e.stopPropagation();
+        func(e);
     };
 }
 

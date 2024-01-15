@@ -62,7 +62,7 @@ const menuItems: TabsProps["items"] = [
     },
 ];
 
-const JobDetailLayout = () => {
+const StreamJobDetailLayout = () => {
     const { pathname } = useLocation();
     const pathMatch = matchPath(
         "/workspace/:workspaceId/namespace/:namespaceId/operations/:jobType/:jobId/:key/*",
@@ -76,7 +76,7 @@ const JobDetailLayout = () => {
     };
 
     return (
-        <div className="job-detail-layout">
+        <div className="stream-job-detail-layout">
             <div className="header">
                 <div className="title">
                     <div className="name">
@@ -164,4 +164,4 @@ const JobDetailLayout = () => {
     );
 };
 
-export default JobDetailLayout;
+export default StreamJobDetailLayout;
