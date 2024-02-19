@@ -31,7 +31,6 @@ const MemoryInputNumber: React.FC<MemoryInputNumberProps> = ({
             onChange?.(null);
         }
     };
-    console.log(number);
     const onUnitChange: SelectProps["onChange"] = unit => {
         setUnit(unit);
         if (number && unit) {

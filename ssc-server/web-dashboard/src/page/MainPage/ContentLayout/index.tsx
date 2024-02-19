@@ -13,8 +13,6 @@ import SessionClusterLayout from "./SessionClusterLayout";
 import SessionDetailLoadingLayout from "./SessionClusterLayout/SessionDetailLayout/LoadingLayout";
 import SessionCreateLoadingLayout from "./SessionClusterLayout/SessionCreateLayout/LoadingLayout";
 import SessionEditorLoadingLayout from "./SessionClusterLayout/SessionEditorLayout/LoadingLayout";
-import JobDetailLoadingLayout from "./OperationLayout/JobDetailLayout/LoadingLayout";
-const JobDetailLayout = lazy(() => import("./OperationLayout/JobDetailLayout"));
 const SessionCreateLayout = lazy(() => import("./SessionClusterLayout/SessionCreateLayout"));
 const SessionDetailLayout = lazy(() => import("./SessionClusterLayout/SessionDetailLayout"));
 const SessionEditorLayout = lazy(() => import("./SessionClusterLayout/SessionEditorLayout"));
@@ -31,23 +29,10 @@ const ContentLayout = () => {
                 element={<DraftLayout />}
             />
             <Route path="operations">
-                <Route path=":jobType">
-                    <Route
-                        path=""
-                        element={<OperationLayout />}
-                    />
-
-                    <Route path=":jobId">
-                        <Route
-                            path="*"
-                            element={
-                                <Suspense fallback={<JobDetailLoadingLayout />}>
-                                    <JobDetailLayout />
-                                </Suspense>
-                            }
-                        />
-                    </Route>
-                </Route>
+                <Route
+                    path="*"
+                    element={<OperationLayout />}
+                />
             </Route>
             <Route
                 path="resource"

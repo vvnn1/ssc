@@ -1,8 +1,9 @@
 import "./index.sass";
-import { Select, Tooltip } from "antd";
+import { Badge, Select, Tooltip } from "antd";
 import {
     ApiOutlined,
     BellOutlined,
+    ExclamationCircleFilled,
     NotificationOutlined,
     QuestionCircleOutlined,
     SkinOutlined,
@@ -61,7 +62,13 @@ const Header = () => {
                             <NotificationDropdown>
                                 <li>
                                     <Tooltip title="消息通知">
-                                        <BellOutlined />
+                                        <Badge
+                                            count={
+                                                <ExclamationCircleFilled className="ant-scroll-number-custom-component badge-icon cancelled" />
+                                            }
+                                        >
+                                            <BellOutlined />
+                                        </Badge>
                                     </Tooltip>
                                 </li>
                             </NotificationDropdown>

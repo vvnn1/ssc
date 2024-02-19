@@ -25,7 +25,7 @@ const DebugModal = (props: ModalProps) => {
         props.onCancel?.(e);
         const id = setInterval(() => {
             document.dispatchEvent(
-                new CustomEvent("bottom-label-change", {
+                new CustomEvent("top-tool-click", {
                     detail: {
                         label: "debug",
                     },

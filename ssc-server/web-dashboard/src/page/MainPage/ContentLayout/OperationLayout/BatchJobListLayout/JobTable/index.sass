@@ -1,0 +1,62 @@
+.job-table
+    .ant-table
+        .ant-table-tbody
+            tr
+                td.ant-table-row-expand-icon-cell
+                    .anticon
+                        color: #666
+                        font-size: 12px
+                        transition: transform .3s
+                    .anticon.expanded
+                        transform: rotate(90deg)
+                td
+
+                    .type
+                        position: relative
+                        top: -1px
+                        display: inline-block
+                        vertical-align: middle
+                        overflow: hidden
+                        width: 36px
+                        padding: 2px 6px
+                        border: 1px solid #0064c8
+                        background: rgba(0,100,200,.2)
+                        color: #333
+                        font-weight: 500
+                        font-size: 12px
+                        line-height: 12px
+                        text-align: center
+                        white-space: nowrap
+                        word-break: keep-all
+                        transform: scale(.7)
+                        transform-origin: left center
+                    .ant-space
+                        .ant-space-item
+                            .ant-btn-link
+                                padding: 0
+                                height: initial
+                                .anticon-down
+                                    margin-left: 4px
+                                    font-size: 10px
+                                    vertical-align: baseline
+                            .ant-divider
+                                margin: 0
+                            .name.RUNNING
+                                color: #00a700
+                            .name.FINISHED,
+                            .name.CANCELLED
+                                color: #33333380
+                            .name.FAILED
+                                color: #c80000
+                            .count
+                                margin-left: 4px
+            tr.ant-table-expanded-row
+                >.ant-table-cell
+                    padding: 0
+            tr.job-row:first-of-type
+                td
+                    border-top: 1px solid #ebebeb
+            tr.job-row
+                cursor: pointer
+                td
+                    background-color: #fafafa

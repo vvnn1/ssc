@@ -5,6 +5,7 @@ import "./index.sass";
 interface TabMenuProps {
     menuItems: MenuProps["items"];
     keyPath: string;
+    type?: "card" | "menu";
 }
 
 const TabMenu = (props: TabMenuProps) => {
@@ -13,7 +14,7 @@ const TabMenu = (props: TabMenuProps) => {
 
     return (
         <Menu
-            className="tab-menu"
+            className={props.type === "menu" ? undefined : "tab-menu"}
             defaultSelectedKeys={pathMatch?.params.key ? [pathMatch.params.key] : []}
             mode="horizontal"
             items={props.menuItems}

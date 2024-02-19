@@ -2,7 +2,7 @@ import { Col, Divider, Form, FormInstance, Input, Row, Select, Space, Tag, Typog
 import { ArrowLeftOutlined } from "../../../../../../../component/Icon";
 import "./index.sass";
 import ScrollPin from "../../../../../../../component/ScrollPin";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import MonacoEditor from "../../../../../../../component/MonacoEditor";
 import { CardTemplate } from "../Step1";
 import dayjs from "dayjs";
@@ -21,6 +21,10 @@ const Step2 = (props: Step2Props) => {
     const editorDidMount = (editor: any) => {
         editor.layout();
     };
+
+    useEffect(() => {
+        props.form.resetFields();
+    }, [props.template]);
 
     return (
         <div className="create-draft-step2">

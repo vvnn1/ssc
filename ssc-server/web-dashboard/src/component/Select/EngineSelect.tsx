@@ -29,10 +29,10 @@ const options = [
                 value: "stable-1.15",
                 label: (
                     <>
-                        vvr-6.0.7-flink-1.15{" "}
+                        vvr-6.0.7-flink-1.15
                         <Tag
                             className="ant-select-item-option-content-tag"
-                            color=""
+                            color="#0064c8cc"
                         >
                             STABLE
                         </Tag>
@@ -44,10 +44,10 @@ const options = [
                 value: "stable-1.13",
                 label: (
                     <>
-                        vvr-4.0.18-flink-1.13{" "}
+                        vvr-4.0.18-flink-1.13
                         <Tag
                             className="ant-select-item-option-content-tag"
-                            color=""
+                            color="#0064c8cc"
                         >
                             STABLE
                         </Tag>
@@ -64,10 +64,10 @@ const options = [
                 value: "normal-1.15",
                 label: (
                     <>
-                        vvr-6.0.6-flink-1.15{" "}
+                        vvr-6.0.6-flink-1.15
                         <Tag
                             className="ant-select-item-option-content-tag"
-                            color=""
+                            color="#0064c8cc"
                         >
                             NORMAL
                         </Tag>
@@ -75,16 +75,36 @@ const options = [
                 ),
             },
             {
-                title: "vvr-6.0.5-flink-1.15",
-                value: "normal-1.15",
+                title: "vvr-6.0.5-flink-1.14",
+                value: "normal-1.14",
                 label: (
                     <>
-                        vvr-6.0.5-flink-1.15{" "}
+                        vvr-6.0.5-flink-1.15
                         <Tag
                             className="ant-select-item-option-content-tag"
-                            color=""
+                            color="#0064c8cc"
                         >
                             NORMAL
+                        </Tag>
+                    </>
+                ),
+            },
+        ],
+    },
+    {
+        label: "EOS版本",
+        options: [
+            {
+                title: "vvr-4.0.15-flink-1.13",
+                value: "eos-1.15",
+                label: (
+                    <>
+                        vvr-4.0.15-flink-1.13
+                        <Tag
+                            className="ant-select-item-option-content-tag"
+                            color="#c80000cc"
+                        >
+                            DEPRECATED
                         </Tag>
                     </>
                 ),

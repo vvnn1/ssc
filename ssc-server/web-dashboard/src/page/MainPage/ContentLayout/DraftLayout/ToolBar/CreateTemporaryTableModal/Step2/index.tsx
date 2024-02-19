@@ -3,9 +3,10 @@ import "./index.sass";
 import { NewTabOutlined } from "../../../../../../../component/Icon";
 import MonacoEditor from "../../../../../../../component/MonacoEditor";
 
-const { Paragraph, Text } = Typography;
+const { Paragraph } = Typography;
 
 interface Step2Props {
+    hidden: boolean;
     desc: string;
     type?: string[];
     classification: string;
@@ -15,7 +16,10 @@ interface Step2Props {
 
 const Step2 = (props: Step2Props) => {
     return (
-        <div className="create-temporary-table-modal-step-2">
+        <div
+            hidden={props.hidden}
+            className="create-temporary-table-modal-step-2"
+        >
             <Row className="demo-platform">
                 <Col
                     className="left-panel"
@@ -69,16 +73,7 @@ const Step2 = (props: Step2Props) => {
                             lineNumbersMinChars: 5,
                             lineDecorationsWidth: 0,
                         }}
-                        value={`CREATE TEMPORARY TABLE <your_table_name> (
-    ...
-) 
-WITH (
-    'connector' = 'adb3.0',
-    'url' = '<url>',
-    'userName' = '<userName>',
-    'password' = '<password>',
-    'tableName' = '<tableName>'
-);`}
+                        value={props.template}
                     />
                 </Col>
             </Row>

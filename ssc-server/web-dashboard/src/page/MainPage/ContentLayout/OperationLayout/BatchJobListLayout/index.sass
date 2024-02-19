@@ -1,0 +1,58 @@
+.batch-job-list-layout
+    background-color: #fff
+    height: 100%
+    .header
+        padding: 16px 24px 0
+        .title
+            height: 40px
+            line-height: 40px
+            font-weight: 400
+            font-size: 28px
+        .actions
+            height: 32px
+            margin-top: 16px
+            line-height: 32px
+            display: flex
+            .ant-btn
+                margin-left: auto
+            .ant-input-group
+                .ant-input-group-addon
+                    .anticon-swap
+                        transform: rotate(90deg)
+    .content
+        padding: 0 24px
+        height: calc( 100% - 120px )
+        .screening
+            display: flex
+            align-items: center
+            min-height: 16px
+            padding: 8px 0
+            span.anticon-right
+                color: #333
+                font-size: 12px
+                margin-right: 8px
+            .ant-btn
+                padding: 0
+                height: 30px
+            .collapsed-tag
+                max-width: 200px
+                flex-shrink: 1
+                overflow: hidden
+                text-overflow: ellipsis
+                white-space: nowrap
+        
+.batch-more-actions-dropdown
+    ul.ant-dropdown-menu
+        li.ant-dropdown-menu-item
+            padding: 5px 12px
+            .ant-btn
+                height: initial
+                padding: 0
+.batch-job-filter-dropdown
+    ul.ant-dropdown-menu
+        li.actions
+            border-top: 1px solid #ebebeb
+        li.checkbox-list
+            ul.ant-dropdown-menu
+                display: flex
+                box-shadow: none

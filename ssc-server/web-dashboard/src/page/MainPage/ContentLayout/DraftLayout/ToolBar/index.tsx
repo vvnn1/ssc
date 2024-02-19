@@ -7,6 +7,7 @@ import {
     CodeOutlined,
     CommitAllOutlined,
     CopyOutlined,
+    ExclamationCircleOutlined,
     ExecuteAllOutlined,
     FileAddOutlined,
     FileSearchOutlined,
@@ -18,6 +19,7 @@ import {
     SaveOutlined,
     UndoOutlined,
     ValidateAllOutlined,
+    WarningOutlined,
 } from "../../../../../component/Icon";
 import CreateDraftModal from "./CreateDraftModal";
 import CreateTemporaryTableModal from "./CreateTemporaryTableModal";
@@ -64,17 +66,17 @@ const ToolBar = (props: ToolBarProps) => {
 
     const onCheckClick = () => {
         setChecking(true);
+        document.dispatchEvent(
+            new CustomEvent("top-tool-click", {
+                detail: {
+                    label: "analyse",
+                },
+            })
+        );
         const id = setInterval(() => {
             setChecking(false);
             clearInterval(id);
-            document.dispatchEvent(
-                new CustomEvent("bottom-label-change", {
-                    detail: {
-                        label: "problem",
-                    },
-                })
-            );
-        }, 3000);
+        }, 2000);
     };
 
     const onDebugClick = () => {
@@ -97,6 +99,22 @@ const ToolBar = (props: ToolBarProps) => {
             ),
         });
         setPublishModalOpen(false);
+    };
+
+    const onDeployClick = () => {
+        if (urlParams.draftId === "2aa0e831-2b04-407e-b47c-d30afc3c2070") {
+            messageApi.warning({
+                icon: <></>,
+                content: (
+                    <>
+                        <ExclamationCircleOutlined />
+                        当前 SQL 中包含语法错误或不支持的语句类型，请根据错误信息更正后重试
+                    </>
+                ),
+            });
+            return;
+        }
+        setPublishModalOpen(true);
     };
 
     return (
@@ -191,7 +209,7 @@ const ToolBar = (props: ToolBarProps) => {
                         </Button>
                         <Button
                             type="text"
-                            onClick={changeModalOpen(true, setPublishModalOpen)}
+                            onClick={onDeployClick}
                         >
                             {publishModalOpen ? <LoadingOutlined /> : <CommitAllOutlined />}
                             <span>部署</span>

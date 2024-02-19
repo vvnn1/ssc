@@ -1,6 +1,7 @@
 import { Input, List, Select, Space, Tabs } from "antd";
 import {
     ClickHouseOutlined,
+    ConnectorOutlined,
     DataHubOutlined,
     DatagenOutlined,
     ElasticsearchOutlined,
@@ -31,6 +32,7 @@ import ConnectorCard, { CardProps } from "./ConnectorCard";
 import ScrollPin from "../../../../../../../component/ScrollPin";
 import { useRef, useState } from "react";
 import "./index.sass";
+import MyLink from "../../../../../../../component/MyLink";
 
 interface CardExtra {
     classification: string;
@@ -40,7 +42,7 @@ interface CardExtra {
 
 export type CardDetail = CardProps & CardExtra;
 
-const connectorItems: CardDetail[] = [
+const innerConnectorItems: CardDetail[] = [
     {
         icon: <MySqlOutlined />,
         desc: "云原生数据仓库 AnalyticDB MySQL 版 3.0",
@@ -591,23 +593,55 @@ WITH (
     },
 ];
 
+const customConnectorItems: CardDetail[] = [
+    {
+        icon: <ConnectorOutlined />,
+        desc: "Doris",
+        type: ["源表", "结果表"],
+        classification: "doris",
+        version: "无版本限制",
+        template: `CREATE TEMPORARY TABLE <your_table_name> (
+...
+) 
+WITH (
+    'connector' = 'doris',
+    'table.identifier' = '<table.identifier>',
+    'fenodes' = '<fenodes>'
+);`,
+    },
+];
+
 interface Step1Props {
+    hidden: boolean;
     onCardChange: (card: CardDetail) => void;
 }
 
 const Step1 = (props: Step1Props) => {
     const containerRef = useRef<HTMLDivElement>(null);
-    const [activeIndex, setActiveIndex] = useState<number>();
+    const [active, setActive] = useState<{ classification?: string; key: string }>({ key: "inner" });
 
-    const onItemClick = (index: number) => {
+    const onItemClick = (item: CardDetail) => {
         return () => {
-            props.onCardChange(connectorItems[index]);
-            setActiveIndex(index);
+            props.onCardChange(item);
+            setActive({
+                ...active,
+                classification: item.classification,
+            });
         };
     };
 
+    const onTabChange = (key: string) => {
+        setActive({
+            ...active,
+            key,
+        });
+    };
+
     return (
-        <div className="create-temporary-table-modal-step-1">
+        <div
+            hidden={props.hidden}
+            className="create-temporary-table-modal-step-1"
+        >
             <Tabs
                 items={[
                     {
@@ -621,9 +655,11 @@ const Step1 = (props: Step1Props) => {
                 ]}
                 tabBarExtraContent={
                     <>
-                        没有想要的连接器? <a>前往创建连接器</a>
+                        没有想要的连接器? <MyLink to={"../../../connectors/connector"}>前往创建连接器</MyLink>
                     </>
                 }
+                activeKey={active.key}
+                onChange={onTabChange}
             />
             <ScrollPin containerRef={containerRef} />
             <div
@@ -660,24 +696,46 @@ const Step1 = (props: Step1Props) => {
                     />
                 </Space>
 
-                <List
-                    className="pro-list"
-                    grid={{ gutter: 16, column: 3 }}
-                    dataSource={connectorItems}
-                    renderItem={(item, index) => (
-                        <List.Item
-                            onClick={onItemClick(index)}
-                            className={activeIndex === index ? "active" : undefined}
-                        >
-                            <ConnectorCard
-                                icon={item.icon}
-                                desc={item.desc}
-                                type={item.type}
-                                hoverable
-                            />
-                        </List.Item>
-                    )}
-                ></List>
+                {active.key === "inner" ? (
+                    <List
+                        className="pro-list"
+                        grid={{ gutter: 16, column: 3 }}
+                        dataSource={innerConnectorItems}
+                        renderItem={item => (
+                            <List.Item
+                                onClick={onItemClick(item)}
+                                className={active.classification === item.classification ? "active" : undefined}
+                            >
+                                <ConnectorCard
+                                    icon={item.icon}
+                                    desc={item.desc}
+                                    type={item.type}
+                                    hoverable
+                                />
+                            </List.Item>
+                        )}
+                    />
+                ) : null}
+                {active.key === "custom" ? (
+                    <List
+                        className="pro-list"
+                        grid={{ gutter: 16, column: 3 }}
+                        dataSource={customConnectorItems}
+                        renderItem={item => (
+                            <List.Item
+                                onClick={onItemClick(item)}
+                                className={active.classification === item.classification ? "active" : undefined}
+                            >
+                                <ConnectorCard
+                                    icon={item.icon}
+                                    desc={item.desc}
+                                    type={item.type}
+                                    hoverable
+                                />
+                            </List.Item>
+                        )}
+                    />
+                ) : null}
             </div>
         </div>
     );

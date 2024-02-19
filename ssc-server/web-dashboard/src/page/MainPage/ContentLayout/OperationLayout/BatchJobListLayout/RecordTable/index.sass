@@ -1,0 +1,22 @@
+.record-table
+    .ant-table
+        margin: 0 !important
+        .ant-table-thead
+            th:first-child:before
+                width: 0 !important
+            th:last-of-type
+                border-right: 0
+        .ant-table-tbody
+            tr.record-row
+                cursor: pointer
+                .status
+                    display: inline-block
+                    .icon.RUNNING
+                        color: #00a700
+                    .icon.FINISHED,
+                    .icon.CANCELLED
+                        color: #33333380
+                    .icon.FAILED
+                        color: #c80000
+                    .desc
+                        margin-left: 4px

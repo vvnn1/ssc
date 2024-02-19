@@ -1,5 +1,7 @@
-import { Card, Divider, Space, Typography } from "antd";
+import { Card, Divider, Space, Tooltip, Typography } from "antd";
 import { NewTabOutlined } from "../../../../../../../component/Icon";
+import { useContext } from "react";
+import { DocumentContext } from "../../../../..";
 
 type ConnectorType = "结果表" | "源表" | "维表";
 
@@ -13,6 +15,7 @@ export interface CardProps {
 const { Paragraph } = Typography;
 
 const ConnectorCard = (props: CardProps) => {
+    const setDocumentOpen = useContext(DocumentContext);
     return (
         <Card
             className="connector-card"
@@ -29,22 +32,24 @@ const ConnectorCard = (props: CardProps) => {
                 {props.type ? (
                     <div className="docs-link">
                         <span className="key">
-                            <a>
-                                <Space size={4}>
-                                    {props.type
-                                        .map((item, index) => <span key={index}>{item}</span>)
-                                        .reduce((accu, elem) => {
-                                            return (
-                                                <>
-                                                    {accu}
-                                                    <Divider type="vertical" />
-                                                    {elem}
-                                                </>
-                                            );
-                                        })}
-                                    <NewTabOutlined />
-                                </Space>
-                            </a>
+                            <Tooltip title="可作为以下表使用">
+                                <a onClick={() => setDocumentOpen(true)}>
+                                    <Space size={4}>
+                                        {props.type
+                                            .map((item, index) => <span key={index}>{item}</span>)
+                                            .reduce((accu, elem) => {
+                                                return (
+                                                    <>
+                                                        {accu}
+                                                        <Divider type="vertical" />
+                                                        {elem}
+                                                    </>
+                                                );
+                                            })}
+                                        <NewTabOutlined />
+                                    </Space>
+                                </a>
+                            </Tooltip>
                         </span>
                     </div>
                 ) : null}

@@ -32,13 +32,74 @@
                         width: 90px
         .ant-card-body
             padding: 0
-            .ant-empty
+            .task-list
                 font-size: 12px
                 height: 200px
-                margin: 0 8px
                 display: flex
                 flex-direction: column
-                justify-content: center
+                // justify-content: center
+                overflow: auto
+                .task-row
+                    display: flex
+                    flex-direction: column
+                    width: 100%
+                    border-bottom: 1px solid #ebebeb
+                    .task-item
+                        position: relative
+                        display: flex
+                        flex-direction: row
+                        align-items: center
+                        padding: 8px
+                        white-space: nowrap
+                        .item-content
+                            z-index: 1
+                            flex: 1 auto
+                            overflow: hidden
+                            text-overflow: ellipsis
+                            .anticon
+                                margin-right: 8px
+                            .anticon.cancelled
+                                color: #fac800
+                            .anticon.finished
+                                color: #00a700
+                            .anticon.start
+                                color: #0064c8
+                            .anticon.failed
+                                color: #c80000
+                            .anticon.stop
+                                color: #666
+                            .title-time
+                                color: #666
+                        .item-actions
+                            flex: 0
+                            z-index: 1
+                            .anticon
+                                margin-left: 8px
+                                color: #666
+                                cursor: pointer
+                                transform: scale(1.1)
+                        .progress
+                            position: absolute
+                            top: 0
+                            bottom: 0
+                            left: 0
+                            z-index: 0
+                            transition: all .4s
+                        .progress.cancelled
+                            background-color: #fac80033
+                        .progress.stop
+                            background-color: #6663
+                        .progress.finished
+                            background-color: #00a70033
+                        .progress.failed
+                            background-color: #c8000033
+                        .progress.start
+                            background-color: #0064c833
+                .ant-empty
+                    height: 100%
+                    display: flex
+                    flex-direction: column
+                    justify-content: center
             .task-footer
                 display: flex
                 align-items: center

@@ -1,7 +1,7 @@
-import { MinusOutlined } from "../../../../../../../component/Icon";
 import MonacoEditor from "../../../../../../../component/MonacoEditor";
 import "./index.sass";
 import "../index.sass";
+import ResultPanel from "../ResultPanel";
 
 const problem = `org.apache.flink.table.api.SqlParserException: SQL parse failed. From line 20, column 1 to line 20, column 12: Encountered "DEBUG". Was expecting one of:
 "CATALOG" , "DATABASE" , "FUNCTION" , "OR" , "SYSTEM" , "TABLE" , "TEMPORARY" , "VIEW" 
@@ -68,35 +68,29 @@ at org.apache.calcite.sql.parser.SqlParser.parseStmtList(SqlParser.java:198)
 ... 14 more
 `;
 
-interface ProblemPanelProps {
-    onMinusClick: () => void;
-}
+interface ProblemPanelProps {}
 
-const ProblemPanel = (props: ProblemPanelProps) => {
+const ProblemPanel = (props: ProblemPanelProps & Pick<ResultPanel, "onMinusClick">) => {
     return (
-        <div className="problem-panel bottom-pop-panel">
-            <div className="header">
-                <div className="title">问题: Untitled-stream-sql</div>
-                <div className="actions">
-                    <MinusOutlined onClick={props.onMinusClick} />
-                </div>
-            </div>
-            <div className="result-wrap">
-                <MonacoEditor
-                    options={{
-                        lineNumbers: "off",
-                        lineDecorationsWidth: 0,
-                        lineNumbersMinChars: 0,
-                        minimap: {
-                            enabled: false,
-                        },
-                        readOnly: true,
-                        scrollBeyondLastLine: false,
-                    }}
-                    value={problem}
-                />
-            </div>
-        </div>
+        <ResultPanel
+            onMinusClick={props.onMinusClick}
+            className="problem-panel"
+            title="问题: Untitled-stream-sql"
+        >
+            <MonacoEditor
+                options={{
+                    lineNumbers: "off",
+                    lineDecorationsWidth: 0,
+                    lineNumbersMinChars: 0,
+                    minimap: {
+                        enabled: false,
+                    },
+                    readOnly: true,
+                    scrollBeyondLastLine: false,
+                }}
+                value={problem}
+            />
+        </ResultPanel>
     );
 };
 

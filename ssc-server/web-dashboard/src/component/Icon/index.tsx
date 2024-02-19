@@ -1141,6 +1141,46 @@ export const StreamDraftOutlined = () => (
     </span>
 );
 
+export const BatchDraftOutlined = () => (
+    <span className="anticon anticon-icons-batch">
+        <svg
+            version="1.1"
+            id="Layer_1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            viewBox="0 0 512 512"
+            xmlSpace="preserve"
+            fill="currentColor"
+            width="1em"
+            height="1em"
+            data-icon="icons:batch"
+            aria-hidden="true"
+        >
+            <g>
+                <path
+                    className="batch0"
+                    style={{ fill: "#fa8c16" }}
+                    d="M397.7,482.8H114.3c-47,0-85-38.1-85-85V114.3c0-47,38.1-85,85-85h283.5c47,0,85,38.1,85,85v283.5C482.8,444.7,444.7,482.8,397.7,482.8z"
+                ></path>
+                <g>
+                    <path
+                        className="batch1"
+                        style={{ fill: "#FFFFFF" }}
+                        d="M258.8,363.4h-65.6c-9.5,0-16.2-2.1-20.3-6.4c-4.1-4.2-6.1-11-6.1-20.3V175.3c0-9.5,2.1-16.3,6.2-20.4
+			c4.1-4.1,10.9-6.2,20.1-6.2h69.6c10.3,0,19.1,0.6,26.7,1.9c7.5,1.3,14.3,3.7,20.2,7.3c5.1,3,9.6,6.9,13.5,11.5
+			c3.9,4.6,6.9,9.8,8.9,15.4c2.1,5.6,3.1,11.5,3.1,17.8c0,21.5-10.7,37.2-32.2,47.2c28.2,9,42.3,26.5,42.3,52.4
+			c0,12-3.1,22.8-9.2,32.4c-6.2,9.6-14.5,16.7-24.9,21.3c-6.5,2.7-14.1,4.7-22.6,5.8C280,362.8,270.1,363.4,258.8,363.4z
+			 M210.3,181.3v55.5h39.8c10.8,0,19.2-1,25.1-3.1c5.9-2.1,10.4-6,13.5-11.7c2.4-4.1,3.7-8.7,3.7-13.8c0-10.8-3.9-18-11.6-21.6
+			c-7.7-3.6-19.5-5.3-35.3-5.3H210.3z M255.6,268h-45.3v62.7H257c29.4,0,44.1-10.6,44.1-31.8c0-10.8-3.8-18.7-11.4-23.6
+			C282.1,270.5,270.7,268,255.6,268z"
+                    ></path>
+                </g>
+            </g>
+        </svg>
+    </span>
+);
 export const ValidateAllOutlined = () => (
     <span className="anticon">
         <svg
