@@ -1,14 +1,14 @@
-import { Link, Route, Routes, generatePath, matchPath, useLocation, useParams } from "react-router-dom";
+import { Link, Route, Routes, matchPath, useLocation } from "react-router-dom";
 import StreamJobListLayout from "./StreamJobListLayout";
 import "./index.sass";
-import { Suspense, useState } from "react";
-import StreamJobDetailLayout from "./StreamJobDetailLayout";
+import { Suspense, lazy, useState } from "react";
 import JobDetailLoadingLayout from "./JobDetailLoadingLayout";
 import { LeftOutlined, RightOutlined } from "../../../../component/Icon";
 import { Resizable, ResizableProps } from "react-resizable";
 import BatchJobListLayout from "./BatchJobListLayout";
 import qs from "querystring";
-import BatchJobDetailLayout from "./BatchJobDetailLayout";
+const BatchJobDetailLayout = lazy(() => import("./BatchJobDetailLayout"));
+const StreamJobDetailLayout = lazy(() => import("./StreamJobDetailLayout"));
 
 const OperationLayout = () => {
     const [leftWidth, setLeftWidth] = useState<number>(350);
@@ -99,7 +99,7 @@ const OperationLayout = () => {
                                 <Route
                                     path="*"
                                     element={
-                                        <Suspense fallback={<StreamJobDetailLayout />}>
+                                        <Suspense fallback={<JobDetailLoadingLayout />}>
                                             <BatchJobDetailLayout />
                                         </Suspense>
                                     }

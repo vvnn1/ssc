@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { Suspense, lazy, useState } from "react";
 import { ApartmentOutlined, ControlOutlined, HistoryOutlined } from "../../../../../../component/Icon";
 import "./index.sass";
 import ConfigurationTab from "./ConfigurationTab";
-import StructureTab from "./StructureTab";
 import VersionTab from "./VersionTab";
+import { Spin } from "antd";
+const StructureTab = lazy(() => import("./StructureTab"));
 
 interface RightTabBarProps {
     onPanelChange: (panel: React.ReactNode) => void;
@@ -41,7 +42,12 @@ const RightTabBar = (props: RightTabBarProps) => {
             <div
                 id="structure"
                 className={`tabs-bar-tab-label ${activeLabel === "structure" ? "tabs-bar-tab-label-activated" : ""}`}
-                onClick={changeActiveLabel("structure", <StructureTab />)}
+                onClick={changeActiveLabel(
+                    "structure",
+                    <Suspense fallback={<></>}>
+                        <StructureTab />
+                    </Suspense>
+                )}
             >
                 <span className="tabs-bar-tab-icon">
                     <ApartmentOutlined />

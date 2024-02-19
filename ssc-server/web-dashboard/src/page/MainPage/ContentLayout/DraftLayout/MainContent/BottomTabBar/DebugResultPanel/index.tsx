@@ -10,10 +10,10 @@ import {
     TableOutlined,
 } from "../../../../../../../component/Icon";
 import "./index.sass";
-import StreamResultTable from "./StreamResultTable";
-import { useEffect, useState } from "react";
+import { lazy, useEffect, useState } from "react";
 import MonacoEditor from "../../../../../../../component/MonacoEditor";
 import ResultPanel from "../ResultPanel";
+const StreamResultTable = lazy(() => import("./StreamResultTable"));
 
 const items: TabsProps["items"] = [
     {
