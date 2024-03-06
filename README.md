@@ -25,7 +25,7 @@ ssc系统是基于[Apache Flink](https://flink.apache.org) 、YARN封装的一�
 [本地地址](http://localhost:9704/web/123123/zh#/workspace/:workspaceId/namespace/:namespace/dashboard)
 访问前端页面。  
 注意：前后端暂未进行对接，页面上的功能仅作为将来功能实现的参考。
-![演示图片](https://img-blog.csdnimg.cn/971265bcbd10456983f0dbc51508d071.jpeg)
+![演示图片](https://img2.imgtp.com/2024/03/06/gvYvzUCi.jpg)
 ### 3、命令行客户端功能介绍
 运行ssc-cli，并运行help可查看客户端所支持的所有命令
 
@@ -39,59 +39,59 @@ ssc系统是基于[Apache Flink](https://flink.apache.org) 、YARN封装的一�
 
 TAB键可以自动补全及提示
 
-![命令提示](https://img-blog.csdnimg.cn/368c700d51f84e82aa8e9aa411993dce.png)
+![命令提示](https://img2.imgtp.com/2024/03/06/aiap0ghQ.png)
 
-![参数提示](https://img-blog.csdnimg.cn/9fccddae8810451db731d40b139ecf81.png)
+![参数提示](https://img2.imgtp.com/2024/03/06/NEtbhRyE.png)
 ### 2 项目空间
 
 创建空间
 
-![创建项目空间](https://img-blog.csdnimg.cn/fced993917ee4b0e9e520893d75c35b8.png)
+![创建项目空间](https://img2.imgtp.com/2024/03/06/1XXNKd0b.png)
 
 查询空间
 
-![查询项目空间](https://img-blog.csdnimg.cn/ca4ce5ff1e78467a9bd39010527250c9.png)
+![查询项目空间](https://img2.imgtp.com/2024/03/06/lUMUkBrH.png)
 
 重命名空间
 
-![重命名空间](https://img-blog.csdnimg.cn/e34dbc231b9b48478e551e38f7debb2c.png)
+![重命名空间](https://img2.imgtp.com/2024/03/06/WSHhbxtp.png)
 
-![重命名空间查](https://img-blog.csdnimg.cn/e429dad60cf84adc9d8f312515eb12c3.png)
+![重命名空间查](https://img2.imgtp.com/2024/03/06/cuDoomtP.png)
 
 删除空间
 
-![删除空间](https://img-blog.csdnimg.cn/73dd3b0ffd1b46748f27906cd73e7468.png)
+![删除空间](https://img2.imgtp.com/2024/03/06/fTJPKGq0.png)
 
 ### 3 项目
 通过use-space 选择需要操作的空间
 
-![指定空间](https://img-blog.csdnimg.cn/463b40de1e214f9994fdabbaa5e25b63.png)
+![指定空间](https://img2.imgtp.com/2024/03/06/ngYYiGSq.png)
 
 创建项目
 
-![创建项目](https://img-blog.csdnimg.cn/f7b059c1957547e4a2efaf23137fdd52.png)
+![创建项目](https://img2.imgtp.com/2024/03/06/wrUqrU2b.png)
 
-查询项目１
+查询项目
 
-![查询项目](https://img-blog.csdnimg.cn/7b1068c60d78410db7f3a18be725171d.png)
+![查询项目](https://img2.imgtp.com/2024/03/06/vJQDE1EZ.png)
 
 删除项目
 
-![删除项目](https://img-blog.csdnimg.cn/752ac919105e47c8808792838e2341cb.png)
+![删除项目](https://img2.imgtp.com/2024/03/06/kV7QA74s.png)
 
 ### 4 JAR包
 
 上传一个kafka连接器jar包，范围是PROJECT（工程范围）。系统支持工程范围（PROJECT）、系统范围（SYSTEM）
 
-![添加jar](https://img-blog.csdnimg.cn/d1cca2ea8d5241cf948a4eb96b9c3cc0.png)
+![添加jar](https://img2.imgtp.com/2024/03/06/ruQIAsxp.png)
 
 查询jar包
 
-![查询jar](https://img-blog.csdnimg.cn/80df3713a0ab4b4da0bc8c1f41186ef9.png)
+![查询jar](https://img2.imgtp.com/2024/03/06/AjMuVCT9.png)
 
 删除jar包
 
-![删除jar](https://img-blog.csdnimg.cn/efd37def43514bcfbc4e5ace6322878b.png)
+![删除jar](https://img2.imgtp.com/2024/03/06/Iu1S5g4w.png)
 
 ### 5 函数
 
@@ -124,15 +124,15 @@ functions:
 
 添加函数
 
-![添加函数](https://img-blog.csdnimg.cn/0345755f86fd4275b1a35a1e5d111ab9.png)
+![添加函数](https://img2.imgtp.com/2024/03/06/75NbwCoE.png)
 
 查询函数
 
-![查询函数](https://img-blog.csdnimg.cn/43b7e57b37c146bbbe7f87d76df8172b.png)
+![查询函数](https://img2.imgtp.com/2024/03/06/w3KFmHKv.png)
 
 删除函数
 
-![删除函数](https://img-blog.csdnimg.cn/4b7fec0805844e548f683cda68d8d797.png)
+![删除函数](https://img2.imgtp.com/2024/03/06/anBWOMFd.png)
 
 ### 6 SQL
 创建一个 martvey_test.sql 文件，将以下内容放入
@@ -173,72 +173,72 @@ SELECT martvey_pre(id) AS id, dt, temperature FROM sensor_source;
 
 创建SQL
 
-![创建SQL](https://img-blog.csdnimg.cn/f9c73a782dd14e8ab5045e9f88966748.png)
+![创建SQL](https://img2.imgtp.com/2024/03/06/voCrDoGN.png)
 
 浏览SQL
 
-![浏览SQL](https://img-blog.csdnimg.cn/bf6024024ece44fb93d05edb656b2b1f.png)
+![浏览SQL](https://img2.imgtp.com/2024/03/06/C56LTcFl.png)
 
 更新SQL
 
-![更新SQL](https://img-blog.csdnimg.cn/6d07fe58da0b4ee0b71c4609330c1ba6.png)
+![更新SQL](https://img2.imgtp.com/2024/03/06/94sTrajt.png)
 
 校验SQL
 
 将其中一个dt改为不存在的dt2进行校验
 
-![校验SQL](https://img-blog.csdnimg.cn/8d91a6d5ad5044fb99ac985a5fb74abc.png)
+![校验SQL](https://img2.imgtp.com/2024/03/06/oFryyEgt.png)
 
 
 导出SQL
 
-![导出SQL](https://img-blog.csdnimg.cn/02d634fa189941c1b7448a7d45d0f03a.png)
+![导出SQL](https://img2.imgtp.com/2024/03/06/UYv9b3hB.png)
 
 调试SQL
 
 调试专用语句CREATE DEBUG ... AS ...，可以在客户端打印出调试内容，可以看到客户端和kafka接受的内容，id已经成功加上前缀。ctrl+c提前终止
 
-![客户端运行](https://img-blog.csdnimg.cn/direct/fc332c45ecdc4d33b5ec761d94405062.gif)
+![客户端运行](https://img2.imgtp.com/2024/03/06/IgNACeUk.gif)
 
-![kafka发送](https://img-blog.csdnimg.cn/037f14c6780e4f45ae647f514e983b0a.png)
+![kafka发送](https://img2.imgtp.com/2024/03/06/hrJs1GMx.png)
 
-![kafka接受](https://img-blog.csdnimg.cn/a6a3bc290aa64b84960506723d4b9f49.png)
+![kafka接受](https://img2.imgtp.com/2024/03/06/u5K6xnlA.png)
 
 ### 6 版本控制
 
 版本创建
 
-![创建版本](https://img-blog.csdnimg.cn/1dfd0c0ba54448b5acb6206af8a30a97.png)
+![创建版本](https://img2.imgtp.com/2024/03/06/mWakkTyA.png)
 
 查询版本
 
-![查询版本](https://img-blog.csdnimg.cn/41be91c7983c4f63b90085c8c97f5d65.png)
+![查询版本](https://img2.imgtp.com/2024/03/06/7ncFTOBW.png)
 
 删除版本
 
-![删除版本](https://img-blog.csdnimg.cn/13007dca8cfa46dca38711085c79b9a1.png)
+![删除版本](https://img2.imgtp.com/2024/03/06/KJLxSJk0.png)
 
 ### 7 任务
 创建任务
 
-![创建任务](https://img-blog.csdnimg.cn/e0fe61ada0fb4bafa9a8abdde56faaf8.png)
+![创建任务](https://img2.imgtp.com/2024/03/06/W4zzNbwK.png)
 
 运行任务
 
-![运行任务](https://img-blog.csdnimg.cn/6994cae58e32419a8095e83e5104c04f.png)
+![运行任务](https://img2.imgtp.com/2024/03/06/HsDcT61K.png)
 
 查询任务
 
-![查询任务](https://img-blog.csdnimg.cn/a967f368527f470dab963ccb9e1ce200.png)
+![查询任务](https://img2.imgtp.com/2024/03/06/bxsxCp2x.png)
 
 暂停任务
 
-![暂停任务](https://img-blog.csdnimg.cn/ada484f6c33640bfb52f1ddb96cc23a7.png)
+![暂停任务](https://img2.imgtp.com/2024/03/06/xidmtvyX.png)
 
-![暂停任务2](https://img-blog.csdnimg.cn/3bb4d13a26e24097bd82eff94e23016b.png)
+![暂停任务2](https://img2.imgtp.com/2024/03/06/7epvs2mg.png)
 
 重新运行任务
 
-![重新运行任务](https://img-blog.csdnimg.cn/2252443f54ab4cae8b8dbf7828565d93.png)
+![重新运行任务](https://img2.imgtp.com/2024/03/06/6pbJuwnD.png)
 
-![重新运行任务2](https://img-blog.csdnimg.cn/ef011ace8c6f4b40868bdfc4ca0fd0fe.png)
+![重新运行任务2](https://img2.imgtp.com/2024/03/06/KQDEsmW8.png)
